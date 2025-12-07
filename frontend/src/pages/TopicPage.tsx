@@ -7,10 +7,13 @@ import SuggestEditModal from "../components/SuggestEditModal";
 import SuggestionsPanel from "../components/SuggestionsPanel";
 import VersionHistory from "../components/VersionHistory";
 import CommunityFeed from "../components/CommunityFeed";
+import { getAggregateBias } from "../api";
+import type { AggregateBias } from "../api";
 
 export default function TopicPage() {
   const { topic } = useParams<{ topic: string }>();
   const [data, setData] = useState<Topic | null>(null);
+  const [biasData, setBiasData] = useState<AggregateBias | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -47,6 +50,24 @@ export default function TopicPage() {
       setSuggestions(suggestionsData);
     } catch {
       setError("Topic not found");
+    }
+  }, [topic]);
+
+  useEffect(() => {
+    if (topic) {
+      setData(null);
+      setBiasData(null);
+      setError(null);
+      footnoteCounter.current = 0;
+      footnoteMap.current.clear();
+      getTopic(topic)
+        .then(setData)
+        .catch(() => setError("Topic not found"));
+      getAggregateBias(topic)
+        .then(setBiasData)
+        .catch(() => {
+          // Silently fail if bias data is not available
+        });
     }
   }, [topic]);
 
@@ -134,25 +155,25 @@ export default function TopicPage() {
 
   return (
     <div className="topic-page">
-      <div className="topic-header">
-        <Link to="/" className="back-link">← Back to search</Link>
-        <div className="header-actions">
-          <VersionHistory
-            topicSlug={topic!}
-            onVersionSelect={handleVersionSelect}
-            currentVersionIndex={viewingVersionIndex}
-          />
-          {totalCount > 0 && (
-            <button
-              className={`suggestions-badge ${pendingCount === 0 ? "no-pending" : ""}`}
-              onClick={() => setShowSuggestions(!showSuggestions)}
-            >
-              {pendingCount > 0
-                ? `${pendingCount} pending edit${pendingCount !== 1 ? "s" : ""}`
-                : `${totalCount} edit${totalCount !== 1 ? "s" : ""}`}
-            </button>
-          )}
-        </div>
+        <div className="topic-header">
+            <Link to="/" className="back-link">← Back to search</Link>
+            <div className="header-actions">
+            <VersionHistory
+                topicSlug={topic!}
+                onVersionSelect={handleVersionSelect}
+                currentVersionIndex={viewingVersionIndex}
+            />
+            {totalCount > 0 && (
+                <button
+                className={`suggestions-badge ${pendingCount === 0 ? "no-pending" : ""}`}
+                onClick={() => setShowSuggestions(!showSuggestions)}
+                >
+                {pendingCount > 0
+                    ? `${pendingCount} pending edit${pendingCount !== 1 ? "s" : ""}`
+                    : `${totalCount} edit${totalCount !== 1 ? "s" : ""}`}
+                </button>
+            )}
+            </div>
       </div>
 
       {versionContent && (
@@ -163,6 +184,7 @@ export default function TopicPage() {
       )}
 
       <h1>{data.title}</h1>
+
 
       <div className="topic-layout">
         {/* Left column: Community Feed and future components */}
@@ -179,6 +201,36 @@ export default function TopicPage() {
               onUpdate={loadData}
             />
           )}
+          <div className="topic-header">
+            {biasData && (
+            <div className="bias-marker">
+                <div className="bias-score">
+                <span className="bias-label">Factuality:</span>
+                <span className={`bias-value factual ${biasData.factual_label.toLowerCase().replace(/\s+/g, '-')}`}>
+                    {biasData.factual_label}
+                </span>
+                </div>
+                <div className="bias-score">
+                <span className="bias-label">Source Bias:</span>
+                <div className="bias-bar-container">
+                    <div className="bias-bar">
+                    <div 
+                        className="bias-dot"
+                        style={{
+                        left: `${((biasData.average_bias_score + 10) / 20) * 100}%`
+                        }}
+                    />
+                    </div>
+                </div>
+                </div>
+                {biasData.evaluated_citation_count > 0 && (
+                <div className="bias-meta">
+                    Based on {biasData.evaluated_citation_count} of {biasData.citation_count} citations
+                </div>
+                )}
+            </div>
+            )}
+          </div>
 
           <div className="content" onMouseUp={handleMouseUp}>
             <ReactMarkdown
@@ -257,3 +309,4 @@ export default function TopicPage() {
     </div>
   );
 }
+

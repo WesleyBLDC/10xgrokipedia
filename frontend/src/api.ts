@@ -68,6 +68,17 @@ export interface TweetsSummary {
   cached: boolean;
 }
 
+export interface AggregateBias {
+  article_title: string;
+  article_url: string;
+  citation_count: number;
+  evaluated_citation_count: number;
+  average_factual_score: number;
+  factual_label: string;
+  average_bias_score: number;
+  bias_label: string;
+}
+
 export async function searchTopics(query: string): Promise<TopicSummary[]> {
   const res = await fetch(`${API_BASE}/topics/search?q=${encodeURIComponent(query)}`);
   if (!res.ok) throw new Error("Failed to search topics");
@@ -161,4 +172,14 @@ export async function getVersion(slug: string, index: number): Promise<VersionDe
   const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(slug)}/versions/${index}`);
   if (!res.ok) throw new Error("Failed to get version");
   return res.json();
+}
+
+export async function getAggregateBias(slug: string): Promise<AggregateBias | null> {
+  try {
+    const res = await fetch(`${API_BASE}/aggregate_bias/${encodeURIComponent(slug)}`);
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
+  }
 }
