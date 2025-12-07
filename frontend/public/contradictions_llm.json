@@ -128,11 +128,11 @@
           },
           "article_b_title": "Richmond",
           "article_b_url": "https://grokipedia.com/page/Richmond",
-          "claim_b": "population of 233,655 in the city proper",
+          "claim_b": "As of 2024, Richmond has a population of 233,655 in the [city proper](/page/City_proper), with the surrounding [metropolitan area](/page/Metropolitan_area) encompassing over 1.37 million residents.",
           "claim_b_offset": {
-            "start": -1,
-            "end": -1,
-            "line": -1
+            "start": 372,
+            "end": 569,
+            "line": 4
           },
           "difference": "Population figures"
         },
@@ -141,17 +141,17 @@
           "article_a_url": "https://grokipedia.com/page/Richmond,_Virginia",
           "claim_a": "incorporated as a town in 1742",
           "claim_a_offset": {
-            "start": -1,
-            "end": -1,
-            "line": -1
+            "start": 4803,
+            "end": 4833,
+            "line": 13
           },
           "article_b_title": "Richmond",
           "article_b_url": "https://grokipedia.com/page/Richmond",
-          "claim_b": "formally incorporated as a town in 1782",
+          "claim_b": "formally incorporated as a [town](/page/Town) in 1782",
           "claim_b_offset": {
-            "start": -1,
-            "end": -1,
-            "line": -1
+            "start": 712,
+            "end": 765,
+            "line": 5
           },
           "difference": "Incorporation year"
         },
@@ -173,6 +173,63 @@
             "line": 3
           },
           "difference": "Undergraduate enrollment numbers"
+        },
+        {
+          "article_a_title": "Richmond",
+          "article_a_url": "https://grokipedia.com/page/Richmond",
+          "claim_a": "In the United States, the **University of Richmond Spiders** athletic teams represent the University of Richmond in Richmond, Virginia, across 16 NCAA Division I sports, including basketball, football, and soccer, as members of the Atlantic 10 Conference and Colonial Athletic Association for football.",
+          "claim_a_offset": {
+            "start": 36237,
+            "end": 36539,
+            "line": 122
+          },
+          "article_b_title": "University of Richmond",
+          "article_b_url": "https://grokipedia.com/page/University_of_Richmond",
+          "claim_b": "The Spiders compete in 17 varsity sports",
+          "claim_b_offset": {
+            "start": 2560,
+            "end": 2577,
+            "line": 7
+          },
+          "difference": "Number of varsity sports (16 vs 17)"
+        },
+        {
+          "article_a_title": "Richmond",
+          "article_a_url": "https://grokipedia.com/page/Richmond",
+          "claim_a": "In the United States, the **University of Richmond Spiders** athletic teams represent the University of Richmond in Richmond, Virginia, across 16 NCAA Division I sports, including basketball, football, and soccer, as members of the Atlantic 10 Conference and Colonial Athletic Association for football.",
+          "claim_a_offset": {
+            "start": 36237,
+            "end": 36539,
+            "line": 122
+          },
+          "article_b_title": "Richmond Spiders",
+          "article_b_url": "https://grokipedia.com/page/Richmond_Spiders",
+          "claim_b": "football program competes in the [Patriot League](/page/Patriot_League) as a football-only associate member",
+          "claim_b_offset": {
+            "start": 534,
+            "end": 641,
+            "line": 3
+          },
+          "difference": "Football conference (CAA vs Patriot League)"
+        },
+        {
+          "article_a_title": "Richmond Spiders",
+          "article_a_url": "https://grokipedia.com/page/Richmond_Spiders",
+          "claim_a": "undergraduate enrollment of approximately 3,164 students",
+          "claim_a_offset": {
+            "start": 283,
+            "end": 339,
+            "line": 3
+          },
+          "article_b_title": "Richmond Spiders football",
+          "article_b_url": "https://grokipedia.com/page/Richmond_Spiders_football",
+          "claim_b": "holding steady at around 3,000 undergraduates",
+          "claim_b_offset": {
+            "start": 19888,
+            "end": 19915,
+            "line": 53
+          },
+          "difference": "Undergraduate enrollment estimate (3,164 vs ~3,000)"
         }
       ]
     }
@@ -206,13 +263,72 @@
           },
           "article_b_title": "Polygyny in animals",
           "article_b_url": "https://grokipedia.com/page/Polygyny_in_animals",
-          "claim_b": "fewer than 5% of species exhibit monogamy",
+          "claim_b": "fewer than 5% of species exhibit [monogamy](/page/Monogamy)",
           "claim_b_offset": {
-            "start": -1,
-            "end": -1,
-            "line": -1
+            "start": 737,
+            "end": 796,
+            "line": 5
           },
           "difference": "Percentage of monogamous species in mammals (3-9% vs. fewer than 5%)"
+        },
+        {
+          "article_a_title": "Monogamy in animals",
+          "article_a_url": "https://grokipedia.com/page/Monogamy_in_animals",
+          "claim_a": "Social monogamy occurs in only about 3-9% of the approximately 6,500 mammalian species",
+          "claim_a_offset": {
+            "start": 1443,
+            "end": 1529,
+            "line": 7
+          },
+          "article_b_title": "Monogamy in animals",
+          "article_b_url": "https://grokipedia.com/page/Monogamy_in_animals",
+          "claim_b": "only 3-5% of [mammal](/page/Mammal) species display social [monogamy](/page/Monogamy)",
+          "claim_b_offset": {
+            "start": 4887,
+            "end": 4946,
+            "line": 17
+          },
+          "difference": "Mammal monogamy prevalence (3-9% vs. 3-5%) within the same article"
+        }
+      ]
+    }
+  },
+  {
+    "cluster_id": 999,
+    "size": 2,
+    "members": [
+      {
+        "url": "https://grokipedia.com/page/Dr._Syama_Prasad_Mookerjee_Tunnel",
+        "title": "Dr. Syama Prasad Mookerjee Tunnel",
+        "slug": "Dr._Syama_Prasad_Mookerjee_Tunnel"
+      },
+      {
+        "url": "https://grokipedia.com/page/Shyama_Prasad_Mukherji_College",
+        "title": "Shyama Prasad Mukherji College",
+        "slug": "Shyama_Prasad_Mukherji_College"
+      }
+    ],
+    "llm_response": "manual",
+    "parsed": {
+      "contradictions": [
+        {
+          "article_a_title": "Dr. Syama Prasad Mookerjee Tunnel",
+          "article_a_url": "https://grokipedia.com/page/Dr._Syama_Prasad_Mookerjee_Tunnel",
+          "claim_a": "Syama Prasad Mookerjee",
+          "claim_a_offset": {
+            "start": 6,
+            "end": 28,
+            "line": 1
+          },
+          "article_b_title": "Shyama Prasad Mukherji College",
+          "article_b_url": "https://grokipedia.com/page/Shyama_Prasad_Mukherji_College",
+          "claim_b": "Shyama Prasad Mukherji",
+          "claim_b_offset": {
+            "start": 2,
+            "end": 24,
+            "line": 1
+          },
+          "difference": "Name spelling differs for the same person (Mookerjee vs Mukherji)"
         }
       ]
     }
