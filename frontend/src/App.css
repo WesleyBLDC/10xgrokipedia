@@ -388,6 +388,49 @@
   pointer-events: auto;
 }
 
+.contradiction-tooltip {
+  z-index: 1000;
+  pointer-events: none;
+  margin-bottom: 8px;
+}
+
+.contradiction-tooltip-content {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  min-width: 140px;
+  max-width: 360px;
+  pointer-events: auto;
+}
+
+.contradiction-row {
+  display: flex;
+  gap: 0.35rem;
+  align-items: flex-start;
+}
+
+.contradiction-label {
+  color: #fca5a5;
+  font-weight: 700;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.contradiction-reason-text {
+  font-weight: 600;
+  color: #fca5a5;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.contradiction-hint {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 0.35rem;
+}
+
 .citation-bias-row {
   display: flex;
   align-items: center;
