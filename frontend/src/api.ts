@@ -91,7 +91,6 @@ export async function getTopic(slug: string): Promise<Topic> {
   return res.json();
 }
 
-<<<<<<< HEAD
 export async function getTopicTweets(slug: string, maxResults = 10): Promise<TweetItem[]> {
   const res = await fetch(
     `${API_BASE}/topics/${encodeURIComponent(slug)}/tweets?max_results=${maxResults}`
@@ -174,7 +173,7 @@ export async function getVersion(slug: string, index: number): Promise<VersionDe
   if (!res.ok) throw new Error("Failed to get version");
   return res.json();
 }
-=======
+
 export async function getAggregateBias(slug: string): Promise<AggregateBias | null> {
   try {
     const res = await fetch(`${API_BASE}/aggregate_bias/${encodeURIComponent(slug)}`);
@@ -184,4 +183,3 @@ export async function getAggregateBias(slug: string): Promise<AggregateBias | nu
     return null;
   }
 }
->>>>>>> 550f836 (add bias logic)
