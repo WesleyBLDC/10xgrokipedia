@@ -12,6 +12,8 @@ import ArticlePreviewModal from "../components/ArticlePreviewModal";
 import GraphView from "../components/GraphView";
 import { getAggregateBias } from "../api";
 import type { AggregateBias } from "../api";
+import ArticlePreviewModal from "../components/ArticlePreviewModal";
+import GraphView from "../components/GraphView";
 
 type ContradictionEntry = {
   article_a_title: string;
