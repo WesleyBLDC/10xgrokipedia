@@ -1,0 +1,33 @@
+# OS/Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+backend/venv/
+
+# Backend runtime artifacts
+backend/uvicorn.log
+backend/uvicorn.pid
+
+# Node / Vite
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+frontend/vite.log
+frontend/vite.pid
+
+# Env files
+.env
+.env.*
+
