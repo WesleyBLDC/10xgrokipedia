@@ -50,6 +50,10 @@ RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("TWEETS_RATE_WINDOW", "60"))  # defaul
 RATE_LIMIT_MAX_REQUESTS = int(os.getenv("TWEETS_RATE_MAX", "20"))  # default 20 reqs/min
 TRENDING_HOURS = int(os.getenv("TWEETS_TRENDING_HOURS", "48"))  # default 48h
 TRENDING_TOP_K = int(os.getenv("TWEETS_TRENDING_TOP_K", "3"))  # default top 3
+# Preview flags (optional): force trending for top-N or specific ranks (1-based)
+TRENDING_PREVIEW_TOP_K = int(os.getenv("TWEETS_TRENDING_PREVIEW_TOP_K", "0"))
+_TPR = os.getenv("TWEETS_TRENDING_PREVIEW_RANKS", "").strip()
+TRENDING_PREVIEW_RANKS = {int(x) for x in _TPR.split(',') if x.strip().isdigit()} if _TPR else set()
 
 # In-memory cache and simple global rate limiter
 _tweets_cache: dict[str, tuple[float, list["TweetItem"]]] = {}
@@ -711,7 +715,10 @@ async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size
                     is_recent = (now_dt - dt) <= timedelta(hours=TRENDING_HOURS)
                 except Exception:
                     is_recent = False
-            is_trending = bool(is_recent and (idx < max(1, TRENDING_TOP_K)))
+            # Trending preview override (rank-based, regardless of recency)
+            rank1 = idx + 1
+            preview_trend = (TRENDING_PREVIEW_TOP_K > 0 and idx < TRENDING_PREVIEW_TOP_K) or (rank1 in TRENDING_PREVIEW_RANKS)
+            is_trending = bool(preview_trend or (is_recent and (idx < max(1, TRENDING_TOP_K))))
             out.append(
                 TweetItem(
                     id=tid,

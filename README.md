@@ -99,6 +99,9 @@ Notes:
   - score = raw_engagement / normalization
 - Final list: candidates are sorted by `score` descending; the top `max_results` are returned to the client.
 - "Trending" flag: a tweet is marked as trending when it is among the top `TWEETS_TRENDING_TOP_K` ranked items and was created within `TWEETS_TRENDING_HOURS` hours (defaults: top 3 within 48h). The UI displays a small “Trending” badge for these tweets.
+  - Preview override (optional): to force-show trending badges for quick UI reviews, set either
+    - `TWEETS_TRENDING_PREVIEW_TOP_K=5` (marks ranks 1–5 as trending), or
+    - `TWEETS_TRENDING_PREVIEW_RANKS=1,5` (marks specific ranks, 1-based) regardless of recency.
 - Caching and refresh: results are cached in-memory per topic phrase and `max_results` for `TWEETS_CACHE_TTL` seconds. Use `POST /api/topics/{slug}/tweets/refresh` (or the ↻ button in the UI) to clear the cache and refetch fresh results.
 - UI: the left rail shows a compact, sticky “Top Tweets” widget with ranked numbers; the top three items are visually highlighted. Items link directly to the tweet on X.
 
