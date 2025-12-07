@@ -1,0 +1,27 @@
+[
+  {
+    "topic": "superman",
+    "title": "Superman",
+    "description": "Superman is a fictional superhero who first appeared in American comic books published by DC Comics. The character was created by writer Jerry Siegel and artist Joe Shuster, and first appeared in Action Comics #1 in 1938. Superman is considered an American cultural icon and has been adapted to numerous media including radio, television, and film."
+  },
+  {
+    "topic": "python",
+    "title": "Python",
+    "description": "Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation. Python is dynamically typed and garbage-collected. It supports multiple programming paradigms, including structured, object-oriented, and functional programming."
+  },
+  {
+    "topic": "artificial-intelligence",
+    "title": "Artificial Intelligence",
+    "description": "Artificial intelligence (AI) is intelligence demonstrated by machines, as opposed to natural intelligence displayed by animals including humans. AI research has been defined as the field of study of intelligent agents, which refers to any system that perceives its environment and takes actions that maximize its chance of achieving its goals."
+  },
+  {
+    "topic": "quantum-computing",
+    "title": "Quantum Computing",
+    "description": "Quantum computing is a type of computation that harnesses quantum mechanical phenomena such as superposition and entanglement. A quantum computer uses quantum bits or qubits, which can exist in multiple states simultaneously, unlike classical bits that are either 0 or 1. This enables quantum computers to solve certain problems much faster than classical computers."
+  },
+  {
+    "topic": "spacex",
+    "title": "SpaceX",
+    "description": "Space Exploration Technologies Corp., commonly known as SpaceX, is an American spacecraft manufacturer and space launch provider founded by Elon Musk in 2002. The company's goal is to reduce space transportation costs and enable the colonization of Mars. SpaceX has developed the Falcon rocket family and the Dragon spacecraft."
+  }
+]
