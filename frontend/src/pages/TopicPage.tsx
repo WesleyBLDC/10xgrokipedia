@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { getTopic, getSuggestions } from "../api";
-import type { Topic, Suggestion } from "../api";
+import { getTopic, getSuggestions, getCitationBias } from "../api";
+import type { Topic, Suggestion, CitationBias } from "../api";
 import SuggestEditModal from "../components/SuggestEditModal";
 import SuggestionsPanel from "../components/SuggestionsPanel";
 import VersionHistory from "../components/VersionHistory";
@@ -27,6 +27,14 @@ export default function TopicPage() {
   const [selectedText, setSelectedText] = useState("");
   const [tooltipPosition, setTooltipPosition] = useState<{ x: number; y: number } | null>(null);
   const [showModal, setShowModal] = useState(false);
+
+  // Citation hover state
+  const [citationTooltip, setCitationTooltip] = useState<{
+    url: string;
+    data: CitationBias;
+    position: { x: number; y: number };
+  } | null>(null);
+  const citationTooltipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Footnote tracking
   const footnoteCounter = useRef(0);
@@ -245,6 +253,43 @@ export default function TopicPage() {
 
                   if (!hasText && href) {
                     const num = getFootnoteNumber(href);
+                    const isExternalCitation = href && (href.startsWith('http://') || href.startsWith('https://'));
+                    
+                    const handleCitationMouseEnter = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+                      if (!isExternalCitation) return;
+                      
+                      // Clear any existing timeout
+                      if (citationTooltipTimeoutRef.current) {
+                        clearTimeout(citationTooltipTimeoutRef.current);
+                      }
+                      
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const biasData = await getCitationBias(href);
+                      
+                      // Show tooltip even if no data, with "Unknown" values
+                      setCitationTooltip({
+                        url: href,
+                        data: biasData || {
+                          citation_url: href,
+                          factual_score: 0,
+                          factual_label: "Unknown",
+                          bias_score: 0,
+                          bias_label: "Unknown",
+                        },
+                        position: {
+                          x: rect.left + rect.width / 2,
+                          y: rect.top - 8,
+                        },
+                      });
+                    };
+                    
+                    const handleCitationMouseLeave = () => {
+                      // Delay hiding to allow moving to tooltip
+                      citationTooltipTimeoutRef.current = setTimeout(() => {
+                        setCitationTooltip(null);
+                      }, 200);
+                    };
+                    
                     return (
                       <a
                         href={href}
@@ -252,6 +297,8 @@ export default function TopicPage() {
                         rel="noopener noreferrer"
                         className="footnote"
                         title={href}
+                        onMouseEnter={handleCitationMouseEnter}
+                        onMouseLeave={handleCitationMouseLeave}
                       >
                         [{num}]
                       </a>
@@ -273,8 +320,50 @@ export default function TopicPage() {
                     );
                   }
 
+                  // External links with text - also check if they're citations
+                  const isExternalCitation = href && (href.startsWith('http://') || href.startsWith('https://'));
+                  
+                  const handleLinkMouseEnter = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+                    if (!isExternalCitation) return;
+                    
+                    if (citationTooltipTimeoutRef.current) {
+                      clearTimeout(citationTooltipTimeoutRef.current);
+                    }
+                    
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const biasData = await getCitationBias(href);
+                    
+                    // Show tooltip even if no data, with "Unknown" values
+                    setCitationTooltip({
+                      url: href,
+                      data: biasData || {
+                        citation_url: href,
+                        factual_score: 0,
+                        factual_label: "Unknown",
+                        bias_score: 0,
+                        bias_label: "Unknown",
+                      },
+                      position: {
+                        x: rect.left + rect.width / 2,
+                        y: rect.top - 8,
+                      },
+                    });
+                  };
+                  
+                  const handleLinkMouseLeave = () => {
+                    citationTooltipTimeoutRef.current = setTimeout(() => {
+                      setCitationTooltip(null);
+                    }, 200);
+                  };
+
                   return (
-                    <a href={href} target="_blank" rel="noopener noreferrer">
+                    <a 
+                      href={href} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      onMouseEnter={handleLinkMouseEnter}
+                      onMouseLeave={handleLinkMouseLeave}
+                    >
                       {children}
                     </a>
                   );
@@ -300,6 +389,43 @@ export default function TopicPage() {
         >
           Suggest Edit
         </button>
+      )}
+
+      {citationTooltip && (
+        <div
+          className="citation-bias-tooltip"
+          style={{
+            position: "fixed",
+            left: citationTooltip.position.x,
+            top: citationTooltip.position.y,
+            transform: "translate(-50%, -100%)",
+          }}
+          onMouseEnter={() => {
+            if (citationTooltipTimeoutRef.current) {
+              clearTimeout(citationTooltipTimeoutRef.current);
+            }
+          }}
+          onMouseLeave={() => {
+            citationTooltipTimeoutRef.current = setTimeout(() => {
+              setCitationTooltip(null);
+            }, 200);
+          }}
+        >
+          <div className="citation-bias-tooltip-content">
+            <div className="citation-bias-row">
+              <span className="citation-bias-label">Factuality:</span>
+              <span className={`citation-bias-value factual ${citationTooltip.data.factual_label.toLowerCase().replace(/\s+/g, '-')}`}>
+                {citationTooltip.data.factual_label}
+              </span>
+            </div>
+            <div className="citation-bias-row">
+              <span className="citation-bias-label">Bias:</span>
+              <span className={`citation-bias-value bias ${citationTooltip.data.bias_label.toLowerCase().replace(/\s+/g, '-')}`}>
+                {citationTooltip.data.bias_label}
+              </span>
+            </div>
+          </div>
+        </div>
       )}
 
       <SuggestEditModal

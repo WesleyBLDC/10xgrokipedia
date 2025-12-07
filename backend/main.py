@@ -129,6 +129,14 @@ class AggregateBiasResponse(BaseModel):
     bias_label: str
 
 
+class CitationBiasResponse(BaseModel):
+    citation_url: str
+    factual_score: float
+    factual_label: str
+    bias_score: float
+    bias_label: str
+
+
 def extract_slug(url: str) -> str:
     """Extract topic slug from Grokipedia URL."""
     return url.split("/page/")[-1] if "/page/" in url else url
@@ -1120,5 +1128,79 @@ def aggregate_bias(topic_slug: str, version_index: int | None = None) -> Aggrega
         average_factual_score=round(avg_factual, 1),
         factual_label=factual_label,
         average_bias_score=round(avg_bias, 1),
+        bias_label=bias_label
+    )
+
+
+@app.get("/api/citation_bias")
+def get_citation_bias(url: str) -> CitationBiasResponse:
+    """Get bias and factual reporting data for a specific citation URL."""
+    from urllib.parse import unquote
+    
+    # Load citation evaluations
+    try:
+        with open(CITATION_EVALUATIONS_FILE, 'r', encoding='utf-8') as f:
+            evaluations = json.load(f)
+    except FileNotFoundError:
+        raise HTTPException(
+            status_code=500,
+            detail="Citation evaluations file not found"
+        )
+    
+    # Normalize URL: decode URL encoding and try to match
+    # First try exact match
+    normalized_url = unquote(url).rstrip('/')
+    original_url = url.rstrip('/')
+    
+    # Try multiple variations
+    url_variants = [
+        url,
+        normalized_url,
+        original_url,
+        url.rstrip('/'),
+        normalized_url.rstrip('/'),
+    ]
+    
+    eval_entry = None
+    matched_url = None
+    
+    for variant in url_variants:
+        if variant in evaluations:
+            eval_entry = evaluations[variant]
+            matched_url = variant
+            break
+    
+    if not eval_entry:
+        # Try case-insensitive and with/without trailing slash
+        url_lower = url.lower()
+        for key in evaluations.keys():
+            if key.lower() == url_lower or key.lower().rstrip('/') == url_lower.rstrip('/'):
+                eval_entry = evaluations[key]
+                matched_url = key
+                break
+    
+    if not eval_entry:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Citation not found or not evaluated. Tried: {url}"
+        )
+    
+    eval_data = eval_entry.get('evaluation', {})
+    article_eval = eval_data.get('article', {})
+    
+    factual = article_eval.get('factual_reporting', {})
+    bias_data = article_eval.get('bias', {})
+    
+    factual_score = factual.get('overall_score', 0.0)
+    bias_score = bias_data.get('overall_score', 0.0)
+    
+    factual_label = get_factual_label(factual_score)
+    bias_label = get_bias_label(bias_score)
+    
+    return CitationBiasResponse(
+        citation_url=matched_url or url,
+        factual_score=round(factual_score, 1),
+        factual_label=factual_label,
+        bias_score=round(bias_score, 1),
         bias_label=bias_label
     )
