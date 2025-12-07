@@ -134,7 +134,8 @@
             "end": 569,
             "line": 4
           },
-          "difference": "Population figures"
+          "difference": "Population figures",
+          "rationale": "Both articles state Richmond's 2024 population, but one claims 228,670 while the other reports 233,655 for the city proper and a larger metro total. These numeric claims refer to the same place and year, so they cannot both be correct."
         },
         {
           "article_a_title": "Richmond, Virginia",
@@ -153,7 +154,8 @@
             "end": 765,
             "line": 5
           },
-          "difference": "Incorporation year"
+          "difference": "Incorporation year",
+          "rationale": "The Richmond, Virginia article says the town was incorporated in 1742, but the Richmond article says 1782. A city cannot have two different incorporation years; one of these historical dates is wrong or refers to a different milestone."
         },
         {
           "article_a_title": "University of Richmond",
@@ -172,7 +174,8 @@
             "end": 339,
             "line": 3
           },
-          "difference": "Undergraduate enrollment numbers"
+          "difference": "Undergraduate enrollment numbers",
+          "rationale": "Both statements describe the University of Richmond's undergraduate enrollment but give different totals (3,055 vs ~3,164). A single institution should have one undergraduate headcount for the same timeframe; the counts conflict."
         },
         {
           "article_a_title": "Richmond",
@@ -191,7 +194,8 @@
             "end": 2577,
             "line": 7
           },
-          "difference": "Number of varsity sports (16 vs 17)"
+          "difference": "Number of varsity sports (16 vs 17)",
+          "rationale": "The Richmond article lists 16 NCAA Division I sports for the University of Richmond Spiders, while the university page lists 17 varsity sports. The same athletics program cannot simultaneously sponsor both totals; one number is outdated or incorrect."
         },
         {
           "article_a_title": "Richmond",
@@ -210,7 +214,8 @@
             "end": 641,
             "line": 3
           },
-          "difference": "Football conference (CAA vs Patriot League)"
+          "difference": "Football conference (CAA vs Patriot League)",
+          "rationale": "The Richmond page places the Spiders football team in the CAA, while the Richmond Spiders page says they compete in the Patriot League as of 2025. A team cannot be in two conferences in the same season; one affiliation is outdated."
         },
         {
           "article_a_title": "Richmond Spiders",
@@ -229,7 +234,8 @@
             "end": 19915,
             "line": 53
           },
-          "difference": "Undergraduate enrollment estimate (3,164 vs ~3,000)"
+          "difference": "Undergraduate enrollment estimate (3,164 vs ~3,000)",
+          "rationale": "Both claims refer to undergraduate enrollment at the University of Richmond but disagree on the number (~3,164 vs around 3,000). A single current headcount should be consistent; one of these figures is stale or incorrect."
         }
       ]
     }
@@ -269,7 +275,8 @@
             "end": 796,
             "line": 5
           },
-          "difference": "Percentage of monogamous species in mammals (3-9% vs. fewer than 5%)"
+          "difference": "Percentage of monogamous species in mammals (3-9% vs. fewer than 5%)",
+          "rationale": "Both claims describe how common social monogamy is among mammals, but one gives a range of 3–9% while the other says fewer than 5%. These overlapping ranges for the same population cannot both be right; one estimate is stricter."
         },
         {
           "article_a_title": "Monogamy in animals",
@@ -288,7 +295,8 @@
             "end": 4946,
             "line": 17
           },
-          "difference": "Mammal monogamy prevalence (3-9% vs. 3-5%) within the same article"
+          "difference": "Mammal monogamy prevalence (3-9% vs. 3-5%) within the same article",
+          "rationale": "The same article cites two different prevalence figures for social monogamy in mammals (3–9% vs 3–5%). A single trait prevalence should have one range in a given source; the internal numbers conflict."
         }
       ]
     }
@@ -328,7 +336,8 @@
             "end": 24,
             "line": 1
           },
-          "difference": "Name spelling differs for the same person (Mookerjee vs Mukherji)"
+          "difference": "Name spelling differs for the same person (Mookerjee vs Mukherji)",
+          "rationale": "Both pages refer to the same person but use different spellings: 'Mookerjee' versus 'Mukherji.' A proper noun should be spelled consistently; one rendering is likely incorrect or less standard."
         }
       ]
     }

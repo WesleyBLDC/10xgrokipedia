@@ -74,29 +74,6 @@ Frontend will be available at http://localhost:5173
 | `GET /api/topics/{slug}/tweets` | Top tweets for a topic |
 | `GET /api/topics/{slug}/tweets/summary` | Grok-generated 2–3 bullet summary of top tweets |
 | `POST /api/topics/{slug}/tweets/refresh` | Clear cache for topic tweets |
-| `GET /api/tweets/search?q=text` | Tweets related to highlighted text |
-
-## Contradiction Pipeline (summary)
-
-- **Clustering (`backend/cluster_articles.py`)**  
-  - Builds word- and char-level TF‑IDF vectors on trimmed article text.  
-  - Uses similarity gates (title/slug tokens, rare-term overlap) and union-find to form clusters; caps oversized clusters to prevent over-merge.  
-  - Output: `clusters.json`.
-
-- **LLM contradiction detection (`backend/run_llm_contradictions.py`)**  
-  - For each multi-article cluster, sends articles to X.ai (`grok-4-1-fast-reasoning`) with a prompt demanding exact quotes and JSON pairs.  
-  - Parses responses, verifies quotes by locating exact substrings, and attaches character/line offsets.  
-  - Output: `contradictions_llm.json`.
-
-- **Frontend consumption**  
-  - `frontend/public/contradictions_llm.json` is loaded once on the client.  
-  - `TopicPage.tsx` filters contradictions for the current article and injects red underlines; clicking a highlight deep-links to the conflicting line in the other article with auto-scroll and flash.  
-  - Toggle shows per-article contradiction count.
-
-### Why this approach
-- Clustering narrows pairwise checks so we avoid O(N²) LLM calls across large corpora.  
-- Character n-grams improve fuzzy title/entity grouping without hand-coded rules.  
-- Exact-quote offsets ensure UI highlights remain precise; pairs that don’t round-trip can be dropped/flagged.
 
 ## Contradiction Pipeline (summary)
 
@@ -133,7 +110,6 @@ Caching and rate limiting (in-memory):
 - `TWEETS_CACHE_TTL` (seconds, default 90) — cache TTL per topic query
 - `TWEETS_RATE_WINDOW` (seconds, default 60) — rate-limit window
 - `TWEETS_RATE_MAX` (integer, default 20) — max requests per window (global)
-- Timeouts and fallbacks:
 
 Notes:
 - Results are cached per normalized query and `max_results`.
@@ -165,10 +141,6 @@ Reliability and rate limits:
 
 - Endpoint: `GET /api/topics/{slug}/tweets/summary?max_results=10`
 - The backend generates 2–3 concise bullet points summarizing the highest-ranked tweets for the topic using the Grok API.
-- UI logic on small result sets:
-  - If there are 0 top tweets: no summary is shown.
-  - If there are 1–3 top tweets: at most 1 summary bullet is displayed.
-  - Otherwise: up to 3 bullets are displayed.
 - Inputs to Grok: the current topic phrase and the top 3–5 tweets (by engagement score) including basic metrics. The prompt emphasizes prioritizing the “top of the top” tweets, neutral tone, and no links/hashtags.
 - Caching: summaries are cached in-memory for `TWEETS_SUMMARY_TTL` seconds (default 600s). The `POST /tweets/refresh` endpoint also clears the summary cache for that topic.
 - Env vars:
@@ -186,61 +158,3 @@ Reliability and rate limits:
 - Preview overrides (optional):
   - `TWEETS_TRENDING_PREVIEW_TOP_K=5` (forces trending for ranks 1–5)
   - `TWEETS_TRENDING_PREVIEW_RANKS=1,5` (forces specific ranks, 1-based)
-
-## Highlight → "Search on X" (Related Tweets)
-
-When you select text in a Topic page's main article content, a small toolbar appears near the selection with two options:
-
-- **Search on X** (with X icon) — updates the left rail's Community Feed from "Top Tweets" to "Related X Tweets to Highlight" and shows tweets related to your selection.
-  - In this mode, keywords from your selection are subtly highlighted within each tweet to guide your attention without hurting readability.
-- **Suggest Edit** (with pencil icon) — opens the existing edit suggestion modal prefilled with the highlighted text.
-
-How it works:
-- Frontend sends the highlighted text to `GET /api/tweets/search?q=...`.
-- Backend uses Grok to optimize the query (if `GROK_API` is configured) by suggesting a high-recall OR-based search string (e.g., `(Grok OR API OR xAI)`) and a shortlist of keywords/topics. The prompt explicitly requests OR logic to maximize results.
-- If Grok is unavailable, it falls back to extracting keywords and building an OR query from the top 6 most significant terms.
-- Search prefers Full-Archive (`/2/tweets/search/all`) and only falls back to Recent if required; a wider candidate pool is used for better recall.
-- Results are re-ranked locally with strong keyword/topic emphasis (details below). The UI hides rank badges and the "Trending" pill in this mode.
-- Summary bullets and the refresh control are hidden in this mode to keep the panel focused.
-- Click the ← button in the feed header to return to regular "Top Tweets".
-
-What is displayed in the UI:
-- "Searching for" chips that show a subset of the optimized keywords (up to 8), plus optional topics if provided by Grok.
-- Keyword highlighting inside each tweet (subtle background) to make relevant terms easy to spot while keeping readability.
-- Editable keywords: users can remove keywords by clicking the × on each chip, or add new keywords via the "+ Add" button.
-- Refresh with edits: after editing keywords, click the "↻ Refresh" button in the Search Keywords header to re-search with the updated terms. The frontend builds an OR-based query from the edited keywords (e.g., `(software OR developer OR xai)`) and sends it directly to the backend with `optimize=false` to bypass Grok re-optimization. This ensures the exact edited keywords are used for the search.
-
-API response shape for `GET /api/tweets/search`:
-- `{ tweets: TweetItem[], hints?: { query: string, keywords: string[], topics: string[] } }`
-
-Requirements:
-- Same X API bearer token as the Top Tweets feature (`X_BEARER_TOKEN` or `TWITTER_BEARER_TOKEN`).
-- The search endpoint uses the same caching and single-flight behavior with a short TTL (`TWEETS_CACHE_TTL`).
-
-### Related Tweets: Query + Ranking Details
-
-- Grok query optimization:
-  - Highlighted text is sent to Grok to extract critical keywords (entities, names, technical terms) and supporting keywords (synonyms, abbreviations).
-  - Grok returns an OR-based query optimized for high recall, plus separate keyword/topic arrays.
-  - The page topic (e.g., "elon musk") is automatically added as the first keyword for context.
-  - Topics are display-only in the UI; only keywords are used for the actual API query.
-  - Fallback (if Grok unavailable): extracts top 6 most significant terms and builds an OR query.
-
-- Retrieval query (backend):
-  - OR query using keywords only (quoted for multi-word terms): `(term1 OR "multi word" OR term3) -is:retweet -is:reply lang:en`.
-  - Sanitizes invalid characters for X (e.g., `/`) and collapses whitespace.
-  - Fetches ~3× requested results to allow Grok-based re-ranking.
-
-- Grok-based ranking (backend):
-  - After retrieval, Grok is used to rank tweets by semantic relevance to the highlighted text and keywords.
-  - Ranking criteria (in order of importance):
-    1. **Semantic match**: Does the tweet discuss the same topic/concept as the highlighted text?
-    2. **Keyword coverage**: Does the tweet mention search keywords or related terms?
-    3. **Information value**: Does the tweet provide useful insights, news, or discussion?
-    4. **Quality signals**: Verified authors and engagement metrics (as tiebreakers only).
-  - This approach prioritizes semantic relevance over keyword density, so a tweet discussing the same concept without exact keyword matches ranks higher than an off-topic tweet with keywords.
-  - Fallback (if Grok unavailable): returns tweets in X API's relevancy order.
-
-- Fresh-only Refresh:
-  - Refresh bypasses cache (`nocache=1`) so a new upstream search is performed; no stale results are served.
-  - UI keeps current results visible, showing a subtle shimmer and dot animation while fetching.

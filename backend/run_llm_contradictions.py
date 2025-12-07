@@ -88,6 +88,7 @@ def build_messages(cluster: Dict, articles_by_url: Dict[str, Dict[str, str]]) ->
         "- article_b_title, article_b_url\n"
         "- claim_b: EXACT quote copied directly from article content (do not paraphrase or summarize)\n"
         "- difference: short phrase of what differs\n\n"
+        "- rationale: a one-sentence explanation of why the two claims conflict\n\n"
         "CRITICAL: claim_a and claim_b must be EXACT substring matches from the Content field above.\n"
         "Copy the exact phrase character-for-character, including punctuation and spacing.\n"
         "Return a JSON list."
@@ -169,6 +170,7 @@ def parse_llm_response(content: str, cluster: Dict, articles_by_url: Dict[str, D
                 "claim_b": claim_b,
                 "claim_b_offset": b_off,
                 "difference": item.get("difference", ""),
+                "rationale": item.get("rationale", ""),
             }
         )
     return {"contradictions": enriched}

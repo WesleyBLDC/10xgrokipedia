@@ -21,6 +21,7 @@ type ContradictionEntry = {
   claim_b: string;
   claim_b_offset?: { start: number; end: number; line: number };
   difference: string;
+  rationale?: string;
 };
 
 type ContradictionCluster = {
@@ -41,6 +42,7 @@ export default function TopicPage() {
   const [contradictionData, setContradictionData] = useState<ContradictionCluster[] | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
+  const [hasAppliedFocus, setHasAppliedFocus] = useState(false);
 
   // Version history state
   const [viewingVersionIndex, setViewingVersionIndex] = useState<number | null>(null);
@@ -50,7 +52,6 @@ export default function TopicPage() {
   const [selectedText, setSelectedText] = useState("");
   const [tooltipPosition, setTooltipPosition] = useState<{ x: number; y: number } | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [relatedSearch, setRelatedSearch] = useState<string | null>(null);
 
   // Citation hover state
   const [citationTooltip, setCitationTooltip] = useState<{
@@ -59,6 +60,11 @@ export default function TopicPage() {
     position: { x: number; y: number };
   } | null>(null);
   const citationTooltipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [contradictionTooltip, setContradictionTooltip] = useState<{
+    text: string;
+    position: { x: number; y: number };
+  } | null>(null);
+  const contradictionTooltipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Footnote tracking
   const footnoteCounter = useRef(0);
@@ -92,7 +98,7 @@ export default function TopicPage() {
       setError(null);
       setViewingVersionIndex(null);
       setVersionContent(null);
-      setRelatedSearch(null);
+      setHasAppliedFocus(false);
       footnoteCounter.current = 0;
       footnoteMap.current.clear();
       getTopic(topic)
@@ -156,13 +162,6 @@ export default function TopicPage() {
     setTooltipPosition(null);
   };
 
-  const handleSearchOnX = () => {
-    if (selectedText && selectedText.trim().length > 0) {
-      setRelatedSearch(selectedText.trim());
-    }
-    setTooltipPosition(null);
-  };
-
   const handleModalClose = () => {
     setShowModal(false);
     setSelectedText("");
@@ -212,18 +211,24 @@ export default function TopicPage() {
   }, [contradictionData, data, topic]);
 
   // Apply highlights to the markdown content using offsets or substring search
-  const highlightedContent = useMemo(() => {
+  const highlightResult = useMemo(() => {
     if (!showContradictions || relevantContradictions.length === 0 || !displayContent) {
-      return displayContent;
+      return { content: displayContent, count: 0 };
     }
 
     type Range = {
       start: number;
       end: number;
-      html: string;
+      html?: string;
+      items: {
+        otherTitle: string;
+        otherUrl: string;
+        otherClaim: string;
+        diff: string;
+      }[];
     };
 
-    const ranges: Range[] = [];
+    const rangeMap = new Map<string, Range>();
     const slugUrl = `https://grokipedia.com/page/${topic}`;
 
     const addRange = (
@@ -233,19 +238,24 @@ export default function TopicPage() {
       otherTitle: string,
       otherUrl: string,
       otherClaim: string,
-      diff: string
+      diff: string,
+      rationale?: string
     ) => {
       if (start < 0 || end <= start || end > displayContent.length) return;
-      const tooltip = `${diff} | See: ${otherTitle}`;
-      const safeTitle = tooltip.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
-      const safeOtherUrl = otherUrl.replace(/"/g, "&quot;");
-      const safeOtherClaim = otherClaim.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
-      const safeMyClaim = myClaim.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
-      const inlineStyle = "border-bottom: 2px solid rgba(239,68,68,0.6); background: rgba(239,68,68,0.05); cursor: pointer;";
-      ranges.push({
-        start,
-        end,
-        html: `<span class="contradiction-highlight" style="${inlineStyle}" title="${safeTitle}" data-target="${safeOtherUrl}" data-target-claim="${safeOtherClaim}" data-claim-text="${safeMyClaim}">`,
+      const key = `${start}-${end}`;
+      if (!rangeMap.has(key)) {
+        rangeMap.set(key, {
+          start,
+          end,
+          items: [],
+        });
+      }
+      rangeMap.get(key)!.items.push({
+        otherTitle,
+        otherUrl,
+        otherClaim,
+        diff,
+        rationale,
       });
     };
 
@@ -272,14 +282,15 @@ export default function TopicPage() {
         continue;
       }
       console.log("Adding highlight:", { start: off.start, end: off.end, claim: myClaim });
-      addRange(off.start, off.end, myClaim, otherTitle, otherUrl, otherClaim, c.difference);
+      addRange(off.start, off.end, myClaim, otherTitle, otherUrl, otherClaim, c.difference, c.rationale);
     }
 
-    if (ranges.length === 0) {
+    if (rangeMap.size === 0) {
       console.log("No ranges to highlight for", slugUrl, "relevant:", relevantContradictions);
-      return displayContent;
+      return { content: displayContent, count: 0 };
     }
 
+    const ranges = Array.from(rangeMap.values());
     console.log("Applying", ranges.length, "highlights");
 
     // Sort and dedupe overlaps (simple non-overlap insertion)
@@ -296,19 +307,29 @@ export default function TopicPage() {
     let result = "";
     let cursor = 0;
     for (const r of merged) {
+      const first = r.items[0];
+      const tooltip = r.items
+        .map(it => (it.rationale && it.rationale.trim().length > 0 ? it.rationale : it.diff))
+        .join(" • ");
+      const safeTitle = tooltip.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+      const safeOtherUrl = first.otherUrl.replace(/"/g, "&quot;");
+      const safeOtherClaim = first.otherClaim.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+      const safeMyClaim = displayContent.slice(r.start, r.end).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+      const inlineStyle = "border-bottom: 2px solid rgba(239,68,68,0.6); background: rgba(239,68,68,0.05); cursor: pointer;";
+      const open = `<span class="contradiction-highlight" style="${inlineStyle}" data-tip="${safeTitle}" data-target="${safeOtherUrl}" data-target-claim="${safeOtherClaim}" data-claim-text="${safeMyClaim}">`;
       result += displayContent.slice(cursor, r.start);
-      result += r.html;
+      result += open;
       result += displayContent.slice(r.start, r.end);
       result += "</span>";
       cursor = r.end;
     }
     result += displayContent.slice(cursor);
-    return result;
+    return { content: result, count: merged.length };
   }, [showContradictions, relevantContradictions, displayContent, topic]);
 
   // When arriving from another article with a target claim, auto-enable highlights and scroll to it
   useEffect(() => {
-    if (!focusClaim) return;
+    if (!focusClaim || hasAppliedFocus) return;
     if (!showContradictions) {
       setShowContradictions(true);
       return; // wait for highlights to render
@@ -322,8 +343,11 @@ export default function TopicPage() {
       match.scrollIntoView({ behavior: "smooth", block: "center" });
       match.classList.add("contradiction-highlight-flash");
       setTimeout(() => match.classList.remove("contradiction-highlight-flash"), 1200);
+      setHasAppliedFocus(true);
+      // Clear focus state from history so subsequent toggles don't re-trigger
+      navigate(location.pathname, { replace: true, state: {} });
     }
-  }, [focusClaim, showContradictions, highlightedContent]);
+  }, [focusClaim, showContradictions, highlightResult.content, hasAppliedFocus, navigate, location.pathname]);
 
   // Click handler for contradiction highlights: navigate to the other article
   const handleContentClick = useCallback((evt: React.MouseEvent<HTMLDivElement>) => {
@@ -346,6 +370,26 @@ export default function TopicPage() {
       window.open(otherUrl, "_blank");
     }
   }, [navigate]);
+
+  const handleContentMouseOver = useCallback((evt: React.MouseEvent<HTMLDivElement>) => {
+    const target = (evt.target as HTMLElement).closest(".contradiction-highlight") as HTMLElement | null;
+    if (!target) return;
+    if (contradictionTooltipTimeoutRef.current) {
+      clearTimeout(contradictionTooltipTimeoutRef.current);
+    }
+    const rect = target.getBoundingClientRect();
+    const tip = target.getAttribute("data-tip") || "";
+    setContradictionTooltip({
+      text: tip,
+      position: { x: rect.left + rect.width / 2, y: rect.top - 6 },
+    });
+  }, []);
+
+  const handleContentMouseOut = useCallback(() => {
+    contradictionTooltipTimeoutRef.current = setTimeout(() => {
+      setContradictionTooltip(null);
+    }, 120);
+  }, []);
 
   if (error) {
     return (
@@ -420,13 +464,7 @@ export default function TopicPage() {
       <div className="topic-layout">
         {/* Left column: Community Feed and future components */}
         <aside className="left-rail">
-          {topic && (
-            <CommunityFeed
-              topicSlug={topic}
-              searchQuery={relatedSearch || undefined}
-              onClearSearch={() => setRelatedSearch(null)}
-            />
-          )}
+          {topic && <CommunityFeed topicSlug={topic} />}
         </aside>
 
         {/* Right column: Edit history + article content */}
@@ -469,7 +507,14 @@ export default function TopicPage() {
             )}
           </div>
 
-          <div className="content" onMouseUp={handleMouseUp} onClick={handleContentClick} ref={contentRef}>
+      <div
+        className="content"
+        onMouseUp={handleMouseUp}
+        onClick={handleContentClick}
+        onMouseOver={handleContentMouseOver}
+        onMouseOut={handleContentMouseOut}
+        ref={contentRef}
+      >
             <ReactMarkdown
               rehypePlugins={[rehypeRaw]}
               skipHtml={false}
@@ -598,38 +643,25 @@ export default function TopicPage() {
                 },
               }}
             >
-              {highlightedContent}
+              {highlightResult.content}
             </ReactMarkdown>
           </div>
         </main>
       </div>
 
       {tooltipPosition && !versionContent && (
-        <div
-          className="selection-toolbar"
+        <button
+          className="suggest-edit-tooltip"
           style={{
             position: "fixed",
             left: tooltipPosition.x,
             top: tooltipPosition.y,
             transform: "translate(-50%, -100%)",
           }}
+          onClick={handleSuggestEdit}
         >
-          <div className="selection-toolbar-group">
-            <button className="suggest-edit-tooltip" onClick={handleSearchOnX}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: '0.4rem' }}>
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-              Search on X
-            </button>
-            <button className="suggest-edit-tooltip" onClick={handleSuggestEdit}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '0.4rem' }}>
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
-              Suggest Edit
-            </button>
-          </div>
-        </div>
+          Suggest Edit
+        </button>
       )}
 
       {citationTooltip && (
@@ -669,6 +701,35 @@ export default function TopicPage() {
         </div>
       )}
 
+      {contradictionTooltip && (
+        <div
+          className="contradiction-tooltip"
+          style={{
+            position: "fixed",
+            left: contradictionTooltip.position.x,
+            top: contradictionTooltip.position.y,
+            transform: "translate(-50%, -100%)",
+          }}
+          onMouseEnter={() => {
+            if (contradictionTooltipTimeoutRef.current) {
+              clearTimeout(contradictionTooltipTimeoutRef.current);
+            }
+          }}
+          onMouseLeave={() => {
+            contradictionTooltipTimeoutRef.current = setTimeout(() => {
+              setContradictionTooltip(null);
+            }, 120);
+          }}
+        >
+          <div className="contradiction-tooltip-content">
+            <div className="contradiction-row">
+              <span className="contradiction-label">AI reasoning:</span>
+              <span className="contradiction-reason-text">{contradictionTooltip.text}</span>
+            </div>
+          </div>
+        </div>
+      )}
+
       <SuggestEditModal
         isOpen={showModal}
         onClose={handleModalClose}
@@ -679,3 +740,4 @@ export default function TopicPage() {
     </div>
   );
 }
+
