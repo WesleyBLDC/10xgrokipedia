@@ -230,3 +230,21 @@ export async function fetchArticlePreview(url: string): Promise<ArticlePreview> 
   }
   return res.json();
 }
+
+// Article Summary
+export interface ArticleSummary {
+  summary: string;
+  error?: string;
+}
+
+export async function fetchArticleSummary(content: string, title?: string): Promise<ArticleSummary> {
+  const res = await fetch(`${API_BASE}/summarize-preview`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ content, title }),
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch summary");
+  }
+  return res.json();
+}

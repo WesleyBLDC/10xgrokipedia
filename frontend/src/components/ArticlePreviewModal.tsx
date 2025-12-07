@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { fetchArticlePreview } from "../api";
+import { fetchArticlePreview, fetchArticleSummary } from "../api";
 import type { ArticlePreview } from "../api";
 
 interface Props {
@@ -12,15 +12,36 @@ interface Props {
 export default function ArticlePreviewModal({ isOpen, url, onClose }: Props) {
   const [loading, setLoading] = useState(true);
   const [article, setArticle] = useState<ArticlePreview | null>(null);
+  const [summary, setSummary] = useState<string | null>(null);
+  const [summaryLoading, setSummaryLoading] = useState(false);
 
   useEffect(() => {
     if (!isOpen || !url) return;
 
     setLoading(true);
     setArticle(null);
+    setSummary(null);
 
     fetchArticlePreview(url)
-      .then(setArticle)
+      .then((data) => {
+        setArticle(data);
+        setLoading(false);
+
+        // Fetch summary if content was successfully loaded
+        if (data.content && !data.error) {
+          setSummaryLoading(true);
+          fetchArticleSummary(data.content, data.title)
+            .then((res) => {
+              if (res.summary && !res.error) {
+                setSummary(res.summary);
+              }
+            })
+            .catch(() => {
+              // Silently fail - summary is optional
+            })
+            .finally(() => setSummaryLoading(false));
+        }
+      })
       .catch(() => {
         setArticle({
           url,
@@ -29,8 +50,8 @@ export default function ArticlePreviewModal({ isOpen, url, onClose }: Props) {
           domain: "",
           error: "Failed to fetch the article. Please try again.",
         });
-      })
-      .finally(() => setLoading(false));
+        setLoading(false);
+      });
   }, [isOpen, url]);
 
   if (!isOpen) return null;
@@ -73,7 +94,34 @@ export default function ArticlePreviewModal({ isOpen, url, onClose }: Props) {
               <p>{article.error}</p>
             </div>
           ) : (
-            <ReactMarkdown>{article?.content || ""}</ReactMarkdown>
+            <>
+              {/* Grokipedia Summary Section */}
+              <div className="grokipedia-summary">
+                <div className="grokipedia-summary-header">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg>
+                  <span>Grokipedia Summary</span>
+                </div>
+                <div className="grokipedia-summary-content">
+                  {summaryLoading ? (
+                    <div className="summary-loading">
+                      <span className="summary-spinner" />
+                      <span>Generating summary...</span>
+                    </div>
+                  ) : summary ? (
+                    <p>{summary}</p>
+                  ) : (
+                    <p className="summary-unavailable">Summary unavailable</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Article Content */}
+              <ReactMarkdown>{article?.content || ""}</ReactMarkdown>
+            </>
           )}
         </div>
 

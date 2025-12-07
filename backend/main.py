@@ -1325,3 +1325,77 @@ def get_citation_bias(url: str) -> CitationBiasResponse:
         bias_score=round(bias_score, 1),
         bias_label=bias_label
     )
+
+
+# --- Article Summary Endpoint ---
+
+class SummaryRequest(BaseModel):
+    content: str
+    title: str | None = None
+
+
+class SummaryResponse(BaseModel):
+    summary: str
+    error: str | None = None
+
+
+@app.post("/api/summarize-preview")
+async def summarize_preview(request: SummaryRequest) -> SummaryResponse:
+    """Generate a Grok summary of article content."""
+    if not request.content or len(request.content.strip()) < 50:
+        return SummaryResponse(
+            summary="",
+            error="Content too short to summarize"
+        )
+
+    # Truncate content if too long (keep first ~8000 chars for context)
+    content = request.content[:8000]
+    title_context = f'Article: "{request.title}"\n\n' if request.title else ""
+
+    system_prompt = """You are Grokipedia's article summarizer. Your task is to provide clear, informative summaries that help readers quickly understand the key points of an article.
+
+Guidelines:
+- Write 2-3 concise sentences capturing the main points
+- Focus on facts, key findings, or central arguments
+- Use neutral, encyclopedic tone
+- Don't start with "This article..." or "The article..."
+- Go straight to the substance"""
+
+    user_prompt = f"""{title_context}Summarize the following article content:
+
+{content}"""
+
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            response = await client.post(
+                "https://api.x.ai/v1/chat/completions",
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {GROK_API_KEY}"
+                },
+                json={
+                    "messages": [
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    "model": "grok-3-fast-latest",
+                    "temperature": 0.3,
+                    "max_tokens": 200
+                }
+            )
+            response.raise_for_status()
+            result = response.json()
+
+        summary = result["choices"][0]["message"]["content"].strip()
+        return SummaryResponse(summary=summary)
+
+    except httpx.TimeoutException:
+        return SummaryResponse(
+            summary="",
+            error="Summary request timed out"
+        )
+    except Exception as e:
+        return SummaryResponse(
+            summary="",
+            error=f"Failed to generate summary: {str(e)}"
+        )
