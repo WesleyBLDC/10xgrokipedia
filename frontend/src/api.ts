@@ -213,3 +213,20 @@ export async function getCitationBias(url: string): Promise<CitationBias | null>
     return null;
   }
 }
+
+// Article Preview
+export interface ArticlePreview {
+  url: string;
+  title: string;
+  content: string;
+  domain: string;
+  error?: string;
+}
+
+export async function fetchArticlePreview(url: string): Promise<ArticlePreview> {
+  const res = await fetch(`${API_BASE}/fetch-article?url=${encodeURIComponent(url)}`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch article");
+  }
+  return res.json();
+}

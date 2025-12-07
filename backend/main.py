@@ -10,11 +10,14 @@ from pathlib import Path
 from typing import List, Optional
 from urllib.parse import unquote
 
+import html2text
 import httpx
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from urllib.parse import urlparse
 
 # Load .env from the same directory as this file
 load_dotenv(Path(__file__).parent / ".env")
@@ -1131,6 +1134,123 @@ def aggregate_bias(topic_slug: str, version_index: int | None = None) -> Aggrega
         average_bias_score=round(avg_bias, 1),
         bias_label=bias_label
     )
+
+
+# --- Article Preview Endpoint ---
+
+class ArticlePreview(BaseModel):
+    url: str
+    title: str
+    content: str
+    domain: str
+    error: str | None = None
+
+
+@app.get("/api/fetch-article")
+async def fetch_article(url: str) -> ArticlePreview:
+    """Fetch and extract readable content from a URL."""
+    # Parse domain from URL
+    try:
+        parsed = urlparse(url)
+        domain = parsed.netloc or "unknown"
+    except Exception:
+        domain = "unknown"
+
+    # Validate URL
+    if not url.startswith(("http://", "https://")):
+        return ArticlePreview(
+            url=url,
+            title="Invalid URL",
+            content="",
+            domain=domain,
+            error="URL must start with http:// or https://"
+        )
+
+    try:
+        # Fetch the page
+        async with httpx.AsyncClient(timeout=15.0, follow_redirects=True) as client:
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            }
+            response = await client.get(url, headers=headers)
+            response.raise_for_status()
+
+        # Parse HTML
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        # Extract title
+        title = ""
+        if soup.title and soup.title.string:
+            title = soup.title.string.strip()
+        elif soup.find("h1"):
+            title = soup.find("h1").get_text(strip=True)
+        else:
+            title = domain
+
+        # Remove unwanted elements
+        for tag in soup(["script", "style", "nav", "header", "footer", "aside", "iframe", "noscript"]):
+            tag.decompose()
+
+        # Try to find main content
+        main_content = None
+        for selector in ["article", "main", '[role="main"]', ".post-content", ".article-content", ".entry-content"]:
+            main_content = soup.select_one(selector)
+            if main_content:
+                break
+
+        # Fall back to body if no main content found
+        if not main_content:
+            main_content = soup.body if soup.body else soup
+
+        # Convert to markdown
+        h = html2text.HTML2Text()
+        h.ignore_links = False
+        h.ignore_images = True
+        h.ignore_emphasis = False
+        h.body_width = 0  # Don't wrap lines
+        h.skip_internal_links = True
+
+        content = h.handle(str(main_content))
+
+        # Clean up excessive whitespace
+        content = re.sub(r'\n{3,}', '\n\n', content).strip()
+
+        # Limit content length to prevent huge responses
+        max_length = 50000
+        if len(content) > max_length:
+            content = content[:max_length] + "\n\n... (content truncated)"
+
+        return ArticlePreview(
+            url=url,
+            title=title,
+            content=content,
+            domain=domain
+        )
+
+    except httpx.TimeoutException:
+        return ArticlePreview(
+            url=url,
+            title="Request Timeout",
+            content="",
+            domain=domain,
+            error="The request timed out. The website may be slow or unavailable."
+        )
+    except httpx.HTTPStatusError as e:
+        return ArticlePreview(
+            url=url,
+            title=f"HTTP Error {e.response.status_code}",
+            content="",
+            domain=domain,
+            error=f"Failed to fetch the page: HTTP {e.response.status_code}"
+        )
+    except Exception as e:
+        return ArticlePreview(
+            url=url,
+            title="Error",
+            content="",
+            domain=domain,
+            error=f"Failed to fetch or parse the article: {str(e)}"
+        )
 
 
 @app.get("/api/citation_bias")

@@ -6,3 +6,5 @@ python-dotenv==1.0.1
 xai-sdk>=1.0.0
 scikit-learn==1.5.2
 requests==2.32.3
+beautifulsoup4==4.12.3
+html2text==2024.2.26
