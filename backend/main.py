@@ -54,8 +54,12 @@ _summary_cache: dict[str, tuple[float, List[str]]] = {}
 _cache_lock = asyncio.Lock()
 _rate_lock = asyncio.Lock()
 _rate_calls: deque[float] = deque()
+<<<<<<< HEAD
 SUGGESTIONS_FILE = Path(__file__).parent / "suggestions.json"
 GROK_API_KEY = os.getenv("GROK_API_KEY")
+=======
+_inflight_tasks: dict[str, asyncio.Task] = {}
+>>>>>>> 1bd6f65 (fix(top-tweets): reduce upstream 429s)
 
 if not GROK_API_KEY:
     print("WARNING: GROK_API_KEY not found in .env file!")
@@ -826,24 +830,45 @@ async def get_topic_tweets(topic_slug: str, max_results: int = 10) -> list[Tweet
             if now - ts < CACHE_TTL_SECONDS:
                 return items
             else:
-                # expired; drop entry
                 _tweets_cache.pop(key, None)
 
-    # Rate limiting: simple global window limiter
-    async with _rate_lock:
-        # remove old entries
-        while _rate_calls and (now - _rate_calls[0] > RATE_LIMIT_WINDOW_SECONDS):
-            _rate_calls.popleft()
-        if len(_rate_calls) >= RATE_LIMIT_MAX_REQUESTS:
-            raise HTTPException(status_code=429, detail="Rate limit exceeded for tweets endpoint. Please try again later.")
-        _rate_calls.append(now)
+        # Single-flight: if another request is already fetching, await it
+        if key in _inflight_tasks:
+            task = _inflight_tasks[key]
+            joiner = True
+        else:
+            # Rate limiting only for the creator of the task
+            async with _rate_lock:
+                while _rate_calls and (now - _rate_calls[0] > RATE_LIMIT_WINDOW_SECONDS):
+                    _rate_calls.popleft()
+                if len(_rate_calls) >= RATE_LIMIT_MAX_REQUESTS:
+                    # serve stale if available (even if expired)
+                    if key in _tweets_cache:
+                        return _tweets_cache[key][1]
+                    raise HTTPException(status_code=429, detail="Rate limit exceeded for tweets endpoint. Please try again later.")
+                _rate_calls.append(now)
+            task = asyncio.create_task(_fetch_recent_top_tweets(query=query, return_count=max_results))
+            _inflight_tasks[key] = task
+            joiner = False
 
-    # Fetch fresh results
-    items = await _fetch_recent_top_tweets(query=query, return_count=max_results)
+    # Await the task outside the lock
+    try:
+        items = await task
+    except HTTPException as e:
+        # On upstream 429 or errors, try to serve stale if available
+        async with _cache_lock:
+            if key in _tweets_cache:
+                return _tweets_cache[key][1]
+        raise e
+    finally:
+        if not joiner:
+            async with _cache_lock:
+                _inflight_tasks.pop(key, None)
 
-    # Store in cache
-    async with _cache_lock:
-        _tweets_cache[key] = (time.time(), items)
+    # Store in cache (creator only)
+    if not joiner:
+        async with _cache_lock:
+            _tweets_cache[key] = (time.time(), items)
 
     return items
 

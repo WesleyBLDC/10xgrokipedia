@@ -40,29 +40,30 @@ export default function CommunityFeed({ topicSlug }: Props) {
     setLoading(true);
     setError(null);
     setTweets(null);
+    // Fetch tweets first; then summary to avoid duplicate upstream calls
     getTopicTweets(topicSlug, 10)
       .then((data) => {
         if (!cancelled) setTweets(data);
+        // Start summary after tweets succeed
+        setSummaryLoading(true);
+        setSummaryError(null);
+        setSummary(null);
+        return getTopicTweetsSummary(topicSlug, 10)
+          .then((s) => {
+            if (!cancelled) setSummary(s?.bullets || []);
+          })
+          .catch((e) => {
+            if (!cancelled) setSummaryError(typeof e?.message === "string" ? e.message : "");
+          })
+          .finally(() => {
+            if (!cancelled) setSummaryLoading(false);
+          });
       })
       .catch((e) => {
         if (!cancelled) setError(typeof e?.message === "string" ? e.message : "Failed to load");
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
-      });
-    // Summary can be fetched in parallel
-    setSummaryLoading(true);
-    setSummaryError(null);
-    setSummary(null);
-    getTopicTweetsSummary(topicSlug, 10)
-      .then((data) => {
-        if (!cancelled) setSummary(data?.bullets || []);
-      })
-      .catch((e) => {
-        if (!cancelled) setSummaryError(typeof e?.message === "string" ? e.message : "");
-      })
-      .finally(() => {
-        if (!cancelled) setSummaryLoading(false);
       });
     return () => {
       cancelled = true;

@@ -101,6 +101,10 @@ Notes:
 - Caching and refresh: results are cached in-memory per topic phrase and `max_results` for `TWEETS_CACHE_TTL` seconds. Use `POST /api/topics/{slug}/tweets/refresh` (or the ↻ button in the UI) to clear the cache and refetch fresh results.
 - UI: the left rail shows a compact, sticky “Top Tweets” widget with ranked numbers; the top three items are visually highlighted. Items link directly to the tweet on X.
 
+Reliability and rate limits:
+- The service uses an in-memory single-flight mechanism to prevent duplicate upstream calls for the same topic while a fetch is in flight.
+- If the upstream X API returns `429 Too Many Requests`, the backend serves the last cached result (if available) instead of failing the request.
+
 ### Grok Summary of Top Tweets
 
 - Endpoint: `GET /api/topics/{slug}/tweets/summary?max_results=10`
