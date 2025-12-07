@@ -70,6 +70,7 @@ Frontend will be available at http://localhost:5173
 | `GET /api/topics/{slug}/tweets` | Top tweets for a topic |
 | `GET /api/topics/{slug}/tweets/summary` | Grok-generated 2–3 bullet summary of top tweets |
 | `POST /api/topics/{slug}/tweets/refresh` | Clear cache for topic tweets |
+| `GET /api/tweets/search?q=text` | Tweets related to highlighted text |
 
 ## X API integration (Community Feed / Top Tweets)
 
@@ -84,6 +85,7 @@ Caching and rate limiting (in-memory):
 - `TWEETS_CACHE_TTL` (seconds, default 90) — cache TTL per topic query
 - `TWEETS_RATE_WINDOW` (seconds, default 60) — rate-limit window
 - `TWEETS_RATE_MAX` (integer, default 20) — max requests per window (global)
+- Timeouts and fallbacks:
 
 Notes:
 - Results are cached per normalized query and `max_results`.
@@ -115,6 +117,10 @@ Reliability and rate limits:
 
 - Endpoint: `GET /api/topics/{slug}/tweets/summary?max_results=10`
 - The backend generates 2–3 concise bullet points summarizing the highest-ranked tweets for the topic using the Grok API.
+- UI logic on small result sets:
+  - If there are 0 top tweets: no summary is shown.
+  - If there are 1–3 top tweets: at most 1 summary bullet is displayed.
+  - Otherwise: up to 3 bullets are displayed.
 - Inputs to Grok: the current topic phrase and the top 3–5 tweets (by engagement score) including basic metrics. The prompt emphasizes prioritizing the “top of the top” tweets, neutral tone, and no links/hashtags.
 - Caching: summaries are cached in-memory for `TWEETS_SUMMARY_TTL` seconds (default 600s). The `POST /tweets/refresh` endpoint also clears the summary cache for that topic.
 - Env vars:
@@ -132,3 +138,32 @@ Reliability and rate limits:
 - Preview overrides (optional):
   - `TWEETS_TRENDING_PREVIEW_TOP_K=5` (forces trending for ranks 1–5)
   - `TWEETS_TRENDING_PREVIEW_RANKS=1,5` (forces specific ranks, 1-based)
+
+## Highlight → "Search on X" (Related Tweets)
+
+When you select text in a Topic page's main article content, a small toolbar appears near the selection with two options:
+
+- **Search on X** (with X icon) — updates the left rail's Community Feed from "Top Tweets" to "Related X Tweets to Highlight" and shows tweets related to your selection.
+  - In this mode, keywords from your selection are subtly highlighted within each tweet to guide your attention without hurting readability.
+- **Suggest Edit** (with pencil icon) — opens the existing edit suggestion modal prefilled with the highlighted text.
+
+How it works:
+- Frontend sends the highlighted text to `GET /api/tweets/search?q=...`.
+- Backend uses Grok to optimize the query (if `GROK_API` is configured) by suggesting a high-recall OR-based search string (e.g., `(Grok OR API OR xAI)`) and a shortlist of keywords/topics. The prompt explicitly requests OR logic to maximize results.
+- If Grok is unavailable, it falls back to extracting keywords and building an OR query from the top 6 most significant terms.
+- Search prefers Full-Archive (`/2/tweets/search/all`) and only falls back to Recent if required; a wider candidate pool is used for better recall.
+- Results are ranked by the same engagement-based score used for topic tweets, but the UI hides rank badges and the "Trending" pill in this mode.
+- Summary bullets and the refresh control are hidden in this mode to keep the panel focused.
+- Click the ← button in the feed header to return to regular "Top Tweets".
+
+What is displayed in the UI:
+- “Searching for” chips that show a subset of the optimized keywords (up to 8), plus optional topics if provided by Grok.
+- Keyword highlighting inside each tweet (subtle background) to make relevant terms easy to spot while keeping readability.
+- Inline editing: double‑click the “Searching for” area to edit the query keywords directly. Press Enter to apply and re‑search (with Grok optimization if configured). Press Esc or blur to cancel editing.
+
+API response shape for `GET /api/tweets/search`:
+- `{ tweets: TweetItem[], hints?: { query: string, keywords: string[], topics: string[] } }`
+
+Requirements:
+- Same X API bearer token as the Top Tweets feature (`X_BEARER_TOKEN` or `TWITTER_BEARER_TOKEN`).
+- The search endpoint uses the same caching and single-flight behavior with a short TTL (`TWEETS_CACHE_TTL`).
