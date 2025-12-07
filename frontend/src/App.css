@@ -986,6 +986,24 @@
   gap: 0.75rem;
 }
 
+.graph-view-button {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.graph-view-button:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .toggle-contradictions {
   border: 1px solid var(--border-color);
   background: var(--bg-tertiary);

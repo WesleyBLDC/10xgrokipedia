@@ -96,6 +96,7 @@ class TopicDetail(BaseModel):
     title: str
     content: str
     suggestion_count: int = 0
+    id: str | None = None
 
 
 class EditSuggestionInput(BaseModel):
@@ -739,7 +740,8 @@ def get_topic(topic_slug: str) -> TopicDetail:
                 suggestion_count=get_suggestion_count(decoded_slug),
                 topic=extract_slug(a['url']),
                 title=a['title'],
-                content=a['content']
+                content=a['content'],
+                id=extract_slug(a['url'])  # Use slug as ID
             )
     raise HTTPException(status_code=404, detail="Topic not found")
 
@@ -1399,3 +1401,79 @@ Guidelines:
             summary="",
             error=f"Failed to generate summary: {str(e)}"
         )
+
+
+# --- Article Graph Endpoint ---
+
+class GraphNode(BaseModel):
+    id: str
+    title: str
+    citation_count: int
+    outgoing_links: int
+    citation_domains_count: int = 0
+
+
+class GraphEdge(BaseModel):
+    source: str
+    target: str
+    weight: float
+    types: list[str]
+    metadata: dict = {}
+
+
+class ArticleGraphResponse(BaseModel):
+    nodes: list[GraphNode]
+    edges: list[GraphEdge]
+    center_node: str | None = None
+    stats: dict | None = None
+
+
+GRAPH_FILE = CURRENT_DIR / "article_graph.json"
+
+
+@app.get("/api/article_graph")
+def get_article_graph(article_id: str | None = None) -> ArticleGraphResponse:
+    """Get article graph, optionally filtered to show connections for a specific article.
+    
+    Args:
+        article_id: Optional article slug. If provided, returns a subgraph centered on this article.
+    """
+    # Load pre-generated graph from file
+    if not GRAPH_FILE.exists():
+        raise HTTPException(
+            status_code=404,
+            detail="Graph data not found. Please run generate_article_graph.py to generate the graph."
+        )
+    
+    with open(GRAPH_FILE, 'r', encoding='utf-8') as f:
+        graph = json.load(f)
+    
+    # If article_id (slug) is provided, filter to show only connected nodes
+    if article_id:
+        # article_id is actually a slug, use it directly
+        article_slug = article_id
+        # Find all nodes connected to this article
+        connected_node_ids = {article_slug}
+        for edge in graph['edges']:
+            if edge['source'] == article_slug:
+                connected_node_ids.add(edge['target'])
+            elif edge['target'] == article_slug:
+                connected_node_ids.add(edge['source'])
+        
+        # Filter nodes and edges
+        filtered_nodes = [n for n in graph['nodes'] if n['id'] in connected_node_ids]
+        filtered_edges = [
+            e for e in graph['edges']
+            if e['source'] in connected_node_ids and e['target'] in connected_node_ids
+        ]
+        
+        graph['nodes'] = filtered_nodes
+        graph['edges'] = filtered_edges
+        graph['center_node'] = article_slug
+    
+    return ArticleGraphResponse(
+        nodes=[GraphNode(**node) for node in graph['nodes']],
+        edges=[GraphEdge(**edge) for edge in graph['edges']],
+        center_node=graph.get('center_node'),
+        stats=graph.get('stats')
+    )

@@ -9,6 +9,7 @@ import SuggestionsPanel from "../components/SuggestionsPanel";
 import VersionHistory from "../components/VersionHistory";
 import CommunityFeed from "../components/CommunityFeed";
 import ArticlePreviewModal from "../components/ArticlePreviewModal";
+import GraphView from "../components/GraphView";
 
 type ContradictionEntry = {
   article_a_title: string;
@@ -59,6 +60,7 @@ export default function TopicPage() {
   } | null>(null);
   const citationTooltipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [showGraph, setShowGraph] = useState(false);
 
   // Footnote tracking
   const footnoteCounter = useRef(0);
@@ -370,6 +372,13 @@ export default function TopicPage() {
           >
             {showContradictions ? "Hide contradictions" : "Show contradictions"}
           </button>
+          <button
+            className="graph-view-button"
+            onClick={() => setShowGraph(true)}
+            title="View article graph"
+          >
+            Graph View
+          </button>
           <VersionHistory
             topicSlug={topic!}
             onVersionSelect={handleVersionSelect}
@@ -656,6 +665,27 @@ export default function TopicPage() {
         url={previewUrl || ""}
         onClose={() => setPreviewUrl(null)}
       />
+
+      {/* Graph View Modal */}
+      {showGraph && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 2000,
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
+          }}
+        >
+          <GraphView
+            articleId={topic || undefined}
+            onClose={() => setShowGraph(false)}
+            isModal={true}
+          />
+        </div>
+      )}
     </div>
   );
 }
