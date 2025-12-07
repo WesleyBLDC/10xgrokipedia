@@ -31,6 +31,8 @@ app.add_middleware(
 
 CURRENT_DIR = Path(__file__).resolve().parent
 ROOT_DIR = CURRENT_DIR.parent
+DATA_FILE = Path(__file__).parent / "all_articles_short.json"
+CITATION_EVALUATIONS_FILE = Path(__file__).parent / "citation_bias_evaluations.json"
 
 # Load env files (root .env first, then backend/.env to allow local overrides)
 load_dotenv(ROOT_DIR / ".env")
@@ -116,14 +118,26 @@ class SuggestionResponse(BaseModel):
 
 # --- Helpers ---
 
+class AggregateBiasResponse(BaseModel):
+    article_title: str
+    article_url: str
+    citation_count: int
+    evaluated_citation_count: int
+    average_factual_score: float
+    factual_label: str
+    average_bias_score: float
+    bias_label: str
+
+
 def extract_slug(url: str) -> str:
     """Extract topic slug from Grokipedia URL."""
     return url.split("/page/")[-1] if "/page/" in url else url
 
 
-def load_data() -> list[Article]:
+def load_data() -> list[dict]:
+    """Load articles as dictionaries to preserve all fields including citations."""
     with open(DATA_FILE) as f:
-        return [Article(**item) for item in json.load(f)]
+        return json.load(f)
 
 
 def load_suggestions() -> dict:
@@ -242,7 +256,7 @@ def get_topics() -> list[TopicSummary]:
     """Get all topics (for search)."""
     data = load_data()
     return [
-        TopicSummary(topic=extract_slug(a.url), title=a.title)
+        TopicSummary(topic=extract_slug(a['url']), title=a['title'])
         for a in data
     ]
 
@@ -253,9 +267,9 @@ def search_topics(q: str = "") -> list[TopicSummary]:
     data = load_data()
     query = q.lower()
     results = [
-        TopicSummary(topic=extract_slug(a.url), title=a.title)
+        TopicSummary(topic=extract_slug(a['url']), title=a['title'])
         for a in data
-        if query in a.title.lower() or query in extract_slug(a.url).lower()
+        if query in a['title'].lower() or query in extract_slug(a['url']).lower()
     ]
     return results
 
@@ -707,12 +721,12 @@ def get_topic(topic_slug: str) -> TopicDetail:
     decoded_slug = unquote(topic_slug)
 
     for a in data:
-        if extract_slug(a.url) == decoded_slug:
+        if extract_slug(a['url']) == decoded_slug:
             return TopicDetail(
-                topic=extract_slug(a.url),
-                title=a.title,
-                content=a.content,
-                suggestion_count=get_suggestion_count(decoded_slug)
+                suggestion_count=get_suggestion_count(decoded_slug),
+                topic=extract_slug(a['url']),
+                title=a['title'],
+                content=a['content']
             )
     raise HTTPException(status_code=404, detail="Topic not found")
 
@@ -960,3 +974,117 @@ async def _generate_tweets_summary(topic_phrase: str, tweets: List[TweetItem]) -
     # Ensure we return up to 3 compact bullets
     bullets = [b.strip() for b in bullets if isinstance(b, str) and b.strip()][:3]
     return bullets
+def get_factual_label(score: float) -> str:
+    """Map factual reporting score (0-10, lower is better) to label."""
+    if score <= 1.0:
+        return "Very High"
+    elif score <= 2.5:
+        return "High"
+    elif score <= 4.0:
+        return "Mostly Factual"
+    elif score <= 6.0:
+        return "Mixed"
+    elif score <= 8.0:
+        return "Low"
+    else:
+        return "Very Low"
+
+
+def get_bias_label(score: float) -> str:
+    """Map bias score (-10 to +10) to label. Negative = Left, Positive = Right, Near 0 = Center."""
+    if score <= -7.5:
+        return "Extreme Left"
+    elif score <= -3.5:
+        return "Left"
+    elif score <= -1.0:
+        return "Left-Center"
+    elif score < 1.0:
+        return "Center"
+    elif score < 3.5:
+        return "Right-Center"
+    elif score < 7.5:
+        return "Right"
+    else:
+        return "Extreme Right"
+
+
+@app.get("/api/aggregate_bias/{topic_slug:path}")
+def aggregate_bias(topic_slug: str) -> AggregateBiasResponse:
+    """Get aggregated bias and factual reporting data for an article's citations."""
+    # Load articles
+    data = load_data()
+    decoded_slug = unquote(topic_slug)
+    
+    # Find the article
+    article = None
+    for a in data:
+        if extract_slug(a['url']) == decoded_slug:
+            article = a
+            break
+    
+    if not article:
+        raise HTTPException(status_code=404, detail="Topic not found")
+    
+    # Get citations from article
+    citations = article.get('citations', [])
+    article_title = article.get('title', '')
+    article_url = article.get('url', '')
+    
+    if not citations:
+        raise HTTPException(
+            status_code=404,
+            detail="Article has no citations"
+        )
+    
+    # Load citation evaluations (now a dict with URLs as keys)
+    try:
+        with open(CITATION_EVALUATIONS_FILE, 'r', encoding='utf-8') as f:
+            evaluations = json.load(f)
+    except FileNotFoundError:
+        raise HTTPException(
+            status_code=500,
+            detail="Citation evaluations file not found"
+        )
+    
+    # Match citations to evaluations and collect scores
+    factual_scores = []
+    bias_scores = []
+    
+    for citation_url in citations:
+        if citation_url in evaluations:
+            eval_entry = evaluations[citation_url]
+            eval_data = eval_entry.get('evaluation', {})
+            article_eval = eval_data.get('article', {})
+            
+            factual = article_eval.get('factual_reporting', {})
+            bias_data = article_eval.get('bias', {})
+            
+            if 'overall_score' in factual:
+                factual_scores.append(factual['overall_score'])
+            if 'overall_score' in bias_data:
+                bias_scores.append(bias_data['overall_score'])
+    
+    if not factual_scores and not bias_scores:
+        raise HTTPException(
+            status_code=404,
+            detail="No evaluated citations found for this article"
+        )
+    
+    # Calculate averages
+    avg_factual = sum(factual_scores) / len(factual_scores) if factual_scores else 0.0
+    avg_bias = sum(bias_scores) / len(bias_scores) if bias_scores else 0.0
+    
+    # Get labels
+    factual_label = get_factual_label(avg_factual)
+    bias_label = get_bias_label(avg_bias)
+    
+    return AggregateBiasResponse(
+        article_title=article_title,
+        article_url=article_url,
+        citation_count=len(citations),
+        evaluated_citation_count=len(factual_scores),
+        average_factual_score=round(avg_factual, 1),
+        factual_label=factual_label,
+        average_bias_score=round(avg_bias, 1),
+        bias_label=bias_label
+    )

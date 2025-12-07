@@ -1,16 +1,22 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+<<<<<<< HEAD
 import { getTopic, getSuggestions } from "../api";
 import type { Topic, Suggestion } from "../api";
 import SuggestEditModal from "../components/SuggestEditModal";
 import SuggestionsPanel from "../components/SuggestionsPanel";
 import VersionHistory from "../components/VersionHistory";
 import CommunityFeed from "../components/CommunityFeed";
+=======
+import { getTopic, getAggregateBias } from "../api";
+import type { Topic, AggregateBias } from "../api";
+>>>>>>> 550f836 (add bias logic)
 
 export default function TopicPage() {
   const { topic } = useParams<{ topic: string }>();
   const [data, setData] = useState<Topic | null>(null);
+  const [biasData, setBiasData] = useState<AggregateBias | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -29,6 +35,7 @@ export default function TopicPage() {
   const footnoteCounter = useRef(0);
   const footnoteMap = useRef<Map<string, number>>(new Map());
 
+<<<<<<< HEAD
   const loadData = useCallback(async () => {
     if (!topic) return;
     setData(null);
@@ -47,6 +54,23 @@ export default function TopicPage() {
       setSuggestions(suggestionsData);
     } catch {
       setError("Topic not found");
+=======
+  useEffect(() => {
+    if (topic) {
+      setData(null);
+      setBiasData(null);
+      setError(null);
+      footnoteCounter.current = 0;
+      footnoteMap.current.clear();
+      getTopic(topic)
+        .then(setData)
+        .catch(() => setError("Topic not found"));
+      getAggregateBias(topic)
+        .then(setBiasData)
+        .catch(() => {
+          // Silently fail if bias data is not available
+        });
+>>>>>>> 550f836 (add bias logic)
     }
   }, [topic]);
 
@@ -134,6 +158,7 @@ export default function TopicPage() {
 
   return (
     <div className="topic-page">
+<<<<<<< HEAD
       <div className="topic-header">
         <Link to="/" className="back-link">← Back to search</Link>
         <div className="header-actions">
@@ -153,6 +178,91 @@ export default function TopicPage() {
             </button>
           )}
         </div>
+=======
+      <Link to="/" className="back-link">← Back to search</Link>
+      <div className="topic-header">
+        <h1>{data.title}</h1>
+        {biasData && (
+          <div className="bias-marker">
+            <div className="bias-score">
+              <span className="bias-label">Factuality:</span>
+              <span className={`bias-value factual ${biasData.factual_label.toLowerCase().replace(/\s+/g, '-')}`}>
+                {biasData.factual_label}
+              </span>
+            </div>
+            <div className="bias-score">
+              <span className="bias-label">Source Bias:</span>
+              <div className="bias-bar-container">
+                <div className="bias-bar">
+                  <div 
+                    className="bias-dot"
+                    style={{
+                      left: `${((biasData.average_bias_score + 10) / 20) * 100}%`
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            {biasData.evaluated_citation_count > 0 && (
+              <div className="bias-meta">
+                Based on {biasData.evaluated_citation_count} of {biasData.citation_count} citations
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+      <div className="content">
+        <ReactMarkdown
+          components={{
+            a: ({ href, children }) => {
+              const hasText = children &&
+                (typeof children === 'string' ? children.trim() :
+                  Array.isArray(children) ? children.some(c => c) : true);
+
+              // Empty link - show as footnote
+              if (!hasText && href) {
+                const num = getFootnoteNumber(href);
+                return (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="footnote"
+                    title={href}
+                  >
+                    [{num}]
+                  </a>
+                );
+              }
+
+              // Handle internal /page/ links
+              if (href?.startsWith("/page/")) {
+                const slug = href.replace("/page/", "");
+                return (
+                  <a
+                    href={href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(`/page/${slug}`);
+                    }}
+                  >
+                    {children}
+                  </a>
+                );
+              }
+
+              // External links with text
+              return (
+                <a href={href} target="_blank" rel="noopener noreferrer">
+                  {children}
+                </a>
+              );
+            },
+          }}
+        >
+          {data.content}
+        </ReactMarkdown>
+>>>>>>> 550f836 (add bias logic)
       </div>
 
       {versionContent && (

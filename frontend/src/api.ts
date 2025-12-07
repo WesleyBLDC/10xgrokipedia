@@ -68,6 +68,17 @@ export interface TweetsSummary {
   cached: boolean;
 }
 
+export interface AggregateBias {
+  article_title: string;
+  article_url: string;
+  citation_count: number;
+  evaluated_citation_count: number;
+  average_factual_score: number;
+  factual_label: string;
+  average_bias_score: number;
+  bias_label: string;
+}
+
 export async function searchTopics(query: string): Promise<TopicSummary[]> {
   const res = await fetch(`${API_BASE}/topics/search?q=${encodeURIComponent(query)}`);
   if (!res.ok) throw new Error("Failed to search topics");
@@ -80,6 +91,7 @@ export async function getTopic(slug: string): Promise<Topic> {
   return res.json();
 }
 
+<<<<<<< HEAD
 export async function getTopicTweets(slug: string, maxResults = 10): Promise<TweetItem[]> {
   const res = await fetch(
     `${API_BASE}/topics/${encodeURIComponent(slug)}/tweets?max_results=${maxResults}`
@@ -162,3 +174,14 @@ export async function getVersion(slug: string, index: number): Promise<VersionDe
   if (!res.ok) throw new Error("Failed to get version");
   return res.json();
 }
+=======
+export async function getAggregateBias(slug: string): Promise<AggregateBias | null> {
+  try {
+    const res = await fetch(`${API_BASE}/aggregate_bias/${encodeURIComponent(slug)}`);
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
+  }
+}
+>>>>>>> 550f836 (add bias logic)
