@@ -526,7 +526,48 @@
   background: var(--border-color);
 }
 
-/* Suggest Edit Tooltip */
+/* Selection Toolbar - Connected Button Group */
+.selection-toolbar {
+  z-index: 100;
+}
+
+.selection-toolbar-group {
+  display: flex;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.selection-toolbar-group .suggest-edit-tooltip {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: none;
+  border-right: 1px solid var(--border-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0;
+  font-size: 0.875rem;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.15s;
+}
+
+.selection-toolbar-group .suggest-edit-tooltip svg {
+  flex-shrink: 0;
+}
+
+.selection-toolbar-group .suggest-edit-tooltip:last-child {
+  border-right: none;
+}
+
+.selection-toolbar-group .suggest-edit-tooltip:hover {
+  background: var(--bg-tertiary);
+}
+
+/* Suggest Edit Tooltip (standalone fallback) */
 .suggest-edit-tooltip {
   background: var(--bg-secondary);
   color: var(--text-primary);
@@ -1217,6 +1258,8 @@
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
   overscroll-behavior: contain;
+  /* Fade/scale transitions when switching modes */
+  transition: opacity 180ms ease, transform 180ms ease, box-shadow 220ms ease;
 }
 
 .community-feed .cf-header {
@@ -1234,6 +1277,95 @@
   padding: 0.5rem 0.6rem 0.4rem 0.6rem;
   border-bottom: 1px solid var(--border-color);
 }
+
+/* Search hints (for Related X Tweets mode) */
+.community-feed .cf-hints {
+  padding: 0.5rem 0.6rem 0.6rem 0.6rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.community-feed .cf-hints-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+.community-feed .cf-hints-title {
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.9em;
+}
+.community-feed .cf-hints-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.community-feed .cf-hints-tip {
+  color: var(--text-muted);
+  font-size: 0.78em;
+}
+.community-feed .cf-hints-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78em;
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.community-feed .cf-hints-edit-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+.community-feed .cf-hints-edit {
+  width: 100%;
+  font: inherit;
+  font-size: 0.95em;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.4rem 0.5rem;
+  outline: none;
+  margin-bottom: 0.4rem;
+}
+.community-feed .cf-hints-edit:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+.community-feed .cf-hints-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin: 0.2rem 0;
+}
+.community-feed .cf-hints-label {
+  color: var(--text-muted);
+  font-size: 0.9em;
+  flex: 0 0 auto;
+}
+.community-feed .cf-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.community-feed .cf-chip {
+  font-size: 0.8em;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  padding: 0.15rem 0.5rem;
+}
+.community-feed .cf-chip-ghost {
+  background: transparent;
+}
+
+/* Removable chips: show an X only on hover */
+/* (removed) interactive chip editing styles */
 
 .community-feed .cf-summary-loading,
 .community-feed .cf-summary-error {
@@ -1313,6 +1445,36 @@
 
 .community-feed .cf-link:hover {
   background: var(--bg-tertiary);
+}
+
+/* Smooth fade when toggling between Top Tweets and Related Tweets */
+.community-feed.cf-fade-out {
+  opacity: 0;
+  transform: translateY(-2px) scale(0.995);
+}
+
+.community-feed.cf-fade-in {
+  animation: cfFadeIn 220ms ease;
+}
+
+@keyframes cfFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .community-feed {
+    transition: none !important;
+  }
+  .community-feed.cf-fade-in {
+    animation: none !important;
+  }
 }
 
 .community-feed .cf-item-row {
@@ -1442,6 +1604,20 @@
   /* Soft bottom fade to indicate more content without clutter */
   -webkit-mask-image: linear-gradient(180deg, #000 85%, transparent);
   mask-image: linear-gradient(180deg, #000 85%, transparent);
+}
+
+.community-feed .cf-text .cf-keyword {
+  background: rgba(59, 130, 246, 0.18); /* subtle blue tint */
+  border-radius: 4px;
+  padding: 0 2px;
+  box-shadow: inset 0 -1px 0 rgba(59, 130, 246, 0.35);
+}
+
+@media (prefers-color-scheme: light) {
+  .community-feed .cf-text .cf-keyword {
+    background: rgba(59, 130, 246, 0.16);
+    box-shadow: inset 0 -1px 0 rgba(59, 130, 246, 0.28);
+  }
 }
 
 /* removed explicit hint; fade + extra lines provide better preview */

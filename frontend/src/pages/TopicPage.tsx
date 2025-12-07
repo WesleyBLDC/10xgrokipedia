@@ -52,6 +52,7 @@ export default function TopicPage() {
   const [selectedText, setSelectedText] = useState("");
   const [tooltipPosition, setTooltipPosition] = useState<{ x: number; y: number } | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [relatedSearch, setRelatedSearch] = useState<string | null>(null);
 
   // Citation hover state
   const [citationTooltip, setCitationTooltip] = useState<{
@@ -95,6 +96,7 @@ export default function TopicPage() {
       setError(null);
       setViewingVersionIndex(null);
       setVersionContent(null);
+      setRelatedSearch(null);
       footnoteCounter.current = 0;
       footnoteMap.current.clear();
       getTopic(topic)
@@ -155,6 +157,13 @@ export default function TopicPage() {
 
   const handleSuggestEdit = () => {
     setShowModal(true);
+    setTooltipPosition(null);
+  };
+
+  const handleSearchOnX = () => {
+    if (selectedText && selectedText.trim().length > 0) {
+      setRelatedSearch(selectedText.trim());
+    }
     setTooltipPosition(null);
   };
 
@@ -422,7 +431,13 @@ export default function TopicPage() {
       <div className="topic-layout">
         {/* Left column: Community Feed and future components */}
         <aside className="left-rail">
-          {topic && <CommunityFeed topicSlug={topic} />}
+          {topic && (
+            <CommunityFeed
+              topicSlug={topic}
+              searchQuery={relatedSearch || undefined}
+              onClearSearch={() => setRelatedSearch(null)}
+            />
+          )}
         </aside>
 
         {/* Right column: Edit history + article content */}
@@ -601,18 +616,31 @@ export default function TopicPage() {
       </div>
 
       {tooltipPosition && !versionContent && (
-        <button
-          className="suggest-edit-tooltip"
+        <div
+          className="selection-toolbar"
           style={{
             position: "fixed",
             left: tooltipPosition.x,
             top: tooltipPosition.y,
             transform: "translate(-50%, -100%)",
           }}
-          onClick={handleSuggestEdit}
         >
-          Suggest Edit
-        </button>
+          <div className="selection-toolbar-group">
+            <button className="suggest-edit-tooltip" onClick={handleSearchOnX}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: '0.4rem' }}>
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              Search on X
+            </button>
+            <button className="suggest-edit-tooltip" onClick={handleSuggestEdit}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '0.4rem' }}>
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+              Suggest Edit
+            </button>
+          </div>
+        </div>
       )}
 
       {citationTooltip && (
@@ -690,4 +718,3 @@ export default function TopicPage() {
     </div>
   );
 }
-

@@ -69,6 +69,18 @@ export interface TweetsSummary {
   cached: boolean;
 }
 
+// Search hints from Grok query optimization
+export interface SearchHints {
+  query: string;
+  keywords: string[];
+  topics: string[];
+}
+
+export interface SearchResult {
+  tweets: TweetItem[];
+  hints?: SearchHints | null;
+}
+
 export interface AggregateBias {
   article_title: string;
   article_url: string;
@@ -106,6 +118,17 @@ export async function getTopicTweets(slug: string, maxResults = 10): Promise<Twe
   );
   if (!res.ok) {
     // Surface error text for better UX
+    const msg = await res.text();
+    throw new Error(msg || "Failed to load tweets");
+  }
+  return res.json();
+}
+
+export async function searchTweets(query: string, maxResults = 10): Promise<SearchResult> {
+  const res = await fetch(
+    `${API_BASE}/tweets/search?q=${encodeURIComponent(query)}&max_results=${maxResults}&optimize=1`
+  );
+  if (!res.ok) {
     const msg = await res.text();
     throw new Error(msg || "Failed to load tweets");
   }
