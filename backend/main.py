@@ -58,6 +58,7 @@ TRENDING_PREVIEW_RANKS = {int(x) for x in _TPR.split(',') if x.strip().isdigit()
 VERIFIED_BOOST = float(os.getenv("TWEETS_VERIFIED_BOOST", "1.1"))  # 10% lift by default
 
 
+
 # In-memory cache and simple global rate limiter
 _tweets_cache: dict[str, tuple[float, list["TweetItem"]]] = {}
 _summary_cache: dict[str, tuple[float, List[str]]] = {}
