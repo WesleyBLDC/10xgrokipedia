@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { getTopic, getSuggestions, getCitationBias } from "../api";
 import type { Topic, Suggestion, CitationBias } from "../api";
@@ -31,6 +31,7 @@ type ContradictionCluster = {
 
 export default function TopicPage() {
   const { topic } = useParams<{ topic: string }>();
+  const location = useLocation();
   const [data, setData] = useState<Topic | null>(null);
   const [biasData, setBiasData] = useState<AggregateBias | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -183,6 +184,7 @@ export default function TopicPage() {
 
   // Content to display (version or current)
   const displayContent = versionContent ?? data?.content ?? "";
+  const focusClaim = (location.state as { focusClaim?: string } | null)?.focusClaim ?? null;
 
   // Build a list of contradictions relevant to this article (by URL/slug match)
   const relevantContradictions = useMemo(() => {
@@ -215,17 +217,26 @@ export default function TopicPage() {
     const ranges: Range[] = [];
     const slugUrl = `https://grokipedia.com/page/${topic}`;
 
-    const addRange = (start: number, end: number, otherTitle: string, otherUrl: string, otherClaim: string, diff: string) => {
+    const addRange = (
+      start: number,
+      end: number,
+      myClaim: string,
+      otherTitle: string,
+      otherUrl: string,
+      otherClaim: string,
+      diff: string
+    ) => {
       if (start < 0 || end <= start || end > displayContent.length) return;
       const tooltip = `${diff} | See: ${otherTitle}`;
       const safeTitle = tooltip.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
       const safeOtherUrl = otherUrl.replace(/"/g, "&quot;");
       const safeOtherClaim = otherClaim.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+      const safeMyClaim = myClaim.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
       const inlineStyle = "border-bottom: 2px solid rgba(239,68,68,0.6); background: rgba(239,68,68,0.05); cursor: pointer;";
       ranges.push({
         start,
         end,
-        html: `<span class="contradiction-highlight" style="${inlineStyle}" title="${safeTitle}" data-target="${safeOtherUrl}" data-claim="${safeOtherClaim}">`,
+        html: `<span class="contradiction-highlight" style="${inlineStyle}" title="${safeTitle}" data-target="${safeOtherUrl}" data-target-claim="${safeOtherClaim}" data-claim-text="${safeMyClaim}">`,
       });
     };
 
@@ -252,7 +263,7 @@ export default function TopicPage() {
         continue;
       }
       console.log("Adding highlight:", { start: off.start, end: off.end, claim: myClaim });
-      addRange(off.start, off.end, otherTitle, otherUrl, otherClaim, c.difference);
+      addRange(off.start, off.end, myClaim, otherTitle, otherUrl, otherClaim, c.difference);
     }
 
     if (ranges.length === 0) {
@@ -286,6 +297,25 @@ export default function TopicPage() {
     return result;
   }, [showContradictions, relevantContradictions, displayContent, topic]);
 
+  // When arriving from another article with a target claim, auto-enable highlights and scroll to it
+  useEffect(() => {
+    if (!focusClaim) return;
+    if (!showContradictions) {
+      setShowContradictions(true);
+      return; // wait for highlights to render
+    }
+    const container = contentRef.current;
+    if (!container) return;
+    // Find the highlighted span that matches the target claim text
+    const spans = Array.from(container.querySelectorAll<HTMLElement>(".contradiction-highlight"));
+    const match = spans.find(el => el.dataset.claimText === focusClaim);
+    if (match) {
+      match.scrollIntoView({ behavior: "smooth", block: "center" });
+      match.classList.add("contradiction-highlight-flash");
+      setTimeout(() => match.classList.remove("contradiction-highlight-flash"), 1200);
+    }
+  }, [focusClaim, showContradictions, highlightedContent]);
+
   // Click handler for contradiction highlights: navigate to the other article
   const handleContentClick = useCallback((evt: React.MouseEvent<HTMLDivElement>) => {
     const target = (evt.target as HTMLElement).closest(".contradiction-highlight") as HTMLElement | null;
@@ -294,12 +324,15 @@ export default function TopicPage() {
     evt.preventDefault();
     evt.stopPropagation();
     const otherUrl = target.getAttribute("data-target");
+    const otherClaim = target.getAttribute("data-target-claim");
     if (!otherUrl) return;
 
     const slugMatch = otherUrl.match(/\/page\/(.+)$/);
     if (slugMatch) {
       const slug = slugMatch[1];
-      navigate(`/page/${slug}`);
+      navigate(`/page/${slug}`, {
+        state: { focusClaim: otherClaim ?? null },
+      });
     } else {
       window.open(otherUrl, "_blank");
     }
