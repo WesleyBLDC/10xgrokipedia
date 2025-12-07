@@ -645,7 +645,7 @@ export default function TopicPage() {
 
       {citationTooltip && (
         <div
-          className="citation-bias-tooltip"
+          className="citation-tooltip"
           style={{
             position: "fixed",
             left: citationTooltip.position.x,
@@ -663,6 +663,15 @@ export default function TopicPage() {
             }, 200);
           }}
         >
+          <button
+            className="citation-preview-btn"
+            onClick={() => {
+              setPreviewUrl(citationTooltip.url);
+              setCitationTooltip(null);
+            }}
+          >
+            Preview article
+          </button>
           <div className="citation-bias-tooltip-content">
             <div className="citation-bias-row">
               <span className="citation-bias-label">Factuality:</span>

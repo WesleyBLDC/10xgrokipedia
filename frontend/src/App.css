@@ -488,6 +488,181 @@
   border: 1px solid var(--border-color);
 }
 
+/* Citation Tooltip (with preview button) */
+.citation-tooltip {
+  z-index: 1000;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  min-width: 180px;
+  pointer-events: auto;
+  margin-bottom: 8px;
+}
+
+.citation-preview-btn {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.75rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.citation-preview-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+/* Article Preview Modal */
+.article-preview-modal {
+  max-width: 48rem !important;
+  width: 90%;
+}
+
+.article-preview-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.article-preview-title h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article-domain {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.article-preview-content {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.article-error {
+  color: #ef4444;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Grokipedia Summary Section */
+.grokipedia-summary {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.grokipedia-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.grokipedia-summary-header svg {
+  flex-shrink: 0;
+}
+
+.grokipedia-summary-content {
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.grokipedia-summary-content p {
+  margin: 0;
+}
+
+.summary-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.summary-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border-color);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.summary-unavailable {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Modal Footer */
+.modal-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  text-align: right;
+}
+
+.open-original-link {
+  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.open-original-link:hover {
+  text-decoration: underline;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  gap: 1rem;
+}
+
+.loading-spinner .spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.loading-spinner p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* Topic Header */
 .topic-page .topic-header {
   display: flex;
