@@ -1,14 +1,33 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { getTopic, getSuggestions, getCitationBias } from "../api";
 import type { Topic, Suggestion, CitationBias } from "../api";
+import rehypeRaw from "rehype-raw";
 import SuggestEditModal from "../components/SuggestEditModal";
 import SuggestionsPanel from "../components/SuggestionsPanel";
 import VersionHistory from "../components/VersionHistory";
 import CommunityFeed from "../components/CommunityFeed";
 import { getAggregateBias } from "../api";
 import type { AggregateBias } from "../api";
+
+type ContradictionEntry = {
+  article_a_title: string;
+  article_a_url: string;
+  claim_a: string;
+  claim_a_offset?: { start: number; end: number; line: number };
+  article_b_title: string;
+  article_b_url: string;
+  claim_b: string;
+  claim_b_offset?: { start: number; end: number; line: number };
+  difference: string;
+};
+
+type ContradictionCluster = {
+  cluster_id: number;
+  members: { url: string; title: string; slug: string }[];
+  parsed?: { contradictions?: ContradictionEntry[] };
+};
 
 export default function TopicPage() {
   const { topic } = useParams<{ topic: string }>();
@@ -17,6 +36,9 @@ export default function TopicPage() {
   const [error, setError] = useState<string | null>(null);
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [showContradictions, setShowContradictions] = useState(false);
+  const [contradictionData, setContradictionData] = useState<ContradictionCluster[] | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
 
   // Version history state
@@ -80,6 +102,22 @@ export default function TopicPage() {
   useEffect(() => {
     loadData();
   }, [loadData]);
+
+  // Load contradiction JSON once (served as static asset)
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const res = await fetch("/contradictions_llm.json");
+        if (res.ok) {
+          const json = await res.json();
+          setContradictionData(json);
+        }
+      } catch (e) {
+        console.warn("Failed to load contradictions JSON", e);
+      }
+    };
+    load();
+  }, []);
 
   const getFootnoteNumber = (url: string): number => {
     if (footnoteMap.current.has(url)) {
@@ -146,6 +184,127 @@ export default function TopicPage() {
   // Content to display (version or current)
   const displayContent = versionContent ?? data?.content ?? "";
 
+  // Build a list of contradictions relevant to this article (by URL/slug match)
+  const relevantContradictions = useMemo(() => {
+    if (!contradictionData || !data) return [];
+    const slugUrl = `https://grokipedia.com/page/${topic}`;
+    const matches: ContradictionEntry[] = [];
+    for (const cluster of contradictionData) {
+      const list = cluster.parsed?.contradictions ?? [];
+      for (const c of list) {
+        if (c.article_a_url === slugUrl || c.article_b_url === slugUrl) {
+          matches.push(c);
+        }
+      }
+    }
+    return matches;
+  }, [contradictionData, data, topic]);
+
+  // Apply highlights to the markdown content using offsets or substring search
+  const highlightedContent = useMemo(() => {
+    if (!showContradictions || relevantContradictions.length === 0 || !displayContent) {
+      return displayContent;
+    }
+
+    type Range = {
+      start: number;
+      end: number;
+      html: string;
+    };
+
+    const ranges: Range[] = [];
+    const slugUrl = `https://grokipedia.com/page/${topic}`;
+
+    const addRange = (start: number, end: number, otherTitle: string, otherUrl: string, otherClaim: string, diff: string) => {
+      if (start < 0 || end <= start || end > displayContent.length) return;
+      const tooltip = `${diff} | See: ${otherTitle}`;
+      const safeTitle = tooltip.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+      const safeOtherUrl = otherUrl.replace(/"/g, "&quot;");
+      const safeOtherClaim = otherClaim.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+      const inlineStyle = "border-bottom: 2px solid rgba(239,68,68,0.6); background: rgba(239,68,68,0.05); cursor: pointer;";
+      ranges.push({
+        start,
+        end,
+        html: `<span class="contradiction-highlight" style="${inlineStyle}" title="${safeTitle}" data-target="${safeOtherUrl}" data-claim="${safeOtherClaim}">`,
+      });
+    };
+
+    const findOrOffset = (claim: string, offset?: { start: number; end: number }) => {
+      if (offset && offset.start >= 0 && offset.end > offset.start) return offset;
+      const idx = displayContent.indexOf(claim);
+      if (idx === -1) {
+        console.warn("Could not find exact claim in content:", claim.substring(0, 100));
+        return null;
+      }
+      return { start: idx, end: idx + claim.length };
+    };
+
+    for (const c of relevantContradictions) {
+      const isA = c.article_a_url === slugUrl;
+      const myClaim = isA ? c.claim_a : c.claim_b;
+      const myOffset = isA ? c.claim_a_offset : c.claim_b_offset;
+      const otherClaim = isA ? c.claim_b : c.claim_a;
+      const otherTitle = isA ? c.article_b_title : c.article_a_title;
+      const otherUrl = isA ? c.article_b_url : c.article_a_url;
+      const off = findOrOffset(myClaim, myOffset);
+      if (!off) {
+        console.warn("Could not find claim:", myClaim, "in content");
+        continue;
+      }
+      console.log("Adding highlight:", { start: off.start, end: off.end, claim: myClaim });
+      addRange(off.start, off.end, otherTitle, otherUrl, otherClaim, c.difference);
+    }
+
+    if (ranges.length === 0) {
+      console.log("No ranges to highlight for", slugUrl, "relevant:", relevantContradictions);
+      return displayContent;
+    }
+
+    console.log("Applying", ranges.length, "highlights");
+
+    // Sort and dedupe overlaps (simple non-overlap insertion)
+    ranges.sort((a, b) => a.start - b.start || a.end - b.end);
+    const merged: Range[] = [];
+    let lastEnd = -1;
+    for (const r of ranges) {
+      if (r.start < lastEnd) continue; // skip overlaps
+      merged.push(r);
+      lastEnd = r.end;
+    }
+
+    // Build final string by injecting spans
+    let result = "";
+    let cursor = 0;
+    for (const r of merged) {
+      result += displayContent.slice(cursor, r.start);
+      result += r.html;
+      result += displayContent.slice(r.start, r.end);
+      result += "</span>";
+      cursor = r.end;
+    }
+    result += displayContent.slice(cursor);
+    return result;
+  }, [showContradictions, relevantContradictions, displayContent, topic]);
+
+  // Click handler for contradiction highlights: navigate to the other article
+  const handleContentClick = useCallback((evt: React.MouseEvent<HTMLDivElement>) => {
+    const target = (evt.target as HTMLElement).closest(".contradiction-highlight") as HTMLElement | null;
+    if (!target) return;
+
+    evt.preventDefault();
+    evt.stopPropagation();
+    const otherUrl = target.getAttribute("data-target");
+    if (!otherUrl) return;
+
+    const slugMatch = otherUrl.match(/\/page\/(.+)$/);
+    if (slugMatch) {
+      const slug = slugMatch[1];
+      navigate(`/page/${slug}`);
+    } else {
+      window.open(otherUrl, "_blank");
+    }
+  }, [navigate]);
+
   if (error) {
     return (
       <div className="topic-page">
@@ -166,25 +325,33 @@ export default function TopicPage() {
 
   return (
     <div className="topic-page">
-        <div className="topic-header">
-            <Link to="/" className="back-link">← Back to search</Link>
-            <div className="header-actions">
-            <VersionHistory
-                topicSlug={topic!}
-                onVersionSelect={handleVersionSelect}
-                currentVersionIndex={viewingVersionIndex}
-            />
-            {totalCount > 0 && (
-                <button
-                className={`suggestions-badge ${pendingCount === 0 ? "no-pending" : ""}`}
-                onClick={() => setShowSuggestions(!showSuggestions)}
-                >
-                {pendingCount > 0
-                    ? `${pendingCount} pending edit${pendingCount !== 1 ? "s" : ""}`
-                    : `${totalCount} edit${totalCount !== 1 ? "s" : ""}`}
-                </button>
-            )}
-            </div>
+      <div className="topic-header">
+        <Link to="/" className="back-link">← Back to search</Link>
+        <div className="header-actions">
+          <button
+            className={`toggle-contradictions ${showContradictions ? "active" : ""}`}
+            onClick={() => setShowContradictions(!showContradictions)}
+            disabled={versionContent !== null}
+            title={versionContent ? "Highlights disabled when viewing older version" : "Toggle contradiction highlights"}
+          >
+            {showContradictions ? "Hide contradictions" : "Show contradictions"}
+          </button>
+          <VersionHistory
+            topicSlug={topic!}
+            onVersionSelect={handleVersionSelect}
+            currentVersionIndex={viewingVersionIndex}
+          />
+          {totalCount > 0 && (
+            <button
+              className={`suggestions-badge ${pendingCount === 0 ? "no-pending" : ""}`}
+              onClick={() => setShowSuggestions(!showSuggestions)}
+            >
+              {pendingCount > 0
+                ? `${pendingCount} pending edit${pendingCount !== 1 ? "s" : ""}`
+                : `${totalCount} edit${totalCount !== 1 ? "s" : ""}`}
+            </button>
+          )}
+        </div>
       </div>
 
       {versionContent && (
@@ -243,8 +410,10 @@ export default function TopicPage() {
             )}
           </div>
 
-          <div className="content" onMouseUp={handleMouseUp}>
+          <div className="content" onMouseUp={handleMouseUp} onClick={handleContentClick} ref={contentRef}>
             <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              skipHtml={false}
               components={{
                 a: ({ href, children }) => {
                   const hasText = children &&
@@ -370,7 +539,7 @@ export default function TopicPage() {
                 },
               }}
             >
-              {displayContent}
+              {highlightedContent}
             </ReactMarkdown>
           </div>
         </main>

@@ -21,10 +21,11 @@ load_dotenv(Path(__file__).parent / ".env")
 
 app = FastAPI(title="10xGrokipedia API")
 
+# CORS: allow all origins for local/dev use (frontend talks to http://localhost:8000)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
