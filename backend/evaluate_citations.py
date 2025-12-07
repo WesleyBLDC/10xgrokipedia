@@ -1,12 +1,25 @@
 #!/usr/bin/env python3
 """
-Script to evaluate bias for all citation links in the article corpus.
+Script to evaluate bias for citation links in articles.
+Can process all articles or a specific article by title.
 Generates a JSON file with one entry per citation link.
+
+Usage:
+    # Evaluate citations for all articles
+    python3 evaluate_citations.py
+    
+    # Evaluate citations for a specific article
+    python3 evaluate_citations.py --title "Billie Eilish"
+    
+    # List available articles (if title not found)
+    python3 evaluate_citations.py --title "NonExistent"
 """
 
 import json
 import os
 import re
+import sys
+import argparse
 from pathlib import Path
 from collections import defaultdict
 from typing import Set, Tuple, Optional
@@ -96,6 +109,17 @@ def evaluate_citation_worker(args: Tuple[str, str]) -> Tuple[str, Optional[MBFCR
 
 def main():
     """Main function to process all citations and generate evaluation file."""
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(
+        description="Evaluate citation bias for articles. Can process all articles or a specific one by title."
+    )
+    parser.add_argument(
+        "--title",
+        type=str,
+        help="Process citations for a specific article title only"
+    )
+    args = parser.parse_args()
+    
     # Check for API key
     api_key = os.getenv("XAI_API_KEY")
     if not api_key:
@@ -109,10 +133,31 @@ def main():
     articles = load_articles()
     print(f"Loaded {len(articles)} articles")
     
+    # Filter articles if title specified
+    if args.title:
+        matching_articles = [a for a in articles if a.get('title') == args.title]
+        if not matching_articles:
+            print(f"Error: No article found with title '{args.title}'")
+            print("\nAvailable articles:")
+            for article in articles[:10]:
+                print(f"  - {article.get('title')}")
+            if len(articles) > 10:
+                print(f"  ... and {len(articles) - 10} more")
+            return
+        articles_to_process = matching_articles
+        print(f"Processing citations for article: '{args.title}'")
+    else:
+        articles_to_process = articles
+        print("Processing citations for all articles")
+    
     print("Extracting citation URLs...")
-    citation_to_articles = collect_all_citations(articles)
+    citation_to_articles = collect_all_citations(articles_to_process)
     unique_citations = sorted(citation_to_articles.keys())
     print(f"Found {len(unique_citations)} unique citation URLs")
+    
+    if not unique_citations:
+        print("No citations found!")
+        return
     
     # Load existing results if file exists
     results = {}
