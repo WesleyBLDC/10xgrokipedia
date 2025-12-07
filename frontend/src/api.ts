@@ -79,6 +79,14 @@ export interface AggregateBias {
   bias_label: string;
 }
 
+export interface CitationBias {
+  citation_url: string;
+  factual_score: number;
+  factual_label: string;
+  bias_score: number;
+  bias_label: string;
+}
+
 export async function searchTopics(query: string): Promise<TopicSummary[]> {
   const res = await fetch(`${API_BASE}/topics/search?q=${encodeURIComponent(query)}`);
   if (!res.ok) throw new Error("Failed to search topics");
@@ -181,6 +189,24 @@ export async function getAggregateBias(slug: string, versionIndex?: number): Pro
       url += `?version_index=${versionIndex}`;
     }
     const res = await fetch(url);
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
+  }
+}
+
+export interface CitationBias {
+  citation_url: string;
+  factual_score: number;
+  factual_label: string;
+  bias_score: number;
+  bias_label: string;
+}
+
+export async function getCitationBias(url: string): Promise<CitationBias | null> {
+  try {
+    const res = await fetch(`${API_BASE}/citation_bias?url=${encodeURIComponent(url)}`);
     if (!res.ok) return null;
     return res.json();
   } catch {

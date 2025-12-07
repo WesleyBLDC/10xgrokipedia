@@ -371,6 +371,123 @@
   color: #ef4444;
 }
 
+/* Citation Bias Tooltip */
+.citation-bias-tooltip {
+  z-index: 1000;
+  pointer-events: none;
+  margin-bottom: 8px;
+}
+
+.citation-bias-tooltip-content {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  min-width: 180px;
+  pointer-events: auto;
+}
+
+.citation-bias-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.citation-bias-row:last-child {
+  margin-bottom: 0;
+}
+
+.citation-bias-label {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.citation-bias-value {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* Factual reporting colors for tooltip */
+.citation-bias-value.factual.very-high {
+  background: #10b981;
+  color: white;
+}
+
+.citation-bias-value.factual.high {
+  background: #22c55e;
+  color: white;
+}
+
+.citation-bias-value.factual.mostly-factual {
+  background: #84cc16;
+  color: white;
+}
+
+.citation-bias-value.factual.mixed {
+  background: #eab308;
+  color: #0a0a0a;
+}
+
+.citation-bias-value.factual.low {
+  background: #f59e0b;
+  color: white;
+}
+
+.citation-bias-value.factual.very-low {
+  background: #ef4444;
+  color: white;
+}
+
+/* Bias colors for tooltip */
+.citation-bias-value.bias.extreme-left {
+  background: #dc2626;
+  color: white;
+}
+
+.citation-bias-value.bias.left {
+  background: #ef4444;
+  color: white;
+}
+
+.citation-bias-value.bias.left-center {
+  background: #f87171;
+  color: white;
+}
+
+.citation-bias-value.bias.center {
+  background: #6b7280;
+  color: white;
+}
+
+.citation-bias-value.bias.right-center {
+  background: #60a5fa;
+  color: white;
+}
+
+.citation-bias-value.bias.right {
+  background: #3b82f6;
+  color: white;
+}
+
+.citation-bias-value.bias.extreme-right {
+  background: #2563eb;
+  color: white;
+}
+
+.citation-bias-value.unknown,
+.citation-bias-value.factual.unknown,
+.citation-bias-value.bias.unknown {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
 /* Topic Header */
 .topic-page .topic-header {
   display: flex;
