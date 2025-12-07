@@ -488,52 +488,20 @@ export default function TopicPage() {
                     };
                     
                     const handleCitationMouseLeave = () => {
-                      // Only hide if it's a hover tooltip (not clicked)
-                      if (citationTooltip?.mode === 'hover') {
-                        citationTooltipTimeoutRef.current = setTimeout(() => {
-                          setCitationTooltip(null);
-                        }, 200);
-                      }
+                      citationTooltipTimeoutRef.current = setTimeout(() => {
+                        setCitationTooltip(null);
+                      }, 200);
                     };
-                    
-                    const handleCitationClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
-                      e.preventDefault();
-                      if (!isExternalCitation) return;
-                      
-                      // Clear any existing timeout
-                      if (citationTooltipTimeoutRef.current) {
-                        clearTimeout(citationTooltipTimeoutRef.current);
-                      }
-                      
-                      const rect = e.currentTarget.getBoundingClientRect();
-                      const biasData = await getCitationBias(href);
-                      
-                      // Show click tooltip with preview button
-                      setCitationTooltip({
-                        url: href,
-                        data: biasData || {
-                          citation_url: href,
-                          factual_score: 0,
-                          factual_label: "Unknown",
-                          bias_score: 0,
-                          bias_label: "Unknown",
-                        },
-                        position: {
-                          x: rect.left + rect.width / 2,
-                          y: rect.bottom + 5,
-                        },
-                        mode: 'click',
-                      });
-                    };
-                    
+
                     return (
                       <a
                         href={href}
                         className="footnote"
                         title={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         onMouseEnter={handleCitationMouseEnter}
                         onMouseLeave={handleCitationMouseLeave}
-                        onClick={handleCitationClick}
                       >
                         [{num}]
                       </a>
@@ -627,63 +595,51 @@ export default function TopicPage() {
         </button>
       )}
 
-      {/* Citation Tooltip - Hover shows bias, Click shows preview button + bias */}
+      {/* Citation Tooltip - Hover shows preview button + bias info */}
       {citationTooltip && (
-        <>
-          {citationTooltip.mode === 'click' && (
-            <div
-              className="citation-tooltip-backdrop"
-              onClick={() => setCitationTooltip(null)}
-            />
-          )}
-          <div
-            className={citationTooltip.mode === 'click' ? "citation-tooltip" : "citation-bias-tooltip"}
-            style={{
-              position: "fixed",
-              left: citationTooltip.position.x,
-              top: citationTooltip.position.y,
-              transform: citationTooltip.mode === 'click' ? "translateX(-50%)" : "translate(-50%, -100%)",
-            }}
-            onMouseEnter={() => {
-              if (citationTooltipTimeoutRef.current) {
-                clearTimeout(citationTooltipTimeoutRef.current);
-              }
-            }}
-            onMouseLeave={() => {
-              if (citationTooltip.mode === 'hover') {
-                citationTooltipTimeoutRef.current = setTimeout(() => {
-                  setCitationTooltip(null);
-                }, 200);
-              }
+        <div
+          className="citation-tooltip"
+          style={{
+            position: "fixed",
+            left: citationTooltip.position.x,
+            top: citationTooltip.position.y,
+            transform: "translate(-50%, -100%)",
+          }}
+          onMouseEnter={() => {
+            if (citationTooltipTimeoutRef.current) {
+              clearTimeout(citationTooltipTimeoutRef.current);
+            }
+          }}
+          onMouseLeave={() => {
+            citationTooltipTimeoutRef.current = setTimeout(() => {
+              setCitationTooltip(null);
+            }, 200);
+          }}
+        >
+          <button
+            className="citation-preview-btn"
+            onClick={() => {
+              setPreviewUrl(citationTooltip.url);
+              setCitationTooltip(null);
             }}
           >
-            {citationTooltip.mode === 'click' && (
-              <button
-                className="citation-preview-btn"
-                onClick={() => {
-                  setPreviewUrl(citationTooltip.url);
-                  setCitationTooltip(null);
-                }}
-              >
-                Preview article
-              </button>
-            )}
-            <div className="citation-bias-tooltip-content">
-              <div className="citation-bias-row">
-                <span className="citation-bias-label">Factuality:</span>
-                <span className={`citation-bias-value factual ${citationTooltip.data.factual_label.toLowerCase().replace(/\s+/g, '-')}`}>
-                  {citationTooltip.data.factual_label}
-                </span>
-              </div>
-              <div className="citation-bias-row">
-                <span className="citation-bias-label">Bias:</span>
-                <span className={`citation-bias-value bias ${citationTooltip.data.bias_label.toLowerCase().replace(/\s+/g, '-')}`}>
-                  {citationTooltip.data.bias_label}
-                </span>
-              </div>
+            Preview article
+          </button>
+          <div className="citation-bias-tooltip-content">
+            <div className="citation-bias-row">
+              <span className="citation-bias-label">Factuality:</span>
+              <span className={`citation-bias-value factual ${citationTooltip.data.factual_label.toLowerCase().replace(/\s+/g, '-')}`}>
+                {citationTooltip.data.factual_label}
+              </span>
+            </div>
+            <div className="citation-bias-row">
+              <span className="citation-bias-label">Bias:</span>
+              <span className={`citation-bias-value bias ${citationTooltip.data.bias_label.toLowerCase().replace(/\s+/g, '-')}`}>
+                {citationTooltip.data.bias_label}
+              </span>
             </div>
           </div>
-        </>
+        </div>
       )}
 
       <SuggestEditModal
