@@ -3,10 +3,10 @@ import type { TweetItem } from "../api";
 import { getTopicTweets, getTopicTweetsSummary, refreshTopicTweets } from "../api";
 
 interface Props {
-  topicSlug: string;
+  articleId: string;
 }
 
-export default function CommunityFeed({ topicSlug }: Props) {
+export default function CommunityFeed({ articleId }: Props) {
   const [tweets, setTweets] = useState<TweetItem[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -19,21 +19,21 @@ export default function CommunityFeed({ topicSlug }: Props) {
     setLoading(true);
     setError(null);
     setTweets(null);
-    getTopicTweets(topicSlug, 10)
+    getTopicTweets(articleId, 10)
       .then(setTweets)
       .catch((e) => setError(typeof e?.message === "string" ? e.message : "Failed to load"))
       .finally(() => setLoading(false));
-  }, [topicSlug]);
+  }, [articleId]);
 
   const fetchSummary = useCallback(() => {
     setSummaryLoading(true);
     setSummaryError(null);
     setSummary(null);
-    getTopicTweetsSummary(topicSlug, 10)
+    getTopicTweetsSummary(articleId, 10)
       .then((data) => setSummary(data?.bullets || []))
       .catch((e) => setSummaryError(typeof e?.message === "string" ? e.message : ""))
       .finally(() => setSummaryLoading(false));
-  }, [topicSlug]);
+  }, [articleId]);
 
   useEffect(() => {
     let cancelled = false;
@@ -41,14 +41,14 @@ export default function CommunityFeed({ topicSlug }: Props) {
     setError(null);
     setTweets(null);
     // Fetch tweets first; then summary to avoid duplicate upstream calls
-    getTopicTweets(topicSlug, 10)
+    getTopicTweets(articleId, 10)
       .then((data) => {
         if (!cancelled) setTweets(data);
         // Start summary after tweets succeed
         setSummaryLoading(true);
         setSummaryError(null);
         setSummary(null);
-        return getTopicTweetsSummary(topicSlug, 10)
+        return getTopicTweetsSummary(articleId, 10)
           .then((s) => {
             if (!cancelled) setSummary(s?.bullets || []);
           })
@@ -68,14 +68,14 @@ export default function CommunityFeed({ topicSlug }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [topicSlug]);
+  }, [articleId]);
 
   // No explicit truncation hint; use CSS fade/clamp for a cleaner preview
 
   const onRefresh = async () => {
     try {
       setRefreshing(true);
-      await refreshTopicTweets(topicSlug);
+      await refreshTopicTweets(articleId);
       fetchTweets();
       fetchSummary();
     } catch (e: any) {

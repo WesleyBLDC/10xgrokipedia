@@ -83,12 +83,12 @@ class Article(BaseModel):
 
 
 class TopicSummary(BaseModel):
-    topic: str
+    id: str  # UUID
     title: str
 
 
 class TopicDetail(BaseModel):
-    topic: str
+    id: str  # UUID
     title: str
     content: str
     suggestion_count: int = 0
@@ -160,10 +160,10 @@ def save_suggestions(data: dict):
         json.dump(data, f, indent=2)
 
 
-def get_suggestion_count(topic_slug: str) -> int:
+def get_suggestion_count(article_id: str) -> int:
     suggestions = load_suggestions()
-    topic_suggestions = suggestions.get(topic_slug, [])
-    return len([s for s in topic_suggestions if s["status"] == "pending"])
+    article_suggestions = suggestions.get(article_id, [])
+    return len([s for s in article_suggestions if s["status"] == "pending"])
 
 
 def normalize_quotes(text: str) -> str:
@@ -264,8 +264,9 @@ def get_topics() -> list[TopicSummary]:
     """Get all topics (for search)."""
     data = load_data()
     return [
-        TopicSummary(topic=extract_slug(a['url']), title=a['title'])
+        TopicSummary(id=a.get('id', ''), title=a['title'])
         for a in data
+        if a.get('id')  # Only include articles with UUIDs
     ]
 
 
@@ -275,9 +276,9 @@ def search_topics(q: str = "") -> list[TopicSummary]:
     data = load_data()
     query = q.lower()
     results = [
-        TopicSummary(topic=extract_slug(a['url']), title=a['title'])
+        TopicSummary(id=a.get('id', ''), title=a['title'])
         for a in data
-        if query in a['title'].lower() or query in extract_slug(a['url']).lower()
+        if a.get('id') and (query in a['title'].lower() or query in a.get('id', '').lower())
     ]
     return results
 
@@ -286,27 +287,27 @@ def search_topics(q: str = "") -> list[TopicSummary]:
 # IMPORTANT: Specific routes with /review/, /apply/, /reject/ must come BEFORE
 # the generic POST route because {topic_slug:path} is greedy and captures everything.
 
-@app.get("/api/suggestions/{topic_slug:path}")
-def get_suggestions(topic_slug: str) -> list[SuggestionResponse]:
-    """Get all suggestions for a topic."""
-    decoded_slug = unquote(topic_slug)
+@app.get("/api/suggestions/{article_id:path}")
+def get_suggestions(article_id: str) -> list[SuggestionResponse]:
+    """Get all suggestions for an article."""
+    decoded_id = unquote(article_id)
     suggestions = load_suggestions()
-    topic_suggestions = suggestions.get(decoded_slug, [])
-    return [SuggestionResponse(**s) for s in topic_suggestions]
+    article_suggestions = suggestions.get(decoded_id, [])
+    return [SuggestionResponse(**s) for s in article_suggestions]
 
 
-@app.post("/api/suggestions/{topic_slug:path}/review/{suggestion_id}")
-async def review_suggestion(topic_slug: str, suggestion_id: str) -> ReviewResult:
+@app.post("/api/suggestions/{article_id:path}/review/{suggestion_id}")
+async def review_suggestion(article_id: str, suggestion_id: str) -> ReviewResult:
     """Review a suggestion using Grok API."""
-    decoded_slug = unquote(topic_slug)
+    decoded_id = unquote(article_id)
     suggestions = load_suggestions()
 
-    if decoded_slug not in suggestions:
-        raise HTTPException(status_code=404, detail="Topic not found")
+    if decoded_id not in suggestions:
+        raise HTTPException(status_code=404, detail="Article not found")
 
     # Find the suggestion
     suggestion = None
-    for s in suggestions[decoded_slug]:
+    for s in suggestions[decoded_id]:
         if s["id"] == suggestion_id:
             suggestion = s
             break
@@ -318,8 +319,8 @@ async def review_suggestion(topic_slug: str, suggestion_id: str) -> ReviewResult
     data = load_data()
     article_content = None
     for a in data:
-        if extract_slug(a.url) == decoded_slug:
-            article_content = a.content
+        if a.get('id') == decoded_id:
+            article_content = a['content']
             break
 
     if not article_content:
@@ -414,18 +415,18 @@ Respond in JSON format:
         raise HTTPException(status_code=500, detail=f"Grok API error: {str(e)}")
 
 
-@app.post("/api/suggestions/{topic_slug:path}/apply/{suggestion_id}")
-def apply_suggestion(topic_slug: str, suggestion_id: str):
+@app.post("/api/suggestions/{article_id:path}/apply/{suggestion_id}")
+def apply_suggestion(article_id: str, suggestion_id: str):
     """Apply an approved suggestion to the article."""
-    decoded_slug = unquote(topic_slug)
+    decoded_id = unquote(article_id)
     suggestions = load_suggestions()
 
-    if decoded_slug not in suggestions:
-        raise HTTPException(status_code=404, detail="Topic not found")
+    if decoded_id not in suggestions:
+        raise HTTPException(status_code=404, detail="Article not found")
 
     # Find the suggestion
     suggestion = None
-    for s in suggestions[decoded_slug]:
+    for s in suggestions[decoded_id]:
         if s["id"] == suggestion_id:
             suggestion = s
             break
@@ -444,7 +445,7 @@ def apply_suggestion(topic_slug: str, suggestion_id: str):
         articles = json.load(f)
 
     for article in articles:
-        if extract_slug(article["url"]) == decoded_slug:
+        if article.get('id') == decoded_id:
             # Save version history
             if "versions" not in article:
                 article["versions"] = []
@@ -478,16 +479,16 @@ def apply_suggestion(topic_slug: str, suggestion_id: str):
     return {"message": "Suggestion applied successfully"}
 
 
-@app.post("/api/suggestions/{topic_slug:path}/reject/{suggestion_id}")
-def reject_suggestion(topic_slug: str, suggestion_id: str):
+@app.post("/api/suggestions/{article_id:path}/reject/{suggestion_id}")
+def reject_suggestion(article_id: str, suggestion_id: str):
     """Reject a suggestion."""
-    decoded_slug = unquote(topic_slug)
+    decoded_id = unquote(article_id)
     suggestions = load_suggestions()
 
-    if decoded_slug not in suggestions:
-        raise HTTPException(status_code=404, detail="Topic not found")
+    if decoded_id not in suggestions:
+        raise HTTPException(status_code=404, detail="Article not found")
 
-    for s in suggestions[decoded_slug]:
+    for s in suggestions[decoded_id]:
         if s["id"] == suggestion_id:
             s["status"] = "rejected"
             save_suggestions(suggestions)
@@ -497,14 +498,14 @@ def reject_suggestion(topic_slug: str, suggestion_id: str):
 
 
 # Generic submit route MUST come AFTER specific routes due to greedy :path
-@app.post("/api/suggestions/{topic_slug:path}")
-def submit_suggestion(topic_slug: str, suggestion: EditSuggestionInput) -> SuggestionResponse:
-    """Submit a new edit suggestion for a topic."""
-    decoded_slug = unquote(topic_slug)
+@app.post("/api/suggestions/{article_id:path}")
+def submit_suggestion(article_id: str, suggestion: EditSuggestionInput) -> SuggestionResponse:
+    """Submit a new edit suggestion for an article."""
+    decoded_id = unquote(article_id)
     suggestions = load_suggestions()
 
-    if decoded_slug not in suggestions:
-        suggestions[decoded_slug] = []
+    if decoded_id not in suggestions:
+        suggestions[decoded_id] = []
 
     new_suggestion = {
         "id": str(uuid.uuid4()),
@@ -516,7 +517,7 @@ def submit_suggestion(topic_slug: str, suggestion: EditSuggestionInput) -> Sugge
         "created_at": datetime.utcnow().isoformat() + "Z"
     }
 
-    suggestions[decoded_slug].append(new_suggestion)
+    suggestions[decoded_id].append(new_suggestion)
     save_suggestions(suggestions)
 
     return SuggestionResponse(**new_suggestion)
@@ -535,30 +536,30 @@ class VersionDetail(BaseModel):
     content: str
 
 
-@app.get("/api/topics/{topic_slug:path}/versions")
-def get_versions(topic_slug: str) -> list[VersionSummary]:
-    """Get version history for a topic."""
-    decoded_slug = unquote(topic_slug)
+@app.get("/api/topics/{article_id:path}/versions")
+def get_versions(article_id: str) -> list[VersionSummary]:
+    """Get version history for an article."""
+    decoded_id = unquote(article_id)
     data = load_data()
 
     for a in data:
-        if extract_slug(a["url"]) == decoded_slug:
+        if a.get('id') == decoded_id:
             versions = []
             for i, v in enumerate(a.get("versions", [])):
                 versions.append(VersionSummary(index=i, timestamp=v["timestamp"]))
             return versions
 
-    raise HTTPException(status_code=404, detail="Topic not found")
+    raise HTTPException(status_code=404, detail="Article not found")
 
 
-@app.get("/api/topics/{topic_slug:path}/versions/{version_index}")
-def get_version(topic_slug: str, version_index: int) -> VersionDetail:
-    """Get a specific version of a topic."""
-    decoded_slug = unquote(topic_slug)
+@app.get("/api/topics/{article_id:path}/versions/{version_index}")
+def get_version(article_id: str, version_index: int) -> VersionDetail:
+    """Get a specific version of an article."""
+    decoded_id = unquote(article_id)
     data = load_data()
 
     for a in data:
-        if extract_slug(a['url']) == decoded_slug:
+        if a.get('id') == decoded_id:
             versions = a.get('versions', [])
             if version_index < 0 or version_index >= len(versions):
                 raise HTTPException(status_code=404, detail="Version not found")
@@ -596,19 +597,31 @@ class TweetsSummary(BaseModel):
 
 # --- Tweets Endpoints (must come BEFORE catch-all topic route) ---
 
-@app.get("/api/topics/{topic_slug}/tweets")
-async def get_topic_tweets(topic_slug: str, max_results: int = 10) -> list[TweetItem]:
-    """Recent top tweets for a topic. Uses X API recent search with relevancy sort.
+@app.get("/api/topics/{article_id}/tweets")
+async def get_topic_tweets(article_id: str, max_results: int = 10) -> list[TweetItem]:
+    """Recent top tweets for an article. Uses X API recent search with relevancy sort.
 
     - Requires env var `X_BEARER_TOKEN` (or `TWITTER_BEARER_TOKEN`).
-    - `topic_slug` is the Grokipedia slug; converted to a phrase query.
+    - `article_id` is the article UUID; we look up the article title for the query.
     """
-    # Decode URL-encoded slugs (e.g., %20 -> space)
-    decoded_slug = unquote(topic_slug)
-    # Convert slug-like to a phrase: underscores and hyphens to spaces, wrap in quotes
-    phrase = decoded_slug.replace("_", " ").replace("-", " ").strip()
+    # Decode UUID
+    decoded_id = unquote(article_id)
+    
+    # Find article by UUID to get title
+    data = load_data()
+    article = None
+    for a in data:
+        if a.get('id') == decoded_id:
+            article = a
+            break
+    
+    if not article:
+        raise HTTPException(status_code=404, detail="Article not found")
+    
+    # Use article title for query
+    phrase = article.get('title', '').strip()
     if not phrase:
-        raise HTTPException(status_code=400, detail="Empty topic slug")
+        raise HTTPException(status_code=400, detail="Article has no title")
     query = f'"{phrase}"'
 
     # Build cache key based on normalized query and max_results
@@ -665,8 +678,8 @@ async def get_topic_tweets(topic_slug: str, max_results: int = 10) -> list[Tweet
     return items
 
 
-@app.post("/api/topics/{topic_slug}/tweets/refresh", status_code=204)
-async def refresh_topic_tweets(topic_slug: str) -> Response:
+@app.post("/api/topics/{article_id}/tweets/refresh", status_code=204)
+async def refresh_topic_tweets(article_id: str) -> Response:
     decoded_slug = unquote(topic_slug)
     phrase = decoded_slug.replace("_", " ").replace("-", " ").strip()
     if not phrase:
@@ -684,12 +697,25 @@ async def refresh_topic_tweets(topic_slug: str) -> Response:
     return Response(status_code=204)
 
 
-@app.get("/api/topics/{topic_slug}/tweets/summary")
-async def get_topic_tweets_summary(topic_slug: str, max_results: int = 10) -> TweetsSummary:
-    decoded_slug = unquote(topic_slug)
-    phrase = decoded_slug.replace("_", " ").replace("-", " ").strip()
+@app.get("/api/topics/{article_id}/tweets/summary")
+async def get_topic_tweets_summary(article_id: str, max_results: int = 10) -> TweetsSummary:
+    decoded_id = unquote(article_id)
+    
+    # Find article by UUID to get title
+    data = load_data()
+    article = None
+    for a in data:
+        if a.get('id') == decoded_id:
+            article = a
+            break
+    
+    if not article:
+        raise HTTPException(status_code=404, detail="Article not found")
+    
+    # Use article title for query
+    phrase = article.get('title', '').strip()
     if not phrase:
-        raise HTTPException(status_code=400, detail="Empty topic slug")
+        raise HTTPException(status_code=400, detail="Article has no title")
     query = f'"{phrase}"'
 
     key = f"q={query}|n={max_results}"
@@ -723,21 +749,21 @@ async def get_topic_tweets_summary(topic_slug: str, max_results: int = 10) -> Tw
 
 # --- Dynamic Topic Endpoint (catch-all, must come LAST) ---
 
-@app.get("/api/topics/{topic_slug:path}")
-def get_topic(topic_slug: str) -> TopicDetail:
-    """Get a specific topic by slug."""
+@app.get("/api/topics/{article_id:path}")
+def get_topic(article_id: str) -> TopicDetail:
+    """Get a specific topic by UUID."""
     data = load_data()
-    decoded_slug = unquote(topic_slug)
+    decoded_id = unquote(article_id)
 
     for a in data:
-        if extract_slug(a['url']) == decoded_slug:
+        if a.get('id') == decoded_id:
             return TopicDetail(
-                suggestion_count=get_suggestion_count(decoded_slug),
-                topic=extract_slug(a['url']),
+                id=a['id'],
+                suggestion_count=get_suggestion_count(decoded_id),
                 title=a['title'],
                 content=a['content']
             )
-    raise HTTPException(status_code=404, detail="Topic not found")
+    raise HTTPException(status_code=404, detail="Article not found")
 
 
 # ---- Community Feed Helper Functions ----
@@ -1032,27 +1058,27 @@ def extract_citations_from_content(content: str) -> list[str]:
     return result
 
 
-@app.get("/api/aggregate_bias/{topic_slug:path}")
-def aggregate_bias(topic_slug: str, version_index: int | None = None) -> AggregateBiasResponse:
+@app.get("/api/aggregate_bias/{article_id:path}")
+def aggregate_bias(article_id: str, version_index: int | None = None) -> AggregateBiasResponse:
     """Get aggregated bias and factual reporting data for an article's citations.
 
     Args:
-        topic_slug: The article slug
+        article_id: The article UUID
         version_index: Optional version index. If provided, extracts citations from that version's content.
     """
     # Load articles
     data = load_data()
-    decoded_slug = unquote(topic_slug)
+    decoded_id = unquote(article_id)
 
     # Find the article
     article = None
     for a in data:
-        if extract_slug(a['url']) == decoded_slug:
+        if a.get('id') == decoded_id:
             article = a
             break
 
     if not article:
-        raise HTTPException(status_code=404, detail="Topic not found")
+        raise HTTPException(status_code=404, detail="Article not found")
 
     article_title = article.get('title', '')
     article_url = article.get('url', '')
@@ -1204,3 +1230,79 @@ def get_citation_bias(url: str) -> CitationBiasResponse:
         bias_score=round(bias_score, 1),
         bias_label=bias_label
     )
+
+
+@app.get("/api/graph")
+def get_article_graph(article_id: str | None = None) -> dict:
+    """Get the article graph. Optionally filter to show connections for a specific article."""
+    GRAPH_FILE = Path(__file__).parent / "article_graph.json"
+    
+    try:
+        with open(GRAPH_FILE, 'r', encoding='utf-8') as f:
+            graph = json.load(f)
+    except FileNotFoundError:
+        raise HTTPException(
+            status_code=500,
+            detail="Article graph not found. Please run generate_article_graph.py first."
+        )
+    
+    # If an article is specified, filter to show only that node and its neighbors
+    if article_id:
+        article_id = unquote(article_id)
+        
+        # Find the node by UUID
+        matching_node = None
+        for node in graph['nodes']:
+            if node['id'] == article_id:
+                matching_node = node
+                break
+        
+        if not matching_node:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Article '{article_id}' not found in graph."
+            )
+        
+        # Filter nodes: include the target node and all nodes within 2 hops
+        # Build a set of all node IDs within 2 hops
+        current_hop = {article_id}
+        all_node_ids = {article_id}
+        
+        # Perform 2 hops of neighbor discovery
+        for hop in range(2):
+            next_hop = set()
+            for node_id in current_hop:
+                for edge in graph['edges']:
+                    if edge['source'] == node_id:
+                        if edge['target'] not in all_node_ids:
+                            next_hop.add(edge['target'])
+                            all_node_ids.add(edge['target'])
+                    elif edge['target'] == node_id:
+                        if edge['source'] not in all_node_ids:
+                            next_hop.add(edge['source'])
+                            all_node_ids.add(edge['source'])
+            current_hop = next_hop
+        
+        # Filter edges to only include those between nodes in our set
+        filtered_edges = [
+            edge for edge in graph['edges']
+            if edge['source'] in all_node_ids and edge['target'] in all_node_ids
+        ]
+        
+        # Filter nodes to only include those within 2 hops
+        filtered_nodes = [
+            node for node in graph['nodes']
+            if node['id'] in all_node_ids
+        ]
+        
+        return {
+            'nodes': filtered_nodes,
+            'edges': filtered_edges,
+            'center_node': article_id,
+            'stats': {
+                'total_nodes': len(filtered_nodes),
+                'total_edges': len(filtered_edges)
+            }
+        }
+    
+    return graph

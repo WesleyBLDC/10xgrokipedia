@@ -4,7 +4,7 @@ import type { Suggestion, ReviewResult } from "../api";
 
 interface Props {
   suggestions: Suggestion[];
-  topicSlug: string;
+  articleId: string;
   onUpdate: () => void;
 }
 
@@ -14,7 +14,7 @@ interface ReviewModalState {
   result: ReviewResult | null;
 }
 
-export default function SuggestionsPanel({ suggestions, topicSlug, onUpdate }: Props) {
+export default function SuggestionsPanel({ suggestions, articleId, onUpdate }: Props) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [reviewing, setReviewing] = useState<string | null>(null);
   const [applying, setApplying] = useState<string | null>(null);
@@ -27,7 +27,7 @@ export default function SuggestionsPanel({ suggestions, topicSlug, onUpdate }: P
   const handleReview = async (id: string) => {
     setReviewing(id);
     try {
-      const result = await reviewSuggestion(topicSlug, id);
+      const result = await reviewSuggestion(articleId, id);
       // Show the modal with the result
       setReviewModal({
         isOpen: true,
@@ -45,7 +45,7 @@ export default function SuggestionsPanel({ suggestions, topicSlug, onUpdate }: P
   const handleApply = async (id: string) => {
     setApplying(id);
     try {
-      await applySuggestion(topicSlug, id);
+      await applySuggestion(articleId, id);
       setReviewModal({ isOpen: false, suggestionId: null, result: null });
       onUpdate();
     } catch (err) {
@@ -57,7 +57,7 @@ export default function SuggestionsPanel({ suggestions, topicSlug, onUpdate }: P
 
   const handleReject = async (id: string) => {
     try {
-      await rejectSuggestion(topicSlug, id);
+      await rejectSuggestion(articleId, id);
       setReviewModal({ isOpen: false, suggestionId: null, result: null });
       onUpdate();
     } catch (err) {

@@ -1,12 +1,12 @@
 const API_BASE = "http://localhost:8000/api";
 
 export interface TopicSummary {
-  topic: string;
+  id: string;  // UUID
   title: string;
 }
 
 export interface Topic {
-  topic: string;
+  id: string;  // UUID
   title: string;
   content: string;
   suggestion_count: number;
@@ -93,15 +93,15 @@ export async function searchTopics(query: string): Promise<TopicSummary[]> {
   return res.json();
 }
 
-export async function getTopic(slug: string): Promise<Topic> {
-  const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(slug)}`);
-  if (!res.ok) throw new Error("Topic not found");
+export async function getTopic(articleId: string): Promise<Topic> {
+  const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(articleId)}`);
+  if (!res.ok) throw new Error("Article not found");
   return res.json();
 }
 
-export async function getTopicTweets(slug: string, maxResults = 10): Promise<TweetItem[]> {
+export async function getTopicTweets(articleId: string, maxResults = 10): Promise<TweetItem[]> {
   const res = await fetch(
-    `${API_BASE}/topics/${encodeURIComponent(slug)}/tweets?max_results=${maxResults}`
+    `${API_BASE}/topics/${encodeURIComponent(articleId)}/tweets?max_results=${maxResults}`
   );
   if (!res.ok) {
     // Surface error text for better UX
@@ -111,9 +111,9 @@ export async function getTopicTweets(slug: string, maxResults = 10): Promise<Twe
   return res.json();
 }
 
-export async function getTopicTweetsSummary(slug: string, maxResults = 10): Promise<TweetsSummary> {
+export async function getTopicTweetsSummary(articleId: string, maxResults = 10): Promise<TweetsSummary> {
   const res = await fetch(
-    `${API_BASE}/topics/${encodeURIComponent(slug)}/tweets/summary?max_results=${maxResults}`
+    `${API_BASE}/topics/${encodeURIComponent(articleId)}/tweets/summary?max_results=${maxResults}`
   );
   if (!res.ok) {
     const msg = await res.text();
@@ -122,8 +122,8 @@ export async function getTopicTweetsSummary(slug: string, maxResults = 10): Prom
   return res.json();
 }
 
-export async function refreshTopicTweets(slug: string): Promise<void> {
-  const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(slug)}/tweets/refresh`, {
+export async function refreshTopicTweets(articleId: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(articleId)}/tweets/refresh`, {
     method: "POST",
   });
   if (!res.ok && res.status !== 204) {
@@ -132,8 +132,8 @@ export async function refreshTopicTweets(slug: string): Promise<void> {
   }
 }
 
-export async function submitSuggestion(slug: string, suggestion: EditSuggestionInput): Promise<Suggestion> {
-  const res = await fetch(`${API_BASE}/suggestions/${encodeURIComponent(slug)}`, {
+export async function submitSuggestion(articleId: string, suggestion: EditSuggestionInput): Promise<Suggestion> {
+  const res = await fetch(`${API_BASE}/suggestions/${encodeURIComponent(articleId)}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(suggestion),
@@ -142,49 +142,49 @@ export async function submitSuggestion(slug: string, suggestion: EditSuggestionI
   return res.json();
 }
 
-export async function getSuggestions(slug: string): Promise<Suggestion[]> {
-  const res = await fetch(`${API_BASE}/suggestions/${encodeURIComponent(slug)}`);
+export async function getSuggestions(articleId: string): Promise<Suggestion[]> {
+  const res = await fetch(`${API_BASE}/suggestions/${encodeURIComponent(articleId)}`);
   if (!res.ok) throw new Error("Failed to get suggestions");
   return res.json();
 }
 
-export async function reviewSuggestion(slug: string, suggestionId: string): Promise<ReviewResult> {
-  const res = await fetch(`${API_BASE}/suggestions/${encodeURIComponent(slug)}/review/${suggestionId}`, {
+export async function reviewSuggestion(articleId: string, suggestionId: string): Promise<ReviewResult> {
+  const res = await fetch(`${API_BASE}/suggestions/${encodeURIComponent(articleId)}/review/${suggestionId}`, {
     method: "POST",
   });
   if (!res.ok) throw new Error("Failed to review suggestion");
   return res.json();
 }
 
-export async function applySuggestion(slug: string, suggestionId: string): Promise<void> {
-  const res = await fetch(`${API_BASE}/suggestions/${encodeURIComponent(slug)}/apply/${suggestionId}`, {
+export async function applySuggestion(articleId: string, suggestionId: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/suggestions/${encodeURIComponent(articleId)}/apply/${suggestionId}`, {
     method: "POST",
   });
   if (!res.ok) throw new Error("Failed to apply suggestion");
 }
 
-export async function rejectSuggestion(slug: string, suggestionId: string): Promise<void> {
-  const res = await fetch(`${API_BASE}/suggestions/${encodeURIComponent(slug)}/reject/${suggestionId}`, {
+export async function rejectSuggestion(articleId: string, suggestionId: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/suggestions/${encodeURIComponent(articleId)}/reject/${suggestionId}`, {
     method: "POST",
   });
   if (!res.ok) throw new Error("Failed to reject suggestion");
 }
 
-export async function getVersions(slug: string): Promise<VersionSummary[]> {
-  const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(slug)}/versions`);
+export async function getVersions(articleId: string): Promise<VersionSummary[]> {
+  const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(articleId)}/versions`);
   if (!res.ok) throw new Error("Failed to get versions");
   return res.json();
 }
 
-export async function getVersion(slug: string, index: number): Promise<VersionDetail> {
-  const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(slug)}/versions/${index}`);
+export async function getVersion(articleId: string, index: number): Promise<VersionDetail> {
+  const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(articleId)}/versions/${index}`);
   if (!res.ok) throw new Error("Failed to get version");
   return res.json();
 }
 
-export async function getAggregateBias(slug: string, versionIndex?: number): Promise<AggregateBias | null> {
+export async function getAggregateBias(articleId: string, versionIndex?: number): Promise<AggregateBias | null> {
   try {
-    let url = `${API_BASE}/aggregate_bias/${encodeURIComponent(slug)}`;
+    let url = `${API_BASE}/aggregate_bias/${encodeURIComponent(articleId)}`;
     if (versionIndex !== undefined) {
       url += `?version_index=${versionIndex}`;
     }
@@ -212,4 +212,56 @@ export async function getCitationBias(url: string): Promise<CitationBias | null>
   } catch {
     return null;
   }
+}
+
+export interface GraphNode {
+  id: string;
+  title: string;
+  citation_count: number;
+  outgoing_links: number;
+  citation_domains_count: number;
+}
+
+export interface GraphEdge {
+  source: string;
+  target: string;
+  weight: number;
+  types: string[];
+  metadata?: {
+    shared_citations?: string[];
+    shared_domains?: string[];
+    link_direction?: string[];
+    co_linked_targets?: string[];
+  };
+}
+
+export interface ArticleGraph {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  center_node?: string;
+  stats?: {
+    total_nodes: number;
+    total_edges: number;
+    edges_by_type?: Record<string, number>;
+  };
+}
+
+export async function getArticleGraph(articleId?: string): Promise<ArticleGraph> {
+  let url = `${API_BASE}/graph`;
+  if (articleId) {
+    url += `?article_id=${encodeURIComponent(articleId)}`;
+  }
+  const res = await fetch(url);
+  if (!res.ok) {
+    const errorText = await res.text();
+    let errorMessage = `Failed to load article graph (${res.status})`;
+    try {
+      const errorJson = JSON.parse(errorText);
+      errorMessage = errorJson.detail || errorMessage;
+    } catch {
+      errorMessage = errorText || errorMessage;
+    }
+    throw new Error(errorMessage);
+  }
+  return res.json();
 }

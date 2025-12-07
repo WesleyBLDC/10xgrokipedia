@@ -3,12 +3,12 @@ import { getVersions, getVersion } from "../api";
 import type { VersionSummary } from "../api";
 
 interface Props {
-  topicSlug: string;
+  articleId: string;
   onVersionSelect: (content: string | null, versionIndex: number | null) => void;
   currentVersionIndex: number | null;
 }
 
-export default function VersionHistory({ topicSlug, onVersionSelect, currentVersionIndex }: Props) {
+export default function VersionHistory({ articleId, onVersionSelect, currentVersionIndex }: Props) {
   const [versions, setVersions] = useState<VersionSummary[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState<number | null>(null);
@@ -18,14 +18,14 @@ export default function VersionHistory({ topicSlug, onVersionSelect, currentVers
   useEffect(() => {
     const loadVersions = async () => {
       try {
-        const data = await getVersions(topicSlug);
+        const data = await getVersions(articleId);
         setVersions(data);
       } catch (err) {
         console.error("Failed to load versions:", err);
       }
     };
     loadVersions();
-  }, [topicSlug]);
+  }, [articleId]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -40,7 +40,7 @@ export default function VersionHistory({ topicSlug, onVersionSelect, currentVers
   const handleVersionClick = async (index: number) => {
     setLoading(index);
     try {
-      const versionData = await getVersion(topicSlug, index);
+      const versionData = await getVersion(articleId, index);
       onVersionSelect(versionData.content, index);
       setIsOpen(false);
     } catch (err) {

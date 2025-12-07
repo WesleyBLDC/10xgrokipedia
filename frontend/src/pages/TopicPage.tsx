@@ -7,16 +7,18 @@ import SuggestEditModal from "../components/SuggestEditModal";
 import SuggestionsPanel from "../components/SuggestionsPanel";
 import VersionHistory from "../components/VersionHistory";
 import CommunityFeed from "../components/CommunityFeed";
+import GraphView from "../components/GraphView";
 import { getAggregateBias } from "../api";
 import type { AggregateBias } from "../api";
 
 export default function TopicPage() {
-  const { topic } = useParams<{ topic: string }>();
+  const { articleId } = useParams<{ articleId: string }>();
   const [data, setData] = useState<Topic | null>(null);
   const [biasData, setBiasData] = useState<AggregateBias | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [showGraphModal, setShowGraphModal] = useState(false);
   const navigate = useNavigate();
 
   // Version history state
@@ -41,7 +43,7 @@ export default function TopicPage() {
   const footnoteMap = useRef<Map<string, number>>(new Map());
 
   const loadData = useCallback(async () => {
-    if (!topic) return;
+    if (!articleId) return;
     setData(null);
     setError(null);
     setViewingVersionIndex(null);
@@ -51,18 +53,18 @@ export default function TopicPage() {
 
     try {
       const [topicData, suggestionsData] = await Promise.all([
-        getTopic(topic),
-        getSuggestions(topic),
+        getTopic(articleId),
+        getSuggestions(articleId),
       ]);
       setData(topicData);
       setSuggestions(suggestionsData);
     } catch {
       setError("Topic not found");
     }
-  }, [topic]);
+  }, [articleId]);
 
   useEffect(() => {
-    if (topic) {
+    if (articleId) {
       setData(null);
       setBiasData(null);
       setError(null);
@@ -70,12 +72,12 @@ export default function TopicPage() {
       setVersionContent(null);
       footnoteCounter.current = 0;
       footnoteMap.current.clear();
-      getTopic(topic)
+      getTopic(articleId)
         .then(setData)
         .catch(() => setError("Topic not found"));
       // Bias data is fetched by the separate version-aware effect
     }
-  }, [topic]);
+  }, [articleId]);
 
   useEffect(() => {
     loadData();
@@ -131,14 +133,14 @@ export default function TopicPage() {
 
   // Fetch bias data when topic or version changes
   useEffect(() => {
-    if (!topic) return;
+    if (!articleId) return;
 
-    getAggregateBias(topic, viewingVersionIndex ?? undefined)
+      getAggregateBias(articleId, viewingVersionIndex ?? undefined)
       .then(setBiasData)
       .catch(() => {
         setBiasData(null);
       });
-  }, [topic, viewingVersionIndex]);
+  }, [articleId, viewingVersionIndex]);
 
   const pendingCount = suggestions.filter(s => s.status === "pending" || s.status === "reviewed").length;
   const totalCount = suggestions.length;
@@ -169,8 +171,25 @@ export default function TopicPage() {
         <div className="topic-header">
             <Link to="/" className="back-link">← Back to search</Link>
             <div className="header-actions">
+            <button
+                onClick={() => setShowGraphModal(true)}
+                className="version-history-btn"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="3" />
+                <circle cx="5" cy="5" r="2" />
+                <circle cx="19" cy="5" r="2" />
+                <circle cx="5" cy="19" r="2" />
+                <circle cx="19" cy="19" r="2" />
+                <line x1="5" y1="5" x2="12" y2="12" />
+                <line x1="19" y1="5" x2="12" y2="12" />
+                <line x1="5" y1="19" x2="12" y2="12" />
+                <line x1="19" y1="19" x2="12" y2="12" />
+              </svg>
+              View Graph
+            </button>
             <VersionHistory
-                topicSlug={topic!}
+                articleId={articleId!}
                 onVersionSelect={handleVersionSelect}
                 currentVersionIndex={viewingVersionIndex}
             />
@@ -194,13 +213,38 @@ export default function TopicPage() {
         </div>
       )}
 
-      <h1>{data.title}</h1>
-
-
       <div className="topic-layout">
         {/* Left column: Community Feed and future components */}
         <aside className="left-rail">
-          {topic && <CommunityFeed topicSlug={topic} />}
+          {biasData && (
+            <div className="bias-marker">
+              <div className="bias-score">
+                <span className="bias-label">Factuality:</span>
+                <span className={`bias-value factual ${biasData.factual_label.toLowerCase().replace(/\s+/g, '-')}`}>
+                  {biasData.factual_label}
+                </span>
+              </div>
+              <div className="bias-score">
+                <span className="bias-label">Source Bias:</span>
+                <div className="bias-bar-container">
+                  <div className="bias-bar">
+                    <div 
+                      className="bias-dot"
+                      style={{
+                        left: `${((biasData.average_bias_score + 10) / 20) * 100}%`
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+              {biasData.evaluated_citation_count > 0 && (
+                <div className="bias-meta">
+                  Based on {biasData.evaluated_citation_count} of {biasData.citation_count} citations
+                </div>
+              )}
+            </div>
+          )}
+          {articleId && <CommunityFeed articleId={articleId} />}
         </aside>
 
         {/* Right column: Edit history + article content */}
@@ -208,40 +252,10 @@ export default function TopicPage() {
           {showSuggestions && !versionContent && (
             <SuggestionsPanel
               suggestions={suggestions}
-              topicSlug={topic!}
+              articleId={articleId!}
               onUpdate={loadData}
             />
           )}
-          <div className="topic-header">
-            {biasData && (
-            <div className="bias-marker">
-                <div className="bias-score">
-                <span className="bias-label">Factuality:</span>
-                <span className={`bias-value factual ${biasData.factual_label.toLowerCase().replace(/\s+/g, '-')}`}>
-                    {biasData.factual_label}
-                </span>
-                </div>
-                <div className="bias-score">
-                <span className="bias-label">Source Bias:</span>
-                <div className="bias-bar-container">
-                    <div className="bias-bar">
-                    <div 
-                        className="bias-dot"
-                        style={{
-                        left: `${((biasData.average_bias_score + 10) / 20) * 100}%`
-                        }}
-                    />
-                    </div>
-                </div>
-                </div>
-                {biasData.evaluated_citation_count > 0 && (
-                <div className="bias-meta">
-                    Based on {biasData.evaluated_citation_count} of {biasData.citation_count} citations
-                </div>
-                )}
-            </div>
-            )}
-          </div>
 
           <div className="content" onMouseUp={handleMouseUp}>
             <ReactMarkdown
@@ -432,9 +446,46 @@ export default function TopicPage() {
         isOpen={showModal}
         onClose={handleModalClose}
         selectedText={selectedText}
-        topicSlug={topic!}
+        articleId={articleId!}
         onSuccess={handleSuggestionSuccess}
       />
+
+      {/* Graph Modal Overlay */}
+      {showGraphModal && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.85)",
+            zIndex: 10000,
+            display: "flex",
+            flexDirection: "column"
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowGraphModal(false);
+            }
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              position: "relative",
+              width: "100%",
+              height: "100%"
+            }}
+          >
+            <GraphView
+              articleId={articleId!}
+              onClose={() => setShowGraphModal(false)}
+              isModal={true}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

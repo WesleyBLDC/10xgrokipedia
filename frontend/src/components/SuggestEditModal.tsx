@@ -5,11 +5,11 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   selectedText: string;
-  topicSlug: string;
+  articleId: string;
   onSuccess: () => void;
 }
 
-export default function SuggestEditModal({ isOpen, onClose, selectedText, topicSlug, onSuccess }: Props) {
+export default function SuggestEditModal({ isOpen, onClose, selectedText, articleId, onSuccess }: Props) {
   const [summary, setSummary] = useState("");
   const [sources, setSources] = useState<string[]>([""]);
   const [submitting, setSubmitting] = useState(false);
@@ -37,7 +37,7 @@ export default function SuggestEditModal({ isOpen, onClose, selectedText, topicS
     setError(null);
 
     try {
-      await submitSuggestion(topicSlug, {
+      await submitSuggestion(articleId, {
         highlighted_text: selectedText,
         summary: summary.trim(),
         sources: sources.filter(s => s.trim()),

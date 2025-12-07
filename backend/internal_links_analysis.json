@@ -1,0 +1,859 @@
+{
+  "total_articles": 69,
+  "articles_with_outgoing_links": 66,
+  "total_internal_links": 6891,
+  "unique_article_targets": 4705,
+  "links_to_existing_articles": 1,
+  "links_to_non_existing_articles": 4704,
+  "most_linked_articles_all": [
+    {
+      "article": "United_States",
+      "exists": false,
+      "incoming_link_count": 21,
+      "linked_from": [
+        "!!!",
+        "_!_ (Trippie Redd album)",
+        "$1",
+        "$1000",
+        "$15 minimum wage movement",
+        "$40 a Day",
+        "$500",
+        "_SOS_ (Die Antwoord album)",
+        "\\u0026TV",
+        "_\\u0026 Juliet_",
+        "'03 Bonnie \\u0026 Clyde",
+        "'39",
+        "'47 (brand)",
+        "_'74 Jailbreak_",
+        "'74–'75",
+        "_'76_ (film)",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "'Aqqaba",
+        "_'Cause You're My Boy_",
+        "_'Gator Bait_",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    {
+      "article": "United_Kingdom",
+      "exists": false,
+      "incoming_link_count": 19,
+      "linked_from": [
+        "!!!",
+        "$1",
+        "$15 minimum wage movement",
+        "_$h*! My Dad Says_",
+        "% Arabica",
+        "\\u0026TV",
+        "_\\u0026 Juliet_",
+        "\\u0026TV",
+        "'39",
+        "_'71_ (film)",
+        "_'74 Jailbreak_",
+        "'74–'75",
+        "_'92 Tour EP_",
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 1",
+        "_'Allo 'Allo!_ series 9",
+        "_'Bout Love_",
+        "_'Gator Bait_",
+        "'Mamohato Bereng Seeiso"
+      ]
+    },
+    {
+      "article": "Canada",
+      "exists": false,
+      "incoming_link_count": 14,
+      "linked_from": [
+        "!!!",
+        "$1",
+        "$15 minimum wage movement",
+        "$40 a Day",
+        "% Arabica",
+        "_\\u0026 Juliet_",
+        "\\u0026TV",
+        "'03 Bonnie \\u0026 Clyde",
+        "'39",
+        "_'71_ (film)",
+        "_'76_ (film)",
+        "'A' You're Adorable",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "_'Bout Love_"
+      ]
+    },
+    {
+      "article": "Europe",
+      "exists": false,
+      "incoming_link_count": 14,
+      "linked_from": [
+        "!!!",
+        "$40 a Day",
+        "_SOS_ (Die Antwoord album)",
+        "% Arabica",
+        "\\u0026TV",
+        "\\u0026TV",
+        "'39",
+        "'47 (brand)",
+        "'68 (band)",
+        "_'74 Jailbreak_",
+        "'74–'75",
+        "_'76_ (film)",
+        "'Ali ibn al-'Abbas al-Majusi",
+        "_'Cause You're My Boy_"
+      ]
+    },
+    {
+      "article": "Family",
+      "exists": false,
+      "incoming_link_count": 13,
+      "linked_from": [
+        "!!!",
+        "_!Oka Tokat_",
+        "_$h*! My Dad Says_",
+        "\\u0026TV",
+        "_\\u0026 Juliet_",
+        "\\u0026TV",
+        "'97 Bonnie \\u0026 Clyde",
+        "'A'isha al-Ba'uniyya",
+        "ʽAbd al-Ahad Khan",
+        "'Adud al-Dawla",
+        "'Ajam of Kuwait",
+        "Asir",
+        "_'Cause You're My Boy_"
+      ]
+    },
+    {
+      "article": "New_York",
+      "exists": false,
+      "incoming_link_count": 13,
+      "linked_from": [
+        "!!!",
+        "$15 minimum wage movement",
+        "$40 a Day",
+        "$9.99",
+        "% Arabica",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "\\u0026pizza",
+        "'03 Bonnie \\u0026 Clyde",
+        "'47 (brand)",
+        "'80s on 8",
+        "'A' You're Adorable",
+        "_'Bout Love_",
+        "'Cause I'm a Man"
+      ]
+    },
+    {
+      "article": "Storytelling",
+      "exists": false,
+      "incoming_link_count": 13,
+      "linked_from": [
+        "$9.99",
+        "\\u0026TV",
+        "_\\u0026 Juliet_",
+        "\\u0026TV",
+        "'50s progression",
+        "'60s Gold",
+        "_'76_ (film)",
+        "'97 Bonnie \\u0026 Clyde",
+        "_'Allo 'Allo!_",
+        "Asir",
+        "_'Bout Love_",
+        "_'Gator Bait_",
+        "'I' and the 'me'"
+      ]
+    },
+    {
+      "article": "Australia",
+      "exists": false,
+      "incoming_link_count": 12,
+      "linked_from": [
+        "!!!",
+        "$100 hamburger",
+        "$9.99",
+        "% Arabica",
+        "\\u0026TV",
+        "\\u0026TV",
+        "'03 Bonnie \\u0026 Clyde",
+        "_'74 Jailbreak_",
+        "'A' You're Adorable",
+        "_'Allo 'Allo!_",
+        "'Cause I'm a Man",
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    {
+      "article": "1980s",
+      "exists": false,
+      "incoming_link_count": 12,
+      "linked_from": [
+        "!K7 Music",
+        "$500",
+        "'39",
+        "'47 (brand)",
+        "'50s progression",
+        "'65 Love Affair",
+        "_'74 Jailbreak_",
+        "'80s on 8",
+        "_'Allo 'Allo!_ series 1",
+        "Asir",
+        "_'Bout Love_",
+        "'Mamohato Bereng Seeiso"
+      ]
+    },
+    {
+      "article": "Narrative",
+      "exists": false,
+      "incoming_link_count": 12,
+      "linked_from": [
+        "_$h*! My Dad Says_",
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026TV",
+        "_\\u0026 Juliet_",
+        "'03 Bonnie \\u0026 Clyde",
+        "'65 Love Affair",
+        "_'76_ (film)",
+        "'96 (film)",
+        "'A' You're Adorable",
+        "_'Allo 'Allo!_",
+        "'I' and the 'me'",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    {
+      "article": "Billboard",
+      "exists": false,
+      "incoming_link_count": 11,
+      "linked_from": [
+        "!!!",
+        "_!_ (Trippie Redd album)",
+        "\\u0026Twice",
+        "_\\u0026 Juliet_",
+        "'65 Love Affair",
+        "'68 (band)",
+        "'74–'75",
+        "'80s on 8",
+        "'A' You're Adorable",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    {
+      "article": "Gold",
+      "exists": false,
+      "incoming_link_count": 11,
+      "linked_from": [
+        "!!!",
+        "_!_ (Trippie Redd album)",
+        "$1",
+        "$1000",
+        "'03 Bonnie \\u0026 Clyde",
+        "'60s Gold",
+        "'74–'75",
+        "'96 (film)",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "Asir",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    {
+      "article": "2010s",
+      "exists": false,
+      "incoming_link_count": 11,
+      "linked_from": [
+        "!K7 Music",
+        "$15 minimum wage movement",
+        "$40 a Day",
+        "\\u0026TV",
+        "'03 Bonnie \\u0026 Clyde",
+        "'47 (brand)",
+        "_'74 Jailbreak_",
+        "'Ajam of Kuwait",
+        "Asir",
+        "_\"Awaken, My Love!\"_",
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    {
+      "article": "Album",
+      "exists": false,
+      "incoming_link_count": 11,
+      "linked_from": [
+        "!K7 Music",
+        "_!_ (Trippie Redd album)",
+        "$9.99",
+        "_SOS_ (Die Antwoord album)",
+        "'68 (band)",
+        "'74–'75",
+        "_'92 Tour EP_",
+        "'97 Bonnie \\u0026 Clyde",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "_'Bout Love_",
+        "'Cause I'm a Man"
+      ]
+    },
+    {
+      "article": "Resilience",
+      "exists": false,
+      "incoming_link_count": 11,
+      "linked_from": [
+        "_$h*! My Dad Says_",
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026TV",
+        "\\u0026Team",
+        "'68 (band)",
+        "_'76_ (film)",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "Asir",
+        "'I' and the 'me'",
+        "'Mantsopa"
+      ]
+    },
+    {
+      "article": "Music",
+      "exists": false,
+      "incoming_link_count": 10,
+      "linked_from": [
+        "!!!",
+        "!K7 Music",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "\\u0026Team",
+        "\\u0026TV",
+        "'60s Gold",
+        "'80s on 8",
+        "'96 (film)",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    {
+      "article": "Hip_hop_music",
+      "exists": false,
+      "incoming_link_count": 10,
+      "linked_from": [
+        "!!!",
+        "!K7 Music",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "'03 Bonnie \\u0026 Clyde",
+        "'47 (brand)",
+        "'97 Bonnie \\u0026 Clyde",
+        "_\"Awaken, My Love!\"_",
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    {
+      "article": "Spotify",
+      "exists": false,
+      "incoming_link_count": 10,
+      "linked_from": [
+        "!!!",
+        "_!_ (Trippie Redd album)",
+        "$9.99",
+        "\\u0026Twice",
+        "'03 Bonnie \\u0026 Clyde",
+        "'65 Love Affair",
+        "_'74 Jailbreak_",
+        "'74–'75",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "'Cause I'm a Man"
+      ]
+    },
+    {
+      "article": "Social_media",
+      "exists": false,
+      "incoming_link_count": 10,
+      "linked_from": [
+        "$40 a Day",
+        "_SOS_ (Die Antwoord album)",
+        "_$h*! My Dad Says_",
+        "% Arabica",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "\\u0026pizza",
+        "'96 (film)",
+        "'A' You're Adorable",
+        "_\"Awaken, My Love!\"_",
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    {
+      "article": "Production",
+      "exists": false,
+      "incoming_link_count": 10,
+      "linked_from": [
+        "'03 Bonnie \\u0026 Clyde",
+        "'39",
+        "'68 (band)",
+        "'74–'75",
+        "'96 (film)",
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 1",
+        "'Cause I'm a Man",
+        "_'Cause You're My Boy_",
+        "_'Gator Bait_"
+      ]
+    },
+    {
+      "article": "France",
+      "exists": false,
+      "incoming_link_count": 9,
+      "linked_from": [
+        "!!!",
+        "$15 minimum wage movement",
+        "$9.99",
+        "% Arabica",
+        "'74–'75",
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 1",
+        "_'Allo 'Allo!_ series 9",
+        "'Aqqaba"
+      ]
+    },
+    {
+      "article": "Japan",
+      "exists": false,
+      "incoming_link_count": 9,
+      "linked_from": [
+        "!!!",
+        "$1",
+        "$15 minimum wage movement",
+        "% Arabica",
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team",
+        "\\u0026Twice",
+        "'39",
+        "'I' and the 'me'"
+      ]
+    },
+    {
+      "article": "Los_Angeles",
+      "exists": false,
+      "incoming_link_count": 9,
+      "linked_from": [
+        "!!!",
+        "_!_ (Trippie Redd album)",
+        "$15 minimum wage movement",
+        "$40 a Day",
+        "$9.99",
+        "_$h*! My Dad Says_",
+        "% Arabica",
+        "_'Bout Love_",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    {
+      "article": "New_York_City",
+      "exists": false,
+      "incoming_link_count": 9,
+      "linked_from": [
+        "!!!",
+        "$15 minimum wage movement",
+        "$40 a Day",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "_\\u0026 Juliet_",
+        "\\u0026pizza",
+        "'03 Bonnie \\u0026 Clyde",
+        "'A' You're Adorable",
+        "_'Bout Love_"
+      ]
+    },
+    {
+      "article": "2020s",
+      "exists": false,
+      "incoming_link_count": 9,
+      "linked_from": [
+        "_!Oka Tokat_",
+        "$9.99",
+        "\\u0026TV",
+        "'03 Bonnie \\u0026 Clyde",
+        "'50s progression",
+        "'Ajam of Kuwait",
+        "Asir",
+        "_'Cause You're My Boy_",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    {
+      "article": "1990s",
+      "exists": false,
+      "incoming_link_count": 9,
+      "linked_from": [
+        "$1",
+        "'47 (brand)",
+        "'68 (band)",
+        "'74–'75",
+        "'96 (film)",
+        "'A'isha al-Ba'uniyya",
+        "Asir",
+        "_'Bout Love_",
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    {
+      "article": "Infrastructure",
+      "exists": false,
+      "incoming_link_count": 9,
+      "linked_from": [
+        "$1",
+        "ʽAbd al-Ahad Khan",
+        "'Adud al-Dawla",
+        "'Ajam of Kuwait",
+        "'Amran",
+        "'Aqqaba",
+        "Asir",
+        "'En Esur",
+        "'Mamohato Bereng Seeiso"
+      ]
+    },
+    {
+      "article": "Realism",
+      "exists": false,
+      "incoming_link_count": 9,
+      "linked_from": [
+        "$9.99",
+        "_$h*! My Dad Says_",
+        "_\\u0026 Juliet_",
+        "\\u0026TV",
+        "_'76_ (film)",
+        "'Cause I'm a Man",
+        "'I' and the 'me'",
+        "\"Alternative facts\" phrase",
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    {
+      "article": "Autonomy",
+      "exists": false,
+      "incoming_link_count": 9,
+      "linked_from": [
+        "_\\u0026 Juliet_",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur",
+        "ʽAbd al-Ahad Khan",
+        "'Adud al-Dawla",
+        "_'Aql_",
+        "Asir",
+        "_'Bout Love_",
+        "'I' and the 'me'",
+        "'Mantsopa"
+      ]
+    },
+    {
+      "article": "Military",
+      "exists": false,
+      "incoming_link_count": 9,
+      "linked_from": [
+        "_'76_ (film)",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur",
+        "ʽAbd al-Ahad Khan",
+        "'Adud al-Dawla",
+        "_'Allo 'Allo!_",
+        "'Amran",
+        "'En Esur",
+        "'Mantsopa",
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    {
+      "article": "Vinyl",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "!!!",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "\\u0026Twice",
+        "'03 Bonnie \\u0026 Clyde",
+        "'68 (band)",
+        "_'74 Jailbreak_",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "_'Bout Love_"
+      ]
+    },
+    {
+      "article": "European",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "!!!",
+        "! (disambiguation)",
+        "$40 a Day",
+        "$500",
+        "'74–'75",
+        "ʽAbd al-Ahad Khan",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "'Mantsopa"
+      ]
+    },
+    {
+      "article": "London",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "!!!",
+        "$40 a Day",
+        "% Arabica",
+        "_\\u0026 Juliet_",
+        "'39",
+        "_'Allo 'Allo!_ series 1",
+        "_'Allo 'Allo!_ series 9",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    {
+      "article": "Media",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "!K7 Music",
+        "_$h*! My Dad Says_",
+        "'03 Bonnie \\u0026 Clyde",
+        "_'71_ (film)",
+        "_'74 Jailbreak_",
+        "_'Allo 'Allo!_",
+        "\"Alternative facts\" phrase",
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    {
+      "article": "Billboard_Hot_100",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "_!_ (Trippie Redd album)",
+        "_\\u0026 Juliet_",
+        "'03 Bonnie \\u0026 Clyde",
+        "'39",
+        "'60s Gold",
+        "'65 Love Affair",
+        "'74–'75",
+        "_'Bout Love_"
+      ]
+    },
+    {
+      "article": "1970s",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "$100 hamburger",
+        "'39",
+        "'50s progression",
+        "'65 Love Affair",
+        "Asir",
+        "_'Bout Love_",
+        "_'Gator Bait_",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    {
+      "article": "YouTube",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "$40 a Day",
+        "$456,000 _Squid Game_ in Real Life!",
+        "_SOS_ (Die Antwoord album)",
+        "'65 Love Affair",
+        "'74–'75",
+        "'96 (film)",
+        "'Cause I'm a Man",
+        "_'Cause You're My Boy_"
+      ]
+    },
+    {
+      "article": "Digital",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "$500",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "\\u0026TV",
+        "\\u0026pizza",
+        "_'74 Jailbreak_",
+        "'96 (film)",
+        "'Cause I'm a Man",
+        "_'Gator Bait_"
+      ]
+    },
+    {
+      "article": "1940s",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "$500",
+        "'39",
+        "'47 (brand)",
+        "'50s progression",
+        "'A' You're Adorable",
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 1",
+        "Asir"
+      ]
+    },
+    {
+      "article": "Chorus",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "\\u0026Twice",
+        "_\\u0026 Juliet_",
+        "'03 Bonnie \\u0026 Clyde",
+        "'39",
+        "'50s progression",
+        "'65 Love Affair",
+        "'74–'75",
+        "'Cause I'm a Man"
+      ]
+    },
+    {
+      "article": "Lyrics",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "\\u0026Twice",
+        "_\\u0026 Juliet_",
+        "'65 Love Affair",
+        "'68 (band)",
+        "_'92 Tour EP_",
+        "'A' You're Adorable",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "'Cause I'm a Man"
+      ]
+    },
+    {
+      "article": "Trade",
+      "exists": false,
+      "incoming_link_count": 8,
+      "linked_from": [
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur",
+        "ʽAbd al-Ahad Khan",
+        "'Abdullah ibn 'Alawi al-Haddad",
+        "'Ajam of Kuwait",
+        "'Amm",
+        "'Amran",
+        "'Aqqaba",
+        "Asir"
+      ]
+    },
+    {
+      "article": "Pitchfork",
+      "exists": false,
+      "incoming_link_count": 7,
+      "linked_from": [
+        "!!!",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    {
+      "article": "Billboard_200",
+      "exists": false,
+      "incoming_link_count": 7,
+      "linked_from": [
+        "!!!",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)",
+        "_'74 Jailbreak_",
+        "'97 Bonnie \\u0026 Clyde",
+        "_'Bout Love_",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    {
+      "article": "Single",
+      "exists": false,
+      "incoming_link_count": 7,
+      "linked_from": [
+        "!!!",
+        "_'74 Jailbreak_",
+        "'97 Bonnie \\u0026 Clyde",
+        "'A' You're Adorable",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "_'Bout Love_",
+        "'Cause I'm a Man"
+      ]
+    },
+    {
+      "article": "Jazz",
+      "exists": false,
+      "incoming_link_count": 7,
+      "linked_from": [
+        "!!!",
+        "!K7 Music",
+        "'50s progression",
+        "'68 (band)",
+        "'A' You're Adorable",
+        "_'Allo 'Allo!_",
+        "_'Bout Love_"
+      ]
+    },
+    {
+      "article": "Urban",
+      "exists": false,
+      "incoming_link_count": 7,
+      "linked_from": [
+        "!K7 Music",
+        "_!Oka Tokat_",
+        "\\u0026TV",
+        "\\u0026pizza",
+        "ʽAbd al-Ahad Khan",
+        "'Amran",
+        "'En Esur"
+      ]
+    },
+    {
+      "article": "Nostalgia",
+      "exists": false,
+      "incoming_link_count": 7,
+      "linked_from": [
+        "_!Oka Tokat_",
+        "$40 a Day",
+        "_\\u0026 Juliet_",
+        "'50s progression",
+        "'65 Love Affair",
+        "'74–'75",
+        "'96 (film)"
+      ]
+    },
+    {
+      "article": "19th_century",
+      "exists": false,
+      "incoming_link_count": 7,
+      "linked_from": [
+        "$1000",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur",
+        "'Ajam of Kuwait",
+        "'Amran",
+        "Asir",
+        "'I' and the 'me'",
+        "'Mantsopa"
+      ]
+    },
+    {
+      "article": "20th_century",
+      "exists": false,
+      "incoming_link_count": 7,
+      "linked_from": [
+        "$1000",
+        "'50s progression",
+        "'A'isha al-Ba'uniyya",
+        "'Ajam of Kuwait",
+        "Asir",
+        "'En Esur",
+        "\"Get fucked\" (phrase)"
+      ]
+    }
+  ],
+  "most_linked_articles_existing": [
+    {
+      "article": "\\u0026Team",
+      "incoming_link_count": 1,
+      "linked_from": [
+        "_\\u0026 Audition – The Howling_"
+      ]
+    }
+  ]
+}

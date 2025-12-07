@@ -1,0 +1,5362 @@
+{
+  "total_shared_domains": 510,
+  "total_articles_sharing_domains": 68,
+  "domains": {
+    "https://www.youtube.com": {
+      "domain": "https://www.youtube.com",
+      "unique_article_count": 24,
+      "total_references": 101,
+      "unique_url_count": 101,
+      "articles": [
+        "\\u0026Team",
+        "'96 (film)",
+        "\\u0026Twice",
+        "'A' You're Adorable",
+        "$15 minimum wage movement",
+        "'65 Love Affair",
+        "_\"Awaken, My Love!\"_",
+        "$456,000 _Squid Game_ in Real Life!",
+        "'39",
+        "$40 a Day",
+        "_!Oka Tokat_",
+        "'80s on 8",
+        "'Cause I'm a Man",
+        "'68 (band)",
+        "_'74 Jailbreak_",
+        "_'76_ (film)",
+        "_'Cause You're My Boy_",
+        "_!_ (Trippie Redd album)",
+        "'03 Bonnie \\u0026 Clyde",
+        "!!!",
+        "_'Allo 'Allo!_",
+        "\\u0026TV",
+        "'74–'75",
+        "_\\u0026 Audition – The Howling_"
+      ]
+    },
+    "https://www.discogs.com": {
+      "domain": "https://www.discogs.com",
+      "unique_article_count": 20,
+      "total_references": 88,
+      "unique_url_count": 88,
+      "articles": [
+        "!K7 Music",
+        "\\u0026Twice",
+        "'A' You're Adorable",
+        "$9.99",
+        "_'Bout Love_",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "'65 Love Affair",
+        "_\"Awaken, My Love!\"_",
+        "'39",
+        "_SOS_ (Die Antwoord album)",
+        "'97 Bonnie \\u0026 Clyde",
+        "'Cause I'm a Man",
+        "'68 (band)",
+        "_'74 Jailbreak_",
+        "_'92 Tour EP_",
+        "_!_ (Trippie Redd album)",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "'03 Bonnie \\u0026 Clyde",
+        "!!!",
+        "'74–'75"
+      ]
+    },
+    "https://www.imdb.com": {
+      "domain": "https://www.imdb.com",
+      "unique_article_count": 22,
+      "total_references": 88,
+      "unique_url_count": 86,
+      "articles": [
+        "\"Get fucked\" (phrase)",
+        "\\u0026Team",
+        "'96 (film)",
+        "\\u0026Twice",
+        "$9.99",
+        "_'71_ (film)",
+        "_'Allo 'Allo!_ series 1",
+        "$40 a Day",
+        "_!Oka Tokat_",
+        "_'Allo 'Allo!_ series 9",
+        "_SOS_ (Die Antwoord album)",
+        "_$h*! My Dad Says_",
+        "_'74 Jailbreak_",
+        "_'76_ (film)",
+        "_'92 Tour EP_",
+        "_'Cause You're My Boy_",
+        "'03 Bonnie \\u0026 Clyde",
+        "_'Allo 'Allo!_",
+        "\\u0026TV",
+        "_'Gator Bait_",
+        "'74–'75",
+        "_\\u0026 Audition – The Howling_"
+      ]
+    },
+    "https://www.billboard.com": {
+      "domain": "https://www.billboard.com",
+      "unique_article_count": 18,
+      "total_references": 71,
+      "unique_url_count": 69,
+      "articles": [
+        "'65 Love Affair",
+        "'97 Bonnie \\u0026 Clyde",
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "\\u0026Team",
+        "!K7 Music",
+        "'74–'75",
+        "_'74 Jailbreak_",
+        "\\u0026Twice",
+        "_\\u0026 Juliet_",
+        "'60s Gold",
+        "_'Bout Love_",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)",
+        "'03 Bonnie \\u0026 Clyde",
+        "_\\u0026 Audition – The Howling_",
+        "!!!"
+      ]
+    },
+    "https://www.researchgate.net": {
+      "domain": "https://www.researchgate.net",
+      "unique_article_count": 15,
+      "total_references": 51,
+      "unique_url_count": 51,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "'Amm",
+        "'Amran",
+        "\"Get fucked\" (phrase)",
+        "'Adud al-Dawla",
+        "ʽAbd al-Ahad Khan",
+        "'I' and the 'me'",
+        "'En Esur",
+        "_'Aql_",
+        "'Ali ibn al-'Abbas al-Majusi",
+        "'Ajam of Kuwait",
+        "$1",
+        "_\\u0026 Juliet_",
+        "'Mantsopa",
+        "Asir"
+      ]
+    },
+    "https://en.wikipedia.org": {
+      "domain": "https://en.wikipedia.org",
+      "unique_article_count": 28,
+      "total_references": 48,
+      "unique_url_count": 47,
+      "articles": [
+        "\\u0026Team",
+        "'96 (film)",
+        "!K7 Music",
+        "\\u0026Twice",
+        "'A' You're Adorable",
+        "$9.99",
+        "_'Bout Love_",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur",
+        "$456,000 _Squid Game_ in Real Life!",
+        "_'Allo 'Allo!_ series 1",
+        "$40 a Day",
+        "_!Oka Tokat_",
+        "_\\u0026 Juliet_",
+        "'Amm",
+        "'Cause I'm a Man",
+        "_$h*! My Dad Says_",
+        "'50s progression",
+        "_'92 Tour EP_",
+        "ʽAbd al-Ahad Khan",
+        "_!_ (Trippie Redd album)",
+        "!!!",
+        "_'Allo 'Allo!_",
+        "\\u0026TV",
+        "'Amran",
+        "'74–'75",
+        "Asir",
+        "_\\u0026 Audition – The Howling_"
+      ]
+    },
+    "https://www.theguardian.com": {
+      "domain": "https://www.theguardian.com",
+      "unique_article_count": 19,
+      "total_references": 41,
+      "unique_url_count": 41,
+      "articles": [
+        "\"Get fucked\" (phrase)",
+        "_'Bout Love_",
+        "$15 minimum wage movement",
+        "_'71_ (film)",
+        "_\"Awaken, My Love!\"_",
+        "$456,000 _Squid Game_ in Real Life!",
+        "'39",
+        "_\\u0026 Juliet_",
+        "_SOS_ (Die Antwoord album)",
+        "'97 Bonnie \\u0026 Clyde",
+        "'Cause I'm a Man",
+        "_$h*! My Dad Says_",
+        "_!_ (Trippie Redd album)",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "$500",
+        "!!!",
+        "_'Allo 'Allo!_",
+        "'74–'75",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://genius.com": {
+      "domain": "https://genius.com",
+      "unique_article_count": 14,
+      "total_references": 33,
+      "unique_url_count": 33,
+      "articles": [
+        "'65 Love Affair",
+        "'97 Bonnie \\u0026 Clyde",
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_",
+        "\"Get fucked\" (phrase)",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "\\u0026Team",
+        "'A' You're Adorable",
+        "_'92 Tour EP_",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)",
+        "'03 Bonnie \\u0026 Clyde",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "!!!"
+      ]
+    },
+    "https://www.reddit.com": {
+      "domain": "https://www.reddit.com",
+      "unique_article_count": 15,
+      "total_references": 29,
+      "unique_url_count": 29,
+      "articles": [
+        "_'71_ (film)",
+        "'97 Bonnie \\u0026 Clyde",
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_",
+        "\\u0026pizza",
+        "\"Get fucked\" (phrase)",
+        "\\u0026Team",
+        "_$h*! My Dad Says_",
+        "_\\u0026 Juliet_",
+        "'50s progression",
+        "'60s Gold",
+        "_'Cause You're My Boy_",
+        "'Ajam of Kuwait",
+        "_!_ (Trippie Redd album)",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://pmc.ncbi.nlm.nih.gov": {
+      "domain": "https://pmc.ncbi.nlm.nih.gov",
+      "unique_article_count": 8,
+      "total_references": 29,
+      "unique_url_count": 29,
+      "articles": [
+        "_'Allo 'Allo!_",
+        "'Mamohato Bereng Seeiso",
+        "_'Aql_",
+        "'Ali ibn al-'Abbas al-Majusi",
+        "'Ajam of Kuwait",
+        "'I' and the 'me'",
+        "$15 minimum wage movement",
+        "Asir"
+      ]
+    },
+    "https://variety.com": {
+      "domain": "https://variety.com",
+      "unique_article_count": 10,
+      "total_references": 28,
+      "unique_url_count": 27,
+      "articles": [
+        "'65 Love Affair",
+        "_'71_ (film)",
+        "\\u0026Team",
+        "_$h*! My Dad Says_",
+        "'60s Gold",
+        "_'76_ (film)",
+        "$9.99",
+        "_\\u0026 Juliet_",
+        "_\\u0026 Audition – The Howling_",
+        "!!!"
+      ]
+    },
+    "https://pitchfork.com": {
+      "domain": "https://pitchfork.com",
+      "unique_article_count": 10,
+      "total_references": 27,
+      "unique_url_count": 27,
+      "articles": [
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_",
+        "\"Get fucked\" (phrase)",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "!K7 Music",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)",
+        "'03 Bonnie \\u0026 Clyde",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "!!!"
+      ]
+    },
+    "https://www.bbc.co.uk": {
+      "domain": "https://www.bbc.co.uk",
+      "unique_article_count": 5,
+      "total_references": 26,
+      "unique_url_count": 25,
+      "articles": [
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 1",
+        "_'Allo 'Allo!_ series 9",
+        "_SOS_ (Die Antwoord album)",
+        "!!!"
+      ]
+    },
+    "https://www.facebook.com": {
+      "domain": "https://www.facebook.com",
+      "unique_article_count": 16,
+      "total_references": 25,
+      "unique_url_count": 25,
+      "articles": [
+        "_'Allo 'Allo!_",
+        "\\u0026TV",
+        "$100 hamburger",
+        "_\"Awaken, My Love!\"_",
+        "$456,000 _Squid Game_ in Real Life!",
+        "\\u0026Team",
+        "'96 (film)",
+        "!K7 Music",
+        "'Mamohato Bereng Seeiso",
+        "'39",
+        "'60s Gold",
+        "_'76_ (film)",
+        "'Mantsopa",
+        "ʽAbd al-Ahad Khan",
+        "'80s on 8",
+        "!!!"
+      ]
+    },
+    "https://www.academia.edu": {
+      "domain": "https://www.academia.edu",
+      "unique_article_count": 12,
+      "total_references": 25,
+      "unique_url_count": 25,
+      "articles": [
+        "'Amm",
+        "\"Get fucked\" (phrase)",
+        "'Adud al-Dawla",
+        "'En Esur",
+        "_'76_ (film)",
+        "'A'isha al-Ba'uniyya",
+        "_'Aql_",
+        "'Ali ibn al-'Abbas al-Majusi",
+        "_'Cause You're My Boy_",
+        "'Ajam of Kuwait",
+        "'Mantsopa",
+        "'Aqqaba"
+      ]
+    },
+    "https://www.hollywoodreporter.com": {
+      "domain": "https://www.hollywoodreporter.com",
+      "unique_article_count": 11,
+      "total_references": 23,
+      "unique_url_count": 22,
+      "articles": [
+        "'65 Love Affair",
+        "\\u0026TV",
+        "_'71_ (film)",
+        "_\"Awaken, My Love!\"_",
+        "_$h*! My Dad Says_",
+        "_'76_ (film)",
+        "$9.99",
+        "'80s on 8",
+        "_SOS_ (Die Antwoord album)",
+        "'03 Bonnie \\u0026 Clyde",
+        "!!!"
+      ]
+    },
+    "https://weverse.io": {
+      "domain": "https://weverse.io",
+      "unique_article_count": 2,
+      "total_references": 22,
+      "unique_url_count": 20,
+      "articles": [
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.nytimes.com": {
+      "domain": "https://www.nytimes.com",
+      "unique_article_count": 12,
+      "total_references": 21,
+      "unique_url_count": 21,
+      "articles": [
+        "_'71_ (film)",
+        "$100 hamburger",
+        "$456,000 _Squid Game_ in Real Life!",
+        "\"Alternative facts\" phrase",
+        "'Mamohato Bereng Seeiso",
+        "'A' You're Adorable",
+        "_'76_ (film)",
+        "$9.99",
+        "_\\u0026 Juliet_",
+        "_SOS_ (Die Antwoord album)",
+        "$15 minimum wage movement",
+        "!!!"
+      ]
+    },
+    "https://timesofindia.indiatimes.com": {
+      "domain": "https://timesofindia.indiatimes.com",
+      "unique_article_count": 3,
+      "total_references": 21,
+      "unique_url_count": 20,
+      "articles": [
+        "'96 (film)",
+        "\\u0026TV",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.rollingstone.com": {
+      "domain": "https://www.rollingstone.com",
+      "unique_article_count": 9,
+      "total_references": 20,
+      "unique_url_count": 20,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_",
+        "\"Alternative facts\" phrase",
+        "_'74 Jailbreak_",
+        "'39",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "'03 Bonnie \\u0026 Clyde",
+        "!!!"
+      ]
+    },
+    "https://www.reuters.com": {
+      "domain": "https://www.reuters.com",
+      "unique_article_count": 6,
+      "total_references": 20,
+      "unique_url_count": 20,
+      "articles": [
+        "'Amran",
+        "\\u0026TV",
+        "_$h*! My Dad Says_",
+        "'47 (brand)",
+        "$9.99",
+        "$1"
+      ]
+    },
+    "https://www.setlist.fm": {
+      "domain": "https://www.setlist.fm",
+      "unique_article_count": 9,
+      "total_references": 20,
+      "unique_url_count": 20,
+      "articles": [
+        "'Cause I'm a Man",
+        "\\u0026Team",
+        "'68 (band)",
+        "'39",
+        "\\u0026Twice",
+        "_'92 Tour EP_",
+        "_'Bout Love_",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "'03 Bonnie \\u0026 Clyde"
+      ]
+    },
+    "https://www.47brand.com": {
+      "domain": "https://www.47brand.com",
+      "unique_article_count": 1,
+      "total_references": 20,
+      "unique_url_count": 20,
+      "articles": [
+        "'47 (brand)"
+      ]
+    },
+    "https://kprofiles.com": {
+      "domain": "https://kprofiles.com",
+      "unique_article_count": 2,
+      "total_references": 19,
+      "unique_url_count": 17,
+      "articles": [
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.zee5.com": {
+      "domain": "https://www.zee5.com",
+      "unique_article_count": 1,
+      "total_references": 19,
+      "unique_url_count": 18,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.siriusxm.com": {
+      "domain": "https://www.siriusxm.com",
+      "unique_article_count": 2,
+      "total_references": 19,
+      "unique_url_count": 19,
+      "articles": [
+        "'60s Gold",
+        "'80s on 8"
+      ]
+    },
+    "https://www.latimes.com": {
+      "domain": "https://www.latimes.com",
+      "unique_article_count": 11,
+      "total_references": 17,
+      "unique_url_count": 17,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "$456,000 _Squid Game_ in Real Life!",
+        "_$h*! My Dad Says_",
+        "'Mamohato Bereng Seeiso",
+        "'80s on 8",
+        "'A' You're Adorable",
+        "'60s Gold",
+        "_\\u0026 Juliet_",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "$15 minimum wage movement",
+        "!!!"
+      ]
+    },
+    "https://www.instagram.com": {
+      "domain": "https://www.instagram.com",
+      "unique_article_count": 9,
+      "total_references": 17,
+      "unique_url_count": 17,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "\\u0026TV",
+        "\\u0026Team",
+        "'Mamohato Bereng Seeiso",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur",
+        "% Arabica",
+        "_!_ (Trippie Redd album)",
+        "'03 Bonnie \\u0026 Clyde",
+        "!!!"
+      ]
+    },
+    "https://www.sciencedirect.com": {
+      "domain": "https://www.sciencedirect.com",
+      "unique_article_count": 7,
+      "total_references": 17,
+      "unique_url_count": 17,
+      "articles": [
+        "'Amran",
+        "\"Get fucked\" (phrase)",
+        "$1",
+        "'I' and the 'me'",
+        "$15 minimum wage movement",
+        "Asir",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://www.zee.com": {
+      "domain": "https://www.zee.com",
+      "unique_article_count": 1,
+      "total_references": 17,
+      "unique_url_count": 15,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.allmusic.com": {
+      "domain": "https://www.allmusic.com",
+      "unique_article_count": 12,
+      "total_references": 16,
+      "unique_url_count": 16,
+      "articles": [
+        "'65 Love Affair",
+        "'97 Bonnie \\u0026 Clyde",
+        "'Cause I'm a Man",
+        "'74–'75",
+        "_'74 Jailbreak_",
+        "'39",
+        "'A' You're Adorable",
+        "_'92 Tour EP_",
+        "_'Bout Love_",
+        "_!_ (Trippie Redd album)",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "!!!"
+      ]
+    },
+    "https://k7.com": {
+      "domain": "https://k7.com",
+      "unique_article_count": 1,
+      "total_references": 16,
+      "unique_url_count": 16,
+      "articles": [
+        "!K7 Music"
+      ]
+    },
+    "https://www.bep.gov": {
+      "domain": "https://www.bep.gov",
+      "unique_article_count": 3,
+      "total_references": 15,
+      "unique_url_count": 12,
+      "articles": [
+        "$1",
+        "$1000",
+        "$500"
+      ]
+    },
+    "https://www.jstor.org": {
+      "domain": "https://www.jstor.org",
+      "unique_article_count": 13,
+      "total_references": 15,
+      "unique_url_count": 15,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "_'Allo 'Allo!_",
+        "'Amm",
+        "'Amran",
+        "'Adud al-Dawla",
+        "'03 Bonnie \\u0026 Clyde",
+        "'Mamohato Bereng Seeiso",
+        "'En Esur",
+        "_'Aql_",
+        "'Ajam of Kuwait",
+        "$15 minimum wage movement",
+        "Asir",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur"
+      ]
+    },
+    "https://www.iranicaonline.org": {
+      "domain": "https://www.iranicaonline.org",
+      "unique_article_count": 5,
+      "total_references": 15,
+      "unique_url_count": 15,
+      "articles": [
+        "'Adud al-Dawla",
+        "_'Aql_",
+        "'Ali ibn al-'Abbas al-Majusi",
+        "'Ajam of Kuwait",
+        "ʽAbd al-Ahad Khan"
+      ]
+    },
+    "https://x.com": {
+      "domain": "https://x.com",
+      "unique_article_count": 6,
+      "total_references": 14,
+      "unique_url_count": 14,
+      "articles": [
+        "$456,000 _Squid Game_ in Real Life!",
+        "\\u0026pizza",
+        "\\u0026Team",
+        "'Mamohato Bereng Seeiso",
+        "\\u0026Twice",
+        "!!!"
+      ]
+    },
+    "https://www.officialcharts.com": {
+      "domain": "https://www.officialcharts.com",
+      "unique_article_count": 10,
+      "total_references": 14,
+      "unique_url_count": 14,
+      "articles": [
+        "_\"Awaken, My Love!\"_",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "'74–'75",
+        "_'74 Jailbreak_",
+        "'39",
+        "_'92 Tour EP_",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)",
+        "'03 Bonnie \\u0026 Clyde",
+        "!!!"
+      ]
+    },
+    "https://www.aopa.org": {
+      "domain": "https://www.aopa.org",
+      "unique_article_count": 1,
+      "total_references": 14,
+      "unique_url_count": 14,
+      "articles": [
+        "$100 hamburger"
+      ]
+    },
+    "https://bestmediainfo.com": {
+      "domain": "https://bestmediainfo.com",
+      "unique_article_count": 1,
+      "total_references": 14,
+      "unique_url_count": 13,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.arabnews.com": {
+      "domain": "https://www.arabnews.com",
+      "unique_article_count": 1,
+      "total_references": 14,
+      "unique_url_count": 14,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://open.spotify.com": {
+      "domain": "https://open.spotify.com",
+      "unique_article_count": 12,
+      "total_references": 13,
+      "unique_url_count": 13,
+      "articles": [
+        "'65 Love Affair",
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_",
+        "\"Get fucked\" (phrase)",
+        "\\u0026Team",
+        "'74–'75",
+        "'68 (band)",
+        "_'74 Jailbreak_",
+        "\\u0026Twice",
+        "_!Oka Tokat_",
+        "$9.99",
+        "_'92 Tour EP_"
+      ]
+    },
+    "https://www.allkpop.com": {
+      "domain": "https://www.allkpop.com",
+      "unique_article_count": 3,
+      "total_references": 13,
+      "unique_url_count": 13,
+      "articles": [
+        "\\u0026Twice",
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.riaa.com": {
+      "domain": "https://www.riaa.com",
+      "unique_article_count": 5,
+      "total_references": 12,
+      "unique_url_count": 12,
+      "articles": [
+        "_'74 Jailbreak_",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)",
+        "'03 Bonnie \\u0026 Clyde",
+        "!!!"
+      ]
+    },
+    "https://www.forbes.com": {
+      "domain": "https://www.forbes.com",
+      "unique_article_count": 7,
+      "total_references": 12,
+      "unique_url_count": 12,
+      "articles": [
+        "_\"Awaken, My Love!\"_",
+        "$456,000 _Squid Game_ in Real Life!",
+        "\\u0026Team",
+        "% Arabica",
+        "$1",
+        "_!_ (Trippie Redd album)",
+        "!!!"
+      ]
+    },
+    "https://www.soompi.com": {
+      "domain": "https://www.soompi.com",
+      "unique_article_count": 3,
+      "total_references": 12,
+      "unique_url_count": 12,
+      "articles": [
+        "\\u0026Twice",
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.comedy.co.uk": {
+      "domain": "https://www.comedy.co.uk",
+      "unique_article_count": 3,
+      "total_references": 12,
+      "unique_url_count": 10,
+      "articles": [
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 9",
+        "_'Allo 'Allo!_ series 1"
+      ]
+    },
+    "https://mydramalist.com": {
+      "domain": "https://mydramalist.com",
+      "unique_article_count": 4,
+      "total_references": 11,
+      "unique_url_count": 10,
+      "articles": [
+        "_!Oka Tokat_",
+        "_'Cause You're My Boy_",
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://music.apple.com": {
+      "domain": "https://music.apple.com",
+      "unique_article_count": 10,
+      "total_references": 11,
+      "unique_url_count": 11,
+      "articles": [
+        "\\u0026Team",
+        "'96 (film)",
+        "_'74 Jailbreak_",
+        "\\u0026Twice",
+        "_\\u0026 Juliet_",
+        "$9.99",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)",
+        "'03 Bonnie \\u0026 Clyde",
+        "_\\u0026 Audition – The Howling_"
+      ]
+    },
+    "https://www.tandfonline.com": {
+      "domain": "https://www.tandfonline.com",
+      "unique_article_count": 8,
+      "total_references": 11,
+      "unique_url_count": 11,
+      "articles": [
+        "_'71_ (film)",
+        "\"Alternative facts\" phrase",
+        "'Mamohato Bereng Seeiso",
+        "'En Esur",
+        "_'Aql_",
+        "'Ajam of Kuwait",
+        "$1",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur"
+      ]
+    },
+    "https://www.npr.org": {
+      "domain": "https://www.npr.org",
+      "unique_article_count": 9,
+      "total_references": 11,
+      "unique_url_count": 11,
+      "articles": [
+        "_'71_ (film)",
+        "_\"Awaken, My Love!\"_",
+        "\\u0026Team",
+        "'60s Gold",
+        "_'Bout Love_",
+        "_\\u0026 Juliet_",
+        "$15 minimum wage movement",
+        "Asir",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://www.amazon.com": {
+      "domain": "https://www.amazon.com",
+      "unique_article_count": 9,
+      "total_references": 11,
+      "unique_url_count": 11,
+      "articles": [
+        "_'71_ (film)",
+        "\\u0026Team",
+        "_$h*! My Dad Says_",
+        "'96 (film)",
+        "'68 (band)",
+        "_'74 Jailbreak_",
+        "\\u0026Twice",
+        "$40 a Day",
+        "$9.99"
+      ]
+    },
+    "https://magazine.weverse.io": {
+      "domain": "https://magazine.weverse.io",
+      "unique_article_count": 2,
+      "total_references": 11,
+      "unique_url_count": 11,
+      "articles": [
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.broadwayworld.com": {
+      "domain": "https://www.broadwayworld.com",
+      "unique_article_count": 1,
+      "total_references": 11,
+      "unique_url_count": 11,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://playbill.com": {
+      "domain": "https://playbill.com",
+      "unique_article_count": 1,
+      "total_references": 11,
+      "unique_url_count": 11,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://saudipedia.com": {
+      "domain": "https://saudipedia.com",
+      "unique_article_count": 1,
+      "total_references": 11,
+      "unique_url_count": 11,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://www.bloomberg.com": {
+      "domain": "https://www.bloomberg.com",
+      "unique_article_count": 3,
+      "total_references": 10,
+      "unique_url_count": 10,
+      "articles": [
+        "$1",
+        "% Arabica",
+        "Asir"
+      ]
+    },
+    "https://www.bbc.com": {
+      "domain": "https://www.bbc.com",
+      "unique_article_count": 8,
+      "total_references": 10,
+      "unique_url_count": 8,
+      "articles": [
+        "_'71_ (film)",
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 1",
+        "'En Esur",
+        "_'76_ (film)",
+        "_'Allo 'Allo!_ series 9",
+        "$500",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://www.rottentomatoes.com": {
+      "domain": "https://www.rottentomatoes.com",
+      "unique_article_count": 7,
+      "total_references": 10,
+      "unique_url_count": 10,
+      "articles": [
+        "_'71_ (film)",
+        "_'Gator Bait_",
+        "_'Allo 'Allo!_ series 1",
+        "_$h*! My Dad Says_",
+        "'96 (film)",
+        "_'76_ (film)",
+        "$9.99"
+      ]
+    },
+    "https://rateyourmusic.com": {
+      "domain": "https://rateyourmusic.com",
+      "unique_article_count": 9,
+      "total_references": 10,
+      "unique_url_count": 10,
+      "articles": [
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_",
+        "'74–'75",
+        "_'74 Jailbreak_",
+        "\\u0026Twice",
+        "'A' You're Adorable",
+        "_'92 Tour EP_",
+        "_'Bout Love_",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_"
+      ]
+    },
+    "https://publications.iaa.org.il": {
+      "domain": "https://publications.iaa.org.il",
+      "unique_article_count": 1,
+      "total_references": 10,
+      "unique_url_count": 10,
+      "articles": [
+        "'En Esur"
+      ]
+    },
+    "https://www.britannica.com": {
+      "domain": "https://www.britannica.com",
+      "unique_article_count": 7,
+      "total_references": 9,
+      "unique_url_count": 9,
+      "articles": [
+        "_'71_ (film)",
+        "'Amm",
+        "'Amran",
+        "'Adud al-Dawla",
+        "'Mamohato Bereng Seeiso",
+        "Asir",
+        "!!!"
+      ]
+    },
+    "https://www.congress.gov": {
+      "domain": "https://www.congress.gov",
+      "unique_article_count": 4,
+      "total_references": 9,
+      "unique_url_count": 9,
+      "articles": [
+        "$1",
+        "$15 minimum wage movement",
+        "$500",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://americanhistory.si.edu": {
+      "domain": "https://americanhistory.si.edu",
+      "unique_article_count": 2,
+      "total_references": 9,
+      "unique_url_count": 9,
+      "articles": [
+        "$1000",
+        "$500"
+      ]
+    },
+    "https://www.cambridge.org": {
+      "domain": "https://www.cambridge.org",
+      "unique_article_count": 8,
+      "total_references": 9,
+      "unique_url_count": 8,
+      "articles": [
+        "_'Allo 'Allo!_",
+        "'Adud al-Dawla",
+        "_'Allo 'Allo!_ series 1",
+        "'Ali ibn al-'Abbas al-Majusi",
+        "ʽAbd al-Ahad Khan",
+        "'I' and the 'me'",
+        "$15 minimum wage movement",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur"
+      ]
+    },
+    "https://arabicacoffeeus.com": {
+      "domain": "https://arabicacoffeeus.com",
+      "unique_article_count": 1,
+      "total_references": 9,
+      "unique_url_count": 9,
+      "articles": [
+        "% Arabica"
+      ]
+    },
+    "https://koreajoongangdaily.joins.com": {
+      "domain": "https://koreajoongangdaily.joins.com",
+      "unique_article_count": 3,
+      "total_references": 9,
+      "unique_url_count": 7,
+      "articles": [
+        "\\u0026Twice",
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.andteam-official.jp": {
+      "domain": "https://www.andteam-official.jp",
+      "unique_article_count": 2,
+      "total_references": 9,
+      "unique_url_count": 9,
+      "articles": [
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://indianexpress.com": {
+      "domain": "https://indianexpress.com",
+      "unique_article_count": 2,
+      "total_references": 9,
+      "unique_url_count": 9,
+      "articles": [
+        "'96 (film)",
+        "\\u0026TV"
+      ]
+    },
+    "https://www.cnn.com": {
+      "domain": "https://www.cnn.com",
+      "unique_article_count": 6,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "\"Alternative facts\" phrase",
+        "'En Esur",
+        "$1",
+        "$15 minimum wage movement",
+        "Asir",
+        "!!!"
+      ]
+    },
+    "https://www.themoviedb.org": {
+      "domain": "https://www.themoviedb.org",
+      "unique_article_count": 6,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "_'71_ (film)",
+        "\\u0026TV",
+        "_'Gator Bait_",
+        "'96 (film)",
+        "$40 a Day",
+        "_!Oka Tokat_"
+      ]
+    },
+    "https://plato.stanford.edu": {
+      "domain": "https://plato.stanford.edu",
+      "unique_article_count": 3,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "'I' and the 'me'",
+        "! (disambiguation)",
+        "_'Aql_"
+      ]
+    },
+    "https://www.gnu.org": {
+      "domain": "https://www.gnu.org",
+      "unique_article_count": 2,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "! (disambiguation)",
+        "/dev/zero"
+      ]
+    },
+    "https://www.uscurrency.gov": {
+      "domain": "https://www.uscurrency.gov",
+      "unique_article_count": 3,
+      "total_references": 8,
+      "unique_url_count": 6,
+      "articles": [
+        "$1",
+        "$1000",
+        "$500"
+      ]
+    },
+    "https://www.cnbc.com": {
+      "domain": "https://www.cnbc.com",
+      "unique_article_count": 3,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "$1",
+        "\\u0026TV",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://www.foodnetwork.com": {
+      "domain": "https://www.foodnetwork.com",
+      "unique_article_count": 1,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "$40 a Day"
+      ]
+    },
+    "https://deadline.com": {
+      "domain": "https://deadline.com",
+      "unique_article_count": 5,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "_'71_ (film)",
+        "\\u0026TV",
+        "_$h*! My Dad Says_",
+        "_\\u0026 Juliet_",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://www.albumoftheyear.org": {
+      "domain": "https://www.albumoftheyear.org",
+      "unique_article_count": 6,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_",
+        "\\u0026Team",
+        "'68 (band)",
+        "_'Bout Love_",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_"
+      ]
+    },
+    "https://kpop.fandom.com": {
+      "domain": "https://kpop.fandom.com",
+      "unique_article_count": 1,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "\\u0026Team"
+      ]
+    },
+    "https://www.thehindu.com": {
+      "domain": "https://www.thehindu.com",
+      "unique_article_count": 2,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "'96 (film)",
+        "\\u0026TV"
+      ]
+    },
+    "https://andpizza.com": {
+      "domain": "https://andpizza.com",
+      "unique_article_count": 1,
+      "total_references": 8,
+      "unique_url_count": 8,
+      "articles": [
+        "\\u0026pizza"
+      ]
+    },
+    "https://www.metacritic.com": {
+      "domain": "https://www.metacritic.com",
+      "unique_article_count": 7,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "_$h*! My Dad Says_",
+        "$9.99",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)"
+      ]
+    },
+    "https://bestsellingalbums.org": {
+      "domain": "https://bestsellingalbums.org",
+      "unique_article_count": 7,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "_\"Awaken, My Love!\"_",
+        "'74–'75",
+        "_'74 Jailbreak_",
+        "'39",
+        "_'92 Tour EP_",
+        "_!_ (Trippie Redd album)"
+      ]
+    },
+    "https://docs.oracle.com": {
+      "domain": "https://docs.oracle.com",
+      "unique_article_count": 3,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "/dev/zero",
+        "! (disambiguation)",
+        "/dev/random"
+      ]
+    },
+    "https://www.federalreserve.gov": {
+      "domain": "https://www.federalreserve.gov",
+      "unique_article_count": 3,
+      "total_references": 7,
+      "unique_url_count": 6,
+      "articles": [
+        "$1",
+        "$1000",
+        "$500"
+      ]
+    },
+    "https://finance.yahoo.com": {
+      "domain": "https://finance.yahoo.com",
+      "unique_article_count": 3,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "$1",
+        "\\u0026TV",
+        "\\u0026pizza"
+      ]
+    },
+    "https://www.epi.org": {
+      "domain": "https://www.epi.org",
+      "unique_article_count": 1,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://screenrant.com": {
+      "domain": "https://screenrant.com",
+      "unique_article_count": 4,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "_'71_ (film)",
+        "_'Gator Bait_",
+        "$9.99",
+        "$456,000 _Squid Game_ in Real Life!"
+      ]
+    },
+    "https://www.nme.com": {
+      "domain": "https://www.nme.com",
+      "unique_article_count": 4,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_",
+        "_SOS_ (Die Antwoord album)",
+        "_'Allelujah! Don't Bend! Ascend!_"
+      ]
+    },
+    "https://arabica.com": {
+      "domain": "https://arabica.com",
+      "unique_article_count": 1,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "% Arabica"
+      ]
+    },
+    "https://www.exchange4media.com": {
+      "domain": "https://www.exchange4media.com",
+      "unique_article_count": 1,
+      "total_references": 7,
+      "unique_url_count": 5,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.medianews4u.com": {
+      "domain": "https://www.medianews4u.com",
+      "unique_article_count": 1,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.nrn.com": {
+      "domain": "https://www.nrn.com",
+      "unique_article_count": 1,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "\\u0026pizza"
+      ]
+    },
+    "https://www.washingtonpost.com": {
+      "domain": "https://www.washingtonpost.com",
+      "unique_article_count": 2,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "\\u0026pizza",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://www.songfacts.com": {
+      "domain": "https://www.songfacts.com",
+      "unique_article_count": 7,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "'65 Love Affair",
+        "'97 Bonnie \\u0026 Clyde",
+        "'Cause I'm a Man",
+        "'74–'75",
+        "_'74 Jailbreak_",
+        "'39",
+        "'03 Bonnie \\u0026 Clyde"
+      ]
+    },
+    "https://al-islam.org": {
+      "domain": "https://al-islam.org",
+      "unique_article_count": 1,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "_'Aql_"
+      ]
+    },
+    "https://hadashot.iaa.org.il": {
+      "domain": "https://hadashot.iaa.org.il",
+      "unique_article_count": 1,
+      "total_references": 7,
+      "unique_url_count": 7,
+      "articles": [
+        "'En Esur"
+      ]
+    },
+    "https://www.abs-cbn.com": {
+      "domain": "https://www.abs-cbn.com",
+      "unique_article_count": 3,
+      "total_references": 6,
+      "unique_url_count": 5,
+      "articles": [
+        "_!Oka Tokat_",
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.xxlmag.com": {
+      "domain": "https://www.xxlmag.com",
+      "unique_article_count": 2,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "_!_ (Trippie Redd album)",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    "https://www.coindesk.com": {
+      "domain": "https://www.coindesk.com",
+      "unique_article_count": 1,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.investopedia.com": {
+      "domain": "https://www.investopedia.com",
+      "unique_article_count": 4,
+      "total_references": 6,
+      "unique_url_count": 5,
+      "articles": [
+        "$1",
+        "$15 minimum wage movement",
+        "$1000",
+        "$500"
+      ]
+    },
+    "https://www.nelp.org": {
+      "domain": "https://www.nelp.org",
+      "unique_article_count": 1,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.seiu.org": {
+      "domain": "https://www.seiu.org",
+      "unique_article_count": 1,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.nber.org": {
+      "domain": "https://www.nber.org",
+      "unique_article_count": 1,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.tripadvisor.com": {
+      "domain": "https://www.tripadvisor.com",
+      "unique_article_count": 5,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "\\u0026pizza",
+        "$40 a Day",
+        "% Arabica",
+        "'Ajam of Kuwait",
+        "Asir"
+      ]
+    },
+    "https://www.businessinsider.com": {
+      "domain": "https://www.businessinsider.com",
+      "unique_article_count": 2,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "$456,000 _Squid Game_ in Real Life!",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://www.koreaboo.com": {
+      "domain": "https://www.koreaboo.com",
+      "unique_article_count": 4,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "\\u0026Twice",
+        "$456,000 _Squid Game_ in Real Life!",
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.justwatch.com": {
+      "domain": "https://www.justwatch.com",
+      "unique_article_count": 5,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "_'71_ (film)",
+        "_'Gator Bait_",
+        "'96 (film)",
+        "_'76_ (film)",
+        "$9.99"
+      ]
+    },
+    "https://www.prnewswire.com": {
+      "domain": "https://www.prnewswire.com",
+      "unique_article_count": 2,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "'47 (brand)",
+        "_SOS_ (Die Antwoord album)"
+      ]
+    },
+    "https://man.freebsd.org": {
+      "domain": "https://man.freebsd.org",
+      "unique_article_count": 2,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "/dev/zero",
+        "/dev/random"
+      ]
+    },
+    "https://www.business-standard.com": {
+      "domain": "https://www.business-standard.com",
+      "unique_article_count": 2,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "'96 (film)",
+        "\\u0026TV"
+      ]
+    },
+    "https://www.yelp.com": {
+      "domain": "https://www.yelp.com",
+      "unique_article_count": 1,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "\\u0026pizza"
+      ]
+    },
+    "https://www.hooktheory.com": {
+      "domain": "https://www.hooktheory.com",
+      "unique_article_count": 3,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "'Cause I'm a Man",
+        "'39",
+        "'50s progression"
+      ]
+    },
+    "https://secondhandsongs.com": {
+      "domain": "https://secondhandsongs.com",
+      "unique_article_count": 2,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "'A' You're Adorable",
+        "'39"
+      ]
+    },
+    "https://investor.siriusxm.com": {
+      "domain": "https://investor.siriusxm.com",
+      "unique_article_count": 2,
+      "total_references": 6,
+      "unique_url_count": 5,
+      "articles": [
+        "'60s Gold",
+        "'80s on 8"
+      ]
+    },
+    "https://everythingharar.com": {
+      "domain": "https://everythingharar.com",
+      "unique_article_count": 1,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur"
+      ]
+    },
+    "https://www.aljazeera.com": {
+      "domain": "https://www.aljazeera.com",
+      "unique_article_count": 4,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "'Amran",
+        "Asir",
+        "'Aqqaba",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://www.state.gov": {
+      "domain": "https://www.state.gov",
+      "unique_article_count": 3,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "'Amran",
+        "Asir",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://sanaacenter.org": {
+      "domain": "https://sanaacenter.org",
+      "unique_article_count": 2,
+      "total_references": 6,
+      "unique_url_count": 6,
+      "articles": [
+        "'Amran",
+        "Asir"
+      ]
+    },
+    "https://www.teenvogue.com": {
+      "domain": "https://www.teenvogue.com",
+      "unique_article_count": 4,
+      "total_references": 5,
+      "unique_url_count": 4,
+      "articles": [
+        "_\\u0026 Juliet_",
+        "\\u0026Team",
+        "_\\u0026 Audition – The Howling_",
+        "!!!"
+      ]
+    },
+    "https://grammy.com": {
+      "domain": "https://grammy.com",
+      "unique_article_count": 3,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'Cause I'm a Man",
+        "_'92 Tour EP_",
+        "!!!"
+      ]
+    },
+    "https://consequence.net": {
+      "domain": "https://consequence.net",
+      "unique_article_count": 4,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'Cause I'm a Man",
+        "_SOS_ (Die Antwoord album)",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "!!!"
+      ]
+    },
+    "https://www.thefader.com": {
+      "domain": "https://www.thefader.com",
+      "unique_article_count": 3,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "_!_ (Trippie Redd album)",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    "https://kworb.net": {
+      "domain": "https://kworb.net",
+      "unique_article_count": 4,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'Cause I'm a Man",
+        "_!_ (Trippie Redd album)",
+        "_SOS_ (Die Antwoord album)",
+        "'03 Bonnie \\u0026 Clyde"
+      ]
+    },
+    "https://github.com": {
+      "domain": "https://github.com",
+      "unique_article_count": 2,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "$1",
+        "/dev/random"
+      ]
+    },
+    "https://www.chainalysis.com": {
+      "domain": "https://www.chainalysis.com",
+      "unique_article_count": 1,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://nypost.com": {
+      "domain": "https://nypost.com",
+      "unique_article_count": 4,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "$15 minimum wage movement",
+        "$456,000 _Squid Game_ in Real Life!",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://people.com": {
+      "domain": "https://people.com",
+      "unique_article_count": 4,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'Mamohato Bereng Seeiso",
+        "'03 Bonnie \\u0026 Clyde",
+        "$456,000 _Squid Game_ in Real Life!",
+        "$40 a Day"
+      ]
+    },
+    "https://man7.org": {
+      "domain": "https://man7.org",
+      "unique_article_count": 2,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "/dev/zero",
+        "/dev/random"
+      ]
+    },
+    "https://www.koreatimes.co.kr": {
+      "domain": "https://www.koreatimes.co.kr",
+      "unique_article_count": 2,
+      "total_references": 5,
+      "unique_url_count": 4,
+      "articles": [
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.afaqs.com": {
+      "domain": "https://www.afaqs.com",
+      "unique_article_count": 1,
+      "total_references": 5,
+      "unique_url_count": 4,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.tvwish.com": {
+      "domain": "https://www.tvwish.com",
+      "unique_article_count": 1,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.udiscovermusic.com": {
+      "domain": "https://www.udiscovermusic.com",
+      "unique_article_count": 4,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "'Cause I'm a Man",
+        "'39",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.k-ennews.com": {
+      "domain": "https://www.k-ennews.com",
+      "unique_article_count": 1,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "\\u0026Team"
+      ]
+    },
+    "https://kpopping.com": {
+      "domain": "https://kpopping.com",
+      "unique_article_count": 1,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "\\u0026Team"
+      ]
+    },
+    "https://www.whosampled.com": {
+      "domain": "https://www.whosampled.com",
+      "unique_article_count": 4,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'Cause I'm a Man",
+        "'74–'75",
+        "'03 Bonnie \\u0026 Clyde",
+        "_'Bout Love_"
+      ]
+    },
+    "https://cain.ulster.ac.uk": {
+      "domain": "https://cain.ulster.ac.uk",
+      "unique_article_count": 1,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "_'71_ (film)"
+      ]
+    },
+    "https://www.cinemaexpress.com": {
+      "domain": "https://www.cinemaexpress.com",
+      "unique_article_count": 1,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'96 (film)"
+      ]
+    },
+    "https://www.thenewsminute.com": {
+      "domain": "https://www.thenewsminute.com",
+      "unique_article_count": 1,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'96 (film)"
+      ]
+    },
+    "https://pubmed.ncbi.nlm.nih.gov": {
+      "domain": "https://pubmed.ncbi.nlm.nih.gov",
+      "unique_article_count": 5,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'Adud al-Dawla",
+        "_'Aql_",
+        "'Ali ibn al-'Abbas al-Majusi",
+        "'Ajam of Kuwait",
+        "'I' and the 'me'"
+      ]
+    },
+    "https://www.washingtoninstitute.org": {
+      "domain": "https://www.washingtoninstitute.org",
+      "unique_article_count": 3,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'Amran",
+        "Asir",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://reliefweb.int": {
+      "domain": "https://reliefweb.int",
+      "unique_article_count": 2,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'Amran",
+        "'Aqqaba"
+      ]
+    },
+    "https://academic.oup.com": {
+      "domain": "https://academic.oup.com",
+      "unique_article_count": 4,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'I' and the 'me'",
+        "\"Get fucked\" (phrase)",
+        "Asir",
+        "_'Aql_"
+      ]
+    },
+    "https://www.frontiersin.org": {
+      "domain": "https://www.frontiersin.org",
+      "unique_article_count": 2,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'I' and the 'me'",
+        "_'Aql_"
+      ]
+    },
+    "https://english.wafa.ps": {
+      "domain": "https://english.wafa.ps",
+      "unique_article_count": 1,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'Aqqaba"
+      ]
+    },
+    "https://www.timesofisrael.com": {
+      "domain": "https://www.timesofisrael.com",
+      "unique_article_count": 2,
+      "total_references": 5,
+      "unique_url_count": 5,
+      "articles": [
+        "'Aqqaba",
+        "'En Esur"
+      ]
+    },
+    "https://www.spin.com": {
+      "domain": "https://www.spin.com",
+      "unique_article_count": 4,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_SOS_ (Die Antwoord album)",
+        "'68 (band)",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+        "!!!"
+      ]
+    },
+    "https://www.vogue.com": {
+      "domain": "https://www.vogue.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "!!!"
+      ]
+    },
+    "https://www.universalmusic.ca": {
+      "domain": "https://www.universalmusic.ca",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "!!!"
+      ]
+    },
+    "https://www.eonline.com": {
+      "domain": "https://www.eonline.com",
+      "unique_article_count": 3,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "\"Alternative facts\" phrase",
+        "'03 Bonnie \\u0026 Clyde",
+        "!!!"
+      ]
+    },
+    "https://www.guinnessworldrecords.com": {
+      "domain": "https://www.guinnessworldrecords.com",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "$1000",
+        "!!!"
+      ]
+    },
+    "https://chartmasters.org": {
+      "domain": "https://chartmasters.org",
+      "unique_article_count": 4,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "'03 Bonnie \\u0026 Clyde",
+        "_'74 Jailbreak_",
+        "!!!"
+      ]
+    },
+    "https://theconversation.com": {
+      "domain": "https://theconversation.com",
+      "unique_article_count": 4,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "\"Alternative facts\" phrase",
+        "$15 minimum wage movement",
+        "$500",
+        "!!!"
+      ]
+    },
+    "https://www.concertarchives.org": {
+      "domain": "https://www.concertarchives.org",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_\\u0026 Audition – The Howling_",
+        "!!!"
+      ]
+    },
+    "https://www.musicbusinessworldwide.com": {
+      "domain": "https://www.musicbusinessworldwide.com",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "!K7 Music",
+        "_\\u0026 Audition – The Howling_"
+      ]
+    },
+    "https://k7records.bandcamp.com": {
+      "domain": "https://k7records.bandcamp.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "!K7 Music"
+      ]
+    },
+    "https://hypebeast.com": {
+      "domain": "https://hypebeast.com",
+      "unique_article_count": 3,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'Cause I'm a Man",
+        "_!_ (Trippie Redd album)",
+        "'47 (brand)"
+      ]
+    },
+    "https://zsh.sourceforge.io": {
+      "domain": "https://zsh.sourceforge.io",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "! (disambiguation)"
+      ]
+    },
+    "https://developer.bitcoin.org": {
+      "domain": "https://developer.bitcoin.org",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://river.com": {
+      "domain": "https://river.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://onlinelibrary.wiley.com": {
+      "domain": "https://onlinelibrary.wiley.com",
+      "unique_article_count": 4,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "$1",
+        "'I' and the 'me'",
+        "$15 minimum wage movement",
+        "Asir"
+      ]
+    },
+    "https://www.marketplace.org": {
+      "domain": "https://www.marketplace.org",
+      "unique_article_count": 3,
+      "total_references": 4,
+      "unique_url_count": 3,
+      "articles": [
+        "$15 minimum wage movement",
+        "$1000",
+        "$500"
+      ]
+    },
+    "https://en.numista.com": {
+      "domain": "https://en.numista.com",
+      "unique_article_count": 3,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "ʽAbd al-Ahad Khan",
+        "$1000",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur"
+      ]
+    },
+    "https://www.flyingmag.com": {
+      "domain": "https://www.flyingmag.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "$100 hamburger"
+      ]
+    },
+    "https://www.faa.gov": {
+      "domain": "https://www.faa.gov",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "$100 hamburger"
+      ]
+    },
+    "https://www.vice.com": {
+      "domain": "https://www.vice.com",
+      "unique_article_count": 4,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_'71_ (film)",
+        "_\"Awaken, My Love!\"_",
+        "$15 minimum wage movement",
+        "$456,000 _Squid Game_ in Real Life!"
+      ]
+    },
+    "https://www.pewresearch.org": {
+      "domain": "https://www.pewresearch.org",
+      "unique_article_count": 3,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "\"Alternative facts\" phrase",
+        "$15 minimum wage movement",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://www.brookings.edu": {
+      "domain": "https://www.brookings.edu",
+      "unique_article_count": 3,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'Amran",
+        "$15 minimum wage movement",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://journals.sagepub.com": {
+      "domain": "https://journals.sagepub.com",
+      "unique_article_count": 4,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'I' and the 'me'",
+        "\"Get fucked\" (phrase)",
+        "$456,000 _Squid Game_ in Real Life!",
+        "'Ali ibn al-'Abbas al-Majusi"
+      ]
+    },
+    "https://www.screendaily.com": {
+      "domain": "https://www.screendaily.com",
+      "unique_article_count": 3,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_'71_ (film)",
+        "_'76_ (film)",
+        "$9.99"
+      ]
+    },
+    "https://www.popmatters.com": {
+      "domain": "https://www.popmatters.com",
+      "unique_article_count": 3,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'Cause I'm a Man",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "$9.99"
+      ]
+    },
+    "https://www.vulture.com": {
+      "domain": "https://www.vulture.com",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'39",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://csrc.nist.gov": {
+      "domain": "https://csrc.nist.gov",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "/dev/random"
+      ]
+    },
+    "https://man.openbsd.org": {
+      "domain": "https://man.openbsd.org",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "/dev/zero",
+        "/dev/random"
+      ]
+    },
+    "https://man.netbsd.org": {
+      "domain": "https://man.netbsd.org",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "/dev/zero",
+        "/dev/random"
+      ]
+    },
+    "https://source.android.com": {
+      "domain": "https://source.android.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "/dev/random"
+      ]
+    },
+    "https://www.koreaherald.com": {
+      "domain": "https://www.koreaherald.com",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.bandwagon.asia": {
+      "domain": "https://www.bandwagon.asia",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.indiaforums.com": {
+      "domain": "https://www.indiaforums.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://m.economictimes.com": {
+      "domain": "https://m.economictimes.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 3,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.bizasialive.com": {
+      "domain": "https://www.bizasialive.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://dreamdth.com": {
+      "domain": "https://dreamdth.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.indiatoday.in": {
+      "domain": "https://www.indiatoday.in",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 3,
+      "articles": [
+        "'96 (film)",
+        "\\u0026TV"
+      ]
+    },
+    "https://www.adgully.com": {
+      "domain": "https://www.adgully.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.chosun.com": {
+      "domain": "https://www.chosun.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "\\u0026Team"
+      ]
+    },
+    "https://thebiaslist.com": {
+      "domain": "https://thebiaslist.com",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "\\u0026Twice",
+        "\\u0026Team"
+      ]
+    },
+    "https://andjulietbroadway.com": {
+      "domain": "https://andjulietbroadway.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://www.newyorktheatreguide.com": {
+      "domain": "https://www.newyorktheatreguide.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://www.whatsonstage.com": {
+      "domain": "https://www.whatsonstage.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://www.broadway.com": {
+      "domain": "https://www.broadway.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://tunebat.com": {
+      "domain": "https://tunebat.com",
+      "unique_article_count": 4,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'Cause I'm a Man",
+        "'74–'75",
+        "'03 Bonnie \\u0026 Clyde",
+        "'39"
+      ]
+    },
+    "https://www.musicnotes.com": {
+      "domain": "https://www.musicnotes.com",
+      "unique_article_count": 4,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'A' You're Adorable",
+        "'74–'75",
+        "'39",
+        "'50s progression"
+      ]
+    },
+    "https://radioinsight.com": {
+      "domain": "https://radioinsight.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'60s Gold"
+      ]
+    },
+    "https://xmplaylist.com": {
+      "domain": "https://xmplaylist.com",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'60s Gold",
+        "'80s on 8"
+      ]
+    },
+    "https://ultimateclassicrock.com": {
+      "domain": "https://ultimateclassicrock.com",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "_'92 Tour EP_",
+        "_'74 Jailbreak_"
+      ]
+    },
+    "https://www.moviecrow.com": {
+      "domain": "https://www.moviecrow.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'96 (film)"
+      ]
+    },
+    "https://www.oxfordbibliographies.com": {
+      "domain": "https://www.oxfordbibliographies.com",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'A'isha al-Ba'uniyya",
+        "_'Aql_"
+      ]
+    },
+    "https://whc.unesco.org": {
+      "domain": "https://whc.unesco.org",
+      "unique_article_count": 3,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'Amm",
+        "'Amran",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur"
+      ]
+    },
+    "https://muslimheritage.com": {
+      "domain": "https://muslimheritage.com",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'Adud al-Dawla",
+        "'Ali ibn al-'Abbas al-Majusi"
+      ]
+    },
+    "https://kuwaittimes.com": {
+      "domain": "https://kuwaittimes.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://www.jewishvirtuallibrary.org": {
+      "domain": "https://www.jewishvirtuallibrary.org",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'Amran",
+        "'Aqqaba"
+      ]
+    },
+    "https://www.mdpi.com": {
+      "domain": "https://www.mdpi.com",
+      "unique_article_count": 3,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'I' and the 'me'",
+        "Asir",
+        "_'Aql_"
+      ]
+    },
+    "https://www.vision2030.gov.sa": {
+      "domain": "https://www.vision2030.gov.sa",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://allafrica.com": {
+      "domain": "https://allafrica.com",
+      "unique_article_count": 1,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'Mamohato Bereng Seeiso"
+      ]
+    },
+    "https://www.news24.com": {
+      "domain": "https://www.news24.com",
+      "unique_article_count": 2,
+      "total_references": 4,
+      "unique_url_count": 4,
+      "articles": [
+        "'Mamohato Bereng Seeiso",
+        "'Mantsopa"
+      ]
+    },
+    "https://www.interviewmagazine.com": {
+      "domain": "https://www.interviewmagazine.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_'71_ (film)",
+        "_SOS_ (Die Antwoord album)",
+        "!!!"
+      ]
+    },
+    "https://abcnews.go.com": {
+      "domain": "https://abcnews.go.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\"Alternative facts\" phrase",
+        "$40 a Day",
+        "!!!"
+      ]
+    },
+    "https://www.linkedin.com": {
+      "domain": "https://www.linkedin.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "!K7 Music",
+        "'80s on 8"
+      ]
+    },
+    "https://www.qobuz.com": {
+      "domain": "https://www.qobuz.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'65 Love Affair",
+        "!K7 Music",
+        "_SOS_ (Die Antwoord album)"
+      ]
+    },
+    "https://www.hotnewhiphop.com": {
+      "domain": "https://www.hotnewhiphop.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_!_ (Trippie Redd album)",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    "https://soundcloud.com": {
+      "domain": "https://soundcloud.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Cause I'm a Man",
+        "_!_ (Trippie Redd album)",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_"
+      ]
+    },
+    "https://hiphopdx.com": {
+      "domain": "https://hiphopdx.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "_!_ (Trippie Redd album)",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    "https://acharts.co": {
+      "domain": "https://acharts.co",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_!_ (Trippie Redd album)",
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    "https://home.treasury.gov": {
+      "domain": "https://home.treasury.gov",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$1",
+        "'Amran",
+        "$500"
+      ]
+    },
+    "https://bitcoin.org": {
+      "domain": "https://bitcoin.org",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.irs.gov": {
+      "domain": "https://www.irs.gov",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.fatf-gafi.org": {
+      "domain": "https://www.fatf-gafi.org",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.sec.gov": {
+      "domain": "https://www.sec.gov",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$1",
+        "'60s Gold"
+      ]
+    },
+    "https://www.cato.org": {
+      "domain": "https://www.cato.org",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$1000",
+        "_'Aql_",
+        "$500"
+      ]
+    },
+    "https://www.bankofcanadamuseum.ca": {
+      "domain": "https://www.bankofcanadamuseum.ca",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$1000"
+      ]
+    },
+    "https://www.bankofcanada.ca": {
+      "domain": "https://www.bankofcanada.ca",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$1000"
+      ]
+    },
+    "https://www.tastingtable.com": {
+      "domain": "https://www.tastingtable.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$100 hamburger",
+        "% Arabica",
+        "$40 a Day"
+      ]
+    },
+    "https://irle.berkeley.edu": {
+      "domain": "https://irle.berkeley.edu",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.dol.gov": {
+      "domain": "https://www.dol.gov",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://papers.ssrn.com": {
+      "domain": "https://papers.ssrn.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "ʽAbd al-Ahad Khan",
+        "$15 minimum wage movement",
+        "_'Aql_"
+      ]
+    },
+    "https://watch.plex.tv": {
+      "domain": "https://watch.plex.tv",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$40 a Day"
+      ]
+    },
+    "https://www.tvmaze.com": {
+      "domain": "https://www.tvmaze.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$40 a Day"
+      ]
+    },
+    "https://www.yahoo.com": {
+      "domain": "https://www.yahoo.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$456,000 _Squid Game_ in Real Life!",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://twitter.com": {
+      "domain": "https://twitter.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "$456,000 _Squid Game_ in Real Life!",
+        "\\u0026Team"
+      ]
+    },
+    "https://observer.com": {
+      "domain": "https://observer.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_\\u0026 Juliet_",
+        "$456,000 _Squid Game_ in Real Life!",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://www.the-numbers.com": {
+      "domain": "https://www.the-numbers.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_'71_ (film)",
+        "$9.99"
+      ]
+    },
+    "https://www.slantmagazine.com": {
+      "domain": "https://www.slantmagazine.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "$9.99",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://www.stereogum.com": {
+      "domain": "https://www.stereogum.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "_SOS_ (Die Antwoord album)",
+        "'Cause I'm a Man"
+      ]
+    },
+    "https://mg.co.za": {
+      "domain": "https://mg.co.za",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Mamohato Bereng Seeiso",
+        "_SOS_ (Die Antwoord album)"
+      ]
+    },
+    "https://musicbrainz.org": {
+      "domain": "https://musicbrainz.org",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'65 Love Affair",
+        "_SOS_ (Die Antwoord album)",
+        "_'74 Jailbreak_"
+      ]
+    },
+    "https://www.barnesandnoble.com": {
+      "domain": "https://www.barnesandnoble.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_\"Awaken, My Love!\"_",
+        "'68 (band)",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://www.nbcnews.com": {
+      "domain": "https://www.nbcnews.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\"Alternative facts\" phrase",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://www.bsi.bund.de": {
+      "domain": "https://www.bsi.bund.de",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "/dev/random"
+      ]
+    },
+    "https://www.kernel.org": {
+      "domain": "https://www.kernel.org",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "/dev/zero",
+        "/dev/random"
+      ]
+    },
+    "https://lwn.net": {
+      "domain": "https://lwn.net",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "/dev/random"
+      ]
+    },
+    "https://www.openbsd.org": {
+      "domain": "https://www.openbsd.org",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "/dev/random"
+      ]
+    },
+    "https://support.apple.com": {
+      "domain": "https://support.apple.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "/dev/random"
+      ]
+    },
+    "https://www.doordash.com": {
+      "domain": "https://www.doordash.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "% Arabica",
+        "\\u0026pizza"
+      ]
+    },
+    "https://www.complex.com": {
+      "domain": "https://www.complex.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_\"Awaken, My Love!\"_",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_"
+      ]
+    },
+    "https://www.dipe.co.kr": {
+      "domain": "https://www.dipe.co.kr",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_\\u0026 Audition – The Howling_",
+        "\\u0026Team"
+      ]
+    },
+    "https://indiantelevision.com": {
+      "domain": "https://indiantelevision.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://mediabrief.com": {
+      "domain": "https://mediabrief.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://assets.zee.com": {
+      "domain": "https://assets.zee.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.mk.co.kr": {
+      "domain": "https://www.mk.co.kr",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\\u0026Team"
+      ]
+    },
+    "https://i-land.fandom.com": {
+      "domain": "https://i-land.fandom.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\\u0026Team"
+      ]
+    },
+    "https://www.kpopalbums.com": {
+      "domain": "https://www.kpopalbums.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\\u0026Team"
+      ]
+    },
+    "https://www.generasia.com": {
+      "domain": "https://www.generasia.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\\u0026Twice",
+        "\\u0026Team"
+      ]
+    },
+    "https://www.twicejapan.com": {
+      "domain": "https://www.twicejapan.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\\u0026Twice"
+      ]
+    },
+    "https://www.londontheatre.co.uk": {
+      "domain": "https://www.londontheatre.co.uk",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://www.andjuliet.org": {
+      "domain": "https://www.andjuliet.org",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://www.dailymail.co.uk": {
+      "domain": "https://www.dailymail.co.uk",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_'Allo 'Allo!_",
+        "_\\u0026 Juliet_",
+        "'En Esur"
+      ]
+    },
+    "https://www.qsrmagazine.com": {
+      "domain": "https://www.qsrmagazine.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\\u0026pizza"
+      ]
+    },
+    "https://restaurantbusinessonline.com": {
+      "domain": "https://restaurantbusinessonline.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\\u0026pizza"
+      ]
+    },
+    "https://play.google.com": {
+      "domain": "https://play.google.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'80s on 8",
+        "\\u0026pizza",
+        "Asir"
+      ]
+    },
+    "https://www.queenconcerts.com": {
+      "domain": "https://www.queenconcerts.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'39"
+      ]
+    },
+    "https://www.mlb.com": {
+      "domain": "https://www.mlb.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'47 (brand)"
+      ]
+    },
+    "https://musictheory.pugetsound.edu": {
+      "domain": "https://musictheory.pugetsound.edu",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'50s progression"
+      ]
+    },
+    "https://hmmagazine.com": {
+      "domain": "https://hmmagazine.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'68 (band)"
+      ]
+    },
+    "https://www.kerrang.com": {
+      "domain": "https://www.kerrang.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'68 (band)",
+        "_'74 Jailbreak_"
+      ]
+    },
+    "https://www.bfi.org.uk": {
+      "domain": "https://www.bfi.org.uk",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 2,
+      "articles": [
+        "_'71_ (film)",
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 1"
+      ]
+    },
+    "https://songbpm.com": {
+      "domain": "https://songbpm.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'A' You're Adorable",
+        "'74–'75",
+        "'Cause I'm a Man"
+      ]
+    },
+    "https://countrystudies.us": {
+      "domain": "https://countrystudies.us",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_'76_ (film)",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://www.behindwoods.com": {
+      "domain": "https://www.behindwoods.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'96 (film)"
+      ]
+    },
+    "https://books.google.com": {
+      "domain": "https://books.google.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'A'isha al-Ba'uniyya",
+        "'Ali ibn al-'Abbas al-Majusi"
+      ]
+    },
+    "https://books.openedition.org": {
+      "domain": "https://books.openedition.org",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur"
+      ]
+    },
+    "https://www.geni.com": {
+      "domain": "https://www.geni.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Abdullah ibn 'Alawi al-Haddad"
+      ]
+    },
+    "https://www.journals.uchicago.edu": {
+      "domain": "https://www.journals.uchicago.edu",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Adud al-Dawla",
+        "'En Esur"
+      ]
+    },
+    "https://link.springer.com": {
+      "domain": "https://link.springer.com",
+      "unique_article_count": 3,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "Asir",
+        "'Ali ibn al-'Abbas al-Majusi",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://cstrecords.com": {
+      "domain": "https://cstrecords.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_'Allelujah! Don't Bend! Ascend!_"
+      ]
+    },
+    "https://www.mirror.co.uk": {
+      "domain": "https://www.mirror.co.uk",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 1"
+      ]
+    },
+    "https://carnegieendowment.org": {
+      "domain": "https://carnegieendowment.org",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Amran",
+        "Asir"
+      ]
+    },
+    "https://philarchive.org": {
+      "domain": "https://philarchive.org",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'I' and the 'me'",
+        "_'Aql_"
+      ]
+    },
+    "https://www.btselem.org": {
+      "domain": "https://www.btselem.org",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Aqqaba"
+      ]
+    },
+    "https://users.cecs.anu.edu.au": {
+      "domain": "https://users.cecs.anu.edu.au",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Aqqaba"
+      ]
+    },
+    "https://www.pcbs.gov.ps": {
+      "domain": "https://www.pcbs.gov.ps",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Aqqaba"
+      ]
+    },
+    "https://www.haaretz.com": {
+      "domain": "https://www.haaretz.com",
+      "unique_article_count": 2,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Aqqaba",
+        "'En Esur"
+      ]
+    },
+    "https://www.spa.gov.sa": {
+      "domain": "https://www.spa.gov.sa",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://gulfmigration.grc.net": {
+      "domain": "https://gulfmigration.grc.net",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://billwithers.com": {
+      "domain": "https://billwithers.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "_'Bout Love_"
+      ]
+    },
+    "https://www.aria.com.au": {
+      "domain": "https://www.aria.com.au",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Cause I'm a Man"
+      ]
+    },
+    "https://psychclassics.yorku.ca": {
+      "domain": "https://psychclassics.yorku.ca",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'I' and the 'me'"
+      ]
+    },
+    "https://sahistory.org.za": {
+      "domain": "https://sahistory.org.za",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Mamohato Bereng Seeiso"
+      ]
+    },
+    "https://www.gov.ls": {
+      "domain": "https://www.gov.ls",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Mamohato Bereng Seeiso"
+      ]
+    },
+    "https://wiredspace.wits.ac.za": {
+      "domain": "https://wiredspace.wits.ac.za",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "'Mantsopa"
+      ]
+    },
+    "https://www.cbsnews.com": {
+      "domain": "https://www.cbsnews.com",
+      "unique_article_count": 1,
+      "total_references": 3,
+      "unique_url_count": 3,
+      "articles": [
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://www.seventeen.com": {
+      "domain": "https://www.seventeen.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "!!!"
+      ]
+    },
+    "https://www.vogue.co.uk": {
+      "domain": "https://www.vogue.co.uk",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "!!!"
+      ]
+    },
+    "https://reverb.org": {
+      "domain": "https://reverb.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "!!!"
+      ]
+    },
+    "https://store.billieeilish.com": {
+      "domain": "https://store.billieeilish.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "!!!"
+      ]
+    },
+    "https://ra.co": {
+      "domain": "https://ra.co",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "!K7 Music"
+      ]
+    },
+    "https://insheepsclothinghifi.com": {
+      "domain": "https://insheepsclothinghifi.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "!K7 Music"
+      ]
+    },
+    "https://www.musicweek.com": {
+      "domain": "https://www.musicweek.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "!K7 Music"
+      ]
+    },
+    "https://daily.redbullmusicacademy.com": {
+      "domain": "https://daily.redbullmusicacademy.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "!K7 Music",
+        "_'Allelujah! Don't Bend! Ascend!_"
+      ]
+    },
+    "https://www.revolt.tv": {
+      "domain": "https://www.revolt.tv",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "_!_ (Trippie Redd album)"
+      ]
+    },
+    "https://djbooth.net": {
+      "domain": "https://djbooth.net",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_!_ (Trippie Redd album)",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    "https://www.smithsonianmag.com": {
+      "domain": "https://www.smithsonianmag.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "! (disambiguation)",
+        "'En Esur"
+      ]
+    },
+    "https://www.fileformat.info": {
+      "domain": "https://www.fileformat.info",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "! (disambiguation)"
+      ]
+    },
+    "https://blog.rosettastone.com": {
+      "domain": "https://blog.rosettastone.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "! (disambiguation)"
+      ]
+    },
+    "https://mathworld.wolfram.com": {
+      "domain": "https://mathworld.wolfram.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "! (disambiguation)"
+      ]
+    },
+    "https://mathshistory.st-andrews.ac.uk": {
+      "domain": "https://mathshistory.st-andrews.ac.uk",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "! (disambiguation)",
+        "'Adud al-Dawla"
+      ]
+    },
+    "https://en.cppreference.com": {
+      "domain": "https://en.cppreference.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "! (disambiguation)"
+      ]
+    },
+    "http://www.hashcash.org": {
+      "domain": "http://www.hashcash.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://bitinfocharts.com": {
+      "domain": "https://bitinfocharts.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://ycharts.com": {
+      "domain": "https://ycharts.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://digiconomist.net": {
+      "domain": "https://digiconomist.net",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.coinbase.com": {
+      "domain": "https://www.coinbase.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.pymnts.com": {
+      "domain": "https://www.pymnts.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://99bitcoins.com": {
+      "domain": "https://99bitcoins.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.theblock.co": {
+      "domain": "https://www.theblock.co",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.cftc.gov": {
+      "domain": "https://www.cftc.gov",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://coinlaw.io": {
+      "domain": "https://coinlaw.io",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.wired.com": {
+      "domain": "https://www.wired.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://crypto.com": {
+      "domain": "https://crypto.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.bitpay.com": {
+      "domain": "https://www.bitpay.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.nature.com": {
+      "domain": "https://www.nature.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1",
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.statista.com": {
+      "domain": "https://www.statista.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.esma.europa.eu": {
+      "domain": "https://www.esma.europa.eu",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://coingeek.com": {
+      "domain": "https://coingeek.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://news.bitcoin.com": {
+      "domain": "https://news.bitcoin.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://www.whitehouse.gov": {
+      "domain": "https://www.whitehouse.gov",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://carboncredits.com": {
+      "domain": "https://carboncredits.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://bitcoinmagazine.com": {
+      "domain": "https://bitcoinmagazine.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://medium.com": {
+      "domain": "https://medium.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    "https://bitcoinops.org": {
+      "domain": "https://bitcoinops.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1"
+      ]
+    },
+    "https://coinweek.com": {
+      "domain": "https://coinweek.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1000"
+      ]
+    },
+    "https://learn.apmex.com": {
+      "domain": "https://learn.apmex.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1000",
+        "$500"
+      ]
+    },
+    "https://www.federalreservehistory.org": {
+      "domain": "https://www.federalreservehistory.org",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 1,
+      "articles": [
+        "$1000",
+        "$500"
+      ]
+    },
+    "https://www.law.cornell.edu": {
+      "domain": "https://www.law.cornell.edu",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$100 hamburger",
+        "$1000"
+      ]
+    },
+    "https://www.pmgnotes.com": {
+      "domain": "https://www.pmgnotes.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$1000"
+      ]
+    },
+    "https://generalaviationnews.com": {
+      "domain": "https://generalaviationnews.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$100 hamburger"
+      ]
+    },
+    "https://youcanfly.aopa.org": {
+      "domain": "https://youcanfly.aopa.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$100 hamburger"
+      ]
+    },
+    "https://www.hbs.edu": {
+      "domain": "https://www.hbs.edu",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.americanprogress.org": {
+      "domain": "https://www.americanprogress.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://inthesetimes.com": {
+      "domain": "https://inthesetimes.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.eater.com": {
+      "domain": "https://www.eater.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement",
+        "\\u0026pizza"
+      ]
+    },
+    "https://thehill.com": {
+      "domain": "https://thehill.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.politico.com": {
+      "domain": "https://www.politico.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://www.vox.com": {
+      "domain": "https://www.vox.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_\\u0026 Juliet_",
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.iza.org": {
+      "domain": "https://www.iza.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.cbo.gov": {
+      "domain": "https://www.cbo.gov",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.dir.ca.gov": {
+      "domain": "https://www.dir.ca.gov",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.pbs.org": {
+      "domain": "https://www.pbs.org",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://wol.iza.org": {
+      "domain": "https://wol.iza.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$15 minimum wage movement"
+      ]
+    },
+    "https://www.tvguide.com": {
+      "domain": "https://www.tvguide.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$40 a Day",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://indyweek.com": {
+      "domain": "https://indyweek.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$40 a Day"
+      ]
+    },
+    "https://www.the-independent.com": {
+      "domain": "https://www.the-independent.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Allo 'Allo!_",
+        "$456,000 _Squid Game_ in Real Life!"
+      ]
+    },
+    "https://www.screenaustralia.gov.au": {
+      "domain": "https://www.screenaustralia.gov.au",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$9.99"
+      ]
+    },
+    "https://www.last.fm": {
+      "domain": "https://www.last.fm",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'65 Love Affair",
+        "$9.99"
+      ]
+    },
+    "https://moviescoremedia.com": {
+      "domain": "https://moviescoremedia.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$9.99"
+      ]
+    },
+    "https://www.indiewire.com": {
+      "domain": "https://www.indiewire.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'71_ (film)",
+        "$9.99"
+      ]
+    },
+    "https://letterboxd.com": {
+      "domain": "https://letterboxd.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'76_ (film)",
+        "$9.99"
+      ]
+    },
+    "https://www.ebay.com": {
+      "domain": "https://www.ebay.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'92 Tour EP_",
+        "$9.99"
+      ]
+    },
+    "https://www.boxofficemojo.com": {
+      "domain": "https://www.boxofficemojo.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'71_ (film)",
+        "$9.99"
+      ]
+    },
+    "https://www.animafest.hr": {
+      "domain": "https://www.animafest.hr",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$9.99"
+      ]
+    },
+    "https://collider.com": {
+      "domain": "https://collider.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "$9.99",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://gaana.com": {
+      "domain": "https://gaana.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'A' You're Adorable",
+        "_SOS_ (Die Antwoord album)"
+      ]
+    },
+    "https://www.robertchristgau.com": {
+      "domain": "https://www.robertchristgau.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_SOS_ (Die Antwoord album)",
+        "_'Bout Love_"
+      ]
+    },
+    "https://africainwords.com": {
+      "domain": "https://africainwords.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'76_ (film)",
+        "_SOS_ (Die Antwoord album)"
+      ]
+    },
+    "https://geektyrant.com": {
+      "domain": "https://geektyrant.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://trekmovie.com": {
+      "domain": "https://trekmovie.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://tvseriesfinale.com": {
+      "domain": "https://tvseriesfinale.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://www.today.com": {
+      "domain": "https://www.today.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://www.pogdesign.co.uk": {
+      "domain": "https://www.pogdesign.co.uk",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Allo 'Allo!_ series 1",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://ew.com": {
+      "domain": "https://ew.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'03 Bonnie \\u0026 Clyde",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://www.thetimes.com": {
+      "domain": "https://www.thetimes.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'71_ (film)",
+        "_$h*! My Dad Says_"
+      ]
+    },
+    "https://www.usenix.org": {
+      "domain": "https://www.usenix.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "/dev/random"
+      ]
+    },
+    "https://datatracker.ietf.org": {
+      "domain": "https://datatracker.ietf.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "/dev/random"
+      ]
+    },
+    "https://www.phoronix.com": {
+      "domain": "https://www.phoronix.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "/dev/zero",
+        "/dev/random"
+      ]
+    },
+    "https://eprint.iacr.org": {
+      "domain": "https://eprint.iacr.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "/dev/random"
+      ]
+    },
+    "https://www.netbsd.org": {
+      "domain": "https://www.netbsd.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "/dev/random"
+      ]
+    },
+    "https://unix.stackexchange.com": {
+      "domain": "https://unix.stackexchange.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "/dev/zero",
+        "/dev/random"
+      ]
+    },
+    "https://stackoverflow.com": {
+      "domain": "https://stackoverflow.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "/dev/zero",
+        "/dev/random"
+      ]
+    },
+    "https://pubs.opengroup.org": {
+      "domain": "https://pubs.opengroup.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "/dev/zero"
+      ]
+    },
+    "https://www.worldcoffeeportal.com": {
+      "domain": "https://www.worldcoffeeportal.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "% Arabica"
+      ]
+    },
+    "https://insideretail.asia": {
+      "domain": "https://insideretail.asia",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "% Arabica"
+      ]
+    },
+    "https://www.dezeen.com": {
+      "domain": "https://www.dezeen.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "% Arabica"
+      ]
+    },
+    "https://www.tinymixtapes.com": {
+      "domain": "https://www.tinymixtapes.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Allelujah! Don't Bend! Ascend!_",
+        "_\\u0026 \\u0026\\u0026\\u0026\\u0026_"
+      ]
+    },
+    "https://www.broadbandtvnews.com": {
+      "domain": "https://www.broadbandtvnews.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 1,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.tataplay.com": {
+      "domain": "https://www.tataplay.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 1,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.broadcastprome.com": {
+      "domain": "https://www.broadcastprome.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 1,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://about.dish.com": {
+      "domain": "https://about.dish.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 1,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.yupptv.com": {
+      "domain": "https://www.yupptv.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://stmify.com": {
+      "domain": "https://stmify.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.airtel.in": {
+      "domain": "https://www.airtel.in",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://koreansalestwt.blogspot.com": {
+      "domain": "https://koreansalestwt.blogspot.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026Twice",
+        "\\u0026Team"
+      ]
+    },
+    "https://andteamarchive.com": {
+      "domain": "https://andteamarchive.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026Team"
+      ]
+    },
+    "https://juliet-musical.fandom.com": {
+      "domain": "https://juliet-musical.fandom.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://www.mirvish.com": {
+      "domain": "https://www.mirvish.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://www.popmusicmisery.com": {
+      "domain": "https://www.popmusicmisery.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_\\u0026 Juliet_"
+      ]
+    },
+    "https://www.financialexpress.com": {
+      "domain": "https://www.financialexpress.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://helpcenter.zee5.com": {
+      "domain": "https://helpcenter.zee5.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026TV"
+      ]
+    },
+    "https://www.pmq.com": {
+      "domain": "https://www.pmq.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026pizza"
+      ]
+    },
+    "https://pizzatoday.com": {
+      "domain": "https://pizzatoday.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026pizza"
+      ]
+    },
+    "https://www.restaurantdive.com": {
+      "domain": "https://www.restaurantdive.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\\u0026pizza"
+      ]
+    },
+    "https://au.rollingstone.com": {
+      "domain": "https://au.rollingstone.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "'03 Bonnie \\u0026 Clyde"
+      ]
+    },
+    "https://americansongwriter.com": {
+      "domain": "https://americansongwriter.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'74–'75",
+        "'03 Bonnie \\u0026 Clyde"
+      ]
+    },
+    "https://www.vibe.com": {
+      "domain": "https://www.vibe.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_\"Awaken, My Love!\"_",
+        "'03 Bonnie \\u0026 Clyde"
+      ]
+    },
+    "https://www.essence.com": {
+      "domain": "https://www.essence.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'03 Bonnie \\u0026 Clyde"
+      ]
+    },
+    "https://www.usmagazine.com": {
+      "domain": "https://www.usmagazine.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'80s on 8",
+        "'03 Bonnie \\u0026 Clyde"
+      ]
+    },
+    "https://www.queenonline.com": {
+      "domain": "https://www.queenonline.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'39"
+      ]
+    },
+    "https://www.soundonsound.com": {
+      "domain": "https://www.soundonsound.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Cause I'm a Man",
+        "'39"
+      ]
+    },
+    "https://www.45cat.com": {
+      "domain": "https://www.45cat.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'65 Love Affair",
+        "'39"
+      ]
+    },
+    "https://www.inc.com": {
+      "domain": "https://www.inc.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'47 (brand)",
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    "https://www.bostonglobe.com": {
+      "domain": "https://www.bostonglobe.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'47 (brand)"
+      ]
+    },
+    "https://tabs.ultimate-guitar.com": {
+      "domain": "https://tabs.ultimate-guitar.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'74–'75",
+        "'50s progression"
+      ]
+    },
+    "https://trace.tennessee.edu": {
+      "domain": "https://trace.tennessee.edu",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "'50s progression"
+      ]
+    },
+    "http://www.digitalradiocentral.com": {
+      "domain": "http://www.digitalradiocentral.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'60s Gold",
+        "'80s on 8"
+      ]
+    },
+    "https://wlos.com": {
+      "domain": "https://wlos.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'60s Gold"
+      ]
+    },
+    "https://www.worldradiohistory.com": {
+      "domain": "https://www.worldradiohistory.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'60s Gold"
+      ]
+    },
+    "https://www.history.com": {
+      "domain": "https://www.history.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'60s Gold"
+      ]
+    },
+    "https://top40weekly.com": {
+      "domain": "https://top40weekly.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'65 Love Affair"
+      ]
+    },
+    "https://www.musicvf.com": {
+      "domain": "https://www.musicvf.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'65 Love Affair",
+        "_'Bout Love_"
+      ]
+    },
+    "https://www.sessiondays.com": {
+      "domain": "https://www.sessiondays.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'65 Love Affair",
+        "_'Bout Love_"
+      ]
+    },
+    "https://theyare68.bandcamp.com": {
+      "domain": "https://theyare68.bandcamp.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'68 (band)"
+      ]
+    },
+    "https://preludepress.com": {
+      "domain": "https://preludepress.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'68 (band)"
+      ]
+    },
+    "https://www.theprp.com": {
+      "domain": "https://www.theprp.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'68 (band)"
+      ]
+    },
+    "https://www.altpress.com": {
+      "domain": "https://www.altpress.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'68 (band)"
+      ]
+    },
+    "https://everythingisnoise.net": {
+      "domain": "https://everythingisnoise.net",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_\"Awaken, My Love!\"_",
+        "'68 (band)"
+      ]
+    },
+    "https://metalinjection.net": {
+      "domain": "https://metalinjection.net",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'68 (band)"
+      ]
+    },
+    "https://seventh-row.com": {
+      "domain": "https://seventh-row.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'71_ (film)"
+      ]
+    },
+    "https://alphahistory.com": {
+      "domain": "https://alphahistory.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'71_ (film)"
+      ]
+    },
+    "https://www.netflix.com": {
+      "domain": "https://www.netflix.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'71_ (film)",
+        "_'76_ (film)"
+      ]
+    },
+    "https://www.csmonitor.com": {
+      "domain": "https://www.csmonitor.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'71_ (film)",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://www.theconnells.com": {
+      "domain": "https://www.theconnells.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'74–'75"
+      ]
+    },
+    "https://www.thisdaylive.com": {
+      "domain": "https://www.thisdaylive.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'76_ (film)"
+      ]
+    },
+    "https://www.premiumtimesng.com": {
+      "domain": "https://www.premiumtimesng.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'76_ (film)"
+      ]
+    },
+    "https://www.loudersound.com": {
+      "domain": "https://www.loudersound.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'92 Tour EP_"
+      ]
+    },
+    "https://www.metal-archives.com": {
+      "domain": "https://www.metal-archives.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'92 Tour EP_"
+      ]
+    },
+    "https://www.pastpri.me": {
+      "domain": "https://www.pastpri.me",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'92 Tour EP_",
+        "_'Bout Love_"
+      ]
+    },
+    "https://scroll.in": {
+      "domain": "https://scroll.in",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'96 (film)"
+      ]
+    },
+    "https://www.hindustantimes.com": {
+      "domain": "https://www.hindustantimes.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'96 (film)"
+      ]
+    },
+    "https://www.eminem.net": {
+      "domain": "https://www.eminem.net",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde"
+      ]
+    },
+    "https://www.grammy.com": {
+      "domain": "https://www.grammy.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    "https://time.com": {
+      "domain": "https://time.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'97 Bonnie \\u0026 Clyde",
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://tsort.info": {
+      "domain": "https://tsort.info",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'A' You're Adorable"
+      ]
+    },
+    "https://www.sheetmusicsinger.com": {
+      "domain": "https://www.sheetmusicsinger.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'A' You're Adorable"
+      ]
+    },
+    "https://muppet.fandom.com": {
+      "domain": "https://muppet.fandom.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'A' You're Adorable"
+      ]
+    },
+    "https://knowledge.uchicago.edu": {
+      "domain": "https://knowledge.uchicago.edu",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'A'isha al-Ba'uniyya"
+      ]
+    },
+    "https://aalequtub.com": {
+      "domain": "https://aalequtub.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'A'isha al-Ba'uniyya",
+        "'Abdullah ibn 'Alawi al-Haddad"
+      ]
+    },
+    "https://encyclopaediaafricana.com": {
+      "domain": "https://encyclopaediaafricana.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur"
+      ]
+    },
+    "https://apps.dtic.mil": {
+      "domain": "https://apps.dtic.mil",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur"
+      ]
+    },
+    "https://www.worldstatesmen.org": {
+      "domain": "https://www.worldstatesmen.org",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Mamohato Bereng Seeiso",
+        "'Abd Allah II ibn 'Ali 'Abd ash-Shakur"
+      ]
+    },
+    "https://legacy.uz": {
+      "domain": "https://legacy.uz",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "ʽAbd al-Ahad Khan"
+      ]
+    },
+    "https://www.findagrave.com": {
+      "domain": "https://www.findagrave.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "ʽAbd al-Ahad Khan"
+      ]
+    },
+    "https://www.encyclopedia.com": {
+      "domain": "https://www.encyclopedia.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "ʽAbd al-Ahad Khan",
+        "'Ali ibn al-'Abbas al-Majusi"
+      ]
+    },
+    "https://core.ac.uk": {
+      "domain": "https://core.ac.uk",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "ʽAbd al-Ahad Khan",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://muwasala.org": {
+      "domain": "https://muwasala.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Abdullah ibn 'Alawi al-Haddad"
+      ]
+    },
+    "https://www.scribd.com": {
+      "domain": "https://www.scribd.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Abdullah ibn 'Alawi al-Haddad"
+      ]
+    },
+    "https://seekersguidance.org": {
+      "domain": "https://seekersguidance.org",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Abdullah ibn 'Alawi al-Haddad",
+        "_'Aql_"
+      ]
+    },
+    "https://en.wikishia.net": {
+      "domain": "https://en.wikishia.net",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Adud al-Dawla"
+      ]
+    },
+    "https://repository.ubn.ru.nl": {
+      "domain": "https://repository.ubn.ru.nl",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Aql_",
+        "'Adud al-Dawla"
+      ]
+    },
+    "https://journals.openedition.org": {
+      "domain": "https://journals.openedition.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://pure.royalholloway.ac.uk": {
+      "domain": "https://pure.royalholloway.ac.uk",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://ajammc.com": {
+      "domain": "https://ajammc.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://www.aei.org": {
+      "domain": "https://www.aei.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://gulfmagazine.co": {
+      "domain": "https://gulfmagazine.co",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://oxfordbusinessgroup.com": {
+      "domain": "https://oxfordbusinessgroup.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://www.mei.edu": {
+      "domain": "https://www.mei.edu",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Amran",
+        "'Ajam of Kuwait"
+      ]
+    },
+    "https://rhm.sums.ac.ir": {
+      "domain": "https://rhm.sums.ac.ir",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Ali ibn al-'Abbas al-Majusi"
+      ]
+    },
+    "https://www.ishim.net": {
+      "domain": "https://www.ishim.net",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Ali ibn al-'Abbas al-Majusi"
+      ]
+    },
+    "https://exclaim.ca": {
+      "domain": "https://exclaim.ca",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Allelujah! Don't Bend! Ascend!_"
+      ]
+    },
+    "https://tapeop.com": {
+      "domain": "https://tapeop.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Cause I'm a Man",
+        "_'Allelujah! Don't Bend! Ascend!_"
+      ]
+    },
+    "https://thequietus.com": {
+      "domain": "https://thequietus.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Allelujah! Don't Bend! Ascend!_"
+      ]
+    },
+    "https://findthatlocation.com": {
+      "domain": "https://findthatlocation.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 1,
+      "articles": [
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 1"
+      ]
+    },
+    "http://www.screenonline.org.uk": {
+      "domain": "http://www.screenonline.org.uk",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 1,
+      "articles": [
+        "_'Allo 'Allo!_",
+        "_'Allo 'Allo!_ series 9"
+      ]
+    },
+    "https://www.quora.com": {
+      "domain": "https://www.quora.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Allo 'Allo!_"
+      ]
+    },
+    "https://www.islamic-awareness.org": {
+      "domain": "https://www.islamic-awareness.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Amm"
+      ]
+    },
+    "https://referenceworks.brill.com": {
+      "domain": "https://referenceworks.brill.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Amm"
+      ]
+    },
+    "https://www.britishmuseum.org": {
+      "domain": "https://www.britishmuseum.org",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Amm",
+        "'Amran"
+      ]
+    },
+    "https://www.archnet.org": {
+      "domain": "https://www.archnet.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Amran"
+      ]
+    },
+    "https://en-us.topographic-map.com": {
+      "domain": "https://en-us.topographic-map.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Amran",
+        "Asir"
+      ]
+    },
+    "https://www.jpost.com": {
+      "domain": "https://www.jpost.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Amran",
+        "'Aqqaba"
+      ]
+    },
+    "https://www.yemenonline.info": {
+      "domain": "https://www.yemenonline.info",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Amran",
+        "Asir"
+      ]
+    },
+    "https://yementimes.com": {
+      "domain": "https://yementimes.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Amran"
+      ]
+    },
+    "https://www.atlasobscura.com": {
+      "domain": "https://www.atlasobscura.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Amran",
+        "Asir"
+      ]
+    },
+    "https://www.muslimphilosophy.com": {
+      "domain": "https://www.muslimphilosophy.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Aql_"
+      ]
+    },
+    "https://abdurrahman.org": {
+      "domain": "https://abdurrahman.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Aql_"
+      ]
+    },
+    "https://iqraonline.net": {
+      "domain": "https://iqraonline.net",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Aql_"
+      ]
+    },
+    "https://www.ncbi.nlm.nih.gov": {
+      "domain": "https://www.ncbi.nlm.nih.gov",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "_'Aql_"
+      ]
+    },
+    "http://vprofile.arij.org": {
+      "domain": "http://vprofile.arij.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Aqqaba"
+      ]
+    },
+    "https://mapcarta.com": {
+      "domain": "https://mapcarta.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Aqqaba",
+        "'En Esur"
+      ]
+    },
+    "https://www.miftah.org": {
+      "domain": "https://www.miftah.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Aqqaba"
+      ]
+    },
+    "https://www.ochaopt.org": {
+      "domain": "https://www.ochaopt.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Aqqaba"
+      ]
+    },
+    "https://www.rebuildingalliance.org": {
+      "domain": "https://www.rebuildingalliance.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Aqqaba"
+      ]
+    },
+    "https://www.travelandtourworld.com": {
+      "domain": "https://www.travelandtourworld.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://archive.aramcoworld.com": {
+      "domain": "https://archive.aramcoworld.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://www.ceicdata.com": {
+      "domain": "https://www.ceicdata.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://brill.com": {
+      "domain": "https://brill.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir",
+        "'En Esur"
+      ]
+    },
+    "https://culturalatlas.sbs.com.au": {
+      "domain": "https://culturalatlas.sbs.com.au",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://www.visitsaudi.com": {
+      "domain": "https://www.visitsaudi.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://soulofsaudi.com": {
+      "domain": "https://soulofsaudi.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://spa.gov.sa": {
+      "domain": "https://spa.gov.sa",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://data.worldbank.org": {
+      "domain": "https://data.worldbank.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://moe.gov.sa": {
+      "domain": "https://moe.gov.sa",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://www.saudiembassy.net": {
+      "domain": "https://www.saudiembassy.net",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "Asir"
+      ]
+    },
+    "https://musicfeeds.com.au": {
+      "domain": "https://musicfeeds.com.au",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    "https://www.okayplayer.com": {
+      "domain": "https://www.okayplayer.com",
+      "unique_article_count": 2,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Cause I'm a Man",
+        "_\"Awaken, My Love!\"_"
+      ]
+    },
+    "https://archaeology.org": {
+      "domain": "https://archaeology.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'En Esur"
+      ]
+    },
+    "https://library.biblicalarchaeology.org": {
+      "domain": "https://library.biblicalarchaeology.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'En Esur"
+      ]
+    },
+    "https://www.ancient-origins.net": {
+      "domain": "https://www.ancient-origins.net",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'En Esur"
+      ]
+    },
+    "https://compass.onlinelibrary.wiley.com": {
+      "domain": "https://compass.onlinelibrary.wiley.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'I' and the 'me'"
+      ]
+    },
+    "https://academicjournals.org": {
+      "domain": "https://academicjournals.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "'Mantsopa"
+      ]
+    },
+    "https://scholarlycommons.law.emory.edu": {
+      "domain": "https://scholarlycommons.law.emory.edu",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://www.mrc.org": {
+      "domain": "https://www.mrc.org",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\"Alternative facts\" phrase"
+      ]
+    },
+    "https://www.dictionary.com": {
+      "domain": "https://www.dictionary.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\"Get fucked\" (phrase)"
+      ]
+    },
+    "https://blog.gymglish.com": {
+      "domain": "https://blog.gymglish.com",
+      "unique_article_count": 1,
+      "total_references": 2,
+      "unique_url_count": 2,
+      "articles": [
+        "\"Get fucked\" (phrase)"
+      ]
+    }
+  }
+}

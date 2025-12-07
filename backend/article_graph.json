@@ -1,0 +1,4569 @@
+{
+  "nodes": [
+    {
+      "id": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "title": "!!!",
+      "citation_count": 139,
+      "outgoing_links": 0,
+      "citation_domains_count": 66
+    },
+    {
+      "id": "c3a18bce-a606-4ebc-9ea5-72d61ed3628e",
+      "title": "Grok API",
+      "citation_count": 1,
+      "outgoing_links": 0,
+      "citation_domains_count": 1
+    },
+    {
+      "id": "ac57972f-3890-49ef-a810-d7655adc44ae",
+      "title": "!K7 Music",
+      "citation_count": 63,
+      "outgoing_links": 0,
+      "citation_domains_count": 27
+    },
+    {
+      "id": "51dc089b-c79b-4448-8c5d-2ff14ac9a479",
+      "title": "_!Oka Tokat_",
+      "citation_count": 26,
+      "outgoing_links": 0,
+      "citation_domains_count": 16
+    },
+    {
+      "id": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "title": "_!_ (Trippie Redd album)",
+      "citation_count": 49,
+      "outgoing_links": 0,
+      "citation_domains_count": 30
+    },
+    {
+      "id": "7dbd7344-6188-4488-a91a-d624a2df1091",
+      "title": "! (disambiguation)",
+      "citation_count": 54,
+      "outgoing_links": 0,
+      "citation_domains_count": 41
+    },
+    {
+      "id": "f65ebf4a-3608-4545-af6f-6f0e25af388e",
+      "title": "$1",
+      "citation_count": 210,
+      "outgoing_links": 0,
+      "citation_domains_count": 129
+    },
+    {
+      "id": "56d2a927-381f-4c71-894a-c9ae7aaf9245",
+      "title": "$1000",
+      "citation_count": 50,
+      "outgoing_links": 0,
+      "citation_domains_count": 31
+    },
+    {
+      "id": "e3a14d46-7e58-4172-812e-5fa6842404fc",
+      "title": "$100 hamburger",
+      "citation_count": 49,
+      "outgoing_links": 0,
+      "citation_domains_count": 28
+    },
+    {
+      "id": "013088c1-0484-4c74-bba9-8a2a3eab5dbd",
+      "title": "$15 minimum wage movement",
+      "citation_count": 148,
+      "outgoing_links": 0,
+      "citation_domains_count": 102
+    },
+    {
+      "id": "dfe7eea2-9981-4ada-9cd0-50b8f470be06",
+      "title": "$40 a Day",
+      "citation_count": 44,
+      "outgoing_links": 0,
+      "citation_domains_count": 29
+    },
+    {
+      "id": "dc5d9b1f-753e-4a0a-ba57-9ab15434d9c7",
+      "title": "$456,000 _Squid Game_ in Real Life!",
+      "citation_count": 64,
+      "outgoing_links": 0,
+      "citation_domains_count": 51
+    },
+    {
+      "id": "945ce748-c18a-47d5-8a15-9a260c672358",
+      "title": "$500",
+      "citation_count": 36,
+      "outgoing_links": 0,
+      "citation_domains_count": 22
+    },
+    {
+      "id": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "title": "$9.99",
+      "citation_count": 55,
+      "outgoing_links": 0,
+      "citation_domains_count": 44
+    },
+    {
+      "id": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "title": "_SOS_ (Die Antwoord album)",
+      "citation_count": 54,
+      "outgoing_links": 0,
+      "citation_domains_count": 41
+    },
+    {
+      "id": "e518400a-b0e2-4cd5-adc9-2aca57af5270",
+      "title": "_$h*! My Dad Says_",
+      "citation_count": 76,
+      "outgoing_links": 0,
+      "citation_domains_count": 47
+    },
+    {
+      "id": "7e7378b9-081e-4184-a629-81498d880ce7",
+      "title": "/dev/random",
+      "citation_count": 72,
+      "outgoing_links": 0,
+      "citation_domains_count": 44
+    },
+    {
+      "id": "68f9f642-5883-42a8-913f-cd8bbaaa54e2",
+      "title": "/dev/zero",
+      "citation_count": 29,
+      "outgoing_links": 0,
+      "citation_domains_count": 22
+    },
+    {
+      "id": "2bd95cec-d948-4a72-a662-2ba1479c8d00",
+      "title": "% Arabica",
+      "citation_count": 61,
+      "outgoing_links": 0,
+      "citation_domains_count": 40
+    },
+    {
+      "id": "3c6c7842-d730-4728-bba7-7403dc645389",
+      "title": "_\\u0026 \\u0026\\u0026\\u0026\\u0026_",
+      "citation_count": 21,
+      "outgoing_links": 0,
+      "citation_domains_count": 16
+    },
+    {
+      "id": "06e81324-1fee-40fe-a6b5-2fdf3b8b0731",
+      "title": "_\\u0026 Audition – The Howling_",
+      "citation_count": 63,
+      "outgoing_links": 1,
+      "citation_domains_count": 33
+    },
+    {
+      "id": "4ba0e8eb-7e59-400e-b34e-a3a396eb1804",
+      "title": "\\u0026TV",
+      "citation_count": 100,
+      "outgoing_links": 0,
+      "citation_domains_count": 47
+    },
+    {
+      "id": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "title": "\\u0026Team",
+      "citation_count": 215,
+      "outgoing_links": 0,
+      "citation_domains_count": 72
+    },
+    {
+      "id": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "title": "\\u0026Twice",
+      "citation_count": 49,
+      "outgoing_links": 0,
+      "citation_domains_count": 30
+    },
+    {
+      "id": "35866bde-c082-4f86-a0a2-8d3bc1a71c49",
+      "title": "_\\u0026 Juliet_",
+      "citation_count": 120,
+      "outgoing_links": 0,
+      "citation_domains_count": 71
+    },
+    {
+      "id": "a0ff0382-71ab-431f-838e-568b6535ef5a",
+      "title": "\\u0026TV",
+      "citation_count": 104,
+      "outgoing_links": 0,
+      "citation_domains_count": 53
+    },
+    {
+      "id": "8d8d874a-509b-4194-bbcf-3dd1dc3657b8",
+      "title": "\\u0026pizza",
+      "citation_count": 83,
+      "outgoing_links": 0,
+      "citation_domains_count": 50
+    },
+    {
+      "id": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "title": "'03 Bonnie \\u0026 Clyde",
+      "citation_count": 54,
+      "outgoing_links": 0,
+      "citation_domains_count": 38
+    },
+    {
+      "id": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "title": "'39",
+      "citation_count": 37,
+      "outgoing_links": 0,
+      "citation_domains_count": 27
+    },
+    {
+      "id": "39551182-2e8e-469d-a891-26a75cfcd6e5",
+      "title": "'47 (brand)",
+      "citation_count": 62,
+      "outgoing_links": 0,
+      "citation_domains_count": 34
+    },
+    {
+      "id": "67889704-df92-4f1e-a19d-8f48163b9fdc",
+      "title": "'50s progression",
+      "citation_count": 37,
+      "outgoing_links": 0,
+      "citation_domains_count": 31
+    },
+    {
+      "id": "cc9d3e6c-0aeb-47e1-96ca-b626f4559f80",
+      "title": "'60s Gold",
+      "citation_count": 47,
+      "outgoing_links": 0,
+      "citation_domains_count": 28
+    },
+    {
+      "id": "d65758b8-805e-4063-bec4-109f8518115b",
+      "title": "'65 Love Affair",
+      "citation_count": 43,
+      "outgoing_links": 0,
+      "citation_domains_count": 30
+    },
+    {
+      "id": "ba21b5a7-d180-4228-8021-6f1538e987f7",
+      "title": "'68 (band)",
+      "citation_count": 68,
+      "outgoing_links": 0,
+      "citation_domains_count": 44
+    },
+    {
+      "id": "425b52eb-3c49-41a0-8ff7-faec01f07c62",
+      "title": "_'71_ (film)",
+      "citation_count": 70,
+      "outgoing_links": 0,
+      "citation_domains_count": 50
+    },
+    {
+      "id": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "title": "_'74 Jailbreak_",
+      "citation_count": 38,
+      "outgoing_links": 0,
+      "citation_domains_count": 25
+    },
+    {
+      "id": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "title": "'74–'75",
+      "citation_count": 35,
+      "outgoing_links": 0,
+      "citation_domains_count": 29
+    },
+    {
+      "id": "9acf26b3-c4ee-45e3-9487-90b598ba7047",
+      "title": "_'76_ (film)",
+      "citation_count": 54,
+      "outgoing_links": 0,
+      "citation_domains_count": 44
+    },
+    {
+      "id": "325db228-3c23-483d-827e-d2f3e2024c79",
+      "title": "'80s on 8",
+      "citation_count": 36,
+      "outgoing_links": 0,
+      "citation_domains_count": 24
+    },
+    {
+      "id": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "title": "_'92 Tour EP_",
+      "citation_count": 42,
+      "outgoing_links": 0,
+      "citation_domains_count": 25
+    },
+    {
+      "id": "7e2e28f5-8bf7-444c-8a33-29bb439f4cb3",
+      "title": "'96 (film)",
+      "citation_count": 89,
+      "outgoing_links": 0,
+      "citation_domains_count": 38
+    },
+    {
+      "id": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "title": "'97 Bonnie \\u0026 Clyde",
+      "citation_count": 43,
+      "outgoing_links": 0,
+      "citation_domains_count": 34
+    },
+    {
+      "id": "c1a844f4-c0b1-4a55-b02f-513c3f522c4d",
+      "title": "'A' You're Adorable",
+      "citation_count": 44,
+      "outgoing_links": 0,
+      "citation_domains_count": 32
+    },
+    {
+      "id": "973446c0-4f3f-4655-9221-6c1f2ebffc3d",
+      "title": "'A'isha al-Ba'uniyya",
+      "citation_count": 17,
+      "outgoing_links": 0,
+      "citation_domains_count": 13
+    },
+    {
+      "id": "7da02cbd-a49d-4912-8ed1-6dc8003474fc",
+      "title": "'Abd Allah II ibn 'Ali 'Abd ash-Shakur",
+      "citation_count": 36,
+      "outgoing_links": 0,
+      "citation_domains_count": 28
+    },
+    {
+      "id": "6402f1e6-574a-44d0-97c2-0af6a3c03b1f",
+      "title": "ʽAbd al-Ahad Khan",
+      "citation_count": 40,
+      "outgoing_links": 0,
+      "citation_domains_count": 36
+    },
+    {
+      "id": "3f44b3b3-c974-4d0e-8620-db9fe9c37b34",
+      "title": "'Abdullah ibn 'Alawi al-Haddad",
+      "citation_count": 22,
+      "outgoing_links": 0,
+      "citation_domains_count": 18
+    },
+    {
+      "id": "e386ae3f-95db-4f17-b6af-b0fcc5fad394",
+      "title": "'Adud al-Dawla",
+      "citation_count": 34,
+      "outgoing_links": 0,
+      "citation_domains_count": 21
+    },
+    {
+      "id": "8538d9c1-e2e1-4f81-88bb-fab48df1ff98",
+      "title": "'Ajam of Kuwait",
+      "citation_count": 79,
+      "outgoing_links": 0,
+      "citation_domains_count": 64
+    },
+    {
+      "id": "dc6d1950-0c5a-497b-b6bc-6b453b4bf7e6",
+      "title": "'Ali ibn al-'Abbas al-Majusi",
+      "citation_count": 39,
+      "outgoing_links": 0,
+      "citation_domains_count": 27
+    },
+    {
+      "id": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "title": "_'Allelujah! Don't Bend! Ascend!_",
+      "citation_count": 56,
+      "outgoing_links": 0,
+      "citation_domains_count": 36
+    },
+    {
+      "id": "aab6177a-e73c-46a0-afb1-3520c6cc5378",
+      "title": "_'Allo 'Allo!_",
+      "citation_count": 53,
+      "outgoing_links": 0,
+      "citation_domains_count": 32
+    },
+    {
+      "id": "8ff8ee46-79d1-400b-94ea-c51078d10502",
+      "title": "_'Allo 'Allo!_ series 1",
+      "citation_count": 36,
+      "outgoing_links": 0,
+      "citation_domains_count": 15
+    },
+    {
+      "id": "ac2bb616-d1d5-4b20-9087-9cff68dc724f",
+      "title": "_'Allo 'Allo!_ series 9",
+      "citation_count": 21,
+      "outgoing_links": 0,
+      "citation_domains_count": 7
+    },
+    {
+      "id": "65649ca0-6e72-4bf4-8df0-42bf2eada093",
+      "title": "'Amm",
+      "citation_count": 24,
+      "outgoing_links": 0,
+      "citation_domains_count": 17
+    },
+    {
+      "id": "6c9bbb0c-3326-4317-8351-e497bd82e743",
+      "title": "'Amran",
+      "citation_count": 81,
+      "outgoing_links": 0,
+      "citation_domains_count": 65
+    },
+    {
+      "id": "78a5acb9-931f-4c5f-94c8-f3739ff5cf1d",
+      "title": "_'Aql_",
+      "citation_count": 100,
+      "outgoing_links": 0,
+      "citation_domains_count": 72
+    },
+    {
+      "id": "98d92eb7-8df5-42bd-9edf-1409e086a20b",
+      "title": "'Aqqaba",
+      "citation_count": 50,
+      "outgoing_links": 0,
+      "citation_domains_count": 35
+    },
+    {
+      "id": "77024a72-7a23-48cb-bee1-83b63ae1f9a7",
+      "title": "Asir",
+      "citation_count": 187,
+      "outgoing_links": 0,
+      "citation_domains_count": 133
+    },
+    {
+      "id": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "title": "_'Bout Love_",
+      "citation_count": 31,
+      "outgoing_links": 0,
+      "citation_domains_count": 22
+    },
+    {
+      "id": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "title": "'Cause I'm a Man",
+      "citation_count": 69,
+      "outgoing_links": 0,
+      "citation_domains_count": 49
+    },
+    {
+      "id": "4d540770-91f3-4f56-9e88-5e545ceea09f",
+      "title": "_'Cause You're My Boy_",
+      "citation_count": 21,
+      "outgoing_links": 0,
+      "citation_domains_count": 14
+    },
+    {
+      "id": "adec822e-7718-46b7-91cc-9d0ca94a656e",
+      "title": "'En Esur",
+      "citation_count": 75,
+      "outgoing_links": 0,
+      "citation_domains_count": 39
+    },
+    {
+      "id": "bbd80643-8616-451b-9af3-34c4596098d6",
+      "title": "_'Gator Bait_",
+      "citation_count": 32,
+      "outgoing_links": 0,
+      "citation_domains_count": 25
+    },
+    {
+      "id": "5bee68a6-fe7c-4768-b7da-14e6c9cdf522",
+      "title": "'I' and the 'me'",
+      "citation_count": 58,
+      "outgoing_links": 0,
+      "citation_domains_count": 34
+    },
+    {
+      "id": "1c17b5fd-d38a-43f9-9889-0d4984eee7b6",
+      "title": "'Mamohato Bereng Seeiso",
+      "citation_count": 53,
+      "outgoing_links": 0,
+      "citation_domains_count": 37
+    },
+    {
+      "id": "caf4967f-75c3-4a84-bb33-51b3cf8377f7",
+      "title": "'Mantsopa",
+      "citation_count": 26,
+      "outgoing_links": 0,
+      "citation_domains_count": 20
+    },
+    {
+      "id": "e2291111-6c77-4086-92cb-42e7800871ff",
+      "title": "\"Alternative facts\" phrase",
+      "citation_count": 66,
+      "outgoing_links": 0,
+      "citation_domains_count": 51
+    },
+    {
+      "id": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "title": "_\"Awaken, My Love!\"_",
+      "citation_count": 77,
+      "outgoing_links": 0,
+      "citation_domains_count": 54
+    },
+    {
+      "id": "ad166391-5eda-40ed-bbae-631fb853527a",
+      "title": "\"Get fucked\" (phrase)",
+      "citation_count": 59,
+      "outgoing_links": 0,
+      "citation_domains_count": 48
+    }
+  ],
+  "edges": [
+    {
+      "source": "f65ebf4a-3608-4545-af6f-6f0e25af388e",
+      "target": "945ce748-c18a-47d5-8a15-9a260c672358",
+      "weight": 5.2,
+      "types": [
+        "shared_domains",
+        "shared_exact_citations",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_citations": [
+          "https://www.federalreserve.gov/paymentsystems/coin_currcircvolume.htm",
+          "https://www.uscurrency.gov/history"
+        ],
+        "shared_domains": [
+          "https://www.bep.gov",
+          "https://www.uscurrency.gov",
+          "https://home.treasury.gov",
+          "https://www.investopedia.com",
+          "https://www.federalreserve.gov",
+          "https://www.congress.gov"
+        ]
+      }
+    },
+    {
+      "source": "f65ebf4a-3608-4545-af6f-6f0e25af388e",
+      "target": "56d2a927-381f-4c71-894a-c9ae7aaf9245",
+      "weight": 3.29,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "shared_exact_citations",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_citations": [
+          "https://www.uscurrency.gov/history"
+        ],
+        "shared_domains": [
+          "https://www.federalreserve.gov",
+          "https://www.bep.gov",
+          "https://www.uscurrency.gov",
+          "https://www.investopedia.com"
+        ]
+      }
+    },
+    {
+      "source": "f65ebf4a-3608-4545-af6f-6f0e25af388e",
+      "target": "013088c1-0484-4c74-bba9-8a2a3eab5dbd",
+      "weight": 1.65,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://onlinelibrary.wiley.com",
+          "https://www.cnn.com",
+          "https://www.nature.com",
+          "https://www.investopedia.com",
+          "https://www.sciencedirect.com",
+          "https://www.congress.gov"
+        ]
+      }
+    },
+    {
+      "source": "56d2a927-381f-4c71-894a-c9ae7aaf9245",
+      "target": "945ce748-c18a-47d5-8a15-9a260c672358",
+      "weight": 16.22,
+      "types": [
+        "shared_domains",
+        "shared_exact_citations",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_citations": [
+          "https://www.bep.gov/currency/history/historical-currency",
+          "https://www.marketplace.org/story/2015/12/23/thousand-dollar-bills",
+          "https://www.federalreservehistory.org/essays/cash-services",
+          "https://www.bep.gov/media/1086/download?inline",
+          "https://www.bep.gov/currency/faqs",
+          "https://www.investopedia.com/6-famous-discontinued-and-uncommon-u-s-currency-denominations-4773302",
+          "https://www.uscurrency.gov/history"
+        ],
+        "shared_domains": [
+          "https://www.bep.gov",
+          "https://www.uscurrency.gov",
+          "https://www.marketplace.org",
+          "https://americanhistory.si.edu",
+          "https://www.investopedia.com",
+          "https://www.cato.org",
+          "https://learn.apmex.com",
+          "https://www.federalreservehistory.org",
+          "https://www.federalreserve.gov"
+        ]
+      }
+    },
+    {
+      "source": "06e81324-1fee-40fe-a6b5-2fdf3b8b0731",
+      "target": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "weight": 38.5,
+      "types": [
+        "shared_domains",
+        "direct_link",
+        "shared_exact_citations",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_citations": [
+          "https://www.abs-cbn.com/entertainment/showbiz/music/2025/10/28/with-korean-debut-japan-s-team-embarks-on-journey-to-bigger-stage-1700",
+          "https://www.koreatimes.co.kr/entertainment/k-pop/20251028/hybes-1st-global-boy-band-team-comes-back-to-life-with-korean-debut",
+          "https://kprofiles.com/audition-the-howling-audition-program-profile/",
+          "https://koreajoongangdaily.joins.com/news/2025-10-28/entertainment/kpop/Boy-band-TEAM-celebrates-Korean-debut-album--in-pictures/2430861",
+          "https://koreajoongangdaily.joins.com/2022/06/03/entertainment/kpop/korea-HYBE-Labels-Japan-Audition--The-Howling/20220603122306662.html",
+          "https://mydramalist.com/731313-auditon-the-howling",
+          "https://www.billboard.com/music/pop/andteam-debut-hybe-labels-japan-music-videos-1235184016/",
+          "https://www.billboard.com/music/music-news/and-team-korean-debut-album-interview-1236100633/",
+          "https://kprofiles.com/and-team-members-profile/",
+          "https://variety.com/2022/music/news/scooter-braun-japanese-audition-1235346493/",
+          "https://www.teenvogue.com/story/guide-to-andteam-everything-to-know-about-enhypens-werewolf-rivals",
+          "https://weverse.io/andteam/notice/31047",
+          "https://weverse.io/andteam/notice/25515"
+        ],
+        "shared_domains": [
+          "https://www.billboard.com",
+          "https://www.andteam-official.jp",
+          "https://koreajoongangdaily.joins.com",
+          "https://www.youtube.com",
+          "https://www.dipe.co.kr",
+          "https://music.apple.com",
+          "https://weverse.io",
+          "https://www.abs-cbn.com",
+          "https://www.bandwagon.asia",
+          "https://www.teenvogue.com",
+          "https://www.koreaherald.com",
+          "https://magazine.weverse.io",
+          "https://en.wikipedia.org",
+          "https://kprofiles.com",
+          "https://variety.com",
+          "https://www.allkpop.com",
+          "https://www.koreatimes.co.kr",
+          "https://www.soompi.com",
+          "https://www.koreaboo.com",
+          "https://www.imdb.com",
+          "https://mydramalist.com"
+        ],
+        "link_direction": [
+          "06e81324-1fee-40fe-a6b5-2fdf3b8b0731->7f65cafb-1dc7-4907-be6f-849de4422227"
+        ]
+      }
+    },
+    {
+      "source": "06e81324-1fee-40fe-a6b5-2fdf3b8b0731",
+      "target": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "weight": 2.11,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.imdb.com",
+          "https://www.soompi.com",
+          "https://www.billboard.com",
+          "https://koreajoongangdaily.joins.com",
+          "https://www.koreaboo.com",
+          "https://www.youtube.com",
+          "https://www.allkpop.com",
+          "https://music.apple.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "06e81324-1fee-40fe-a6b5-2fdf3b8b0731",
+      "target": "35866bde-c082-4f86-a0a2-8d3bc1a71c49",
+      "weight": 1.21,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://variety.com",
+          "https://www.billboard.com",
+          "https://www.teenvogue.com",
+          "https://music.apple.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "4ba0e8eb-7e59-400e-b34e-a3a396eb1804",
+      "target": "a0ff0382-71ab-431f-838e-568b6535ef5a",
+      "weight": 45.17,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "shared_exact_citations",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_citations": [
+          "https://www.indiatoday.in/entertainment/television/story/bakula-bua-ka-bhoot-review-new-comedy-show-is-perfect-for-weekends-sarita-joshi-lifetv-984671-2017-06-25",
+          "https://www.hollywoodreporter.com/tv/tv-news/voice-gets-indian-version-792507/",
+          "https://www.tataplay.com/channels/tv-channel-number-list",
+          "https://indiantelevision.com/television/tv-channels/gecs/zeel-to-launch-tv-in-uk-on-6-april-150319",
+          "https://en.wikipedia.org/wiki/Bhabiji_Ghar_Par_Hain%21",
+          "https://mediabrief.com/zee-expands-reach-with-tv-launch-on-samsung-tv-plus/",
+          "https://www.imdb.com/title/tt8227660/",
+          "https://about.dish.com/2016-06-02-Sling-TV-and-DISH-Announce-Landmark-Agreement-with-Zee",
+          "https://timesofindia.indiatimes.com/tv/news/hindi/zee-entertainment-launches-new-hindi-general-entertainment-channel-tv/articleshow/45974989.cms",
+          "https://bestmediainfo.com/mediainfo/television/zee-entertainment-launches-tv-on-samsung-tv-plus-in-the-uk-7582017",
+          "https://www.afaqs.com/news/media/43467_the-high-octane-launch-of-tv",
+          "https://www.broadcastprome.com/news/zee-middle-east-launches-%25C2%2591tv%25C2%2592/",
+          "https://m.economictimes.com/industry/media/entertainment/zeel-creates-new-organisational-structure-after-senior-level-exits/articleshow/109375417.cms",
+          "https://www.zee.com/about-us-leadership/",
+          "https://www.broadbandtvnews.com/2015/03/20/zee-tv-to-launch-tv-in-uk/",
+          "https://www.zee5.com/global/collections/andtv-shows/0-8-manualcollection_106858385",
+          "https://www.exchange4media.com/media-tv-news/vishnu-shankar-to-headtv-87598.html",
+          "https://www.zee.com/channel-pricing/packs/",
+          "https://www.exchange4media.com/media-tv-news/zee-launches-new-movie-channel-%27-pictures%27-52307.html"
+        ],
+        "shared_domains": [
+          "https://www.reuters.com",
+          "https://www.zee5.com",
+          "https://indianexpress.com",
+          "https://www.tataplay.com",
+          "https://www.business-standard.com",
+          "https://www.medianews4u.com",
+          "https://www.hollywoodreporter.com",
+          "https://www.bizasialive.com",
+          "https://www.yupptv.com",
+          "https://indiantelevision.com",
+          "https://mediabrief.com",
+          "https://www.broadcastprome.com",
+          "https://timesofindia.indiatimes.com",
+          "https://en.wikipedia.org",
+          "https://m.economictimes.com",
+          "https://www.afaqs.com",
+          "https://assets.zee.com",
+          "https://www.broadbandtvnews.com",
+          "https://www.adgully.com",
+          "https://www.indiaforums.com",
+          "https://www.zee.com",
+          "https://bestmediainfo.com",
+          "https://www.exchange4media.com",
+          "https://www.tvwish.com",
+          "https://about.dish.com",
+          "https://dreamdth.com",
+          "https://www.indiatoday.in",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "4ba0e8eb-7e59-400e-b34e-a3a396eb1804",
+      "target": "7e2e28f5-8bf7-444c-8a33-29bb439f4cb3",
+      "weight": 1.3,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.business-standard.com",
+          "https://www.indiatoday.in",
+          "https://indianexpress.com",
+          "https://www.imdb.com",
+          "https://timesofindia.indiatimes.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "cc9d3e6c-0aeb-47e1-96ca-b626f4559f80",
+      "target": "325db228-3c23-483d-827e-d2f3e2024c79",
+      "weight": 3.46,
+      "types": [
+        "shared_domains",
+        "shared_exact_citations",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_citations": [
+          "https://investor.siriusxm.com/sec-filings/all-sec-filings/content/0000950123-08-008711/e64357exv99w1.htm"
+        ],
+        "shared_domains": [
+          "https://xmplaylist.com",
+          "https://www.siriusxm.com",
+          "https://www.facebook.com",
+          "https://www.latimes.com",
+          "https://investor.siriusxm.com",
+          "http://www.digitalradiocentral.com"
+        ]
+      }
+    },
+    {
+      "source": "aab6177a-e73c-46a0-afb1-3520c6cc5378",
+      "target": "8ff8ee46-79d1-400b-94ea-c51078d10502",
+      "weight": 20.82,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "shared_exact_citations",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_citations": [
+          "https://www.mirror.co.uk/tv/tv-news/vicki-michelle-believes-allo-allo-27776926",
+          "https://www.comedy.co.uk/tv/allo_allo/",
+          "https://www.bbc.com/news/entertainment-arts-11011664",
+          "https://www.bfi.org.uk/sight-and-sound/features/tv-eye-allo-allo-piece-de-resistance",
+          "https://www.bbc.co.uk/programmes/b006xyt3",
+          "https://www.imdb.com/title/tt0086659/",
+          "https://www.comedy.co.uk/tv/allo_allo/cast_crew/",
+          "https://www.cambridge.org/core/journals/contemporary-european-history/article/jolly-romp-we-were-always-destined-to-win-the-bbcs-allo-allo-and-british-memories-of-downed-aircrew-in-occupied-france-during-the-second-world-war/4B6795B02E1A9EB89A5BD11B9BA9715A",
+          "https://findthatlocation.com/television-show/allo-allo/location/144"
+        ],
+        "shared_domains": [
+          "https://www.bfi.org.uk",
+          "https://www.bbc.com",
+          "https://www.comedy.co.uk",
+          "https://www.mirror.co.uk",
+          "https://www.cambridge.org",
+          "https://www.bbc.co.uk",
+          "https://findthatlocation.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "aab6177a-e73c-46a0-afb1-3520c6cc5378",
+      "target": "ac2bb616-d1d5-4b20-9087-9cff68dc724f",
+      "weight": 5.83,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "shared_exact_citations",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_citations": [
+          "https://www.bbc.com/news/entertainment-arts-11011664",
+          "http://www.screenonline.org.uk/tv/id/1114934/index.html"
+        ],
+        "shared_domains": [
+          "https://www.bbc.com",
+          "https://www.comedy.co.uk",
+          "https://www.bbc.co.uk",
+          "https://www.imdb.com",
+          "http://www.screenonline.org.uk"
+        ]
+      }
+    },
+    {
+      "source": "8ff8ee46-79d1-400b-94ea-c51078d10502",
+      "target": "ac2bb616-d1d5-4b20-9087-9cff68dc724f",
+      "weight": 3.98,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "shared_exact_citations",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_citations": [
+          "https://www.bbc.com/news/entertainment-arts-11011664"
+        ],
+        "shared_domains": [
+          "https://www.imdb.com",
+          "https://www.bbc.com",
+          "https://www.bbc.co.uk",
+          "https://www.comedy.co.uk"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "weight": 2.74,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.nytimes.com",
+          "https://www.officialcharts.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://www.hollywoodreporter.com",
+          "https://www.interviewmagazine.com",
+          "https://genius.com",
+          "https://www.bbc.co.uk",
+          "https://www.spin.com",
+          "https://www.riaa.com",
+          "https://consequence.net"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "weight": 2.57,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://en.wikipedia.org",
+          "https://www.forbes.com",
+          "https://www.instagram.com",
+          "https://www.riaa.com"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "weight": 2.53,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.eonline.com",
+          "https://www.billboard.com",
+          "https://chartmasters.org",
+          "https://www.hollywoodreporter.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://www.instagram.com",
+          "https://www.riaa.com"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 2.28,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://grammy.com",
+          "https://pitchfork.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://en.wikipedia.org",
+          "https://consequence.net"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 2.27,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.facebook.com",
+          "https://www.billboard.com",
+          "https://www.hollywoodreporter.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://www.forbes.com"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "weight": 2.11,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://www.latimes.com",
+          "https://consequence.net"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "weight": 2.02,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://variety.com",
+          "https://x.com",
+          "https://www.billboard.com",
+          "https://www.facebook.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://www.teenvogue.com",
+          "https://en.wikipedia.org",
+          "https://www.forbes.com",
+          "https://www.instagram.com"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "weight": 1.9,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://chartmasters.org",
+          "https://genius.com",
+          "https://www.latimes.com",
+          "https://www.instagram.com"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "weight": 1.72,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://chartmasters.org",
+          "https://www.youtube.com",
+          "https://www.riaa.com"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "dc5d9b1f-753e-4a0a-ba57-9ab15434d9c7",
+      "weight": 1.65,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.nytimes.com",
+          "https://www.theguardian.com",
+          "https://x.com",
+          "https://www.facebook.com",
+          "https://www.latimes.com",
+          "https://www.youtube.com",
+          "https://www.forbes.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "weight": 1.49,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.allmusic.com",
+          "https://www.theguardian.com",
+          "https://www.facebook.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "d65758b8-805e-4063-bec4-109f8518115b",
+      "weight": 1.49,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://variety.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://www.hollywoodreporter.com",
+          "https://genius.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "weight": 1.49,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.officialcharts.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://www.youtube.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "c1a844f4-c0b1-4a55-b02f-513c3f522c4d",
+      "weight": 1.48,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.nytimes.com",
+          "https://www.allmusic.com",
+          "https://genius.com",
+          "https://www.latimes.com",
+          "https://www.youtube.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "555c4bd9-5a7b-4d64-8dcb-99a708c61788",
+      "target": "e2291111-6c77-4086-92cb-42e7800871ff",
+      "weight": 1.44,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://abcnews.go.com",
+          "https://www.nytimes.com",
+          "https://www.rollingstone.com",
+          "https://www.cnn.com",
+          "https://www.theguardian.com",
+          "https://www.eonline.com",
+          "https://theconversation.com"
+        ]
+      }
+    },
+    {
+      "source": "51dc089b-c79b-4448-8c5d-2ff14ac9a479",
+      "target": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "weight": 1.29,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.abs-cbn.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://mydramalist.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "51dc089b-c79b-4448-8c5d-2ff14ac9a479",
+      "target": "06e81324-1fee-40fe-a6b5-2fdf3b8b0731",
+      "weight": 1.23,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.abs-cbn.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://mydramalist.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "51dc089b-c79b-4448-8c5d-2ff14ac9a479",
+      "target": "dfe7eea2-9981-4ada-9cd0-50b8f470be06",
+      "weight": 1.01,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.imdb.com",
+          "https://en.wikipedia.org",
+          "https://www.youtube.com",
+          "https://www.themoviedb.org"
+        ]
+      }
+    },
+    {
+      "source": "51dc089b-c79b-4448-8c5d-2ff14ac9a479",
+      "target": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "weight": 1.01,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.imdb.com",
+          "https://open.spotify.com",
+          "https://en.wikipedia.org",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 3.8,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.thefader.com",
+          "https://bestsellingalbums.org",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://djbooth.net",
+          "https://www.theguardian.com",
+          "https://hiphopdx.com",
+          "https://www.billboard.com",
+          "https://www.reddit.com",
+          "https://www.hotnewhiphop.com",
+          "https://genius.com",
+          "https://www.xxlmag.com",
+          "https://acharts.co",
+          "https://www.youtube.com",
+          "https://www.forbes.com",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 2.91,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://www.reddit.com",
+          "https://genius.com",
+          "https://hypebeast.com",
+          "https://www.youtube.com",
+          "https://kworb.net",
+          "https://soundcloud.com",
+          "https://en.wikipedia.org",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "weight": 2.42,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://kworb.net",
+          "https://music.apple.com",
+          "https://www.riaa.com",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "weight": 2.34,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.theguardian.com",
+          "https://hiphopdx.com",
+          "https://www.reddit.com",
+          "https://www.billboard.com",
+          "https://www.allmusic.com",
+          "https://genius.com",
+          "https://www.revolt.tv",
+          "https://www.instagram.com"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "weight": 2.3,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://kworb.net",
+          "https://music.apple.com",
+          "https://www.instagram.com",
+          "https://www.riaa.com"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "weight": 2.08,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://acharts.co",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "weight": 1.94,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://www.youtube.com",
+          "https://music.apple.com",
+          "https://www.riaa.com"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "weight": 1.9,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://www.youtube.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "weight": 1.68,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://en.wikipedia.org",
+          "https://www.billboard.com",
+          "https://www.reddit.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://music.apple.com",
+          "https://www.forbes.com",
+          "https://www.instagram.com"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "3c6c7842-d730-4728-bba7-7403dc645389",
+      "weight": 1.52,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.thefader.com",
+          "https://pitchfork.com",
+          "https://genius.com",
+          "https://soundcloud.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "weight": 1.44,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.allmusic.com",
+          "https://genius.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "weight": 1.42,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.allmusic.com",
+          "https://www.theguardian.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "weight": 1.21,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.allmusic.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "weight": 1.17,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.billboard.com",
+          "https://www.youtube.com",
+          "https://music.apple.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "125bff05-6c5b-42c8-b965-3ff0ceb05829",
+      "target": "d65758b8-805e-4063-bec4-109f8518115b",
+      "weight": 1.17,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "013088c1-0484-4c74-bba9-8a2a3eab5dbd",
+      "target": "e2291111-6c77-4086-92cb-42e7800871ff",
+      "weight": 2.2,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.politico.com",
+          "https://www.npr.org",
+          "https://www.nytimes.com",
+          "https://www.cnn.com",
+          "https://www.theguardian.com",
+          "https://www.pewresearch.org",
+          "https://www.pbs.org",
+          "https://theconversation.com",
+          "https://nypost.com",
+          "https://www.sciencedirect.com",
+          "https://www.congress.gov"
+        ]
+      }
+    },
+    {
+      "source": "013088c1-0484-4c74-bba9-8a2a3eab5dbd",
+      "target": "dc5d9b1f-753e-4a0a-ba57-9ab15434d9c7",
+      "weight": 1.19,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.nytimes.com",
+          "https://www.theguardian.com",
+          "https://www.vice.com",
+          "https://www.latimes.com",
+          "https://www.youtube.com",
+          "https://nypost.com"
+        ]
+      }
+    },
+    {
+      "source": "013088c1-0484-4c74-bba9-8a2a3eab5dbd",
+      "target": "77024a72-7a23-48cb-bee1-83b63ae1f9a7",
+      "weight": 1.15,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://onlinelibrary.wiley.com",
+          "https://www.npr.org",
+          "https://www.cnn.com",
+          "https://pmc.ncbi.nlm.nih.gov",
+          "https://www.jstor.org",
+          "https://www.sciencedirect.com"
+        ]
+      }
+    },
+    {
+      "source": "013088c1-0484-4c74-bba9-8a2a3eab5dbd",
+      "target": "945ce748-c18a-47d5-8a15-9a260c672358",
+      "weight": 1.02,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.marketplace.org",
+          "https://www.investopedia.com",
+          "https://www.theguardian.com",
+          "https://theconversation.com",
+          "https://www.congress.gov"
+        ]
+      }
+    },
+    {
+      "source": "013088c1-0484-4c74-bba9-8a2a3eab5dbd",
+      "target": "aab6177a-e73c-46a0-afb1-3520c6cc5378",
+      "weight": 1.01,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.theguardian.com",
+          "https://pmc.ncbi.nlm.nih.gov",
+          "https://www.cambridge.org",
+          "https://www.youtube.com",
+          "https://www.jstor.org"
+        ]
+      }
+    },
+    {
+      "source": "dfe7eea2-9981-4ada-9cd0-50b8f470be06",
+      "target": "7e2e28f5-8bf7-444c-8a33-29bb439f4cb3",
+      "weight": 1.13,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.amazon.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org",
+          "https://www.themoviedb.org"
+        ]
+      }
+    },
+    {
+      "source": "dc5d9b1f-753e-4a0a-ba57-9ab15434d9c7",
+      "target": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "weight": 1.43,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.facebook.com",
+          "https://x.com",
+          "https://twitter.com",
+          "https://www.koreaboo.com",
+          "https://www.youtube.com",
+          "https://www.forbes.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "dc5d9b1f-753e-4a0a-ba57-9ab15434d9c7",
+      "target": "aab6177a-e73c-46a0-afb1-3520c6cc5378",
+      "weight": 1.09,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.the-independent.com",
+          "https://www.theguardian.com",
+          "https://www.facebook.com",
+          "https://www.youtube.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "dc5d9b1f-753e-4a0a-ba57-9ab15434d9c7",
+      "target": "1c17b5fd-d38a-43f9-9889-0d4984eee7b6",
+      "weight": 1.07,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.nytimes.com",
+          "https://www.facebook.com",
+          "https://x.com",
+          "https://www.latimes.com",
+          "https://people.com"
+        ]
+      }
+    },
+    {
+      "source": "dc5d9b1f-753e-4a0a-ba57-9ab15434d9c7",
+      "target": "e518400a-b0e2-4cd5-adc9-2aca57af5270",
+      "weight": 1.05,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.businessinsider.com",
+          "https://www.theguardian.com",
+          "https://www.latimes.com",
+          "https://observer.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "dc5d9b1f-753e-4a0a-ba57-9ab15434d9c7",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.04,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.theguardian.com",
+          "https://www.facebook.com",
+          "https://www.vice.com",
+          "https://www.youtube.com",
+          "https://www.forbes.com"
+        ]
+      }
+    },
+    {
+      "source": "dc5d9b1f-753e-4a0a-ba57-9ab15434d9c7",
+      "target": "35866bde-c082-4f86-a0a2-8d3bc1a71c49",
+      "weight": 1.02,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.nytimes.com",
+          "https://www.theguardian.com",
+          "https://www.latimes.com",
+          "https://observer.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "425b52eb-3c49-41a0-8ff7-faec01f07c62",
+      "weight": 2.58,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://screenrant.com",
+          "https://www.rottentomatoes.com",
+          "https://www.nytimes.com",
+          "https://variety.com",
+          "https://www.justwatch.com",
+          "https://www.indiewire.com",
+          "https://www.hollywoodreporter.com",
+          "https://www.amazon.com",
+          "https://www.screendaily.com",
+          "https://www.boxofficemojo.com",
+          "https://www.imdb.com",
+          "https://www.the-numbers.com"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "e518400a-b0e2-4cd5-adc9-2aca57af5270",
+      "weight": 2.16,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://collider.com",
+          "https://www.reuters.com",
+          "https://www.rottentomatoes.com",
+          "https://variety.com",
+          "https://www.slantmagazine.com",
+          "https://www.hollywoodreporter.com",
+          "https://www.amazon.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "9acf26b3-c4ee-45e3-9487-90b598ba7047",
+      "weight": 1.73,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://letterboxd.com",
+          "https://www.rottentomatoes.com",
+          "https://www.nytimes.com",
+          "https://variety.com",
+          "https://www.justwatch.com",
+          "https://www.hollywoodreporter.com",
+          "https://www.screendaily.com",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "weight": 1.34,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.amazon.com",
+          "https://open.spotify.com",
+          "https://www.imdb.com",
+          "https://music.apple.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "7e2e28f5-8bf7-444c-8a33-29bb439f4cb3",
+      "weight": 1.31,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.rottentomatoes.com",
+          "https://www.justwatch.com",
+          "https://www.amazon.com",
+          "https://www.imdb.com",
+          "https://music.apple.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "weight": 1.3,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.nytimes.com",
+          "https://www.hollywoodreporter.com",
+          "https://www.imdb.com",
+          "https://music.apple.com",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "weight": 1.24,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://variety.com",
+          "https://www.amazon.com",
+          "https://open.spotify.com",
+          "https://www.imdb.com",
+          "https://music.apple.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "weight": 1.13,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.amazon.com",
+          "https://open.spotify.com",
+          "https://www.imdb.com",
+          "https://music.apple.com"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "weight": 1.13,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.ebay.com",
+          "https://open.spotify.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "d65758b8-805e-4063-bec4-109f8518115b",
+      "weight": 1.11,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://variety.com",
+          "https://www.hollywoodreporter.com",
+          "https://open.spotify.com",
+          "https://www.last.fm"
+        ]
+      }
+    },
+    {
+      "source": "b2e85c40-3b6e-482a-9641-5043a88ece13",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 1.06,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://open.spotify.com",
+          "https://www.popmatters.com",
+          "https://en.wikipedia.org",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "target": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "weight": 2.22,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.billboard.com",
+          "https://www.hollywoodreporter.com",
+          "https://genius.com",
+          "https://kworb.net",
+          "https://www.imdb.com",
+          "https://music.apple.com",
+          "https://www.riaa.com"
+        ]
+      }
+    },
+    {
+      "source": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 2.16,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.stereogum.com",
+          "https://www.nme.com",
+          "https://pitchfork.com",
+          "https://www.metacritic.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://kworb.net",
+          "https://consequence.net"
+        ]
+      }
+    },
+    {
+      "source": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "target": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "weight": 2.0,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.nme.com",
+          "https://www.officialcharts.com",
+          "https://www.metacritic.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://consequence.net"
+        ]
+      }
+    },
+    {
+      "source": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.92,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.nme.com",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://www.hollywoodreporter.com",
+          "https://genius.com",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "target": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "weight": 1.61,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://musicbrainz.org",
+          "https://www.officialcharts.com",
+          "https://www.billboard.com",
+          "https://www.imdb.com",
+          "https://music.apple.com",
+          "https://www.riaa.com"
+        ]
+      }
+    },
+    {
+      "source": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "target": "d65758b8-805e-4063-bec4-109f8518115b",
+      "weight": 1.35,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://musicbrainz.org",
+          "https://www.billboard.com",
+          "https://www.hollywoodreporter.com",
+          "https://genius.com",
+          "https://www.qobuz.com"
+        ]
+      }
+    },
+    {
+      "source": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "target": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "weight": 1.12,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.officialcharts.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "target": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "weight": 1.11,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.stereogum.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://genius.com"
+        ]
+      }
+    },
+    {
+      "source": "26d7a0d9-db27-4748-877b-1c094f85deda",
+      "target": "425b52eb-3c49-41a0-8ff7-faec01f07c62",
+      "weight": 1.07,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.nytimes.com",
+          "https://www.theguardian.com",
+          "https://www.hollywoodreporter.com",
+          "https://www.interviewmagazine.com",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "e518400a-b0e2-4cd5-adc9-2aca57af5270",
+      "target": "425b52eb-3c49-41a0-8ff7-faec01f07c62",
+      "weight": 1.91,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.rottentomatoes.com",
+          "https://variety.com",
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://www.hollywoodreporter.com",
+          "https://deadline.com",
+          "https://www.thetimes.com",
+          "https://www.amazon.com",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "e518400a-b0e2-4cd5-adc9-2aca57af5270",
+      "target": "35866bde-c082-4f86-a0a2-8d3bc1a71c49",
+      "weight": 1.44,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://variety.com",
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://deadline.com",
+          "https://observer.com",
+          "https://www.latimes.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "e518400a-b0e2-4cd5-adc9-2aca57af5270",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.22,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.barnesandnoble.com",
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://www.hollywoodreporter.com",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "e518400a-b0e2-4cd5-adc9-2aca57af5270",
+      "target": "a0ff0382-71ab-431f-838e-568b6535ef5a",
+      "weight": 1.05,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.reuters.com",
+          "https://www.hollywoodreporter.com",
+          "https://deadline.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "e518400a-b0e2-4cd5-adc9-2aca57af5270",
+      "target": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "weight": 1.02,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://variety.com",
+          "https://www.reddit.com",
+          "https://www.amazon.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "7e7378b9-081e-4184-a629-81498d880ce7",
+      "target": "68f9f642-5883-42a8-913f-cd8bbaaa54e2",
+      "weight": 2.08,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://man.openbsd.org",
+          "https://man7.org",
+          "https://docs.oracle.com",
+          "https://unix.stackexchange.com",
+          "https://man.netbsd.org",
+          "https://www.kernel.org",
+          "https://www.phoronix.com",
+          "https://stackoverflow.com",
+          "https://man.freebsd.org"
+        ]
+      }
+    },
+    {
+      "source": "3c6c7842-d730-4728-bba7-7403dc645389",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 1.61,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.albumoftheyear.org",
+          "https://pitchfork.com",
+          "https://genius.com",
+          "https://soundcloud.com",
+          "https://rateyourmusic.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "3c6c7842-d730-4728-bba7-7403dc645389",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.58,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.albumoftheyear.org",
+          "https://www.thefader.com",
+          "https://pitchfork.com",
+          "https://genius.com",
+          "https://rateyourmusic.com",
+          "https://www.complex.com"
+        ]
+      }
+    },
+    {
+      "source": "3c6c7842-d730-4728-bba7-7403dc645389",
+      "target": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "weight": 1.07,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.albumoftheyear.org",
+          "https://en.wikipedia.org",
+          "https://rateyourmusic.com"
+        ]
+      }
+    },
+    {
+      "source": "3c6c7842-d730-4728-bba7-7403dc645389",
+      "target": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "weight": 1.04,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://genius.com",
+          "https://en.wikipedia.org",
+          "https://rateyourmusic.com"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "weight": 3.42,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.setlist.fm",
+          "https://www.imdb.com",
+          "https://www.soompi.com",
+          "https://www.generasia.com",
+          "https://x.com",
+          "https://www.billboard.com",
+          "https://koreajoongangdaily.joins.com",
+          "https://koreansalestwt.blogspot.com",
+          "https://www.amazon.com",
+          "https://www.koreaboo.com",
+          "https://www.youtube.com",
+          "https://open.spotify.com",
+          "https://thebiaslist.com",
+          "https://www.allkpop.com",
+          "https://music.apple.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 1.85,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.albumoftheyear.org",
+          "https://www.setlist.fm",
+          "https://www.billboard.com",
+          "https://www.reddit.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://open.spotify.com",
+          "https://en.wikipedia.org",
+          "https://www.udiscovermusic.com"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.84,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.albumoftheyear.org",
+          "https://www.npr.org",
+          "https://www.facebook.com",
+          "https://www.billboard.com",
+          "https://www.reddit.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://open.spotify.com",
+          "https://www.forbes.com"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "weight": 1.45,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.setlist.fm",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://music.apple.com",
+          "https://www.instagram.com"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "7e2e28f5-8bf7-444c-8a33-29bb439f4cb3",
+      "weight": 1.45,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.facebook.com",
+          "https://timesofindia.indiatimes.com",
+          "https://www.amazon.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://music.apple.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "35866bde-c082-4f86-a0a2-8d3bc1a71c49",
+      "weight": 1.4,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.npr.org",
+          "https://variety.com",
+          "https://www.reddit.com",
+          "https://www.billboard.com",
+          "https://www.teenvogue.com",
+          "https://music.apple.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "weight": 1.27,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.billboard.com",
+          "https://www.amazon.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://music.apple.com"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "a0ff0382-71ab-431f-838e-568b6535ef5a",
+      "weight": 1.22,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.instagram.com",
+          "https://www.facebook.com",
+          "https://timesofindia.indiatimes.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "weight": 1.06,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.setlist.fm",
+          "https://genius.com",
+          "https://open.spotify.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "weight": 1.06,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.albumoftheyear.org",
+          "https://www.setlist.fm",
+          "https://www.npr.org",
+          "https://www.billboard.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "cc9d3e6c-0aeb-47e1-96ca-b626f4559f80",
+      "weight": 1.05,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.npr.org",
+          "https://variety.com",
+          "https://www.facebook.com",
+          "https://www.reddit.com",
+          "https://www.billboard.com"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "d65758b8-805e-4063-bec4-109f8518115b",
+      "weight": 1.05,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://variety.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "weight": 1.05,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.billboard.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "weight": 1.04,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.reddit.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://www.instagram.com",
+          "https://www.udiscovermusic.com"
+        ]
+      }
+    },
+    {
+      "source": "7f65cafb-1dc7-4907-be6f-849de4422227",
+      "target": "ba21b5a7-d180-4228-8021-6f1538e987f7",
+      "weight": 1.03,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.albumoftheyear.org",
+          "https://www.setlist.fm",
+          "https://www.amazon.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "target": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "weight": 1.94,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.billboard.com",
+          "https://www.amazon.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://rateyourmusic.com",
+          "https://www.imdb.com",
+          "https://music.apple.com"
+        ]
+      }
+    },
+    {
+      "source": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "target": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "weight": 1.65,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.billboard.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://rateyourmusic.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 1.54,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.billboard.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://rateyourmusic.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "target": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "weight": 1.44,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://open.spotify.com",
+          "https://rateyourmusic.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "target": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "weight": 1.36,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.billboard.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://music.apple.com"
+        ]
+      }
+    },
+    {
+      "source": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "target": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "weight": 1.21,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.billboard.com",
+          "https://rateyourmusic.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "target": "7e2e28f5-8bf7-444c-8a33-29bb439f4cb3",
+      "weight": 1.13,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.amazon.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://music.apple.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "target": "ba21b5a7-d180-4228-8021-6f1538e987f7",
+      "weight": 1.11,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.amazon.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "2495bf14-5251-41e4-a904-aabefc55d60a",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.08,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.billboard.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://rateyourmusic.com"
+        ]
+      }
+    },
+    {
+      "source": "35866bde-c082-4f86-a0a2-8d3bc1a71c49",
+      "target": "425b52eb-3c49-41a0-8ff7-faec01f07c62",
+      "weight": 1.23,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.npr.org",
+          "https://www.nytimes.com",
+          "https://variety.com",
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://deadline.com"
+        ]
+      }
+    },
+    {
+      "source": "35866bde-c082-4f86-a0a2-8d3bc1a71c49",
+      "target": "cc9d3e6c-0aeb-47e1-96ca-b626f4559f80",
+      "weight": 1.05,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.npr.org",
+          "https://variety.com",
+          "https://www.reddit.com",
+          "https://www.billboard.com",
+          "https://www.latimes.com"
+        ]
+      }
+    },
+    {
+      "source": "35866bde-c082-4f86-a0a2-8d3bc1a71c49",
+      "target": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "weight": 1.04,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://www.billboard.com",
+          "https://www.latimes.com",
+          "https://www.researchgate.net"
+        ]
+      }
+    },
+    {
+      "source": "35866bde-c082-4f86-a0a2-8d3bc1a71c49",
+      "target": "e2291111-6c77-4086-92cb-42e7800871ff",
+      "weight": 1.02,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.npr.org",
+          "https://www.nytimes.com",
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://deadline.com"
+        ]
+      }
+    },
+    {
+      "source": "a0ff0382-71ab-431f-838e-568b6535ef5a",
+      "target": "7e2e28f5-8bf7-444c-8a33-29bb439f4cb3",
+      "weight": 2.16,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.business-standard.com",
+          "https://www.facebook.com",
+          "https://www.thehindu.com",
+          "https://www.indiatoday.in",
+          "https://www.youtube.com",
+          "https://indianexpress.com",
+          "https://www.imdb.com",
+          "https://timesofindia.indiatimes.com",
+          "https://en.wikipedia.org",
+          "https://www.themoviedb.org"
+        ]
+      }
+    },
+    {
+      "source": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "target": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "weight": 2.64,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://au.rollingstone.com",
+          "https://www.rollingstone.com",
+          "https://www.billboard.com",
+          "https://chartmasters.org",
+          "https://genius.com",
+          "https://www.jstor.org",
+          "https://www.instagram.com"
+        ]
+      }
+    },
+    {
+      "source": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 2.4,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.whosampled.com",
+          "https://www.songfacts.com",
+          "https://www.setlist.fm",
+          "https://pitchfork.com",
+          "https://www.rollingstone.com",
+          "https://www.billboard.com",
+          "https://tunebat.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://kworb.net"
+        ]
+      }
+    },
+    {
+      "source": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "target": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "weight": 2.35,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.billboard.com",
+          "https://chartmasters.org",
+          "https://www.youtube.com",
+          "https://www.imdb.com",
+          "https://music.apple.com",
+          "https://www.riaa.com"
+        ]
+      }
+    },
+    {
+      "source": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "target": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "weight": 2.07,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.whosampled.com",
+          "https://www.songfacts.com",
+          "https://www.officialcharts.com",
+          "https://www.billboard.com",
+          "https://tunebat.com",
+          "https://www.youtube.com",
+          "https://americansongwriter.com",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.93,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://pitchfork.com",
+          "https://www.vibe.com",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.billboard.com",
+          "https://www.hollywoodreporter.com",
+          "https://genius.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "target": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "weight": 1.61,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://www.setlist.fm",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://tunebat.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "target": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "weight": 1.56,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.billboard.com",
+          "https://genius.com"
+        ]
+      }
+    },
+    {
+      "source": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "target": "d65758b8-805e-4063-bec4-109f8518115b",
+      "weight": 1.36,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://www.billboard.com",
+          "https://www.hollywoodreporter.com",
+          "https://genius.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "e680c0a0-b979-452e-8293-f366128f55ae",
+      "target": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "weight": 1.15,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.officialcharts.com",
+          "https://genius.com",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 2.47,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://www.setlist.fm",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://tunebat.com",
+          "https://www.youtube.com",
+          "https://www.hooktheory.com",
+          "https://www.soundonsound.com",
+          "https://www.udiscovermusic.com"
+        ]
+      }
+    },
+    {
+      "source": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "target": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "weight": 2.18,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.musicnotes.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://tunebat.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "target": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "weight": 1.72,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.allmusic.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "target": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "weight": 1.64,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://bestsellingalbums.org",
+          "https://www.rollingstone.com",
+          "https://www.allmusic.com",
+          "https://www.theguardian.com",
+          "https://www.udiscovermusic.com"
+        ]
+      }
+    },
+    {
+      "source": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.53,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.facebook.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "target": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "weight": 1.39,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com"
+        ]
+      }
+    },
+    {
+      "source": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "target": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "weight": 1.21,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.allmusic.com"
+        ]
+      }
+    },
+    {
+      "source": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "target": "d65758b8-805e-4063-bec4-109f8518115b",
+      "weight": 1.18,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://www.allmusic.com",
+          "https://www.youtube.com",
+          "https://www.45cat.com"
+        ]
+      }
+    },
+    {
+      "source": "bc62d658-efc2-4ad6-a4bd-5127389df295",
+      "target": "c1a844f4-c0b1-4a55-b02f-513c3f522c4d",
+      "weight": 1.17,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://secondhandsongs.com",
+          "https://www.allmusic.com",
+          "https://www.musicnotes.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "d65758b8-805e-4063-bec4-109f8518115b",
+      "target": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "weight": 1.69,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://musicbrainz.org",
+          "https://www.songfacts.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "d65758b8-805e-4063-bec4-109f8518115b",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 1.54,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "d65758b8-805e-4063-bec4-109f8518115b",
+      "target": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "weight": 1.41,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "d65758b8-805e-4063-bec4-109f8518115b",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.3,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.billboard.com",
+          "https://www.hollywoodreporter.com",
+          "https://genius.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "d65758b8-805e-4063-bec4-109f8518115b",
+      "target": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "weight": 1.21,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://www.sessiondays.com",
+          "https://www.musicvf.com"
+        ]
+      }
+    },
+    {
+      "source": "d65758b8-805e-4063-bec4-109f8518115b",
+      "target": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "weight": 1.15,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://genius.com"
+        ]
+      }
+    },
+    {
+      "source": "ba21b5a7-d180-4228-8021-6f1538e987f7",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.27,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.albumoftheyear.org",
+          "https://www.discogs.com",
+          "https://everythingisnoise.net",
+          "https://www.barnesandnoble.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "ba21b5a7-d180-4228-8021-6f1538e987f7",
+      "target": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "weight": 1.13,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.amazon.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://www.kerrang.com"
+        ]
+      }
+    },
+    {
+      "source": "ba21b5a7-d180-4228-8021-6f1538e987f7",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 1.06,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.albumoftheyear.org",
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://open.spotify.com",
+          "https://www.youtube.com"
+        ]
+      }
+    },
+    {
+      "source": "425b52eb-3c49-41a0-8ff7-faec01f07c62",
+      "target": "9acf26b3-c4ee-45e3-9487-90b598ba7047",
+      "weight": 2.26,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.netflix.com",
+          "https://www.bbc.com",
+          "https://www.rottentomatoes.com",
+          "https://www.nytimes.com",
+          "https://variety.com",
+          "https://www.justwatch.com",
+          "https://www.hollywoodreporter.com",
+          "https://www.screendaily.com",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "425b52eb-3c49-41a0-8ff7-faec01f07c62",
+      "target": "e2291111-6c77-4086-92cb-42e7800871ff",
+      "weight": 1.47,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.tandfonline.com",
+          "https://www.bbc.com",
+          "https://www.npr.org",
+          "https://www.nytimes.com",
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://deadline.com"
+        ]
+      }
+    },
+    {
+      "source": "425b52eb-3c49-41a0-8ff7-faec01f07c62",
+      "target": "7e2e28f5-8bf7-444c-8a33-29bb439f4cb3",
+      "weight": 1.41,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.rottentomatoes.com",
+          "https://www.justwatch.com",
+          "https://www.amazon.com",
+          "https://www.imdb.com",
+          "https://www.themoviedb.org"
+        ]
+      }
+    },
+    {
+      "source": "425b52eb-3c49-41a0-8ff7-faec01f07c62",
+      "target": "bbd80643-8616-451b-9af3-34c4596098d6",
+      "weight": 1.11,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://screenrant.com",
+          "https://www.rottentomatoes.com",
+          "https://www.justwatch.com",
+          "https://www.imdb.com",
+          "https://www.themoviedb.org"
+        ]
+      }
+    },
+    {
+      "source": "425b52eb-3c49-41a0-8ff7-faec01f07c62",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.04,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.npr.org",
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://www.hollywoodreporter.com",
+          "https://www.vice.com"
+        ]
+      }
+    },
+    {
+      "source": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "target": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "weight": 2.47,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://rateyourmusic.com",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "target": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "weight": 2.0,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.allmusic.com",
+          "https://ultimateclassicrock.com",
+          "https://open.spotify.com",
+          "https://rateyourmusic.com",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 1.79,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://www.rollingstone.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://rateyourmusic.com"
+        ]
+      }
+    },
+    {
+      "source": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.77,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.billboard.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://rateyourmusic.com"
+        ]
+      }
+    },
+    {
+      "source": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "target": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "weight": 1.65,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://bestsellingalbums.org",
+          "https://www.rollingstone.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://chartmasters.org"
+        ]
+      }
+    },
+    {
+      "source": "5c88e8db-7ab2-4c4a-a502-15895ade4cea",
+      "target": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "weight": 1.16,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com"
+        ]
+      }
+    },
+    {
+      "source": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 2.69,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.whosampled.com",
+          "https://www.songfacts.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://tunebat.com",
+          "https://www.youtube.com",
+          "https://open.spotify.com",
+          "https://rateyourmusic.com",
+          "https://songbpm.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "target": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "weight": 1.95,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.allmusic.com",
+          "https://open.spotify.com",
+          "https://rateyourmusic.com",
+          "https://www.imdb.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.75,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://open.spotify.com",
+          "https://www.youtube.com",
+          "https://rateyourmusic.com"
+        ]
+      }
+    },
+    {
+      "source": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "target": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "weight": 1.73,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.whosampled.com",
+          "https://www.allmusic.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://rateyourmusic.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "target": "c1a844f4-c0b1-4a55-b02f-513c3f522c4d",
+      "weight": 1.64,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.allmusic.com",
+          "https://www.musicnotes.com",
+          "https://www.youtube.com",
+          "https://rateyourmusic.com",
+          "https://songbpm.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "target": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "weight": 1.39,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://bestsellingalbums.org",
+          "https://www.allmusic.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com"
+        ]
+      }
+    },
+    {
+      "source": "a974f031-5ed4-481f-912c-ffb281043ad5",
+      "target": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "weight": 1.14,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.officialcharts.com",
+          "https://www.allmusic.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com"
+        ]
+      }
+    },
+    {
+      "source": "9acf26b3-c4ee-45e3-9487-90b598ba7047",
+      "target": "7e2e28f5-8bf7-444c-8a33-29bb439f4cb3",
+      "weight": 1.42,
+      "types": [
+        "shared_domains",
+        "title_similarity",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.rottentomatoes.com",
+          "https://www.justwatch.com",
+          "https://www.facebook.com",
+          "https://www.youtube.com",
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "source": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 1.79,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://grammy.com",
+          "https://www.allmusic.com",
+          "https://genius.com",
+          "https://open.spotify.com",
+          "https://rateyourmusic.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "target": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "weight": 1.51,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.pastpri.me",
+          "https://www.allmusic.com",
+          "https://rateyourmusic.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.32,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.officialcharts.com",
+          "https://genius.com",
+          "https://open.spotify.com",
+          "https://rateyourmusic.com"
+        ]
+      }
+    },
+    {
+      "source": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "target": "c1a844f4-c0b1-4a55-b02f-513c3f522c4d",
+      "weight": 1.18,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.allmusic.com",
+          "https://genius.com",
+          "https://rateyourmusic.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "50889e96-7c45-4bfb-940e-87868c1e9bd8",
+      "target": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "weight": 1.16,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.officialcharts.com",
+          "https://www.allmusic.com",
+          "https://genius.com"
+        ]
+      }
+    },
+    {
+      "source": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 2.2,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.songfacts.com",
+          "https://www.stereogum.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://www.reddit.com",
+          "https://genius.com",
+          "https://www.udiscovermusic.com"
+        ]
+      }
+    },
+    {
+      "source": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.95,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://bestsellingalbums.org",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://hiphopdx.com",
+          "https://www.reddit.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://www.grammy.com"
+        ]
+      }
+    },
+    {
+      "source": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "target": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "weight": 1.58,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.rollingstone.com",
+          "https://www.allmusic.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://www.latimes.com"
+        ]
+      }
+    },
+    {
+      "source": "b96e0630-9c26-4542-bc18-ef69088e2e4a",
+      "target": "e2291111-6c77-4086-92cb-42e7800871ff",
+      "weight": 1.08,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://time.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://nypost.com"
+        ]
+      }
+    },
+    {
+      "source": "c1a844f4-c0b1-4a55-b02f-513c3f522c4d",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 1.53,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.allmusic.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://rateyourmusic.com",
+          "https://songbpm.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "e386ae3f-95db-4f17-b6af-b0fcc5fad394",
+      "target": "dc6d1950-0c5a-497b-b6bc-6b453b4bf7e6",
+      "weight": 1.5,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://muslimheritage.com",
+          "https://www.cambridge.org",
+          "https://pubmed.ncbi.nlm.nih.gov",
+          "https://www.iranicaonline.org",
+          "https://www.researchgate.net",
+          "https://www.academia.edu"
+        ]
+      }
+    },
+    {
+      "source": "e386ae3f-95db-4f17-b6af-b0fcc5fad394",
+      "target": "78a5acb9-931f-4c5f-94c8-f3739ff5cf1d",
+      "weight": 1.28,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://repository.ubn.ru.nl",
+          "https://pubmed.ncbi.nlm.nih.gov",
+          "https://www.iranicaonline.org",
+          "https://www.researchgate.net",
+          "https://www.jstor.org",
+          "https://www.academia.edu"
+        ]
+      }
+    },
+    {
+      "source": "e386ae3f-95db-4f17-b6af-b0fcc5fad394",
+      "target": "8538d9c1-e2e1-4f81-88bb-fab48df1ff98",
+      "weight": 1.08,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://pubmed.ncbi.nlm.nih.gov",
+          "https://www.jstor.org",
+          "https://www.iranicaonline.org",
+          "https://www.researchgate.net",
+          "https://www.academia.edu"
+        ]
+      }
+    },
+    {
+      "source": "e386ae3f-95db-4f17-b6af-b0fcc5fad394",
+      "target": "65649ca0-6e72-4bf4-8df0-42bf2eada093",
+      "weight": 1.07,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.academia.edu",
+          "https://www.britannica.com",
+          "https://www.jstor.org",
+          "https://www.researchgate.net"
+        ]
+      }
+    },
+    {
+      "source": "8538d9c1-e2e1-4f81-88bb-fab48df1ff98",
+      "target": "77024a72-7a23-48cb-bee1-83b63ae1f9a7",
+      "weight": 1.95,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.tripadvisor.com",
+          "https://www.aljazeera.com",
+          "https://link.springer.com",
+          "https://pmc.ncbi.nlm.nih.gov",
+          "https://oxfordbusinessgroup.com",
+          "https://www.researchgate.net",
+          "https://www.jstor.org",
+          "https://www.state.gov",
+          "https://gulfmagazine.co",
+          "https://www.washingtoninstitute.org"
+        ]
+      }
+    },
+    {
+      "source": "8538d9c1-e2e1-4f81-88bb-fab48df1ff98",
+      "target": "6c9bbb0c-3326-4317-8351-e497bd82e743",
+      "weight": 1.42,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.brookings.edu",
+          "https://www.aljazeera.com",
+          "https://www.mei.edu",
+          "https://www.jstor.org",
+          "https://www.researchgate.net",
+          "https://www.state.gov",
+          "https://www.washingtoninstitute.org"
+        ]
+      }
+    },
+    {
+      "source": "8538d9c1-e2e1-4f81-88bb-fab48df1ff98",
+      "target": "78a5acb9-931f-4c5f-94c8-f3739ff5cf1d",
+      "weight": 1.41,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.tandfonline.com",
+          "https://pmc.ncbi.nlm.nih.gov",
+          "https://pubmed.ncbi.nlm.nih.gov",
+          "https://www.iranicaonline.org",
+          "https://www.researchgate.net",
+          "https://www.jstor.org",
+          "https://www.academia.edu"
+        ]
+      }
+    },
+    {
+      "source": "8538d9c1-e2e1-4f81-88bb-fab48df1ff98",
+      "target": "dc6d1950-0c5a-497b-b6bc-6b453b4bf7e6",
+      "weight": 1.28,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://link.springer.com",
+          "https://pmc.ncbi.nlm.nih.gov",
+          "https://pubmed.ncbi.nlm.nih.gov",
+          "https://www.iranicaonline.org",
+          "https://www.researchgate.net",
+          "https://www.academia.edu"
+        ]
+      }
+    },
+    {
+      "source": "dc6d1950-0c5a-497b-b6bc-6b453b4bf7e6",
+      "target": "5bee68a6-fe7c-4768-b7da-14e6c9cdf522",
+      "weight": 1.16,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://pmc.ncbi.nlm.nih.gov",
+          "https://www.cambridge.org",
+          "https://pubmed.ncbi.nlm.nih.gov",
+          "https://www.researchgate.net",
+          "https://journals.sagepub.com"
+        ]
+      }
+    },
+    {
+      "source": "dc6d1950-0c5a-497b-b6bc-6b453b4bf7e6",
+      "target": "78a5acb9-931f-4c5f-94c8-f3739ff5cf1d",
+      "weight": 1.05,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://pmc.ncbi.nlm.nih.gov",
+          "https://pubmed.ncbi.nlm.nih.gov",
+          "https://www.iranicaonline.org",
+          "https://www.researchgate.net",
+          "https://www.academia.edu"
+        ]
+      }
+    },
+    {
+      "source": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 2.86,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.nme.com",
+          "https://pitchfork.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://www.metacritic.com",
+          "https://tapeop.com",
+          "https://genius.com",
+          "https://www.popmatters.com",
+          "https://consequence.net"
+        ]
+      }
+    },
+    {
+      "source": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 2.16,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.nme.com",
+          "https://pitchfork.com",
+          "https://www.officialcharts.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://genius.com",
+          "https://acharts.co",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "6dbdce05-32ce-4907-ad74-d1e56abf7fab",
+      "target": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "weight": 1.18,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.allmusic.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com"
+        ]
+      }
+    },
+    {
+      "source": "65649ca0-6e72-4bf4-8df0-42bf2eada093",
+      "target": "6c9bbb0c-3326-4317-8351-e497bd82e743",
+      "weight": 1.31,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.britishmuseum.org",
+          "https://www.jstor.org",
+          "https://www.researchgate.net",
+          "https://whc.unesco.org",
+          "https://www.britannica.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "6c9bbb0c-3326-4317-8351-e497bd82e743",
+      "target": "77024a72-7a23-48cb-bee1-83b63ae1f9a7",
+      "weight": 2.53,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.aljazeera.com",
+          "https://carnegieendowment.org",
+          "https://www.britannica.com",
+          "https://www.jstor.org",
+          "https://en-us.topographic-map.com",
+          "https://www.researchgate.net",
+          "https://sanaacenter.org",
+          "https://www.atlasobscura.com",
+          "https://www.state.gov",
+          "https://www.sciencedirect.com",
+          "https://en.wikipedia.org",
+          "https://www.yemenonline.info",
+          "https://www.washingtoninstitute.org"
+        ]
+      }
+    },
+    {
+      "source": "78a5acb9-931f-4c5f-94c8-f3739ff5cf1d",
+      "target": "5bee68a6-fe7c-4768-b7da-14e6c9cdf522",
+      "weight": 1.67,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://academic.oup.com",
+          "https://www.mdpi.com",
+          "https://plato.stanford.edu",
+          "https://philarchive.org",
+          "https://www.frontiersin.org",
+          "https://pmc.ncbi.nlm.nih.gov",
+          "https://pubmed.ncbi.nlm.nih.gov",
+          "https://www.researchgate.net"
+        ]
+      }
+    },
+    {
+      "source": "77024a72-7a23-48cb-bee1-83b63ae1f9a7",
+      "target": "5bee68a6-fe7c-4768-b7da-14e6c9cdf522",
+      "weight": 1.18,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://onlinelibrary.wiley.com",
+          "https://academic.oup.com",
+          "https://www.mdpi.com",
+          "https://pmc.ncbi.nlm.nih.gov",
+          "https://www.researchgate.net",
+          "https://www.sciencedirect.com"
+        ]
+      }
+    },
+    {
+      "source": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "target": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "weight": 2.04,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.albumoftheyear.org",
+          "https://www.discogs.com",
+          "https://www.setlist.fm",
+          "https://www.whosampled.com",
+          "https://www.theguardian.com",
+          "https://www.allmusic.com",
+          "https://www.billboard.com",
+          "https://rateyourmusic.com",
+          "https://en.wikipedia.org"
+        ]
+      }
+    },
+    {
+      "source": "50e7b661-bd2f-4b77-abe8-2ff3c39af599",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 1.33,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.albumoftheyear.org",
+          "https://www.discogs.com",
+          "https://www.npr.org",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://rateyourmusic.com"
+        ]
+      }
+    },
+    {
+      "source": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "target": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "weight": 3.19,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://www.albumoftheyear.org",
+          "https://www.discogs.com",
+          "https://www.nme.com",
+          "https://pitchfork.com",
+          "https://www.rollingstone.com",
+          "https://www.theguardian.com",
+          "https://www.billboard.com",
+          "https://www.okayplayer.com",
+          "https://www.reddit.com",
+          "https://genius.com",
+          "https://www.youtube.com",
+          "https://open.spotify.com",
+          "https://musicfeeds.com.au",
+          "https://rateyourmusic.com",
+          "https://www.metacritic.com"
+        ]
+      }
+    },
+    {
+      "source": "a5ff6c17-9345-43a8-8823-adc799bfe7d5",
+      "target": "ad166391-5eda-40ed-bbae-631fb853527a",
+      "weight": 1.06,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://pitchfork.com",
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://genius.com",
+          "https://open.spotify.com"
+        ]
+      }
+    },
+    {
+      "source": "fa7ab61a-18b2-43fe-b528-d6c8a2b9b875",
+      "target": "ad166391-5eda-40ed-bbae-631fb853527a",
+      "weight": 1.05,
+      "types": [
+        "shared_domains",
+        "domain_jaccard"
+      ],
+      "metadata": {
+        "shared_domains": [
+          "https://pitchfork.com",
+          "https://www.theguardian.com",
+          "https://www.reddit.com",
+          "https://genius.com",
+          "https://open.spotify.com"
+        ]
+      }
+    }
+  ],
+  "stats": {
+    "total_nodes": 70,
+    "total_edges": 196,
+    "edges_by_type": {
+      "shared_exact_citations": 9,
+      "shared_domains": 196,
+      "domain_jaccard": 196,
+      "direct_link": 1,
+      "bidirectional_link": 0,
+      "co_linked": 0,
+      "title_similarity": 13
+    }
+  }
+}

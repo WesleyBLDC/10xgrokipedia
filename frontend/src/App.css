@@ -128,6 +128,7 @@
 
 .topic-page .main-content {
   min-width: 0; /* Prevent grid blowout */
+  margin-top: -2rem;
 }
 
 .topic-page h1 {
@@ -202,12 +203,13 @@
 /* Bias bar - gradient from red (left) to blue (right) through gray (center) */
 .topic-page .bias-bar-container {
   flex: 1;
-  min-width: 180px;
-  max-width: 250px;
+  min-width: 120px;
+  max-width: 180px;
   position: relative;
   height: 20px;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 
 .topic-page .bias-bar {
@@ -498,6 +500,24 @@
 
 .topic-page .topic-header .back-link {
   margin-bottom: 0;
+}
+
+/* Graph Link */
+.graph-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: #4ecdc4;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  margin-right: 0.625rem;
+  transition: background 0.2s;
+}
+
+.graph-link:hover {
+  background: #3db8a8;
 }
 
 /* Suggestions Badge */
@@ -1155,6 +1175,7 @@
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
   overscroll-behavior: contain;
+  margin-top: 1rem;
 }
 
 .community-feed .cf-header {
