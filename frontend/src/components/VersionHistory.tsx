@@ -4,7 +4,7 @@ import type { VersionSummary } from "../api";
 
 interface Props {
   topicSlug: string;
-  onVersionSelect: (content: string | null) => void;
+  onVersionSelect: (content: string | null, versionIndex: number | null) => void;
   currentVersionIndex: number | null;
 }
 
@@ -41,7 +41,7 @@ export default function VersionHistory({ topicSlug, onVersionSelect, currentVers
     setLoading(index);
     try {
       const versionData = await getVersion(topicSlug, index);
-      onVersionSelect(versionData.content);
+      onVersionSelect(versionData.content, index);
       setIsOpen(false);
     } catch (err) {
       console.error("Failed to load version:", err);
@@ -51,7 +51,7 @@ export default function VersionHistory({ topicSlug, onVersionSelect, currentVers
   };
 
   const handleCurrentClick = () => {
-    onVersionSelect(null);
+    onVersionSelect(null, null);
     setIsOpen(false);
   };
 

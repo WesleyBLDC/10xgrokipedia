@@ -536,7 +536,7 @@ def get_versions(topic_slug: str) -> list[VersionSummary]:
     for a in data:
         if extract_slug(a["url"]) == decoded_slug:
             versions = []
-            for i, v in enumerate(a["versions"]):
+            for i, v in enumerate(a.get("versions", [])):
                 versions.append(VersionSummary(index=i, timestamp=v["timestamp"]))
             return versions
 
@@ -550,10 +550,11 @@ def get_version(topic_slug: str, version_index: int) -> VersionDetail:
     data = load_data()
 
     for a in data:
-        if extract_slug(a.url) == decoded_slug:
-            if version_index < 0 or version_index >= len(a.versions):
+        if extract_slug(a['url']) == decoded_slug:
+            versions = a.get('versions', [])
+            if version_index < 0 or version_index >= len(versions):
                 raise HTTPException(status_code=404, detail="Version not found")
-            v = a.versions[version_index]
+            v = versions[version_index]
             return VersionDetail(index=version_index, timestamp=v["timestamp"], content=v["content"])
 
     raise HTTPException(status_code=404, detail="Topic not found")
@@ -1008,27 +1009,60 @@ def get_bias_label(score: float) -> str:
         return "Extreme Right"
 
 
+def extract_citations_from_content(content: str) -> list[str]:
+    """Extract all URLs from markdown content (both [text](url) and [](url) formats)."""
+    # Match markdown links: [optional text](url)
+    pattern = r'\[(?:[^\]]*)\]\(([^)]+)\)'
+    urls = re.findall(pattern, content)
+    # Filter to only http/https URLs and deduplicate while preserving order
+    seen = set()
+    result = []
+    for url in urls:
+        if url.startswith(('http://', 'https://')) and url not in seen:
+            seen.add(url)
+            result.append(url)
+    return result
+
+
 @app.get("/api/aggregate_bias/{topic_slug:path}")
-def aggregate_bias(topic_slug: str) -> AggregateBiasResponse:
-    """Get aggregated bias and factual reporting data for an article's citations."""
+def aggregate_bias(topic_slug: str, version_index: int | None = None) -> AggregateBiasResponse:
+    """Get aggregated bias and factual reporting data for an article's citations.
+
+    Args:
+        topic_slug: The article slug
+        version_index: Optional version index. If provided, extracts citations from that version's content.
+    """
     # Load articles
     data = load_data()
     decoded_slug = unquote(topic_slug)
-    
+
     # Find the article
     article = None
     for a in data:
         if extract_slug(a['url']) == decoded_slug:
             article = a
             break
-    
+
     if not article:
         raise HTTPException(status_code=404, detail="Topic not found")
-    
-    # Get citations from article
-    citations = article.get('citations', [])
+
     article_title = article.get('title', '')
     article_url = article.get('url', '')
+
+    # Get citations based on version
+    if version_index is not None:
+        # Get citations from specific version's content
+        versions = article.get('versions', [])
+        if version_index < 0 or version_index >= len(versions):
+            raise HTTPException(status_code=404, detail="Version not found")
+        version_content = versions[version_index].get('content', '')
+        citations = extract_citations_from_content(version_content)
+    else:
+        # Use current article citations (or extract from current content as fallback)
+        citations = article.get('citations', [])
+        if not citations:
+            # Fallback: extract from current content
+            citations = extract_citations_from_content(article.get('content', ''))
     
     if not citations:
         raise HTTPException(

@@ -174,9 +174,13 @@ export async function getVersion(slug: string, index: number): Promise<VersionDe
   return res.json();
 }
 
-export async function getAggregateBias(slug: string): Promise<AggregateBias | null> {
+export async function getAggregateBias(slug: string, versionIndex?: number): Promise<AggregateBias | null> {
   try {
-    const res = await fetch(`${API_BASE}/aggregate_bias/${encodeURIComponent(slug)}`);
+    let url = `${API_BASE}/aggregate_bias/${encodeURIComponent(slug)}`;
+    if (versionIndex !== undefined) {
+      url += `?version_index=${versionIndex}`;
+    }
+    const res = await fetch(url);
     if (!res.ok) return null;
     return res.json();
   } catch {

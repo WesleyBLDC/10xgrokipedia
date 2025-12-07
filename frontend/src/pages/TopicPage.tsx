@@ -58,16 +58,14 @@ export default function TopicPage() {
       setData(null);
       setBiasData(null);
       setError(null);
+      setViewingVersionIndex(null);
+      setVersionContent(null);
       footnoteCounter.current = 0;
       footnoteMap.current.clear();
       getTopic(topic)
         .then(setData)
         .catch(() => setError("Topic not found"));
-      getAggregateBias(topic)
-        .then(setBiasData)
-        .catch(() => {
-          // Silently fail if bias data is not available
-        });
+      // Bias data is fetched by the separate version-aware effect
     }
   }, [topic]);
 
@@ -118,16 +116,21 @@ export default function TopicPage() {
     loadData();
   };
 
-  const handleVersionSelect = (content: string | null) => {
-    if (content === null) {
-      setViewingVersionIndex(null);
-      setVersionContent(null);
-    } else {
-      setVersionContent(content);
-      // Find the index (this is a bit hacky, but works for now)
-      setViewingVersionIndex(0); // Will be set properly by the component
-    }
+  const handleVersionSelect = (content: string | null, versionIndex: number | null) => {
+    setViewingVersionIndex(versionIndex);
+    setVersionContent(content);
   };
+
+  // Fetch bias data when topic or version changes
+  useEffect(() => {
+    if (!topic) return;
+
+    getAggregateBias(topic, viewingVersionIndex ?? undefined)
+      .then(setBiasData)
+      .catch(() => {
+        setBiasData(null);
+      });
+  }, [topic, viewingVersionIndex]);
 
   const pendingCount = suggestions.filter(s => s.status === "pending" || s.status === "reviewed").length;
   const totalCount = suggestions.length;
@@ -179,7 +182,7 @@ export default function TopicPage() {
       {versionContent && (
         <div className="version-banner">
           <span>Viewing an older version of this article</span>
-          <button onClick={() => handleVersionSelect(null)}>Return to current</button>
+          <button onClick={() => handleVersionSelect(null, null)}>Return to current</button>
         </div>
       )}
 
