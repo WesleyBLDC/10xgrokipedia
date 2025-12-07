@@ -23,6 +23,7 @@ type ContradictionEntry = {
   claim_b: string;
   claim_b_offset?: { start: number; end: number; line: number };
   difference: string;
+  rationale?: string;
 };
 
 type ContradictionCluster = {
@@ -63,6 +64,11 @@ export default function TopicPage() {
   const citationTooltipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [showGraph, setShowGraph] = useState(false);
+  const [contradictionTooltip, setContradictionTooltip] = useState<{
+    text: string;
+    position: { x: number; y: number };
+  } | null>(null);
+  const contradictionTooltipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Footnote tracking
   const footnoteCounter = useRef(0);
@@ -237,11 +243,12 @@ export default function TopicPage() {
       otherTitle: string,
       otherUrl: string,
       otherClaim: string,
-      diff: string
+      diff: string,
+      rationale?: string
     ) => {
       if (start < 0 || end <= start || end > displayContent.length) return;
-      const tooltip = `${diff} | See: ${otherTitle}`;
-      const safeTitle = tooltip.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+      const reason = rationale && rationale.trim().length > 0 ? rationale : diff;
+      const safeTip = reason.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
       const safeOtherUrl = otherUrl.replace(/"/g, "&quot;");
       const safeOtherClaim = otherClaim.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
       const safeMyClaim = myClaim.replace(/"/g, "&quot;").replace(/'/g, "&apos;");
@@ -249,12 +256,16 @@ export default function TopicPage() {
       ranges.push({
         start,
         end,
-        html: `<span class="contradiction-highlight" style="${inlineStyle}" title="${safeTitle}" data-target="${safeOtherUrl}" data-target-claim="${safeOtherClaim}" data-claim-text="${safeMyClaim}">`,
+        html: `<span class="contradiction-highlight" style="${inlineStyle}" data-tip="${safeTip}" data-target="${safeOtherUrl}" data-target-claim="${safeOtherClaim}" data-claim-text="${safeMyClaim}">`,
       });
     };
 
     const findOrOffset = (claim: string, offset?: { start: number; end: number }) => {
-      if (offset && offset.start >= 0 && offset.end > offset.start) return offset;
+      // Guard against extremely long spans
+      if (claim.length > 600) return null;
+      if (offset && offset.start >= 0 && offset.end > offset.start && offset.end - offset.start <= 600) {
+        return offset;
+      }
       const idx = displayContent.indexOf(claim);
       if (idx === -1) {
         console.warn("Could not find exact claim in content:", claim.substring(0, 100));
@@ -272,11 +283,11 @@ export default function TopicPage() {
       const otherUrl = isA ? c.article_b_url : c.article_a_url;
       const off = findOrOffset(myClaim, myOffset);
       if (!off) {
-        console.warn("Could not find claim:", myClaim, "in content");
+        console.warn("Could not find claim or offset too long:", myClaim, "in content");
         continue;
       }
       console.log("Adding highlight:", { start: off.start, end: off.end, claim: myClaim });
-      addRange(off.start, off.end, myClaim, otherTitle, otherUrl, otherClaim, c.difference);
+      addRange(off.start, off.end, myClaim, otherTitle, otherUrl, otherClaim, c.difference, c.rationale);
     }
 
     if (ranges.length === 0) {
@@ -350,6 +361,26 @@ export default function TopicPage() {
       window.open(otherUrl, "_blank");
     }
   }, [navigate]);
+
+  const handleContentMouseOver = useCallback((evt: React.MouseEvent<HTMLDivElement>) => {
+    const target = (evt.target as HTMLElement).closest(".contradiction-highlight") as HTMLElement | null;
+    if (!target) return;
+    if (contradictionTooltipTimeoutRef.current) {
+      clearTimeout(contradictionTooltipTimeoutRef.current);
+    }
+    const rect = target.getBoundingClientRect();
+    const tip = target.getAttribute("data-tip") || "";
+    setContradictionTooltip({
+      text: tip,
+      position: { x: rect.left + rect.width / 2, y: rect.top - 6 },
+    });
+  }, []);
+
+  const handleContentMouseOut = useCallback(() => {
+    contradictionTooltipTimeoutRef.current = setTimeout(() => {
+      setContradictionTooltip(null);
+    }, 120);
+  }, []);
 
   if (error) {
     return (
@@ -480,7 +511,14 @@ export default function TopicPage() {
             )}
           </div>
 
-          <div className="content" onMouseUp={handleMouseUp} onClick={handleContentClick} ref={contentRef}>
+          <div
+            className="content"
+            onMouseUp={handleMouseUp}
+            onClick={handleContentClick}
+            onMouseOver={handleContentMouseOver}
+            onMouseOut={handleContentMouseOut}
+            ref={contentRef}
+          >
             <ReactMarkdown
               rehypePlugins={[rehypeRaw]}
               skipHtml={false}
@@ -696,6 +734,36 @@ export default function TopicPage() {
         topicSlug={topic!}
         onSuccess={handleSuggestionSuccess}
       />
+
+      {contradictionTooltip && (
+        <div
+          className="contradiction-tooltip"
+          style={{
+            position: "fixed",
+            left: contradictionTooltip.position.x,
+            top: contradictionTooltip.position.y,
+            transform: "translate(-50%, -100%)",
+          }}
+          onMouseEnter={() => {
+            if (contradictionTooltipTimeoutRef.current) {
+              clearTimeout(contradictionTooltipTimeoutRef.current);
+            }
+          }}
+          onMouseLeave={() => {
+            contradictionTooltipTimeoutRef.current = setTimeout(() => {
+              setContradictionTooltip(null);
+            }, 120);
+          }}
+        >
+          <div className="contradiction-tooltip-content">
+            <div className="contradiction-row">
+              <span className="contradiction-label">AI reasoning:</span>
+              <span className="contradiction-reason-text">{contradictionTooltip.text}</span>
+            </div>
+            <div className="contradiction-hint">Click underline to open the conflicting article.</div>
+          </div>
+        </div>
+      )}
 
       {/* Article Preview Modal */}
       <ArticlePreviewModal

@@ -120,19 +120,19 @@
         {
           "article_a_title": "Richmond, Virginia",
           "article_a_url": "https://grokipedia.com/page/Richmond,_Virginia",
-          "claim_a": "population of 228,670 residents as of July 1, 2024",
+          "claim_a": "population of 228,670",
           "claim_a_offset": {
-            "start": 426,
-            "end": 476,
-            "line": 3
+            "start": 404,
+            "end": 425,
+            "line": 1
           },
           "article_b_title": "Richmond",
           "article_b_url": "https://grokipedia.com/page/Richmond",
-          "claim_b": "As of 2024, Richmond has a population of 233,655 in the [city proper](/page/City_proper), with the surrounding [metropolitan area](/page/Metropolitan_area) encompassing over 1.37 million residents.",
+          "claim_b": "Richmond has a population of 233,655",
           "claim_b_offset": {
             "start": 372,
-            "end": 569,
-            "line": 4
+            "end": 408,
+            "line": 2
           },
           "difference": "Population figures"
         },
@@ -177,11 +177,11 @@
         {
           "article_a_title": "Richmond",
           "article_a_url": "https://grokipedia.com/page/Richmond",
-          "claim_a": "In the United States, the **University of Richmond Spiders** athletic teams represent the University of Richmond in Richmond, Virginia, across 16 NCAA Division I sports, including basketball, football, and soccer, as members of the Atlantic 10 Conference and Colonial Athletic Association for football.",
+          "claim_a": "16 NCAA Division I sports",
           "claim_a_offset": {
-            "start": 36237,
-            "end": 36539,
-            "line": 122
+            "start": 36368,
+            "end": 36393,
+            "line": 120
           },
           "article_b_title": "University of Richmond",
           "article_b_url": "https://grokipedia.com/page/University_of_Richmond",
@@ -196,11 +196,11 @@
         {
           "article_a_title": "Richmond",
           "article_a_url": "https://grokipedia.com/page/Richmond",
-          "claim_a": "In the United States, the **University of Richmond Spiders** athletic teams represent the University of Richmond in Richmond, Virginia, across 16 NCAA Division I sports, including basketball, football, and soccer, as members of the Atlantic 10 Conference and Colonial Athletic Association for football.",
+          "claim_a": "Colonial Athletic Association for football",
           "claim_a_offset": {
-            "start": 36237,
-            "end": 36539,
-            "line": 122
+            "start": 36484,
+            "end": 36526,
+            "line": 120
           },
           "article_b_title": "Richmond Spiders",
           "article_b_url": "https://grokipedia.com/page/Richmond_Spiders",
