@@ -8,6 +8,34 @@ An AI-powered encyclopedia with a Wikipedia-like interface.
 - Node.js 18+
 - npm
 
+## Quick Start (Fresh Install)
+
+**Option 1: Use the setup script**
+
+```bash
+./setup.sh
+```
+
+**Option 2: Manual install**
+
+```bash
+# Backend
+cd backend && pip install -r requirements.txt && cd ..
+
+# Frontend
+cd frontend && npm install && cd ..
+```
+
+Then start both servers (in separate terminals):
+
+```bash
+# Terminal 1 - Backend
+cd backend && uvicorn main:app --reload
+
+# Terminal 2 - Frontend
+cd frontend && npm run dev
+```
+
 ## Local Development Setup
 
 ### 1. Backend Setup
@@ -41,6 +69,41 @@ npm run dev
 ```
 
 Frontend will be available at http://localhost:5173
+
+## After Pulling/Rebasing
+
+When you pull new changes or rebase, always reinstall dependencies:
+
+```bash
+# Backend - install any new Python packages
+cd backend && pip install -r requirements.txt
+
+# Frontend - install any new npm packages (clean install recommended)
+cd frontend && rm -rf node_modules && npm install
+```
+
+## Troubleshooting
+
+### "Failed to resolve import" errors
+
+If you see errors like `Failed to resolve import "package-name"`, run:
+
+```bash
+cd frontend
+rm -rf node_modules package-lock.json
+npm install
+```
+
+### Python module not found
+
+If a Python module is missing, ensure you're using the correct Python version:
+
+```bash
+cd backend
+pip install -r requirements.txt
+# Or for a specific Python version:
+python3.11 -m pip install -r requirements.txt
+```
 
 ## Project Structure
 

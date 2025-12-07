@@ -606,6 +606,10 @@ class TweetItem(BaseModel):
     trending: Optional[bool] = None
 
 
+# Resolve forward reference now that TweetItem is defined
+SearchResponse.update_forward_refs()
+
+
 class TweetsSummary(BaseModel):
     bullets: List[str]
     model: Optional[str] = None
