@@ -1457,6 +1457,9 @@
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .toggle-contradictions:hover:not(:disabled) {
@@ -1473,6 +1476,27 @@
 .toggle-contradictions:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.contradiction-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.14);
+  color: #fca5a5;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.contradiction-helper {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: 6px;
 }
 
 /* Contradiction highlight flash animation (when navigating to target) */

@@ -366,9 +366,20 @@ export default function TopicPage() {
             className={`toggle-contradictions ${showContradictions ? "active" : ""}`}
             onClick={() => setShowContradictions(!showContradictions)}
             disabled={versionContent !== null}
-            title={versionContent ? "Highlights disabled when viewing older version" : "Toggle contradiction highlights"}
+            title={
+              versionContent
+                ? "Highlights disabled when viewing older version"
+                : "Toggle contradiction highlights. Click any red underline to jump to the conflicting line in the other article."
+            }
           >
-            {showContradictions ? "Hide contradictions" : "Show contradictions"}
+            <span className="toggle-label">
+              {showContradictions ? "Hide contradictions" : "Show contradictions"}
+            </span>
+            {relevantContradictions.length > 0 && (
+              <span className="contradiction-badge" aria-label={`${relevantContradictions.length} contradictions`}>
+                {relevantContradictions.length}
+              </span>
+            )}
           </button>
           <VersionHistory
             topicSlug={topic!}
