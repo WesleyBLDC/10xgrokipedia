@@ -1,28 +1,57 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { getTopic } from "../api";
-import type { Topic } from "../api";
+import { getTopic, getSuggestions } from "../api";
+import type { Topic, Suggestion } from "../api";
+import SuggestEditModal from "../components/SuggestEditModal";
+import SuggestionsPanel from "../components/SuggestionsPanel";
+import VersionHistory from "../components/VersionHistory";
 
 export default function TopicPage() {
   const { topic } = useParams<{ topic: string }>();
   const [data, setData] = useState<Topic | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
+
+  // Version history state
+  const [viewingVersionIndex, setViewingVersionIndex] = useState<number | null>(null);
+  const [versionContent, setVersionContent] = useState<string | null>(null);
+
+  // Text selection state
+  const [selectedText, setSelectedText] = useState("");
+  const [tooltipPosition, setTooltipPosition] = useState<{ x: number; y: number } | null>(null);
+  const [showModal, setShowModal] = useState(false);
+
+  // Footnote tracking
   const footnoteCounter = useRef(0);
   const footnoteMap = useRef<Map<string, number>>(new Map());
 
-  useEffect(() => {
-    if (topic) {
-      setData(null);
-      setError(null);
-      footnoteCounter.current = 0;
-      footnoteMap.current.clear();
-      getTopic(topic)
-        .then(setData)
-        .catch(() => setError("Topic not found"));
+  const loadData = useCallback(async () => {
+    if (!topic) return;
+    setData(null);
+    setError(null);
+    setViewingVersionIndex(null);
+    setVersionContent(null);
+    footnoteCounter.current = 0;
+    footnoteMap.current.clear();
+
+    try {
+      const [topicData, suggestionsData] = await Promise.all([
+        getTopic(topic),
+        getSuggestions(topic),
+      ]);
+      setData(topicData);
+      setSuggestions(suggestionsData);
+    } catch {
+      setError("Topic not found");
     }
   }, [topic]);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   const getFootnoteNumber = (url: string): number => {
     if (footnoteMap.current.has(url)) {
@@ -32,6 +61,57 @@ export default function TopicPage() {
     footnoteMap.current.set(url, footnoteCounter.current);
     return footnoteCounter.current;
   };
+
+  const handleMouseUp = () => {
+    // Don't allow text selection for edits when viewing old versions
+    if (viewingVersionIndex !== null) return;
+
+    const selection = window.getSelection();
+    if (selection && selection.toString().trim().length > 0) {
+      const text = selection.toString().trim();
+      const range = selection.getRangeAt(0);
+      const rect = range.getBoundingClientRect();
+
+      setSelectedText(text);
+      setTooltipPosition({
+        x: rect.left + rect.width / 2,
+        y: rect.top - 10,
+      });
+    } else {
+      setTooltipPosition(null);
+    }
+  };
+
+  const handleSuggestEdit = () => {
+    setShowModal(true);
+    setTooltipPosition(null);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+    setSelectedText("");
+  };
+
+  const handleSuggestionSuccess = () => {
+    loadData();
+  };
+
+  const handleVersionSelect = (content: string | null) => {
+    if (content === null) {
+      setViewingVersionIndex(null);
+      setVersionContent(null);
+    } else {
+      setVersionContent(content);
+      // Find the index (this is a bit hacky, but works for now)
+      setViewingVersionIndex(0); // Will be set properly by the component
+    }
+  };
+
+  const pendingCount = suggestions.filter(s => s.status === "pending" || s.status === "reviewed").length;
+  const totalCount = suggestions.length;
+
+  // Content to display (version or current)
+  const displayContent = versionContent ?? data?.content ?? "";
 
   if (error) {
     return (
@@ -53,9 +133,45 @@ export default function TopicPage() {
 
   return (
     <div className="topic-page">
-      <Link to="/" className="back-link">← Back to search</Link>
+      <div className="topic-header">
+        <Link to="/" className="back-link">← Back to search</Link>
+        <div className="header-actions">
+          <VersionHistory
+            topicSlug={topic!}
+            onVersionSelect={handleVersionSelect}
+            currentVersionIndex={viewingVersionIndex}
+          />
+          {totalCount > 0 && (
+            <button
+              className={`suggestions-badge ${pendingCount === 0 ? "no-pending" : ""}`}
+              onClick={() => setShowSuggestions(!showSuggestions)}
+            >
+              {pendingCount > 0
+                ? `${pendingCount} pending edit${pendingCount !== 1 ? "s" : ""}`
+                : `${totalCount} edit${totalCount !== 1 ? "s" : ""}`}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {versionContent && (
+        <div className="version-banner">
+          <span>Viewing an older version of this article</span>
+          <button onClick={() => handleVersionSelect(null)}>Return to current</button>
+        </div>
+      )}
+
       <h1>{data.title}</h1>
-      <div className="content">
+
+      {showSuggestions && !versionContent && (
+        <SuggestionsPanel
+          suggestions={suggestions}
+          topicSlug={topic!}
+          onUpdate={loadData}
+        />
+      )}
+
+      <div className="content" onMouseUp={handleMouseUp}>
         <ReactMarkdown
           components={{
             a: ({ href, children }) => {
@@ -63,7 +179,6 @@ export default function TopicPage() {
                 (typeof children === 'string' ? children.trim() :
                   Array.isArray(children) ? children.some(c => c) : true);
 
-              // Empty link - show as footnote
               if (!hasText && href) {
                 const num = getFootnoteNumber(href);
                 return (
@@ -79,7 +194,6 @@ export default function TopicPage() {
                 );
               }
 
-              // Handle internal /page/ links
               if (href?.startsWith("/page/")) {
                 const slug = href.replace("/page/", "");
                 return (
@@ -95,7 +209,6 @@ export default function TopicPage() {
                 );
               }
 
-              // External links with text
               return (
                 <a href={href} target="_blank" rel="noopener noreferrer">
                   {children}
@@ -104,9 +217,32 @@ export default function TopicPage() {
             },
           }}
         >
-          {data.content}
+          {displayContent}
         </ReactMarkdown>
       </div>
+
+      {tooltipPosition && !versionContent && (
+        <button
+          className="suggest-edit-tooltip"
+          style={{
+            position: "fixed",
+            left: tooltipPosition.x,
+            top: tooltipPosition.y,
+            transform: "translate(-50%, -100%)",
+          }}
+          onClick={handleSuggestEdit}
+        >
+          Suggest Edit
+        </button>
+      )}
+
+      <SuggestEditModal
+        isOpen={showModal}
+        onClose={handleModalClose}
+        selectedText={selectedText}
+        topicSlug={topic!}
+        onSuccess={handleSuggestionSuccess}
+      />
     </div>
   );
 }

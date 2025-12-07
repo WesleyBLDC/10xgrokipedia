@@ -1,0 +1,119 @@
+{
+  "'Abd_Allah_II_ibn_'Ali_'Abd_ash-Shakur": [
+    {
+      "id": "e5e2a58e-cf87-4a14-ad86-0476d652e543",
+      "highlighted_text": "'Abd Allah II ibn 'Ali 'Abd ash-Shakur was the son",
+      "summary": "the spelling is wrong",
+      "sources": [],
+      "status": "rejected",
+      "review_result": null,
+      "created_at": "2025-12-07T06:38:12.597903Z"
+    },
+    {
+      "id": "ebdf450a-c236-438f-ad15-034e640a8e96",
+      "highlighted_text": "s conquest by Ethiopian forces in",
+      "summary": "check this",
+      "sources": [],
+      "status": "rejected",
+      "review_result": {
+        "approved": false,
+        "reasoning": "The user's suggestion 'check this' is vague and does not provide a specific correction or improvement to the highlighted text 's conquest by Ethiopian forces in'. Additionally, no supporting sources were provided to validate any potential change. The original text aligns with historical records of Harar's conquest by Ethiopian forces in 1887, as supported by the existing sources in the article.",
+        "suggested_content": null
+      },
+      "created_at": "2025-12-07T06:52:28.999685Z"
+    },
+    {
+      "id": "d9175331-e5b8-4e84-ac06-905c707a40eb",
+      "highlighted_text": "until the sultanate's conquest by Ethiopian forces in 1887.[1] Son of the previous emir Muhammad ibn 'Ali 'Abd ash-Shakur, he",
+      "summary": "check this again",
+      "sources": [
+        "www.google.com"
+      ],
+      "status": "rejected",
+      "review_result": null,
+      "created_at": "2025-12-07T06:52:51.345436Z"
+    },
+    {
+      "id": "6c5438d5-5bdb-462f-b660-594bca98de71",
+      "highlighted_text": "quest by Ethiopian forces in 1887.[1] Son of the previous emir Muhammad ibn 'Ali 'Abd ash-Shakur, he ascended to the throne following the withdrawal of Egyptian administration from the region.[2] As emir, 'Abd Allah II organized the defense of Harar against the expanding Ethiopian Empire under Negus Menelik II, but Harari troops were decisively",
+      "summary": "check the dates",
+      "sources": [],
+      "status": "reviewed",
+      "review_result": {
+        "approved": false,
+        "reasoning": "The user's suggestion to 'check the dates' is vague and does not provide specific corrections or alternative dates for the events described. Additionally, no supporting sources were provided to substantiate any potential inaccuracies in the current dates (e.g., the conquest by Ethiopian forces in 1887). Without specific evidence or proposed changes, the suggestion does not improve the article's accuracy or clarity.",
+        "suggested_content": null
+      },
+      "created_at": "2025-12-07T07:52:16.177620Z"
+    }
+  ],
+  "'Cause_I'm_a_Man": [
+    {
+      "id": "b153e331-341f-47ec-8f58-aebc2da21674",
+      "highlighted_text": "Parker's commitment to authenticity involved an exhaustive recording approach, including over 1,000 partial vocal takes for the track to refine emotional delivery and eliminate inauthenticity, reflecting a rigorou",
+      "summary": "There is no evidence for him taking 1000 vocal takes, this part should be removed. \n\nSeveral details contradict publicly verified information. The writeup repeatedly states that Kevin Parker recorded over 1,000 vocal takes and layered them for the finished track, yet there is no known interview or source confirming this number, making it likely exaggerated or invented. I",
+      "sources": [],
+      "status": "applied",
+      "review_result": {
+        "approved": true,
+        "reasoning": "The user's suggestion to remove the claim about Kevin Parker recording over 1,000 vocal takes is valid, as there is no verifiable source or evidence provided in the original content or by the user to support this specific number. Removing unverified information improves the article's accuracy and credibility.",
+        "suggested_content": "Parker's commitment to authenticity involved a meticulous recording approach to refine emotional delivery and ensure genuine expression, reflecting a rigorous process."
+      },
+      "created_at": "2025-12-07T07:54:02.700810Z"
+    },
+    {
+      "id": "36a09386-554b-4446-af59-85d00a3b9f35",
+      "highlighted_text": "Parker's commitment to authenticity involved an exhaustive recording approach, including over 1,000 partial vocal takes for the track to refine emotional delivery and eliminate inauthenticity, reflecting a rigorous, self-imposed process of trial and error focused on capturing raw human sentiment.[10] He emphasized that this method\u2014pressing record repeatedly without full completions\u2014prioritized instinctive expression over polished efficiency, ensuring the final vocals conveyed unfiltered vulnerability derived from firsthand emotional struggle",
+      "summary": "There are no sources that back this claim that he spent 1000 vocal takes. this should be removed",
+      "sources": [],
+      "status": "applied",
+      "review_result": {
+        "approved": true,
+        "reasoning": "The user's suggestion to remove the claim about 1,000 vocal takes is valid as there are no verifiable sources provided in the original content or by the user to support this specific detail. Removing unverified information improves the article's accuracy and credibility.",
+        "suggested_content": ""
+      },
+      "created_at": "2025-12-07T08:29:18.510016Z"
+    },
+    {
+      "id": "910d5ef0-3c7e-41db-bfbc-bb6201b1deff",
+      "highlighted_text": "No physical formats were produced, aligning with industry trends favoring digital distribution to facilitate rapid global access and cost efficiency in the mid-2010s music market",
+      "summary": "Several references claim no physical formats were produced while stating earlier that the track supported major-label international distribution, yet some regions did issue limited promotional CD singles, so the blanket statement is inaccurate. In the cultural-impact section, the text presents biological claims about testosterone and male impulsivity as if Parker endorsed them, though Parker has never made such biological arguments. The Reddit citations include dates in 2021 and 2023 that are framed as if they are documented sources, but they are not verifiable. The section on influence asserts that the track featured \u201cover 1,000 vocal layers\u201d again, contradicting the lack of evidence for this figure. These contradictions indicate a mix of factual errors, unverified claims, and inconsistent chronology.",
+      "sources": [],
+      "status": "reviewed",
+      "review_result": {
+        "approved": false,
+        "reasoning": "The user's suggested change raises valid concerns about potential inaccuracies in the article, such as the claim of no physical formats being produced and the misrepresentation of Parker's views on biological arguments. However, the user did not provide any supporting sources to substantiate their claims regarding limited promotional CD singles, Parker's statements, or the inaccuracies in vocal layers and Reddit citations. Without verifiable evidence, the suggested edit cannot be approved as it risks introducing unverified information into the encyclopedia article. Additionally, the user's suggestion lacks specific replacement text for the highlighted section, making it unclear how the edit should be implemented.",
+        "suggested_content": null
+      },
+      "created_at": "2025-12-07T08:43:44.809909Z"
+    }
+  ],
+  "'Ajam_of_Kuwait": [
+    {
+      "id": "1b5217ef-f619-40f1-9b9a-a1fc4747a9f9",
+      "highlighted_text": "The 'Ajam population among Kuwaiti citizens is estimated at 100,000 to 150,000 individuals, representing approximately 10-15% of the roughly 1.4 million citizens",
+      "summary": "Population size mismatch\nQuoted text\n\n\u201c\u2018Ajam population among Kuwaiti citizens is estimated at 100,000 to 150,000\u2026 representing 10\u201315 percent of 1.4 million citizens\u2026 Shia form about 30 percent (400,000) of citizens, and Ajam are the largest subgroup.\u201d\n\nIssue\n\nIf Shia citizens are about 400,000, and Ajam are the largest subgroup, then 100,000\u2013150,000 (only 25\u201337 percent of Shia) is inconsistent with \u201clargest\u201d unless more precise context is added (for example, small Arab Shia subgroups).\n\nReplacement\n\n\u201c\u2018Ajam citizens are estimated at 120,000\u2013150,000, forming the largest single subgroup within Kuwait\u2019s Shia population, which numbers roughly 350,000\u2013400,000 when including Arab-origin Shia such as Baharna and Hassawiyya.\u201d",
+      "sources": [],
+      "status": "reviewed",
+      "review_result": {
+        "approved": false,
+        "reasoning": "The suggested change lacks supporting sources to verify the revised population estimates of 120,000\u2013150,000 for 'Ajam citizens or the total Shia population of 350,000\u2013400,000. While the user's concern about the inconsistency between the 'Ajam being the largest subgroup yet representing only 25\u201337% of Shia citizens is valid, the proposed numbers are not substantiated. Additionally, the original article cites reliable sources indicating Shia as 20\u201325% of the Muslim population, which aligns with broader demographic studies of Kuwait. Without new evidence, the edit risks introducing unverified data.",
+        "suggested_content": null
+      },
+      "created_at": "2025-12-07T08:46:43.962295Z"
+    },
+    {
+      "id": "00b68c0f-808b-45b2-a3f4-64a83cc24476",
+      "highlighted_text": "Ajam-controlled oil concessions remain limited compared to ruling family",
+      "summary": "Statement that \u201csome Ajam-controlled oil concessions remain limited compared to ruling family allocations.\u201d\nThere is no evidence that Ajam families controlled oil concessions in Kuwait. Oil concessions were largely controlled by ruling family and foreign companies; there is no scholarly support for Ajam holding oil concessions.\nRemove the claim. If discussing post-oil shift, you can say: \u201cFollowing oil discovery, some Ajam merchants diversified into modern commerce and services, though there is no evidence they gained significant control over oil concessions.\u201d",
+      "sources": [],
+      "status": "applied",
+      "review_result": {
+        "approved": true,
+        "reasoning": "The user's suggestion to remove the claim about Ajam-controlled oil concessions is factually accurate, as there is no widely documented evidence in scholarly sources that Ajam families held significant control over oil concessions in Kuwait. Oil concessions were historically managed by the ruling family and foreign companies like the Kuwait Oil Company. The user's alternative text about Ajam merchants diversifying into commerce and services post-oil discovery aligns better with historical records of their economic roles. Although no sources were provided by the user, the existing article also lacks specific citations for the highlighted claim, and the suggestion improves the article's accuracy by avoiding unsupported assertions.",
+        "suggested_content": "Following oil discovery, some Ajam merchants diversified into modern commerce and services, though there is no evidence they gained significant control over oil concessions."
+      },
+      "created_at": "2025-12-07T08:48:06.017145Z"
+    }
+  ]
+}
