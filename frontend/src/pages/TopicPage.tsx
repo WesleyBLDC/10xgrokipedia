@@ -6,6 +6,7 @@ import type { Topic, Suggestion } from "../api";
 import SuggestEditModal from "../components/SuggestEditModal";
 import SuggestionsPanel from "../components/SuggestionsPanel";
 import VersionHistory from "../components/VersionHistory";
+import CommunityFeed from "../components/CommunityFeed";
 
 export default function TopicPage() {
   const { topic } = useParams<{ topic: string }>();
@@ -162,7 +163,12 @@ export default function TopicPage() {
       )}
 
       <h1>{data.title}</h1>
-
+      <div className="topic-layout">
+        <aside className="left-rail">
+          {/* Community Feed: top-left of page */}
+          {topic && <CommunityFeed topicSlug={topic} />}
+        </aside>
+  
       {showSuggestions && !versionContent && (
         <SuggestionsPanel
           suggestions={suggestions}
@@ -172,12 +178,12 @@ export default function TopicPage() {
       )}
 
       <div className="content" onMouseUp={handleMouseUp}>
-        <ReactMarkdown
-          components={{
-            a: ({ href, children }) => {
-              const hasText = children &&
-                (typeof children === 'string' ? children.trim() :
-                  Array.isArray(children) ? children.some(c => c) : true);
+          <ReactMarkdown
+            components={{
+              a: ({ href, children }) => {
+                const hasText = children &&
+                  (typeof children === 'string' ? children.trim() :
+                    Array.isArray(children) ? children.some(c => c) : true);
 
               if (!hasText && href) {
                 const num = getFootnoteNumber(href);
@@ -219,6 +225,7 @@ export default function TopicPage() {
         >
           {displayContent}
         </ReactMarkdown>
+        </div>
       </div>
 
       {tooltipPosition && !versionContent && (

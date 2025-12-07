@@ -84,7 +84,7 @@
 
 /* Topic Page */
 .topic-page {
-  max-width: 720px;
+  max-width: 1040px;
   margin: 0 auto;
   padding: 2rem;
   width: 100%;
@@ -112,11 +112,27 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+/* Two-column layout: left rail + content */
+.topic-page .topic-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.topic-page .left-rail {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  height: max-content;
+}
+
 .topic-page .content {
   font-size: 1rem;
   line-height: 1.75;
   color: var(--text-secondary);
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 /* Markdown Styles */
@@ -886,4 +902,215 @@
 
 .version-banner button:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+/* Community Feed styles */
+.community-feed {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.community-feed .cf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-weight: 600;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+}
+
+.community-feed .cf-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* removed badge; using per-item ranking numbers instead */
+
+.community-feed .cf-refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.community-feed .cf-refresh:hover:not(:disabled) {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+.community-feed .cf-refresh:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.community-feed .cf-loading,
+.community-feed .cf-error,
+.community-feed .cf-empty {
+  padding: 0.5rem 0.7rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.community-feed .cf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem 0.2rem 0.4rem 0.2rem;
+}
+
+.community-feed .cf-item {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.community-feed .cf-item:last-child {
+  border-bottom: none;
+}
+
+.community-feed .cf-link {
+  display: block;
+  padding: 0.5rem 0.55rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.community-feed .cf-link:hover {
+  background: var(--bg-tertiary);
+}
+
+.community-feed .cf-item-row {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 0.5rem;
+}
+
+.community-feed .cf-avatar-wrap {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+
+.community-feed .cf-rank-badge {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  width: 16px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+}
+
+.community-feed .cf-rank-badge.top1 {
+  color: #facc15;
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.15);
+}
+
+.community-feed .cf-rank-badge.top2 {
+  color: #e5e7eb;
+  border-color: #9ca3af;
+  background: rgba(156, 163, 175, 0.15);
+}
+
+.community-feed .cf-rank-badge.top3 {
+  color: #fbbf24;
+  border-color: #cd7f32;
+  background: rgba(205, 127, 50, 0.18);
+}
+
+.community-feed .cf-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+.community-feed .cf-avatar-fallback {
+  display: inline-block;
+}
+
+.community-feed .cf-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.community-feed .cf-author {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  min-width: 0; /* allow ellipsis in children */
+  flex-wrap: wrap;
+}
+
+.community-feed .cf-name {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.community-feed .cf-username {
+  color: var(--text-muted);
+  font-size: 0.8em;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.community-feed .cf-text {
+  color: var(--text-secondary);
+  font-size: 0.92em;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+  position: relative;
+  /* Soft bottom fade to indicate more content without clutter */
+  -webkit-mask-image: linear-gradient(180deg, #000 85%, transparent);
+  mask-image: linear-gradient(180deg, #000 85%, transparent);
+}
+
+/* removed explicit hint; fade + extra lines provide better preview */
+
+.community-feed .cf-stats {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.8em;
+  margin-top: 0.05rem;
+}
+
+/* Responsive: collapse to single column */
+@media (max-width: 900px) {
+  .topic-page .topic-layout {
+    grid-template-columns: 1fr;
+  }
+  .topic-page .left-rail {
+    position: static;
+  }
 }
