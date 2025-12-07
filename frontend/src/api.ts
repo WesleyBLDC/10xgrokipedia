@@ -68,6 +68,30 @@ export interface TweetsSummary {
   cached: boolean;
 }
 
+// Search hints from Grok query optimization
+export interface SearchHints {
+  query: string;
+  keywords: string[];
+  topics: string[];
+}
+
+export interface SearchResult {
+  tweets: TweetItem[];
+  hints?: SearchHints | null;
+}
+
+// Search hints from Grok query optimization
+export interface SearchHints {
+  query: string;
+  keywords: string[];
+  topics: string[];
+}
+
+export interface SearchResult {
+  tweets: TweetItem[];
+  hints?: SearchHints | null;
+}
+
 export interface AggregateBias {
   article_title: string;
   article_url: string;
@@ -105,6 +129,23 @@ export async function getTopicTweets(slug: string, maxResults = 10): Promise<Twe
   );
   if (!res.ok) {
     // Surface error text for better UX
+    const msg = await res.text();
+    throw new Error(msg || "Failed to load tweets");
+  }
+  return res.json();
+}
+
+export async function searchTweets(
+  query: string,
+  maxResults = 10,
+  opts?: { optimize?: boolean; nocache?: boolean }
+): Promise<SearchResult> {
+  const optimize = opts?.optimize !== undefined ? (opts.optimize ? 1 : 0) : 1;
+  const nocache = opts?.nocache ? 1 : 0;
+  const res = await fetch(
+    `${API_BASE}/tweets/search?q=${encodeURIComponent(query)}&max_results=${maxResults}&optimize=${optimize}&nocache=${nocache}`
+  );
+  if (!res.ok) {
     const msg = await res.text();
     throw new Error(msg || "Failed to load tweets");
   }

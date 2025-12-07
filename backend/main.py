@@ -57,6 +57,8 @@ _TPR = os.getenv("TWEETS_TRENDING_PREVIEW_RANKS", "").strip()
 TRENDING_PREVIEW_RANKS = {int(x) for x in _TPR.split(',') if x.strip().isdigit()} if _TPR else set()
 VERIFIED_BOOST = float(os.getenv("TWEETS_VERIFIED_BOOST", "1.1"))  # 10% lift by default
 
+
+
 # In-memory cache and simple global rate limiter
 _tweets_cache: dict[str, tuple[float, list["TweetItem"]]] = {}
 _summary_cache: dict[str, tuple[float, List[str]]] = {}
@@ -139,6 +141,17 @@ class CitationBiasResponse(BaseModel):
     factual_label: str
     bias_score: float
     bias_label: str
+
+
+class SearchHints(BaseModel):
+    query: str
+    keywords: List[str] = []
+    topics: List[str] = []
+
+
+class SearchResponse(BaseModel):
+    tweets: List["TweetItem"]
+    hints: SearchHints | None = None
 
 
 def extract_slug(url: str) -> str:
@@ -667,6 +680,327 @@ async def get_topic_tweets(topic_slug: str, max_results: int = 10) -> list[Tweet
             _tweets_cache[key] = (time.time(), items)
 
     return items
+
+
+async def _suggest_search_query(highlight_text: str) -> SearchHints | None:
+    token = _get_grok_api()
+    if not token:
+        return None
+    base = _get_grok_base().rstrip("/")
+    model = _get_grok_model()
+    url = f"{base}/chat/completions"
+
+    system_prompt = (
+        "You are an expert at crafting HIGH-RECALL queries for X (Twitter) search. "
+        "Given a user-selected passage, extract keywords in two tiers:\n"
+        "1. CRITICAL: Core entities, names, technical terms (most distinctive)\n"
+        "2. SUPPORTING: Related concepts, synonyms, abbreviations for broader recall\n\n"
+        "CRITICAL RULES:\n"
+        "- Query MUST use OR logic: (term1 OR term2 OR term3)\n"
+        "- Include synonyms and abbreviations (e.g., 'AI' alongside 'artificial intelligence')\n"
+        "- Prioritize named entities, product names, and technical jargon\n"
+        "- Avoid generic words like 'new', 'latest', 'best', 'important'\n"
+        "- Include 5-10 key terms connected with OR. Keep query under 128 characters."
+    )
+
+    user_prompt = (
+        "Selected passage:\n" + highlight_text.strip()[:500] + "\n\n"
+        "Return ONLY compact JSON with keys:\n"
+        "- query: string using OR logic like '(Grok OR API OR xAI OR chatbot)' - MUST use OR between ALL terms\n"
+        "- keywords: array of 6-12 individual search terms ordered by importance (critical first, supporting last)\n"
+        "- topics: array of 2-4 broader topic labels (e.g., 'artificial intelligence', 'tech industry')"
+    )
+
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        "temperature": 0.2,
+        "max_tokens": 256,
+    }
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    try:
+        async with httpx.AsyncClient(timeout=12.0) as client:
+            resp = await client.post(url, json=payload, headers=headers)
+            resp.raise_for_status()
+            data = resp.json()
+            content = (
+                data.get("choices", [{}])[0]
+                .get("message", {})
+                .get("content", "")
+            )
+            start = content.find("{")
+            end = content.rfind("}")
+            if start != -1 and end != -1 and end > start:
+                import json as _json
+                obj = _json.loads(content[start:end+1])
+                q = str(obj.get("query", "")).strip()
+                kws = [str(x).strip() for x in (obj.get("keywords") or []) if str(x).strip()]
+                tps = [str(x).strip() for x in (obj.get("topics") or []) if str(x).strip()]
+                if q:
+                    return SearchHints(query=q, keywords=kws[:12], topics=tps[:5])
+            return None
+    except Exception:
+        return None
+
+
+async def _grok_rank_tweets(
+    tweets: List[TweetItem],
+    highlighted_text: str,
+    keywords: List[str],
+    max_results: int = 10
+) -> List[TweetItem]:
+    """Use Grok to rank tweets by relevance to highlighted text and keywords."""
+    if not tweets:
+        return []
+
+    token = _get_grok_api()
+    if not token:
+        # Fallback: return tweets as-is (already sorted by X API relevancy)
+        return tweets[:max_results]
+
+    base = _get_grok_base().rstrip("/")
+    model = _get_grok_model()
+    url = f"{base}/chat/completions"
+
+    # Prepare tweet data for Grok (limit to avoid token overflow)
+    tweet_summaries = []
+    for i, t in enumerate(tweets[:20]):  # Max 20 candidates
+        # Include key metrics for context
+        metrics = f"❤{t.like_count or 0} ↻{t.retweet_count or 0}"
+        verified = " [verified]" if t.author_verified else ""
+        tweet_summaries.append(
+            f"{i+1}. @{t.author_username}{verified}: {t.text[:200]}... ({metrics})"
+        )
+
+    tweets_block = "\n".join(tweet_summaries)
+    keywords_str = ", ".join(keywords[:10]) if keywords else "N/A"
+
+    system_prompt = (
+        "You are an expert at ranking tweets by relevance. Given a user's highlighted text "
+        "and search keywords, rank the tweets from MOST to LEAST relevant.\n\n"
+        "Relevance criteria (in order of importance):\n"
+        "1. SEMANTIC MATCH: Does the tweet discuss the same topic/concept as the highlighted text?\n"
+        "2. KEYWORD COVERAGE: Does the tweet mention the search keywords or related terms?\n"
+        "3. INFORMATION VALUE: Does the tweet provide useful insights, news, or discussion?\n"
+        "4. QUALITY SIGNALS: Verified authors, engagement metrics (as tiebreakers only)\n\n"
+        "IMPORTANT: Prioritize semantic relevance over keyword density. A tweet discussing "
+        "the same concept without exact keyword matches is MORE relevant than a tweet "
+        "with keywords but off-topic content."
+    )
+
+    user_prompt = (
+        f"HIGHLIGHTED TEXT:\n{highlighted_text[:400]}\n\n"
+        f"SEARCH KEYWORDS: {keywords_str}\n\n"
+        f"TWEETS TO RANK:\n{tweets_block}\n\n"
+        f"Return ONLY a JSON array of tweet numbers in order of relevance (most relevant first).\n"
+        f"Example: [3, 1, 7, 2, 5, 4, 6, 8, 9, 10]\n"
+        f"Return the top {max_results} most relevant tweets."
+    )
+
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        "temperature": 0.1,  # Low temperature for consistent ranking
+        "max_tokens": 128,
+    }
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+
+    try:
+        async with httpx.AsyncClient(timeout=15.0) as client:
+            resp = await client.post(url, json=payload, headers=headers)
+            resp.raise_for_status()
+            data = resp.json()
+            content = (
+                data.get("choices", [{}])[0]
+                .get("message", {})
+                .get("content", "")
+            )
+
+            # Parse the ranking array from response
+            start = content.find("[")
+            end = content.rfind("]")
+            if start != -1 and end != -1 and end > start:
+                ranking = json.loads(content[start:end + 1])
+                if isinstance(ranking, list):
+                    # Convert 1-indexed to 0-indexed and filter valid indices
+                    reranked = []
+                    seen = set()
+                    for idx in ranking:
+                        if isinstance(idx, int) and 1 <= idx <= len(tweets) and idx not in seen:
+                            reranked.append(tweets[idx - 1])
+                            seen.add(idx)
+                            if len(reranked) >= max_results:
+                                break
+
+                    # If Grok returned fewer than requested, append remaining by original order
+                    if len(reranked) < max_results:
+                        for i, t in enumerate(tweets):
+                            if (i + 1) not in seen:
+                                reranked.append(t)
+                                if len(reranked) >= max_results:
+                                    break
+
+                    print(f"[grok_rank] Ranked {len(reranked)} tweets, order: {ranking[:max_results]}")
+                    return reranked
+
+            # Parsing failed, return original order
+            print("[grok_rank] Failed to parse ranking, using original order")
+            return tweets[:max_results]
+
+    except Exception as e:
+        print(f"[grok_rank] Error: {e}, using original order")
+        return tweets[:max_results]
+
+
+@app.get("/api/tweets/search")
+async def search_tweets(q: str, max_results: int = 10, optimize: bool = True, nocache: bool = False) -> SearchResponse:
+    """Search X for tweets related to an arbitrary text query (used for highlight search).
+
+    - Requires env var `X_BEARER_TOKEN` (or `TWITTER_BEARER_TOKEN`).
+    - `q` is the raw text highlighted by the user.
+    """
+    phrase = (q or "").strip()
+    if not phrase:
+        raise HTTPException(status_code=400, detail="Empty query")
+    # Build a keyword-centric OR query to avoid strict phrase matching on long selections
+    def _extract_terms(text: str, max_terms: int = 12) -> list[str]:
+        text = text.lower()
+        tokens = re.findall(r"[\w'-]+", text, flags=re.UNICODE)
+        stop = {
+            "the","a","an","and","or","but","if","then","else","for","of","in","to","on","at","by","with","as","from","that","this","these","those","is","are","was","were","be","been","being","it","its","into","over","about","after","before","not","no","yes","we","you","they","their","our","his","her","him","she","he","them","which","who","whom","what","when","where","why","how"
+        }
+        counts: dict[str, int] = {}
+        for t in tokens:
+            s = t.strip("-'")
+            if not s or len(s) < 3 or s in stop:
+                continue
+            counts[s] = counts.get(s, 0) + 1
+        ordered = sorted(counts.items(), key=lambda kv: (kv[1], len(kv[0])), reverse=True)
+        return [w for w, _ in ordered[:max_terms]]
+
+    hints: SearchHints | None = None
+    if optimize:
+        hints = await _suggest_search_query(phrase)
+    if hints and hints.query:
+        query = hints.query
+    else:
+        # Check if the input already looks like a pre-built OR query (from frontend rawMode)
+        # Pattern: starts with ( and contains OR
+        is_prebuilt_query = phrase.startswith("(") and " OR " in phrase.upper()
+        if is_prebuilt_query:
+            # Use the query as-is - it's already formatted by the frontend
+            query = phrase
+        else:
+            terms = _extract_terms(phrase)
+            if not terms:
+                parts = [p for p in re.sub(r"\s+", " ", phrase).split(" ") if len(p) >= 3]
+                terms = parts[:8]
+            # Limit to 6 most important terms to avoid overly complex queries
+            terms = terms[:6]
+            pieces = [f'"{t}"' if (" " in t) else t for t in terms]
+            or_block = " OR ".join(pieces) if pieces else phrase
+            query = f"({or_block})"
+
+    # Sanitize query for X API: remove or space out disallowed characters like '/'
+    def _sanitize_x_query(s: str) -> str:
+        # Replace slashes with spaces (X rejects them), and collapse repeated whitespace.
+        s = re.sub(r"/+", " ", s)
+        s = re.sub(r"\s+", " ", s).strip()
+        return s
+
+    query = _sanitize_x_query(query)
+
+    # Debug: log the final query being used
+    print(f"[search_tweets] optimize={optimize}, is_prebuilt={phrase.startswith('(') and ' OR ' in phrase.upper()}, final_query={query}")
+
+    key = f"q={query}|n={max_results}"
+    now = time.time()
+
+    # We will fetch a larger candidate pool (3x) to re-rank by keyword coverage + engagement
+    fetch_count = max_results * 3
+
+    async with _cache_lock:
+        if not nocache:
+            if key in _tweets_cache:
+                ts, items = _tweets_cache[key]
+                if now - ts < CACHE_TTL_SECONDS:
+                    return SearchResponse(tweets=items, hints=hints)
+                else:
+                    _tweets_cache.pop(key, None)
+
+            if key in _inflight_tasks:
+                task = _inflight_tasks[key]
+                joiner = True
+            else:
+                async with _rate_lock:
+                    while _rate_calls and (now - _rate_calls[0] > RATE_LIMIT_WINDOW_SECONDS):
+                        _rate_calls.popleft()
+                    if len(_rate_calls) >= RATE_LIMIT_MAX_REQUESTS:
+                        if key in _tweets_cache:
+                            return SearchResponse(tweets=_tweets_cache[key][1], hints=hints)
+                        raise HTTPException(status_code=429, detail="Rate limit exceeded for tweets endpoint. Please try again later.")
+                    _rate_calls.append(now)
+                task = asyncio.create_task(_fetch_recent_top_tweets(query=query, return_count=fetch_count, pool_size=100))
+                _inflight_tasks[key] = task
+                joiner = False
+        else:
+            # nocache: always create a fresh task, don't join inflight
+            async with _rate_lock:
+                while _rate_calls and (now - _rate_calls[0] > RATE_LIMIT_WINDOW_SECONDS):
+                    _rate_calls.popleft()
+                if len(_rate_calls) >= RATE_LIMIT_MAX_REQUESTS:
+                    raise HTTPException(status_code=429, detail="Rate limit exceeded for tweets endpoint. Please try again later.")
+                _rate_calls.append(now)
+            task = asyncio.create_task(_fetch_recent_top_tweets(query=query, return_count=fetch_count, pool_size=100))
+            joiner = False
+
+    try:
+        items = await task
+    except HTTPException as e:
+        if not nocache:
+            async with _cache_lock:
+                if key in _tweets_cache:
+                    return SearchResponse(tweets=_tweets_cache[key][1], hints=hints)
+        raise e
+    finally:
+        if not joiner:
+            async with _cache_lock:
+                _inflight_tasks.pop(key, None)
+
+    # Use Grok to rank tweets by semantic relevance to highlighted text
+    # Gather keywords from hints or extract from query
+    ranking_keywords: list[str] = []
+    if hints:
+        ranking_keywords = list(hints.keywords or []) + list(hints.topics or [])
+    if not ranking_keywords:
+        # Fallback: extract terms from query
+        def _extract_rank_terms(qs: str) -> list[str]:
+            qs = re.sub(r"-is:retweet|-is:reply|lang:[a-zA-Z-]+", " ", qs)
+            qs = qs.replace("(", " ").replace(")", " ").replace("\"", " ")
+            qs = re.sub(r"\bOR\b", " ", qs, flags=re.IGNORECASE)
+            qs = re.sub(r"\s+", " ", qs).strip().lower()
+            return [t for t in qs.split(" ") if t and len(t) > 2]
+        ranking_keywords = _extract_rank_terms(query)
+
+    # Use Grok for intelligent ranking based on semantic relevance
+    reranked = await _grok_rank_tweets(
+        tweets=items,
+        highlighted_text=phrase,
+        keywords=ranking_keywords,
+        max_results=max_results
+    )
+
+    if not joiner:
+        async with _cache_lock:
+            _tweets_cache[key] = (time.time(), reranked)
+
+    return SearchResponse(tweets=reranked, hints=hints)
 
 
 @app.post("/api/topics/{topic_slug}/tweets/refresh", status_code=204)

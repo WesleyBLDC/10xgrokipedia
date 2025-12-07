@@ -526,7 +526,48 @@
   background: var(--border-color);
 }
 
-/* Suggest Edit Tooltip */
+/* Selection Toolbar - Connected Button Group */
+.selection-toolbar {
+  z-index: 100;
+}
+
+.selection-toolbar-group {
+  display: flex;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.selection-toolbar-group .suggest-edit-tooltip {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: none;
+  border-right: 1px solid var(--border-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0;
+  font-size: 0.875rem;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.15s;
+}
+
+.selection-toolbar-group .suggest-edit-tooltip svg {
+  flex-shrink: 0;
+}
+
+.selection-toolbar-group .suggest-edit-tooltip:last-child {
+  border-right: none;
+}
+
+.selection-toolbar-group .suggest-edit-tooltip:hover {
+  background: var(--bg-tertiary);
+}
+
+/* Suggest Edit Tooltip (standalone fallback) */
 .suggest-edit-tooltip {
   background: var(--bg-secondary);
   color: var(--text-primary);
@@ -1199,6 +1240,8 @@
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
   overscroll-behavior: contain;
+  /* Fade/scale transitions when switching modes */
+  transition: opacity 180ms ease, transform 180ms ease, box-shadow 220ms ease;
 }
 
 .community-feed .cf-header {
@@ -1216,6 +1259,209 @@
   padding: 0.5rem 0.6rem 0.4rem 0.6rem;
   border-bottom: 1px solid var(--border-color);
 }
+
+/* Search hints (for Related X Tweets mode) */
+.community-feed .cf-hints {
+  padding: 0.5rem 0.6rem 0.6rem 0.6rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.community-feed .cf-hints-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+.community-feed .cf-hints-title {
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.9em;
+}
+.community-feed .cf-hints-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.community-feed .cf-collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+.community-feed .cf-collapse-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+.community-feed .cf-hints-tip {
+  color: var(--text-muted);
+  font-size: 0.78em;
+}
+.community-feed .cf-hints-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78em;
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.community-feed .cf-hints-edit-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+/* Refresh spinner */
+.community-feed .cf-spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: var(--text-secondary);
+  animation: cfSpin 0.8s linear infinite;
+}
+
+@keyframes cfSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Extra spacing before Topics row */
+.community-feed .cf-hints-row.topics {
+  margin-top: 0.5rem;
+}
+
+/* Animated dots (thinking indicator) */
+.community-feed .cf-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  color: var(--text-muted);
+  font-size: 0.82em;
+  margin-left: 0.25rem;
+}
+.community-feed .cf-dots .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  opacity: 0.25;
+  animation: cfDot 1.1s infinite ease-in-out;
+}
+.community-feed .cf-dots .dot2 { animation-delay: 0.18s; }
+.community-feed .cf-dots .dot3 { animation-delay: 0.36s; }
+
+@keyframes cfDot {
+  0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-1px); }
+}
+
+/* Subtle thinking bar above results */
+.community-feed .cf-thinking-bar {
+  margin: 0.35rem 0.6rem 0.25rem 0.6rem;
+  height: 8px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.04)
+  );
+  background-size: 200px 100%;
+  animation: cfShimmer 1.2s linear infinite;
+}
+
+@keyframes cfShimmer {
+  from { background-position: -200px 0; }
+  to   { background-position: 200px 0; }
+}
+.community-feed .cf-hints-edit {
+  width: 100%;
+  font: inherit;
+  font-size: 0.95em;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.4rem 0.5rem;
+  outline: none;
+  margin-bottom: 0.4rem;
+}
+.community-feed .cf-hints-edit:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+.community-feed .cf-hints-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin: 0.2rem 0;
+}
+.community-feed .cf-hints-label {
+  color: var(--text-muted);
+  font-size: 0.9em;
+  flex: 0 0 auto;
+}
+.community-feed .cf-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.community-feed .cf-chip {
+  font-size: 0.8em;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  padding: 0.15rem 0.5rem;
+}
+.community-feed .cf-chip-ghost {
+  background: transparent;
+}
+
+/* Removable chips and add keyword affordance */
+.community-feed .cf-chip-removable {
+  position: relative;
+  padding-right: 1.15rem; /* space for remove button */
+}
+.community-feed .cf-chip-remove {
+  opacity: 0;
+  transition: opacity 120ms ease;
+  position: absolute;
+  right: 0.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.community-feed .cf-chips:hover .cf-chip-removable .cf-chip-remove {
+  opacity: 1;
+}
+
+.community-feed .cf-chip-add {
+  display: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-style: dashed;
+}
+.community-feed .cf-chips:hover .cf-chip-add {
+  display: inline-flex;
+}
+
+/* Removable chips: show an X only on hover */
+/* (removed) interactive chip editing styles */
 
 .community-feed .cf-summary-loading,
 .community-feed .cf-summary-error {
@@ -1295,6 +1541,36 @@
 
 .community-feed .cf-link:hover {
   background: var(--bg-tertiary);
+}
+
+/* Smooth fade when toggling between Top Tweets and Related Tweets */
+.community-feed.cf-fade-out {
+  opacity: 0;
+  transform: translateY(-2px) scale(0.995);
+}
+
+.community-feed.cf-fade-in {
+  animation: cfFadeIn 220ms ease;
+}
+
+@keyframes cfFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .community-feed {
+    transition: none !important;
+  }
+  .community-feed.cf-fade-in {
+    animation: none !important;
+  }
 }
 
 .community-feed .cf-item-row {
@@ -1424,6 +1700,20 @@
   /* Soft bottom fade to indicate more content without clutter */
   -webkit-mask-image: linear-gradient(180deg, #000 85%, transparent);
   mask-image: linear-gradient(180deg, #000 85%, transparent);
+}
+
+.community-feed .cf-text .cf-keyword {
+  background: rgba(59, 130, 246, 0.18); /* subtle blue tint */
+  border-radius: 4px;
+  padding: 0 2px;
+  box-shadow: inset 0 -1px 0 rgba(59, 130, 246, 0.35);
+}
+
+@media (prefers-color-scheme: light) {
+  .community-feed .cf-text .cf-keyword {
+    background: rgba(59, 130, 246, 0.16);
+    box-shadow: inset 0 -1px 0 rgba(59, 130, 246, 0.28);
+  }
 }
 
 /* removed explicit hint; fade + extra lines provide better preview */
