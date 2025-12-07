@@ -34,11 +34,29 @@ MAX_EDGES_PER_NODE = 15
 
 def get_root_domain(url: str) -> str:
     """Extract root domain from URL."""
+    if not url or not isinstance(url, str):
+        return ""
     try:
-        parsed = urlparse(url)
-        return f"{parsed.scheme}://{parsed.netloc}"
-    except:
-        return url
+        parsed = urlparse(url.strip())
+        if not parsed.netloc:
+            return ""
+        # Normalize: remove www. prefix for consistency
+        netloc = parsed.netloc.lower()
+        if netloc.startswith('www.'):
+            netloc = netloc[4:]
+        # Return scheme + normalized netloc
+        scheme = parsed.scheme or 'https'
+        return f"{scheme}://{netloc}"
+    except Exception as e:
+        # If parsing fails, try to extract domain manually
+        if '://' in url:
+            parts = url.split('://', 1)
+            if len(parts) == 2:
+                domain = parts[1].split('/')[0].split('?')[0].split('#')[0]
+                if domain.startswith('www.'):
+                    domain = domain[4:]
+                return f"{parts[0]}://{domain.lower()}"
+        return ""
 
 
 def extract_internal_links(content: str) -> Set[str]:
@@ -86,6 +104,24 @@ def extract_slug(url: str) -> str:
     return url
 
 
+def extract_citation_urls(content: str) -> List[str]:
+    """Extract all citation URLs from markdown content."""
+    urls = []
+    if not content:
+        return urls
+    
+    # Pattern to match markdown links: [](url) or [text](url)
+    link_pattern = r'\[([^\]]*)\]\(([^)]+)\)'
+    
+    for match in re.finditer(link_pattern, content):
+        url = match.group(2).strip()
+        # Only include external URLs (http/https)
+        if url and (url.startswith('http://') or url.startswith('https://')):
+            urls.append(url)
+    
+    return urls
+
+
 def generate_graph() -> Dict:
     """Generate article graph with edges."""
     print(f"Loading articles from {DATA_FILE}...")
@@ -112,13 +148,33 @@ def generate_graph() -> Dict:
     
     # Precompute article data
     article_data = {}
+    total_citations_found = 0
+    total_domains_found = 0
+    
     for slug, article in articles_by_slug.items():
         content = article.get('content', '')
         citations = article.get('citations', [])
         title = article.get('title', '')
         
-        # Extract citation domains
-        citation_domains = {get_root_domain(c) for c in citations if c.startswith('http')}
+        # If citations field is empty, try to extract from content
+        if not citations or len(citations) == 0:
+            citations = extract_citation_urls(content)
+        
+        # Filter and normalize citations
+        valid_citations = []
+        for c in citations:
+            if c and isinstance(c, str) and (c.startswith('http://') or c.startswith('https://')):
+                valid_citations.append(c.strip())
+        
+        # Extract citation domains (filter out empty domains)
+        citation_domains = set()
+        for c in valid_citations:
+            domain = get_root_domain(c)
+            if domain:  # Only add non-empty domains
+                citation_domains.add(domain)
+        
+        total_citations_found += len(valid_citations)
+        total_domains_found += len(citation_domains)
         
         # Extract internal links (these are slugs from /page/ links)
         internal_link_slugs = extract_internal_links(content)
@@ -137,11 +193,14 @@ def generate_graph() -> Dict:
                         internal_link_ids.add(linked_slug)
         
         article_data[slug] = {
-            'citations': set(citations),
+            'citations': set(valid_citations),
             'citation_domains': citation_domains,
             'internal_links': internal_link_ids,
             'title': title,
         }
+    
+    print(f"  - Found {total_citations_found} total citations across all articles")
+    print(f"  - Found {total_domains_found} unique citation domains")
     
     # Build edges
     edges = []
@@ -171,6 +230,7 @@ def generate_graph() -> Dict:
     # Shared citation domains
     max_shared_domains = 0
     domain_sharing = defaultdict(int)
+    domain_pairs = defaultdict(set)  # Store actual shared domains for metadata
     
     for slug1, slug2 in combinations(article_slugs, 2):
         data1 = article_data[slug1]
@@ -180,20 +240,28 @@ def generate_graph() -> Dict:
         if shared_domains:
             count = len(shared_domains)
             domain_sharing[(slug1, slug2)] = count
+            domain_pairs[(slug1, slug2)] = shared_domains
             max_shared_domains = max(max_shared_domains, count)
     
     # Normalize and add weights
+    # Use a minimum normalization factor to ensure edges are created even with small counts
+    normalization_factor = max(max_shared_domains, 1.0)
+    
     for (slug1, slug2), count in domain_sharing.items():
-        if max_shared_domains > 0:
-            weight = WEIGHTS['shared_domains'] * (count / max_shared_domains)
-            edge_weights[(slug1, slug2)] += weight
-            edge_types[(slug1, slug2)].add('shared_domains')
-            if 'shared_domains' not in edge_metadata[(slug1, slug2)]:
-                edge_metadata[(slug1, slug2)]['shared_domains'] = []
-            data1 = article_data[slug1]
-            data2 = article_data[slug2]
-            shared_domains = data1['citation_domains'] & data2['citation_domains']
-            edge_metadata[(slug1, slug2)]['shared_domains'] = list(shared_domains)
+        # Use absolute count with a minimum weight, plus normalized weight
+        # This ensures edges are created even if max_shared_domains is small
+        base_weight = WEIGHTS['shared_domains'] * min(count / normalization_factor, 1.0)
+        # Add a small bonus for each shared domain to ensure visibility
+        bonus_weight = min(count * 0.5, WEIGHTS['shared_domains'] * 0.3)
+        weight = base_weight + bonus_weight
+        
+        edge_weights[(slug1, slug2)] += weight
+        edge_types[(slug1, slug2)].add('shared_domains')
+        edge_metadata[(slug1, slug2)]['shared_domains'] = list(domain_pairs[(slug1, slug2)])
+    
+    if domain_sharing:
+        print(f"    - Found {len(domain_sharing)} article pairs sharing citation domains")
+        print(f"    - Max shared domains between any pair: {max_shared_domains}")
     
     # Domain Jaccard similarity
     for slug1, slug2 in combinations(article_slugs, 2):
