@@ -8,6 +8,7 @@ import os
 import re
 import uuid
 from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import unquote
 
@@ -47,6 +48,8 @@ CACHE_TTL_SECONDS = int(os.getenv("TWEETS_CACHE_TTL", "90"))  # default 90s
 SUMMARY_TTL_SECONDS = int(os.getenv("TWEETS_SUMMARY_TTL", "600"))  # default 10m
 RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("TWEETS_RATE_WINDOW", "60"))  # default 60s
 RATE_LIMIT_MAX_REQUESTS = int(os.getenv("TWEETS_RATE_MAX", "20"))  # default 20 reqs/min
+TRENDING_HOURS = int(os.getenv("TWEETS_TRENDING_HOURS", "48"))  # default 48h
+TRENDING_TOP_K = int(os.getenv("TWEETS_TRENDING_TOP_K", "3"))  # default top 3
 
 # In-memory cache and simple global rate limiter
 _tweets_cache: dict[str, tuple[float, list["TweetItem"]]] = {}
@@ -578,6 +581,7 @@ class TweetItem(BaseModel):
     quote_count: Optional[int] = None
     url: str
     score: Optional[float] = None
+    trending: Optional[bool] = None
 
 
 class TweetsSummary(BaseModel):
@@ -689,7 +693,8 @@ async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size
         ranked.sort(key=lambda x: x[0], reverse=True)
         ranked = ranked[:max(1, return_count * 2)]
         out: list[TweetItem] = []
-        for score, t, u in ranked[:return_count]:
+        now_dt = datetime.now(timezone.utc)
+        for idx, (score, t, u) in enumerate(ranked[:return_count]):
             tid = t.get("id")
             text = t.get("text", "")
             created_at = t.get("created_at")
@@ -698,6 +703,15 @@ async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size
             name = (u or {}).get("name")
             pfp = (u or {}).get("profile_image_url")
             url = f"https://x.com/{username}/status/{tid}" if username and tid else f"https://x.com/i/web/status/{tid}"
+            # trending flag: recent within TRENDING_HOURS and ranked within top-K
+            is_recent = False
+            if created_at:
+                try:
+                    dt = datetime.fromisoformat(created_at.replace("Z", "+00:00"))
+                    is_recent = (now_dt - dt) <= timedelta(hours=TRENDING_HOURS)
+                except Exception:
+                    is_recent = False
+            is_trending = bool(is_recent and (idx < max(1, TRENDING_TOP_K)))
             out.append(
                 TweetItem(
                     id=tid,
@@ -712,6 +726,7 @@ async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size
                     quote_count=metrics.get("quote_count"),
                     url=url,
                     score=score,
+                    trending=is_trending,
                 )
             )
         return out

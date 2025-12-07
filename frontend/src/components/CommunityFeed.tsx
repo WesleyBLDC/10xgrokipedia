@@ -153,6 +153,9 @@ export default function CommunityFeed({ topicSlug }: Props) {
                     {t.author_name && (
                       <span className="cf-username">@{t.author_username}</span>
                     )}
+                    {t.trending && (
+                      <span className="cf-trending" title="Recent and trending">Trending</span>
+                    )}
                   </div>
                   <div
                     className="cf-text"

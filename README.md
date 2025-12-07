@@ -98,6 +98,7 @@ Notes:
   - normalization = max(50, followers_count)^0.7
   - score = raw_engagement / normalization
 - Final list: candidates are sorted by `score` descending; the top `max_results` are returned to the client.
+- "Trending" flag: a tweet is marked as trending when it is among the top `TWEETS_TRENDING_TOP_K` ranked items and was created within `TWEETS_TRENDING_HOURS` hours (defaults: top 3 within 48h). The UI displays a small “Trending” badge for these tweets.
 - Caching and refresh: results are cached in-memory per topic phrase and `max_results` for `TWEETS_CACHE_TTL` seconds. Use `POST /api/topics/{slug}/tweets/refresh` (or the ↻ button in the UI) to clear the cache and refetch fresh results.
 - UI: the left rail shows a compact, sticky “Top Tweets” widget with ranked numbers; the top three items are visually highlighted. Items link directly to the tweet on X.
 
@@ -116,3 +117,5 @@ Reliability and rate limits:
   - `GROK_API_BASE` (optional, default `https://api.x.ai/v1`)
   - `GROK_MODEL` (optional, default `grok-2-latest`)
   - `TWEETS_SUMMARY_TTL` (optional, seconds, default `600`)
+  - `TWEETS_TRENDING_HOURS` (optional, hours, default `48`)
+  - `TWEETS_TRENDING_TOP_K` (optional, integer, default `3`)

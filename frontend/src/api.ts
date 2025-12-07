@@ -57,6 +57,7 @@ export interface TweetItem {
   reply_count?: number | null;
   quote_count?: number | null;
   url: string;
+  trending?: boolean | null;
 }
 
 export interface TweetsSummary {
