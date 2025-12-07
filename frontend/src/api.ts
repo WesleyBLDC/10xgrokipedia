@@ -10,6 +10,7 @@ export interface Topic {
   title: string;
   content: string;
   suggestion_count: number;
+  id?: string | null;
 }
 
 export interface ReviewResult {
@@ -286,6 +287,51 @@ export async function fetchArticleSummary(content: string, title?: string): Prom
   });
   if (!res.ok) {
     throw new Error("Failed to fetch summary");
+  }
+  return res.json();
+}
+
+// Article Graph
+export interface GraphNode {
+  id: string;
+  title: string;
+  citation_count: number;
+  outgoing_links: number;
+  citation_domains_count?: number;
+}
+
+export interface GraphEdge {
+  source: string;
+  target: string;
+  weight: number;
+  types: string[];
+  metadata?: {
+    shared_citations?: string[];
+    shared_domains?: string[];
+    link_direction?: string[];
+    co_linked_targets?: string[];
+  };
+}
+
+export interface ArticleGraph {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  center_node?: string | null;
+  stats?: {
+    total_nodes: number;
+    total_edges: number;
+    edges_by_type?: Record<string, number>;
+  };
+}
+
+export async function getArticleGraph(articleId?: string): Promise<ArticleGraph> {
+  let url = `${API_BASE}/article_graph`;
+  if (articleId) {
+    url += `?article_id=${encodeURIComponent(articleId)}`;
+  }
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error("Failed to load article graph");
   }
   return res.json();
 }

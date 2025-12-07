@@ -98,6 +98,7 @@ Frontend will be available at http://localhost:5173
 - Character n-grams improve fuzzy title/entity grouping without hand-coded rules.  
 - Exact-quote offsets ensure UI highlights remain precise; pairs that don’t round-trip can be dropped/flagged.
 
+
 ## Contradiction Pipeline (summary)
 
 - **Clustering (`backend/cluster_articles.py`)**  
