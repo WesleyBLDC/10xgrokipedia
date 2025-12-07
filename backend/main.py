@@ -534,9 +534,9 @@ def get_versions(topic_slug: str) -> list[VersionSummary]:
     data = load_data()
 
     for a in data:
-        if extract_slug(a.url) == decoded_slug:
+        if extract_slug(a["url"]) == decoded_slug:
             versions = []
-            for i, v in enumerate(a.versions):
+            for i, v in enumerate(a["versions"]):
                 versions.append(VersionSummary(index=i, timestamp=v["timestamp"]))
             return versions
 

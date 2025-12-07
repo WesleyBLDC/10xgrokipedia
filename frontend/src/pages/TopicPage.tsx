@@ -155,9 +155,26 @@ export default function TopicPage() {
 
   return (
     <div className="topic-page">
-
-      
-      <Link to="/" className="back-link">← Back to search</Link>
+        <div className="topic-header">
+            <Link to="/" className="back-link">← Back to search</Link>
+            <div className="header-actions">
+            <VersionHistory
+                topicSlug={topic!}
+                onVersionSelect={handleVersionSelect}
+                currentVersionIndex={viewingVersionIndex}
+            />
+            {totalCount > 0 && (
+                <button
+                className={`suggestions-badge ${pendingCount === 0 ? "no-pending" : ""}`}
+                onClick={() => setShowSuggestions(!showSuggestions)}
+                >
+                {pendingCount > 0
+                    ? `${pendingCount} pending edit${pendingCount !== 1 ? "s" : ""}`
+                    : `${totalCount} edit${totalCount !== 1 ? "s" : ""}`}
+                </button>
+            )}
+            </div>
+      </div>
 
       {versionContent && (
         <div className="version-banner">
@@ -185,7 +202,6 @@ export default function TopicPage() {
             />
           )}
           <div className="topic-header">
-            <h1>{data.title}</h1>
             {biasData && (
             <div className="bias-marker">
                 <div className="bias-score">
