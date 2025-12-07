@@ -1,25 +1,20 @@
+import asyncio
 import json
 import os
-import time
-import asyncio
-from collections import deque
-from typing import Optional, List
-import os
 import re
+import time
 import uuid
-from datetime import datetime
+from collections import deque
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from typing import List, Optional
 from urllib.parse import unquote
 
 import httpx
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
-from fastapi import Response
+from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import httpx
-from dotenv import load_dotenv
 
 # Load .env from the same directory as this file
 load_dotenv(Path(__file__).parent / ".env")
@@ -62,12 +57,9 @@ _summary_cache: dict[str, tuple[float, List[str]]] = {}
 _cache_lock = asyncio.Lock()
 _rate_lock = asyncio.Lock()
 _rate_calls: deque[float] = deque()
-<<<<<<< HEAD
 SUGGESTIONS_FILE = Path(__file__).parent / "suggestions.json"
 GROK_API_KEY = os.getenv("GROK_API_KEY")
-=======
 _inflight_tasks: dict[str, asyncio.Task] = {}
->>>>>>> 1bd6f65 (fix(top-tweets): reduce upstream 429s)
 
 if not GROK_API_KEY:
     print("WARNING: GROK_API_KEY not found in .env file!")
@@ -553,26 +545,8 @@ def get_version(topic_slug: str, version_index: int) -> VersionDetail:
     raise HTTPException(status_code=404, detail="Topic not found")
 
 
-# --- Dynamic Topic Endpoint (catch-all, must come LAST) ---
+# ---- Community Feed Models (X/Twitter) ----
 
-@app.get("/api/topics/{topic_slug:path}")
-def get_topic(topic_slug: str) -> TopicDetail:
-    """Get a specific topic by slug."""
-    data = load_data()
-    decoded_slug = unquote(topic_slug)
-
-    for a in data:
-        if extract_slug(a.url) == decoded_slug:
-            return TopicDetail(
-                topic=extract_slug(a.url),
-                title=a.title,
-                content=a.content,
-                suggestion_count=get_suggestion_count(decoded_slug)
-            )
-    raise HTTPException(status_code=404, detail="Topic not found")
-
-
-# ---- Community Feed (X/Twitter) ----
 class TweetItem(BaseModel):
     id: str
     text: str
@@ -596,6 +570,154 @@ class TweetsSummary(BaseModel):
     model: Optional[str] = None
     cached: bool = False
 
+
+# --- Tweets Endpoints (must come BEFORE catch-all topic route) ---
+
+@app.get("/api/topics/{topic_slug}/tweets")
+async def get_topic_tweets(topic_slug: str, max_results: int = 10) -> list[TweetItem]:
+    """Recent top tweets for a topic. Uses X API recent search with relevancy sort.
+
+    - Requires env var `X_BEARER_TOKEN` (or `TWITTER_BEARER_TOKEN`).
+    - `topic_slug` is the Grokipedia slug; converted to a phrase query.
+    """
+    # Decode URL-encoded slugs (e.g., %20 -> space)
+    decoded_slug = unquote(topic_slug)
+    # Convert slug-like to a phrase: underscores and hyphens to spaces, wrap in quotes
+    phrase = decoded_slug.replace("_", " ").replace("-", " ").strip()
+    if not phrase:
+        raise HTTPException(status_code=400, detail="Empty topic slug")
+    query = f'"{phrase}"'
+
+    # Build cache key based on normalized query and max_results
+    key = f"q={query}|n={max_results}"
+
+    # Attempt to read from cache
+    now = time.time()
+    async with _cache_lock:
+        if key in _tweets_cache:
+            ts, items = _tweets_cache[key]
+            if now - ts < CACHE_TTL_SECONDS:
+                return items
+            else:
+                _tweets_cache.pop(key, None)
+
+        # Single-flight: if another request is already fetching, await it
+        if key in _inflight_tasks:
+            task = _inflight_tasks[key]
+            joiner = True
+        else:
+            # Rate limiting only for the creator of the task
+            async with _rate_lock:
+                while _rate_calls and (now - _rate_calls[0] > RATE_LIMIT_WINDOW_SECONDS):
+                    _rate_calls.popleft()
+                if len(_rate_calls) >= RATE_LIMIT_MAX_REQUESTS:
+                    # serve stale if available (even if expired)
+                    if key in _tweets_cache:
+                        return _tweets_cache[key][1]
+                    raise HTTPException(status_code=429, detail="Rate limit exceeded for tweets endpoint. Please try again later.")
+                _rate_calls.append(now)
+            task = asyncio.create_task(_fetch_recent_top_tweets(query=query, return_count=max_results))
+            _inflight_tasks[key] = task
+            joiner = False
+
+    # Await the task outside the lock
+    try:
+        items = await task
+    except HTTPException as e:
+        # On upstream 429 or errors, try to serve stale if available
+        async with _cache_lock:
+            if key in _tweets_cache:
+                return _tweets_cache[key][1]
+        raise e
+    finally:
+        if not joiner:
+            async with _cache_lock:
+                _inflight_tasks.pop(key, None)
+
+    # Store in cache (creator only)
+    if not joiner:
+        async with _cache_lock:
+            _tweets_cache[key] = (time.time(), items)
+
+    return items
+
+
+@app.post("/api/topics/{topic_slug}/tweets/refresh", status_code=204)
+async def refresh_topic_tweets(topic_slug: str) -> Response:
+    decoded_slug = unquote(topic_slug)
+    phrase = decoded_slug.replace("_", " ").replace("-", " ").strip()
+    if not phrase:
+        raise HTTPException(status_code=400, detail="Empty topic slug")
+    query = f'"{phrase}"'
+    key_prefix = f"q={query}|"
+    async with _cache_lock:
+        to_delete = [k for k in list(_tweets_cache.keys()) if k.startswith(key_prefix)]
+        for k in to_delete:
+            _tweets_cache.pop(k, None)
+        # also clear summary cache for this topic
+        to_delete_s = [k for k in list(_summary_cache.keys()) if k.startswith(key_prefix)]
+        for k in to_delete_s:
+            _summary_cache.pop(k, None)
+    return Response(status_code=204)
+
+
+@app.get("/api/topics/{topic_slug}/tweets/summary")
+async def get_topic_tweets_summary(topic_slug: str, max_results: int = 10) -> TweetsSummary:
+    decoded_slug = unquote(topic_slug)
+    phrase = decoded_slug.replace("_", " ").replace("-", " ").strip()
+    if not phrase:
+        raise HTTPException(status_code=400, detail="Empty topic slug")
+    query = f'"{phrase}"'
+
+    key = f"q={query}|n={max_results}"
+    now = time.time()
+
+    # Try cache first
+    async with _cache_lock:
+        if key in _summary_cache:
+            ts, bullets = _summary_cache[key]
+            if now - ts < SUMMARY_TTL_SECONDS:
+                return TweetsSummary(bullets=bullets, model=_get_grok_model(), cached=True)
+            else:
+                _summary_cache.pop(key, None)
+
+    # We need tweets first (use existing cache if warm)
+    async with _cache_lock:
+        cached = _tweets_cache.get(key)
+    if cached:
+        tweets = cached[1]
+    else:
+        tweets = await _fetch_recent_top_tweets(query=query, return_count=max_results)
+
+    bullets = await _generate_tweets_summary(phrase, tweets)
+
+    # Store in cache
+    async with _cache_lock:
+        _summary_cache[key] = (time.time(), bullets)
+
+    return TweetsSummary(bullets=bullets, model=_get_grok_model(), cached=False)
+
+
+# --- Dynamic Topic Endpoint (catch-all, must come LAST) ---
+
+@app.get("/api/topics/{topic_slug:path}")
+def get_topic(topic_slug: str) -> TopicDetail:
+    """Get a specific topic by slug."""
+    data = load_data()
+    decoded_slug = unquote(topic_slug)
+
+    for a in data:
+        if extract_slug(a.url) == decoded_slug:
+            return TopicDetail(
+                topic=extract_slug(a.url),
+                title=a.title,
+                content=a.content,
+                suggestion_count=get_suggestion_count(decoded_slug)
+            )
+    raise HTTPException(status_code=404, detail="Topic not found")
+
+
+# ---- Community Feed Helper Functions ----
 
 def _get_x_bearer_token() -> Optional[str]:
     # Support either env var name
@@ -838,128 +960,3 @@ async def _generate_tweets_summary(topic_phrase: str, tweets: List[TweetItem]) -
     # Ensure we return up to 3 compact bullets
     bullets = [b.strip() for b in bullets if isinstance(b, str) and b.strip()][:3]
     return bullets
-
-
-@app.get("/api/topics/{topic_slug}/tweets")
-async def get_topic_tweets(topic_slug: str, max_results: int = 10) -> list[TweetItem]:
-    """Recent top tweets for a topic. Uses X API recent search with relevancy sort.
-
-    - Requires env var `X_BEARER_TOKEN` (or `TWITTER_BEARER_TOKEN`).
-    - `topic_slug` is the Grokipedia slug; converted to a phrase query.
-    """
-    # Decode URL-encoded slugs (e.g., %20 -> space)
-    decoded_slug = unquote(topic_slug)
-    # Convert slug-like to a phrase: underscores and hyphens to spaces, wrap in quotes
-    phrase = decoded_slug.replace("_", " ").replace("-", " ").strip()
-    if not phrase:
-        raise HTTPException(status_code=400, detail="Empty topic slug")
-    query = f'"{phrase}"'
-
-    # Build cache key based on normalized query and max_results
-    key = f"q={query}|n={max_results}"
-
-    # Attempt to read from cache
-    now = time.time()
-    async with _cache_lock:
-        if key in _tweets_cache:
-            ts, items = _tweets_cache[key]
-            if now - ts < CACHE_TTL_SECONDS:
-                return items
-            else:
-                _tweets_cache.pop(key, None)
-
-        # Single-flight: if another request is already fetching, await it
-        if key in _inflight_tasks:
-            task = _inflight_tasks[key]
-            joiner = True
-        else:
-            # Rate limiting only for the creator of the task
-            async with _rate_lock:
-                while _rate_calls and (now - _rate_calls[0] > RATE_LIMIT_WINDOW_SECONDS):
-                    _rate_calls.popleft()
-                if len(_rate_calls) >= RATE_LIMIT_MAX_REQUESTS:
-                    # serve stale if available (even if expired)
-                    if key in _tweets_cache:
-                        return _tweets_cache[key][1]
-                    raise HTTPException(status_code=429, detail="Rate limit exceeded for tweets endpoint. Please try again later.")
-                _rate_calls.append(now)
-            task = asyncio.create_task(_fetch_recent_top_tweets(query=query, return_count=max_results))
-            _inflight_tasks[key] = task
-            joiner = False
-
-    # Await the task outside the lock
-    try:
-        items = await task
-    except HTTPException as e:
-        # On upstream 429 or errors, try to serve stale if available
-        async with _cache_lock:
-            if key in _tweets_cache:
-                return _tweets_cache[key][1]
-        raise e
-    finally:
-        if not joiner:
-            async with _cache_lock:
-                _inflight_tasks.pop(key, None)
-
-    # Store in cache (creator only)
-    if not joiner:
-        async with _cache_lock:
-            _tweets_cache[key] = (time.time(), items)
-
-    return items
-
-
-@app.post("/api/topics/{topic_slug}/tweets/refresh", status_code=204)
-async def refresh_topic_tweets(topic_slug: str) -> Response:
-    decoded_slug = unquote(topic_slug)
-    phrase = decoded_slug.replace("_", " ").replace("-", " ").strip()
-    if not phrase:
-        raise HTTPException(status_code=400, detail="Empty topic slug")
-    query = f'"{phrase}"'
-    key_prefix = f"q={query}|"
-    async with _cache_lock:
-        to_delete = [k for k in list(_tweets_cache.keys()) if k.startswith(key_prefix)]
-        for k in to_delete:
-            _tweets_cache.pop(k, None)
-        # also clear summary cache for this topic
-        to_delete_s = [k for k in list(_summary_cache.keys()) if k.startswith(key_prefix)]
-        for k in to_delete_s:
-            _summary_cache.pop(k, None)
-    return Response(status_code=204)
-
-
-@app.get("/api/topics/{topic_slug}/tweets/summary")
-async def get_topic_tweets_summary(topic_slug: str, max_results: int = 10) -> TweetsSummary:
-    decoded_slug = unquote(topic_slug)
-    phrase = decoded_slug.replace("_", " ").replace("-", " ").strip()
-    if not phrase:
-        raise HTTPException(status_code=400, detail="Empty topic slug")
-    query = f'"{phrase}"'
-
-    key = f"q={query}|n={max_results}"
-    now = time.time()
-
-    # Try cache first
-    async with _cache_lock:
-        if key in _summary_cache:
-            ts, bullets = _summary_cache[key]
-            if now - ts < SUMMARY_TTL_SECONDS:
-                return TweetsSummary(bullets=bullets, model=_get_grok_model(), cached=True)
-            else:
-                _summary_cache.pop(key, None)
-
-    # We need tweets first (use existing cache if warm)
-    async with _cache_lock:
-        cached = _tweets_cache.get(key)
-    if cached:
-        tweets = cached[1]
-    else:
-        tweets = await _fetch_recent_top_tweets(query=query, return_count=max_results)
-
-    bullets = await _generate_tweets_summary(phrase, tweets)
-
-    # Store in cache
-    async with _cache_lock:
-        _summary_cache[key] = (time.time(), bullets)
-
-    return TweetsSummary(bullets=bullets, model=_get_grok_model(), cached=False)

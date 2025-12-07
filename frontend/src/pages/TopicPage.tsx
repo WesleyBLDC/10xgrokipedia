@@ -163,69 +163,73 @@ export default function TopicPage() {
       )}
 
       <h1>{data.title}</h1>
+
       <div className="topic-layout">
+        {/* Left column: Community Feed and future components */}
         <aside className="left-rail">
-          {/* Community Feed: top-left of page */}
           {topic && <CommunityFeed topicSlug={topic} />}
         </aside>
-  
-      {showSuggestions && !versionContent && (
-        <SuggestionsPanel
-          suggestions={suggestions}
-          topicSlug={topic!}
-          onUpdate={loadData}
-        />
-      )}
 
-      <div className="content" onMouseUp={handleMouseUp}>
-          <ReactMarkdown
-            components={{
-              a: ({ href, children }) => {
-                const hasText = children &&
-                  (typeof children === 'string' ? children.trim() :
-                    Array.isArray(children) ? children.some(c => c) : true);
+        {/* Right column: Edit history + article content */}
+        <main className="main-content">
+          {showSuggestions && !versionContent && (
+            <SuggestionsPanel
+              suggestions={suggestions}
+              topicSlug={topic!}
+              onUpdate={loadData}
+            />
+          )}
 
-              if (!hasText && href) {
-                const num = getFootnoteNumber(href);
-                return (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="footnote"
-                    title={href}
-                  >
-                    [{num}]
-                  </a>
-                );
-              }
+          <div className="content" onMouseUp={handleMouseUp}>
+            <ReactMarkdown
+              components={{
+                a: ({ href, children }) => {
+                  const hasText = children &&
+                    (typeof children === 'string' ? children.trim() :
+                      Array.isArray(children) ? children.some(c => c) : true);
 
-              if (href?.startsWith("/page/")) {
-                const slug = href.replace("/page/", "");
-                return (
-                  <a
-                    href={href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate(`/page/${slug}`);
-                    }}
-                  >
-                    {children}
-                  </a>
-                );
-              }
+                  if (!hasText && href) {
+                    const num = getFootnoteNumber(href);
+                    return (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="footnote"
+                        title={href}
+                      >
+                        [{num}]
+                      </a>
+                    );
+                  }
 
-              return (
-                <a href={href} target="_blank" rel="noopener noreferrer">
-                  {children}
-                </a>
-              );
-            },
-          }}
-        >
-          {displayContent}
-        </ReactMarkdown>
-        </div>
+                  if (href?.startsWith("/page/")) {
+                    const slug = href.replace("/page/", "");
+                    return (
+                      <a
+                        href={href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigate(`/page/${slug}`);
+                        }}
+                      >
+                        {children}
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <a href={href} target="_blank" rel="noopener noreferrer">
+                      {children}
+                    </a>
+                  );
+                },
+              }}
+            >
+              {displayContent}
+            </ReactMarkdown>
+          </div>
+        </main>
       </div>
 
       {tooltipPosition && !versionContent && (

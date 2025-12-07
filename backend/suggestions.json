@@ -115,5 +115,35 @@
       },
       "created_at": "2025-12-07T08:48:06.017145Z"
     }
+  ],
+  "'Asir_Province": [
+    {
+      "id": "2624c599-7330-4c44-b89d-548960f43ce5",
+      "highlighted_text": "Asir's defining characteristics include its ecological diversity, with national parks and valleys supporting biodiversity,",
+      "summary": "ecological diversity, national parks and valleys supporting biodiversity\u201d\nWhile the region is known for mountains, valleys, and some protected areas, the article implies a broad and thriving biodiversity (e.g. suggesting many species, large protected ecosystems) without citing concrete species counts or conservation status. Some claims (e.g. presence of Arabian leopard) are from older ecological studies and may be outdated or unverified. \nWikipedia\n+2\nMillennium Assessment\n+2\nReplace with: \u201cThe landscape combines mountains, valleys, and coastal zones; some areas are recognized for their ecological value and efforts at environmental protection have been made, but biodiversity remains vulnerable.\u201d",
+      "sources": [],
+      "status": "reviewed",
+      "review_result": {
+        "approved": false,
+        "reasoning": "The suggested change introduces a more cautious tone regarding biodiversity in Asir, which could be valuable for accuracy. However, the user did not provide any supporting sources to validate claims about the vulnerability of biodiversity or the outdated nature of ecological studies. Without evidence, the revision risks being speculative. Additionally, the original text's mention of ecological diversity and national parks is broadly accurate and supported by existing citations in the article. The suggested text also lacks specificity and does not significantly improve clarity or depth.",
+        "suggested_content": null
+      },
+      "created_at": "2025-12-07T09:30:45.044979Z"
+    }
+  ],
+  "$15_minimum_wage_movement": [
+    {
+      "id": "3ecfd45b-e535-48ea-8488-841b8831fc98",
+      "highlighted_text": "with twelve states plus the District of Columbia enacting phased increases to at least $15 per hour by various target dates, alongside over 125 municipalities adopting higher local minimums,",
+      "summary": "Quoted text:\n\n\u201ctwelve states plus the District of Columbia enacting phased increases to at least $15 per hour \u2026 over 125 municipalities adopting higher local minimums.\u201d\n\nProblem:\n\nThe number twelve states is incorrect. As of 2024, only seven states (not twelve) have laws phasing in a $15 statewide minimum wage, though many others index minimum wages upward.\n\nVerified list of statewide $15 plans:\n\nCalifornia\n\nNew York\n\nMassachusetts\n\nNew Jersey\n\nIllinois\n\nMaryland\n\nConnecticut\n(+ Washington DC, though not a state)\n\nSource:\nNELP Minimum Wage Tracker, 2023\u20132024.\n\n\u2705 Replacement:\n\n\u201cBy the mid-2020s, at least seven states plus Washington, D.C. enacted laws phasing in a $15 statewide minimum wage, while more than 50 municipalities adopted local minimum wages exceeding state levels.\u201d\nCitation: NELP Minimum Wage Tracker (2023).",
+      "sources": [],
+      "status": "applied",
+      "review_result": {
+        "approved": true,
+        "reasoning": "The suggested change improves the article's accuracy by correcting the number of states with phased increases to a $15 minimum wage from twelve to seven, plus Washington, D.C., based on the NELP Minimum Wage Tracker (2023\u20132024). The user's verified list aligns with widely available data on state minimum wage laws as of 2024. Additionally, the adjustment to 'more than 50 municipalities' from 'over 125' appears more cautious and plausible, though specific verification of the municipal count would be ideal. Since the source (NELP Tracker) is credible and commonly used for such data, and the change corrects an overstatement, it enhances the article's reliability. The lack of additional supporting sources beyond the cited tracker is noted but does not undermine the correction given the source's authority.",
+        "suggested_content": "By the mid-2020s, at least seven states plus Washington, D.C. enacted laws phasing in a $15 statewide minimum wage, while more than 50 municipalities adopted local minimum wages exceeding state levels."
+      },
+      "created_at": "2025-12-07T09:42:27.804527Z"
+    }
   ]
 }
