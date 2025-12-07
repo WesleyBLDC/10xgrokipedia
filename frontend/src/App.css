@@ -110,7 +110,6 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-<<<<<<< HEAD
 /* Two-column layout: left rail + content */
 .topic-page .topic-layout {
   display: grid;
@@ -129,7 +128,8 @@
 
 .topic-page .main-content {
   min-width: 0; /* Prevent grid blowout */
-=======
+}
+
 .topic-page h1 {
   font-size: 2rem;
   font-weight: 700;
@@ -251,7 +251,6 @@
   margin-left: auto;
   color: var(--text-muted);
   font-size: 0.75rem;
->>>>>>> 550f836 (add bias logic)
 }
 
 .topic-page .content {
