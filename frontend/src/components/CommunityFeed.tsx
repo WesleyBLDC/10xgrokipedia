@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
-import type { TweetItem } from "../api";
-import { getTopicTweets, getTopicTweetsSummary, refreshTopicTweets } from "../api";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type React from "react";
+import type { TweetItem, SearchResult, SearchHints } from "../api";
+import { getTopicTweets, getTopicTweetsSummary, refreshTopicTweets, searchTweets } from "../api";
 
 interface Props {
   topicSlug: string;
@@ -16,68 +17,257 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
   const [summary, setSummary] = useState<string[] | null>(null);
   const [summaryError, setSummaryError] = useState<string | null>(null);
   const [summaryLoading, setSummaryLoading] = useState<boolean>(false);
+  // For smoother transitions, stage the query we render against
+  const [activeQuery, setActiveQuery] = useState<string | undefined>(
+    searchQuery && searchQuery.trim().length > 0 ? searchQuery : undefined
+  );
+  const [anim, setAnim] = useState<"idle" | "out" | "in">("idle");
+  const [searchHints, setSearchHints] = useState<SearchHints | null>(null);
+  // Inline edit of whole query removed; we use chips instead
+  const [addingKeyword, setAddingKeyword] = useState<boolean>(false);
+  const [addDraft, setAddDraft] = useState<string>("");
+  const [rawMode, setRawMode] = useState<boolean>(false);
+  const [localKeywords, setLocalKeywords] = useState<string[] | null>(null);
+  const [localTopics, setLocalTopics] = useState<string[] | null>(null);
+  const skipNextFetchRef = useRef(false);
+  const [hintsCollapsed, setHintsCollapsed] = useState<boolean>(false);
+  const [searchingRelated, setSearchingRelated] = useState<boolean>(false);
+  const thinking = (activeQuery ? (searchingRelated || refreshing) : (loading || summaryLoading));
+  const inflightRef = useRef(false);
 
-  const fetchTweets = useCallback(() => {
-    setLoading(true);
+  // Derive a small set of readable keywords from the active query
+  const keywords = useMemo(() => {
+    if (searchHints && searchHints.keywords && searchHints.keywords.length > 0) {
+      return searchHints.keywords.map(k => k.toLowerCase());
+    }
+    if (!activeQuery) return [] as string[];
+    const q = activeQuery.toLowerCase();
+    // Basic tokenization: letters/numbers/apostrophes/hyphens
+    const tokens = q.match(/[\p{L}\p{N}'-]+/gu) || [];
+    const STOP = new Set([
+      "the","a","an","and","or","but","if","then","else","for","of","in","to","on","at","by","with","as","from","that","this","these","those","is","are","was","were","be","been","being","it","its","into","over","about","after","before","not","no","yes","we","you","they","their","our","his","her","him","she","he","them","which","who","whom","what","when","where","why","how"
+    ]);
+    const counts = new Map<string, number>();
+    for (const t of tokens) {
+      const s = t.replace(/^[-']+|[-']+$/g, "");
+      if (!s || s.length < 3 || STOP.has(s)) continue;
+      counts.set(s, (counts.get(s) || 0) + 1);
+    }
+    const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1] || b[0].length - a[0].length);
+    return sorted.slice(0, 8).map(([w]) => w);
+  }, [activeQuery]);
+
+  const renderHighlightedText = useCallback((text: string, keyPrefix: string): React.ReactNode => {
+    if (!keywords.length) return text;
+    const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const pattern = keywords.map(escape).join("|");
+    if (!pattern) return text;
+    const regex = new RegExp(`\\b(${pattern})\\b`, "giu");
+    const out: React.ReactNode[] = [];
+    let last = 0;
+    let m: RegExpExecArray | null;
+    while ((m = regex.exec(text)) !== null) {
+      const start = m.index;
+      const end = start + m[0].length;
+      if (start > last) out.push(text.slice(last, start));
+      out.push(
+        <span className="cf-keyword" key={`${keyPrefix}-${start}`}>{text.slice(start, end)}</span>
+      );
+      last = end;
+      if (regex.lastIndex === m.index) regex.lastIndex++; // safety
+    }
+    if (last < text.length) out.push(text.slice(last));
+    return out;
+  }, [keywords]);
+
+  // Animate on mode change (topic <-> search)
+  useEffect(() => {
+    const next = searchQuery && searchQuery.trim().length > 0 ? searchQuery : undefined;
+    if (next === activeQuery) return;
+    setAnim("out");
+    const t1 = setTimeout(() => {
+      setActiveQuery(next);
+      setAnim("in");
+      const t2 = setTimeout(() => setAnim("idle"), 200);
+      return () => clearTimeout(t2);
+    }, 180);
+    return () => clearTimeout(t1);
+  }, [searchQuery, activeQuery]);
+
+  // Convert topic slug to readable phrase (e.g., "elon-musk" -> "elon musk")
+  const topicPhrase = useMemo(() => {
+    return topicSlug.replace(/[-_]/g, " ").trim();
+  }, [topicSlug]);
+
+  const buildRawQuery = useCallback(() => {
+    // Only use keywords for the API query (not topics - they're display-only)
+    const kws = (localKeywords ?? searchHints?.keywords ?? []).map(s => s.trim()).filter(Boolean);
+    // Always include the page topic as a keyword for context
+    const allKws = Array.from(new Set([topicPhrase, ...kws]));
+    if (allKws.length === 0) return "";
+    const norm = allKws.map(t => (t.includes(" ") ? `"${t}"` : t));
+    return `(${norm.join(" OR ")})`;
+  }, [localKeywords, searchHints, topicPhrase]);
+
+  const fetchTweets = useCallback(async (opts?: { keepCurrent?: boolean }): Promise<TweetItem[] | null> => {
+    const keepCurrent = !!opts?.keepCurrent;
+    // Prevent duplicate concurrent calls in related mode
+    const isRelated = !!(activeQuery && activeQuery.trim().length > 0);
+    if (isRelated) {
+      if (inflightRef.current) return null;
+      inflightRef.current = true;
+      setSearchingRelated(true);
+    }
+    if (!keepCurrent) {
+      setLoading(true);
+      setTweets(null);
+    }
     setError(null);
-    setTweets(null);
-    getTopicTweets(topicSlug, 10)
-      .then(setTweets)
-      .catch((e) => setError(typeof e?.message === "string" ? e.message : "Failed to load"))
-      .finally(() => setLoading(false));
-  }, [topicSlug]);
+    let data: TweetItem[] | null = null;
+    try {
+      if (activeQuery && activeQuery.trim().length > 0) {
+        const res: SearchResult = await searchTweets(activeQuery, 10, { optimize: !rawMode, nocache: true });
+        data = res?.tweets || [];
+        setTweets(data);
+        if (rawMode && (!res?.hints || (!res.hints.keywords?.length && !res.hints.topics?.length))) {
+          const kws = localKeywords ?? searchHints?.keywords ?? [];
+          const tps = localTopics ?? searchHints?.topics ?? [];
+          setSearchHints({ query: activeQuery, keywords: kws, topics: tps });
+        } else if (res?.hints) {
+          // Inject page topic as first keyword if not already present
+          const hintsKws = res.hints.keywords || [];
+          const topicLower = topicPhrase.toLowerCase();
+          const hasPageTopic = hintsKws.some(k => k.toLowerCase() === topicLower);
+          const augmentedKws = hasPageTopic ? hintsKws : [topicPhrase, ...hintsKws];
+          setSearchHints({ ...res.hints, keywords: augmentedKws });
+        } else {
+          // No hints from API, create minimal hints with page topic
+          setSearchHints({ query: activeQuery, keywords: [topicPhrase], topics: [] });
+        }
+      } else {
+        data = await getTopicTweets(topicSlug, 10);
+        setTweets(data);
+        setSearchHints(null);
+        setRawMode(false);
+        setLocalKeywords(null);
+        setLocalTopics(null);
+      }
+      return data;
+    } catch (e: any) {
+      setError(typeof e?.message === "string" ? e.message : "Failed to load");
+      setSearchHints(null);
+      return null;
+    } finally {
+      if (isRelated) {
+        setSearchingRelated(false);
+        inflightRef.current = false;
+      }
+      if (!keepCurrent) setLoading(false);
+    }
+  }, [topicSlug, topicPhrase, activeQuery, rawMode, localKeywords, localTopics, searchHints]);
 
-  const fetchSummary = useCallback(() => {
-    setSummaryLoading(true);
-    setSummaryError(null);
-    setSummary(null);
-    getTopicTweetsSummary(topicSlug, 10)
-      .then((data) => setSummary(data?.bullets || []))
-      .catch((e) => setSummaryError(typeof e?.message === "string" ? e.message : ""))
-      .finally(() => setSummaryLoading(false));
-  }, [topicSlug]);
+  // Summary is now computed conditionally based on tweets count (see effects/onRefresh)
 
   useEffect(() => {
     let cancelled = false;
     setError(null);
-    setTweets(null);
-    // Fetch tweets first; then summary to avoid duplicate upstream calls
-    getTopicTweets(topicSlug, 10)
-      .then((data) => {
-        if (!cancelled) setTweets(data);
-        // Start summary after tweets succeed
-        setSummaryLoading(true);
-        setSummaryError(null);
-        setSummary(null);
-        return getTopicTweetsSummary(topicSlug, 10)
-          .then((s) => {
-            if (!cancelled) setSummary(s?.bullets || []);
-          })
-          .catch((e) => {
-            if (!cancelled) setSummaryError(typeof e?.message === "string" ? e.message : "");
-          })
-          .finally(() => {
-            if (!cancelled) setSummaryLoading(false);
-          });
-      })
-      .catch((e) => {
+    const run = async () => {
+      try {
+        if (activeQuery && activeQuery.trim().length > 0) {
+          if (skipNextFetchRef.current) {
+            // A manual refresh already triggered fetchTweets
+            skipNextFetchRef.current = false;
+          } else {
+            await fetchTweets({ keepCurrent: !!tweets && tweets.length > 0 });
+          }
+          setSummary(null);
+          setSummaryError(null);
+          setSummaryLoading(false);
+        } else {
+          setLoading(true);
+          setTweets(null);
+          const data = await getTopicTweets(topicSlug, 10);
+          if (!cancelled) setTweets(data);
+          if (!cancelled) setSearchHints(null);
+          if (!cancelled) {
+            setRawMode(false);
+            setLocalKeywords(null);
+            setLocalTopics(null);
+          }
+          if (data && data.length >= 1) {
+            setSummaryLoading(true);
+            setSummaryError(null);
+            setSummary(null);
+            try {
+              const s = await getTopicTweetsSummary(topicSlug, 10);
+              const bullets = s?.bullets || [];
+              const limited = data.length <= 3 ? bullets.slice(0, 1) : bullets.slice(0, 3);
+              if (!cancelled) setSummary(limited);
+            } catch (e: any) {
+              if (!cancelled) setSummaryError(typeof e?.message === "string" ? e.message : "");
+            } finally {
+              if (!cancelled) setSummaryLoading(false);
+            }
+          } else {
+            if (!cancelled) {
+              setSummary(null);
+              setSummaryError(null);
+              setSummaryLoading(false);
+            }
+          }
+        }
+      } catch (e: any) {
         if (!cancelled) setError(typeof e?.message === "string" ? e.message : "Failed to load");
       } finally {
         if (!cancelled) setLoading(false);
-      });
-    return () => {
-      cancelled = true;
+      }
     };
-  }, [topicSlug]);
+    run();
+    return () => { cancelled = true; };
+  }, [topicSlug, activeQuery]);
 
   // No explicit truncation hint; use CSS fade/clamp for a cleaner preview
 
   const onRefresh = async () => {
     try {
       setRefreshing(true);
-      await refreshTopicTweets(topicSlug);
-      fetchTweets();
-      fetchSummary();
+      if (activeQuery && activeQuery.trim().length > 0) {
+        const hasEdits = (localKeywords !== null) || (localTopics !== null);
+        if (hasEdits) {
+          const nextQ = buildRawQuery();
+          if (nextQ) {
+            setRawMode(true);
+            // Commit query and let the effect + fetchTweets handle the refresh in one path
+            setActiveQuery(nextQ);
+            setAddingKeyword(false);
+          }
+        } else {
+          await fetchTweets({ keepCurrent: true });
+        }
+      } else {
+        await refreshTopicTweets(topicSlug);
+        const data = await fetchTweets();
+        if (data && data.length >= 1) {
+          setSummaryLoading(true);
+          setSummaryError(null);
+          setSummary(null);
+          try {
+            const s = await getTopicTweetsSummary(topicSlug, 10);
+            const bullets = s?.bullets || [];
+            const limited = data.length <= 3 ? bullets.slice(0, 1) : bullets.slice(0, 3);
+            setSummary(limited);
+          } catch (e: any) {
+            setSummaryError(typeof e?.message === "string" ? e.message : "");
+          } finally {
+            setSummaryLoading(false);
+          }
+        } else {
+          // 0 tweets: no summary
+          setSummary(null);
+          setSummaryError(null);
+          setSummaryLoading(false);
+        }
+      }
     } catch (e: any) {
       setError(typeof e?.message === "string" ? e.message : "Failed to refresh");
     } finally {
@@ -116,6 +306,134 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
           )}
         </div>
       </div>
+      {activeQuery && (
+        <div className="cf-hints">
+          <div className="cf-hints-header">
+            <span className="cf-hints-title">Search Keywords</span>
+            <div className="cf-hints-actions">
+              <button
+                className="cf-collapse-btn"
+                type="button"
+                title={hintsCollapsed ? "Expand keywords" : "Collapse keywords"}
+                aria-label={hintsCollapsed ? "Expand keywords" : "Collapse keywords"}
+                onClick={(e) => { e.stopPropagation(); setHintsCollapsed(!hintsCollapsed); }}
+              >
+                {hintsCollapsed ? "▸" : "▾"}
+              </button>
+              <button
+                className="cf-hints-edit-btn"
+                type="button"
+                title="Refresh related tweets with current keywords"
+                onClick={(e) => { e.stopPropagation(); onRefresh(); }}
+              >
+                ↻ Refresh
+              </button>
+              {refreshing && <span className="cf-spinner" aria-label="Refreshing" />}
+            </div>
+          </div>
+          {!hintsCollapsed && (
+          <div className="cf-hints-row" title="Hover to remove keywords; click + Add to add a keyword">
+            <span className="cf-hints-label">Searching for:</span>
+            <div className="cf-chips">
+              {(localKeywords ?? searchHints?.keywords ?? []).slice(0, 20).map((kw, i) => (
+                <span className="cf-chip cf-chip-removable" key={`kw-${i}`}>
+                  {kw}
+                  <button
+                    type="button"
+                    className="cf-chip-remove"
+                    aria-label={`Remove ${kw}`}
+                    title="Remove keyword"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const cur = [...(localKeywords ?? searchHints?.keywords ?? [])];
+                      cur.splice(i, 1);
+                      setLocalKeywords(cur);
+                      setRawMode(true);
+                      // pending: apply on Refresh
+                    }}
+                  >×</button>
+                </span>
+              ))}
+              <button
+                type="button"
+                className={`cf-chip cf-chip-add ${addingKeyword ? "active" : ""}`}
+                title="Add keyword"
+                onClick={(e) => { e.stopPropagation(); setAddingKeyword(true); setAddDraft(""); }}
+              >
+                + Add
+              </button>
+            </div>
+          </div>
+          )}
+          {!hintsCollapsed && thinking && (
+            <div className="cf-hints-row cf-dots-row">
+              <span className="cf-hints-label" />
+              <span className="cf-dots" aria-live="polite" aria-label="Searching">
+                <span>Searching</span>
+                <span className="dot dot1"></span>
+                <span className="dot dot2"></span>
+                <span className="dot dot3"></span>
+              </span>
+            </div>
+          )}
+          {!hintsCollapsed && addingKeyword && (
+            <div className="cf-hints-row">
+              <span className="cf-hints-label" />
+              <input
+                className="cf-hints-edit"
+                placeholder="Add a keyword and press Enter"
+                value={addDraft}
+                autoFocus
+                onChange={(e) => setAddDraft(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    const val = addDraft.trim();
+                    setAddingKeyword(false);
+                    if (val) {
+                      const cur = [...(localKeywords ?? searchHints?.keywords ?? [])];
+                      if (!cur.includes(val)) cur.push(val);
+                      setLocalKeywords(cur);
+                      setRawMode(true);
+                      // pending: applied on Refresh
+                    }
+                  } else if (e.key === 'Escape') {
+                    setAddingKeyword(false);
+                  }
+                }}
+                onBlur={() => setAddingKeyword(false)}
+              />
+            </div>
+          )}
+          {!hintsCollapsed && (localTopics ?? searchHints?.topics ?? []).length > 0 && (
+            <div className="cf-hints-row topics">
+              <span className="cf-hints-label">Topics:</span>
+              <div className="cf-chips">
+                {(localTopics ?? searchHints?.topics ?? []).slice(0, 10).map((tp, i) => (
+                  <span className="cf-chip cf-chip-removable cf-chip-ghost" key={`tp-${i}`}>
+                    {tp}
+                    <button
+                      type="button"
+                      className="cf-chip-remove"
+                      aria-label={`Remove ${tp}`}
+                      title="Remove topic"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const cur = [...(localTopics ?? searchHints?.topics ?? [])];
+                        cur.splice(i, 1);
+                        setLocalTopics(cur);
+                        setRawMode(true);
+                        // pending: apply on Refresh
+                      }}
+                    >×</button>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+        </div>
+      )}
+      {!activeQuery && showSummarySection && (
       <div className="cf-summary">
         {summaryLoading && <div className="cf-summary-loading">Summarizing…</div>}
         {!summaryLoading && summaryError && (
