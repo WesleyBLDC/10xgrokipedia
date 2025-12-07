@@ -1,15 +1,14 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { getTopic, getSuggestions, getCitationBias } from "../api";
-import type { Topic, Suggestion, CitationBias } from "../api";
+import { getTopic, getSuggestions, getCitationBias, getAggregateBias } from "../api";
+import type { Topic, Suggestion, CitationBias, AggregateBias } from "../api";
 import rehypeRaw from "rehype-raw";
 import SuggestEditModal from "../components/SuggestEditModal";
 import SuggestionsPanel from "../components/SuggestionsPanel";
 import VersionHistory from "../components/VersionHistory";
 import CommunityFeed from "../components/CommunityFeed";
-import { getAggregateBias } from "../api";
-import type { AggregateBias } from "../api";
+import ArticlePreviewModal from "../components/ArticlePreviewModal";
 
 type ContradictionEntry = {
   article_a_title: string;
@@ -50,13 +49,15 @@ export default function TopicPage() {
   const [tooltipPosition, setTooltipPosition] = useState<{ x: number; y: number } | null>(null);
   const [showModal, setShowModal] = useState(false);
 
-  // Citation hover state
+  // Citation hover/click state
   const [citationTooltip, setCitationTooltip] = useState<{
     url: string;
     data: CitationBias;
     position: { x: number; y: number };
+    mode: 'hover' | 'click';
   } | null>(null);
   const citationTooltipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   // Footnote tracking
   const footnoteCounter = useRef(0);
@@ -449,23 +450,23 @@ export default function TopicPage() {
                           x: rect.left + rect.width / 2,
                           y: rect.top - 8,
                         },
+                        mode: 'hover',
                       });
                     };
                     
                     const handleCitationMouseLeave = () => {
-                      // Delay hiding to allow moving to tooltip
                       citationTooltipTimeoutRef.current = setTimeout(() => {
                         setCitationTooltip(null);
                       }, 200);
                     };
-                    
+
                     return (
                       <a
                         href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="footnote"
                         title={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         onMouseEnter={handleCitationMouseEnter}
                         onMouseLeave={handleCitationMouseLeave}
                       >
@@ -516,6 +517,7 @@ export default function TopicPage() {
                         x: rect.left + rect.width / 2,
                         y: rect.top - 8,
                       },
+                      mode: 'hover',
                     });
                   };
                   
@@ -560,9 +562,10 @@ export default function TopicPage() {
         </button>
       )}
 
+      {/* Citation Tooltip - Hover shows preview button + bias info */}
       {citationTooltip && (
         <div
-          className="citation-bias-tooltip"
+          className="citation-tooltip"
           style={{
             position: "fixed",
             left: citationTooltip.position.x,
@@ -580,6 +583,15 @@ export default function TopicPage() {
             }, 200);
           }}
         >
+          <button
+            className="citation-preview-btn"
+            onClick={() => {
+              setPreviewUrl(citationTooltip.url);
+              setCitationTooltip(null);
+            }}
+          >
+            Preview article
+          </button>
           <div className="citation-bias-tooltip-content">
             <div className="citation-bias-row">
               <span className="citation-bias-label">Factuality:</span>
@@ -603,6 +615,13 @@ export default function TopicPage() {
         selectedText={selectedText}
         topicSlug={topic!}
         onSuccess={handleSuggestionSuccess}
+      />
+
+      {/* Article Preview Modal */}
+      <ArticlePreviewModal
+        isOpen={previewUrl !== null}
+        url={previewUrl || ""}
+        onClose={() => setPreviewUrl(null)}
       />
     </div>
   );
