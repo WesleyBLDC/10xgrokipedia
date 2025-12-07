@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="home">
       <h1>10xGrokipedia</h1>
-      <p className="subtitle">The AI-powered encyclopedia</p>
+      <p className="subtitle">Truthseeker's encyclopedia</p>
       <div className="search-container">
         <input
           type="text"

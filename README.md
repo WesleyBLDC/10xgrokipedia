@@ -64,18 +64,212 @@ Frontend will be available at http://localhost:5173
 └── README.md
 ```
 
+---
+
+## Features
+
+### 1. Community Feed (Twitter/X Integration)
+
+The left sidebar displays a curated feed of top tweets related to the current article topic.
+
+**How it works:**
+- Fetches tweets from X API using the topic as a search query
+- Ranks tweets by engagement score: `(likes + 2×retweets + 1.5×quotes + 0.5×replies) / followers^0.7`
+- Verified authors receive a 1.1× boost in ranking
+- Displays a "Trending" badge for top-ranked recent tweets (top 3 within 7 days)
+- Includes a Grok-generated 2-3 bullet summary of the most relevant tweets
+- Results are cached for 90 seconds; summaries cached for 10 minutes
+
+---
+
+### 2. AI-Powered Edit Suggestions & Review
+
+Users can suggest edits to article content, which are reviewed by AI before being applied.
+
+**How it works:**
+1. **Submit**: User highlights text and submits a suggestion with summary and sources
+2. **AI Review**: Grok evaluates the suggestion for accuracy and relevance
+3. **Apply/Reject**: Editors can apply approved suggestions or reject them
+4. Suggestions have statuses: `pending` → `reviewed` → `applied` or `rejected`
+
+**AI Review Criteria:**
+- Factual accuracy of the proposed change
+- Relevance to the highlighted text
+- Quality and credibility of provided sources
+
+---
+
+### 3. Version History
+
+Every article maintains a complete history of all changes.
+
+**How it works:**
+- Each time a suggestion is applied, a new version is saved with timestamp
+- Users can browse and view any previous version of the article
+- Version dropdown in the header allows switching between versions
+- Bias scores are recalculated per version based on that version's citations
+
+---
+
+### 4. Contradiction Detection & Highlighting
+
+Identifies and highlights claims that contradict information in other Grokipedia articles.
+
+**How it works:**
+- Pre-computed contradiction data stored in `contradictions_llm.json`
+- Each contradiction entry contains:
+  - Two conflicting claims from different articles
+  - Text offsets for precise highlighting
+  - A description of the difference
+- Toggle "Show contradictions" to highlight conflicting claims in red
+- Clicking a highlighted claim navigates to the contradicting article
+
+**Calculation:**
+- LLM-based analysis compares claims across article clusters
+- Extracts specific text spans where information conflicts
+- Stores both the claim text and character offsets for highlighting
+
+---
+
+### 5. Bias & Factuality Scoring
+
+Each article displays aggregate bias and factuality scores based on its citation sources.
+
+**How it works:**
+- Citations are extracted from article content (URLs in markdown links)
+- Each citation URL is evaluated against a bias database (`citation_bias_evaluations.json`)
+- Scores are aggregated across all evaluated citations
+
+**Scoring breakdown:**
+
+| Metric | Scale | Labels |
+|--------|-------|--------|
+| **Factuality** | 0-10 | Very Low, Low, Mixed, Mostly Factual, High, Very High |
+| **Bias** | -10 to +10 | Extreme Left, Left, Left-Center, Center, Right-Center, Right, Extreme Right |
+
+**Display:**
+- Header shows aggregate scores with visual indicators
+- Hovering over any citation `[1]` shows that source's individual bias/factuality
+- Clicking a citation shows a "Preview article" button to read the source
+- Article previews include a Grok-generated summary
+
+**Per-version scoring:**
+- When viewing an older version, bias scores are recalculated based on that version's citations
+- This allows tracking how source quality has changed over time
+
+---
+
+### 6. Citation Preview with AI Summary
+
+Hovering over any footnote citation reveals source information and a preview option.
+
+**How it works:**
+1. **Hover**: Shows tooltip with factuality and bias scores for that source
+2. **Preview button**: Opens modal with the full article content
+3. **Grokipedia Summary**: AI-generated 2-3 sentence summary appears at the top of the preview
+4. **Click citation**: Opens the original source in a new tab
+
+**Content extraction:**
+- Uses BeautifulSoup to parse the source webpage
+- Converts HTML to readable markdown with html2text
+- Extracts title from `<title>` or `<h1>` tags
+- Grok summarizes the content for quick comprehension
+
+---
+
+### 7. Interactive Article Graph View
+
+Visualize relationships between articles in an interactive 3D graph.
+
+**How it works:**
+- Click the "Graph View" button on any topic page to open a full-screen 3D visualization
+- Nodes represent articles; edges represent relationships between them
+- The graph can be filtered to show only articles connected to the current article
+- Interactive controls: drag to rotate, scroll to zoom, click nodes to navigate
+
+**Relationship types (edge colors):**
+- **Shared Citations** (red): Articles that cite the exact same URLs
+- **Direct Links** (yellow): Articles that link to each other internally
+- **Shared Domains** (cyan): Articles that cite sources from the same domains
+
+**Edge weights:**
+- Edges are weighted based on relationship strength
+- Shared exact citations have the highest weight (10.0)
+- Direct links have medium weight (8.0)
+- Shared citation domains have lower weight (5.0)
+- Multiple relationship types can combine to create stronger edges
+
+**Graph generation:**
+- Pre-computed graph stored in `backend/article_graph.json`
+- Generated by `backend/generate_article_graph.py`
+- Analyzes citation patterns, internal links, and content similarity
+- Limits to top 15 edges per node to keep visualization clear
+
+**Visual features:**
+- Node size reflects number of connections
+- Hover over nodes/edges to see detailed information
+- Center node (current article) highlighted in yellow
+- Selected/hovered nodes highlighted in different colors
+- Info panel shows graph statistics and selected node details
+
+---
+
 ## API Endpoints
+
+### Topics
 
 | Endpoint | Description |
 |----------|-------------|
 | `GET /api/topics` | List all topics |
-| `GET /api/topics/search?q=query` | Search topics |
-| `GET /api/topics/{slug}` | Get topic by slug |
-| `GET /api/topics/{slug}/tweets` | Top tweets for a topic |
-| `GET /api/topics/{slug}/tweets/summary` | Grok-generated 2–3 bullet summary of top tweets |
-| `POST /api/topics/{slug}/tweets/refresh` | Clear cache for topic tweets |
+| `GET /api/topics/search?q=query` | Search topics by keyword |
+| `GET /api/topics/{slug}` | Get topic details by slug |
+
+### Version History
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/topics/{slug}/versions` | Get list of all versions for a topic |
+| `GET /api/topics/{slug}/versions/{index}` | Get specific version content by index |
+
+### Community Feed (Twitter/X)
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/topics/{slug}/tweets` | Get top tweets for a topic |
+| `GET /api/topics/{slug}/tweets/summary` | Grok-generated 2-3 bullet summary of top tweets |
+| `POST /api/topics/{slug}/tweets/refresh` | Clear cache and refetch tweets |
 | `GET /api/tweets/search?q=text` | Tweets related to highlighted text |
 
+### Edit Suggestions
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/suggestions/{slug}` | Get all suggestions for a topic |
+| `POST /api/suggestions/{slug}` | Submit a new edit suggestion |
+| `POST /api/suggestions/{slug}/review/{id}` | AI review of a suggestion |
+| `POST /api/suggestions/{slug}/apply/{id}` | Apply a reviewed suggestion |
+| `POST /api/suggestions/{slug}/reject/{id}` | Reject a suggestion |
+
+### Bias & Factuality
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/aggregate_bias/{slug}` | Get aggregate bias score for a topic (supports `?version_index=N`) |
+| `GET /api/citation_bias?url=...` | Get bias/factuality score for a specific citation URL |
+
+### Article Preview
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/fetch-article?url=...` | Fetch and parse article content into readable markdown |
+| `POST /api/summarize-preview` | Generate Grok AI summary of article content |
+
+### Article Graph
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/article_graph?article_id={slug}` | Get article relationship graph (optionally filtered to show connections for a specific article) |
+
 ## Contradiction Pipeline (summary)
 
 - **Clustering (`backend/cluster_articles.py`)**  
@@ -96,29 +290,7 @@ Frontend will be available at http://localhost:5173
 ### Why this approach
 - Clustering narrows pairwise checks so we avoid O(N²) LLM calls across large corpora.  
 - Character n-grams improve fuzzy title/entity grouping without hand-coded rules.  
-- Exact-quote offsets ensure UI highlights remain precise; pairs that don’t round-trip can be dropped/flagged.
-
-## Contradiction Pipeline (summary)
-
-- **Clustering (`backend/cluster_articles.py`)**  
-  - Builds word- and char-level TF‑IDF vectors on trimmed article text.  
-  - Uses similarity gates (title/slug tokens, rare-term overlap) and union-find to form clusters; caps oversized clusters to prevent over-merge.  
-  - Output: `clusters.json`.
-
-- **LLM contradiction detection (`backend/run_llm_contradictions.py`)**  
-  - For each multi-article cluster, sends articles to X.ai (`grok-4-1-fast-reasoning`) with a prompt demanding exact quotes and JSON pairs.  
-  - Parses responses, verifies quotes by locating exact substrings, and attaches character/line offsets.  
-  - Output: `contradictions_llm.json`.
-
-- **Frontend consumption**  
-  - `frontend/public/contradictions_llm.json` is loaded once on the client.  
-  - `TopicPage.tsx` filters contradictions for the current article and injects red underlines; clicking a highlight deep-links to the conflicting line in the other article with auto-scroll and flash.  
-  - Toggle shows per-article contradiction count.
-
-### Why this approach
-- Clustering narrows pairwise checks so we avoid O(N²) LLM calls across large corpora.  
-- Character n-grams improve fuzzy title/entity grouping without hand-coded rules.  
-- Exact-quote offsets ensure UI highlights remain precise; pairs that don’t round-trip can be dropped/flagged.
+- Exact-quote offsets ensure UI highlights remain precise; pairs that don't round-trip can be dropped/flagged.
 
 ## X API integration (Community Feed / Top Tweets)
 
