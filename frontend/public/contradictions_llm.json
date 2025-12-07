@@ -134,7 +134,8 @@
             "end": 408,
             "line": 2
           },
-          "difference": "Population figures"
+          "difference": "Population figures",
+          "rationale": "Both articles give 2024 population counts but the totals differ (228,670 vs 233,655), so one of the numbers is wrong."
         },
         {
           "article_a_title": "Richmond, Virginia",
@@ -153,7 +154,8 @@
             "end": 765,
             "line": 5
           },
-          "difference": "Incorporation year"
+          "difference": "Incorporation year",
+          "rationale": "One article says Richmond became a town in 1742 while the other says 1782, so the incorporation year conflicts."
         },
         {
           "article_a_title": "University of Richmond",
@@ -172,7 +174,8 @@
             "end": 339,
             "line": 3
           },
-          "difference": "Undergraduate enrollment numbers"
+          "difference": "Undergraduate enrollment numbers",
+          "rationale": "The two articles report different undergraduate enrollments for the same institution (3,055 vs about 3,164), indicating inconsistent student counts."
         },
         {
           "article_a_title": "Richmond",
@@ -191,7 +194,8 @@
             "end": 2577,
             "line": 7
           },
-          "difference": "Number of varsity sports (16 vs 17)"
+          "difference": "Number of varsity sports (16 vs 17)",
+          "rationale": "For the same university athletics program, one claim lists 16 Division I sports while another lists 17 varsity sports, so the sport count does not match."
         },
         {
           "article_a_title": "Richmond",
@@ -210,7 +214,8 @@
             "end": 641,
             "line": 3
           },
-          "difference": "Football conference (CAA vs Patriot League)"
+          "difference": "Football conference (CAA vs Patriot League)",
+          "rationale": "The football team is placed in two different conferences (CAA vs Patriot League), so both cannot be true simultaneously."
         },
         {
           "article_a_title": "Richmond Spiders",
@@ -229,7 +234,8 @@
             "end": 19915,
             "line": 53
           },
-          "difference": "Undergraduate enrollment estimate (3,164 vs ~3,000)"
+          "difference": "Undergraduate enrollment estimate (3,164 vs ~3,000)",
+          "rationale": "One source gives an enrollment of about 3,164 while another says around 3,000, so the stated undergraduate headcounts disagree."
         }
       ]
     }
@@ -269,7 +275,8 @@
             "end": 796,
             "line": 5
           },
-          "difference": "Percentage of monogamous species in mammals (3-9% vs. fewer than 5%)"
+          "difference": "Percentage of monogamous species in mammals (3-9% vs. fewer than 5%)",
+          "rationale": "Both statements describe how common monogamy is in mammals but give conflicting ranges (3–9% vs fewer than 5%), so they cannot both be accurate."
         },
         {
           "article_a_title": "Monogamy in animals",
@@ -288,7 +295,8 @@
             "end": 4946,
             "line": 17
           },
-          "difference": "Mammal monogamy prevalence (3-9% vs. 3-5%) within the same article"
+          "difference": "Mammal monogamy prevalence (3-9% vs. 3-5%) within the same article",
+          "rationale": "Within the same article, one sentence says 3–9% of mammals are socially monogamous while another says 3–5%, so the reported prevalence is inconsistent."
         }
       ]
     }
@@ -328,7 +336,8 @@
             "end": 24,
             "line": 1
           },
-          "difference": "Name spelling differs for the same person (Mookerjee vs Mukherji)"
+          "difference": "Name spelling differs for the same person (Mookerjee vs Mukherji)",
+          "rationale": "Both references point to the same person but use different spellings of the surname (Mookerjee vs Mukherji), indicating a naming inconsistency."
         }
       ]
     }
