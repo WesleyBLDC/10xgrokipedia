@@ -152,14 +152,15 @@ How it works:
 - Backend uses Grok to optimize the query (if `GROK_API` is configured) by suggesting a high-recall OR-based search string (e.g., `(Grok OR API OR xAI)`) and a shortlist of keywords/topics. The prompt explicitly requests OR logic to maximize results.
 - If Grok is unavailable, it falls back to extracting keywords and building an OR query from the top 6 most significant terms.
 - Search prefers Full-Archive (`/2/tweets/search/all`) and only falls back to Recent if required; a wider candidate pool is used for better recall.
-- Results are ranked by the same engagement-based score used for topic tweets, but the UI hides rank badges and the "Trending" pill in this mode.
+- Results are re-ranked locally with strong keyword/topic emphasis (details below). The UI hides rank badges and the "Trending" pill in this mode.
 - Summary bullets and the refresh control are hidden in this mode to keep the panel focused.
 - Click the ← button in the feed header to return to regular "Top Tweets".
 
 What is displayed in the UI:
-- “Searching for” chips that show a subset of the optimized keywords (up to 8), plus optional topics if provided by Grok.
+- "Searching for" chips that show a subset of the optimized keywords (up to 8), plus optional topics if provided by Grok.
 - Keyword highlighting inside each tweet (subtle background) to make relevant terms easy to spot while keeping readability.
-- Inline editing: double‑click the “Searching for” area to edit the query keywords directly. Press Enter to apply and re‑search (with Grok optimization if configured). Press Esc or blur to cancel editing.
+- Editable keywords: users can remove keywords by clicking the × on each chip, or add new keywords via the "+ Add" button.
+- Refresh with edits: after editing keywords, click the "↻ Refresh" button in the Search Keywords header to re-search with the updated terms. The frontend builds an OR-based query from the edited keywords (e.g., `(software OR developer OR xai)`) and sends it directly to the backend with `optimize=false` to bypass Grok re-optimization. This ensures the exact edited keywords are used for the search.
 
 API response shape for `GET /api/tweets/search`:
 - `{ tweets: TweetItem[], hints?: { query: string, keywords: string[], topics: string[] } }`
@@ -167,3 +168,21 @@ API response shape for `GET /api/tweets/search`:
 Requirements:
 - Same X API bearer token as the Top Tweets feature (`X_BEARER_TOKEN` or `TWITTER_BEARER_TOKEN`).
 - The search endpoint uses the same caching and single-flight behavior with a short TTL (`TWEETS_CACHE_TTL`).
+
+### Related Tweets: Query + Ranking Details
+
+- Retrieval query (backend):
+  - OR query using both keywords and topics (quoted for multi-word terms): `(term1 OR "multi word" OR term3) -is:retweet -is:reply lang:en`.
+  - Sanitizes invalid characters for X (e.g., `/`) and collapses whitespace.
+  - Fetches ~3× requested results to allow local re-ranking.
+
+- Re-ranking logic (backend):
+  - Coverage: counts how many keywords and topics appear in the tweet text (case-insensitive; basic morphological variants). Topics are slightly heavier than keywords.
+  - Engagement: normalized version of the backend’s engagement score.
+  - Recency: small linear decay over ~14 days.
+  - Final score: `0.80 * coverage + 0.15 * engagement + 0.05 * recency`.
+  - Returns top N tweets by this score.
+
+- Fresh-only Refresh:
+  - Refresh bypasses cache (`nocache=1`) so a new upstream search is performed; no stale results are served.
+  - UI keeps current results visible, showing a subtle shimmer and dot animation while fetching.

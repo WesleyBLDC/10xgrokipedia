@@ -126,11 +126,12 @@ export async function getTopicTweets(slug: string, maxResults = 10): Promise<Twe
 export async function searchTweets(
   query: string,
   maxResults = 10,
-  opts?: { optimize?: boolean }
+  opts?: { optimize?: boolean; nocache?: boolean }
 ): Promise<SearchResult> {
   const optimize = opts?.optimize !== undefined ? (opts.optimize ? 1 : 0) : 1;
+  const nocache = opts?.nocache ? 1 : 0;
   const res = await fetch(
-    `${API_BASE}/tweets/search?q=${encodeURIComponent(query)}&max_results=${maxResults}&optimize=${optimize}`
+    `${API_BASE}/tweets/search?q=${encodeURIComponent(query)}&max_results=${maxResults}&optimize=${optimize}&nocache=${nocache}`
   );
   if (!res.ok) {
     const msg = await res.text();

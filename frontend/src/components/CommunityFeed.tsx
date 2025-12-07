@@ -33,6 +33,7 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
   const [hintsCollapsed, setHintsCollapsed] = useState<boolean>(false);
   const [searchingRelated, setSearchingRelated] = useState<boolean>(false);
   const thinking = (activeQuery ? (searchingRelated || refreshing) : (loading || summaryLoading));
+  const inflightRef = useRef(false);
 
   // Derive a small set of readable keywords from the active query
   const keywords = useMemo(() => {
@@ -93,18 +94,6 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
     return () => clearTimeout(t1);
   }, [searchQuery, activeQuery]);
 
-  const beginQueryChange = useCallback((next: string) => {
-    const normNext = (next || "").trim();
-    const normCur = (activeQuery || "").trim();
-    if (normNext === normCur) return;
-    setAnim("out");
-    setTimeout(() => {
-      setActiveQuery(normNext);
-      setAnim("in");
-      setTimeout(() => setAnim("idle"), 200);
-    }, 180);
-  }, [activeQuery]);
-
   const buildRawQuery = useCallback(() => {
     const kws = (localKeywords ?? searchHints?.keywords ?? []).map(s => s.trim()).filter(Boolean);
     const tps = (localTopics ?? searchHints?.topics ?? []).map(s => s.trim()).filter(Boolean);
@@ -116,7 +105,11 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
 
   const fetchTweets = useCallback(async (opts?: { keepCurrent?: boolean }): Promise<TweetItem[] | null> => {
     const keepCurrent = !!opts?.keepCurrent;
-    if (activeQuery && activeQuery.trim().length > 0) {
+    // Prevent duplicate concurrent calls in related mode
+    const isRelated = !!(activeQuery && activeQuery.trim().length > 0);
+    if (isRelated) {
+      if (inflightRef.current) return null;
+      inflightRef.current = true;
       setSearchingRelated(true);
     }
     if (!keepCurrent) {
@@ -127,7 +120,7 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
     let data: TweetItem[] | null = null;
     try {
       if (activeQuery && activeQuery.trim().length > 0) {
-        const res: SearchResult = await searchTweets(activeQuery, 10, { optimize: !rawMode });
+        const res: SearchResult = await searchTweets(activeQuery, 10, { optimize: !rawMode, nocache: true });
         data = res?.tweets || [];
         setTweets(data);
         if (rawMode && (!res?.hints || (!res.hints.keywords?.length && !res.hints.topics?.length))) {
@@ -151,8 +144,9 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
       setSearchHints(null);
       return null;
     } finally {
-      if (activeQuery && activeQuery.trim().length > 0) {
+      if (isRelated) {
         setSearchingRelated(false);
+        inflightRef.current = false;
       }
       if (!keepCurrent) setLoading(false);
     }
@@ -229,9 +223,9 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
           const nextQ = buildRawQuery();
           if (nextQ) {
             setRawMode(true);
-            skipNextFetchRef.current = true;
-            beginQueryChange(nextQ);
-            await fetchTweets({ keepCurrent: true });
+            // Commit query and let the effect + fetchTweets handle the refresh in one path
+            setActiveQuery(nextQ);
+            setAddingKeyword(false);
           }
         } else {
           await fetchTweets({ keepCurrent: true });
@@ -315,8 +309,8 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
               <button
                 className="cf-hints-edit-btn"
                 type="button"
-                title="Refresh related tweets"
-                onClick={(e) => { e.stopPropagation(); fetchTweets(); }}
+                title="Refresh related tweets with current keywords"
+                onClick={(e) => { e.stopPropagation(); onRefresh(); }}
               >
                 ↻ Refresh
               </button>

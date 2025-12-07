@@ -741,7 +741,7 @@ async def _suggest_search_query(highlight_text: str) -> SearchHints | None:
 
 
 @app.get("/api/tweets/search")
-async def search_tweets(q: str, max_results: int = 10, optimize: bool = True) -> SearchResponse:
+async def search_tweets(q: str, max_results: int = 10, optimize: bool = True, nocache: bool = False) -> SearchResponse:
     """Search X for tweets related to an arbitrary text query (used for highlight search).
 
     - Requires env var `X_BEARER_TOKEN` (or `TWITTER_BEARER_TOKEN`).
@@ -772,70 +772,174 @@ async def search_tweets(q: str, max_results: int = 10, optimize: bool = True) ->
     if hints and hints.query:
         query = hints.query
     else:
-        terms = _extract_terms(phrase)
-        if not terms:
-            parts = [p for p in re.sub(r"\s+", " ", phrase).split(" ") if len(p) >= 3]
-            terms = parts[:8]
-        # Limit to 6 most important terms to avoid overly complex queries
-        terms = terms[:6]
-        pieces = [f'"{t}"' if (" " in t) else t for t in terms]
-        or_block = " OR ".join(pieces) if pieces else phrase
-        query = f"({or_block})"
+        # Check if the input already looks like a pre-built OR query (from frontend rawMode)
+        # Pattern: starts with ( and contains OR
+        is_prebuilt_query = phrase.startswith("(") and " OR " in phrase.upper()
+        if is_prebuilt_query:
+            # Use the query as-is - it's already formatted by the frontend
+            query = phrase
+        else:
+            terms = _extract_terms(phrase)
+            if not terms:
+                parts = [p for p in re.sub(r"\s+", " ", phrase).split(" ") if len(p) >= 3]
+                terms = parts[:8]
+            # Limit to 6 most important terms to avoid overly complex queries
+            terms = terms[:6]
+            pieces = [f'"{t}"' if (" " in t) else t for t in terms]
+            or_block = " OR ".join(pieces) if pieces else phrase
+            query = f"({or_block})"
 
     # Sanitize query for X API: remove or space out disallowed characters like '/'
     def _sanitize_x_query(s: str) -> str:
-        # Replace slashes with space, collapse repeated spaces
+        # Replace slashes with spaces (X rejects them), and collapse repeated whitespace.
         s = re.sub(r"/+", " ", s)
         s = re.sub(r"\s+", " ", s).strip()
         return s
 
     query = _sanitize_x_query(query)
 
+    # Debug: log the final query being used
+    print(f"[search_tweets] optimize={optimize}, is_prebuilt={phrase.startswith('(') and ' OR ' in phrase.upper()}, final_query={query}")
+
     key = f"q={query}|n={max_results}"
     now = time.time()
 
-    async with _cache_lock:
-        if key in _tweets_cache:
-            ts, items = _tweets_cache[key]
-            if now - ts < CACHE_TTL_SECONDS:
-                return SearchResponse(tweets=items, hints=hints)
-            else:
-                _tweets_cache.pop(key, None)
+    # We will fetch a larger candidate pool (3x) to re-rank by keyword coverage + engagement
+    fetch_count = max_results * 3
 
-        if key in _inflight_tasks:
-            task = _inflight_tasks[key]
-            joiner = True
+    async with _cache_lock:
+        if not nocache:
+            if key in _tweets_cache:
+                ts, items = _tweets_cache[key]
+                if now - ts < CACHE_TTL_SECONDS:
+                    return SearchResponse(tweets=items, hints=hints)
+                else:
+                    _tweets_cache.pop(key, None)
+
+            if key in _inflight_tasks:
+                task = _inflight_tasks[key]
+                joiner = True
+            else:
+                async with _rate_lock:
+                    while _rate_calls and (now - _rate_calls[0] > RATE_LIMIT_WINDOW_SECONDS):
+                        _rate_calls.popleft()
+                    if len(_rate_calls) >= RATE_LIMIT_MAX_REQUESTS:
+                        if key in _tweets_cache:
+                            return SearchResponse(tweets=_tweets_cache[key][1], hints=hints)
+                        raise HTTPException(status_code=429, detail="Rate limit exceeded for tweets endpoint. Please try again later.")
+                    _rate_calls.append(now)
+                task = asyncio.create_task(_fetch_recent_top_tweets(query=query, return_count=fetch_count, pool_size=100))
+                _inflight_tasks[key] = task
+                joiner = False
         else:
+            # nocache: always create a fresh task, don't join inflight
             async with _rate_lock:
                 while _rate_calls and (now - _rate_calls[0] > RATE_LIMIT_WINDOW_SECONDS):
                     _rate_calls.popleft()
                 if len(_rate_calls) >= RATE_LIMIT_MAX_REQUESTS:
-                    if key in _tweets_cache:
-                        return SearchResponse(tweets=_tweets_cache[key][1], hints=hints)
                     raise HTTPException(status_code=429, detail="Rate limit exceeded for tweets endpoint. Please try again later.")
                 _rate_calls.append(now)
-            # Use a larger candidate pool to improve recall for keyword-based search
-            task = asyncio.create_task(_fetch_recent_top_tweets(query=query, return_count=max_results, pool_size=100))
-            _inflight_tasks[key] = task
+            task = asyncio.create_task(_fetch_recent_top_tweets(query=query, return_count=fetch_count, pool_size=100))
             joiner = False
 
     try:
         items = await task
     except HTTPException as e:
-        async with _cache_lock:
-            if key in _tweets_cache:
-                return SearchResponse(tweets=_tweets_cache[key][1], hints=hints)
+        if not nocache:
+            async with _cache_lock:
+                if key in _tweets_cache:
+                    return SearchResponse(tweets=_tweets_cache[key][1], hints=hints)
         raise e
     finally:
         if not joiner:
             async with _cache_lock:
                 _inflight_tasks.pop(key, None)
 
+    # Re-rank by keyword coverage + engagement + slight recency
+    def _extract_rank_terms(qs: str) -> list[str]:
+        # Remove filters and split OR groups into terms
+        qs = re.sub(r"-is:retweet|-is:reply|lang:[a-zA-Z-]+", " ", qs)
+        qs = qs.replace("(", " ").replace(")", " ").replace("\"", " ")
+        qs = re.sub(r"\bOR\b", " ", qs, flags=re.IGNORECASE)
+        qs = re.sub(r"\s+", " ", qs).strip().lower()
+        return [t for t in qs.split(" ") if t]
+
+    # Separate keyword and topic terms for coverage weighting
+    kw_terms: list[str] = []
+    topic_terms: list[str] = []
+    if hints:
+        kw_terms = [t.lower() for t in (hints.keywords or []) if t]
+        # Split multi-word topics into tokens and include original phrases
+        for tp in (hints.topics or []):
+            if not tp:
+                continue
+            topic_terms.append(tp.lower())
+            for part in tp.lower().split():
+                topic_terms.append(part)
+    if not kw_terms and not topic_terms:
+        # Fallback: use all terms from the query string
+        kw_terms = _extract_rank_terms(query)
+
+    kw_set, tp_set = set(kw_terms), set(topic_terms)
+
+    def _term_match(low_text: str, term: str) -> bool:
+        if len(term) <= 1:
+            return False
+        if re.search(rf"\b{re.escape(term)}\b", low_text):
+            return True
+        # naive morphological variants
+        bases = [term]
+        if term.endswith("s"):
+            bases.append(term[:-1])
+        if term.endswith("ing"):
+            bases.append(term[:-3])
+        if term.endswith("ed"):
+            bases.append(term[:-2])
+        for b in bases:
+            if b and b in low_text:
+                return True
+        return False
+
+    def coverage_score(text: str) -> float:
+        low = (text or "").lower()
+        kw_total = len(kw_set)
+        tp_total = len(tp_set)
+        kw_matched = sum(1 for t in kw_set if _term_match(low, t)) if kw_total else 0
+        tp_matched = sum(1 for t in tp_set if _term_match(low, t)) if tp_total else 0
+        # Weighted coverage: topics slightly heavier than keywords
+        KW_W, TP_W = 1.0, 1.35
+        denom = (KW_W * max(1, kw_total)) + (TP_W * max(1, tp_total))
+        num = (KW_W * kw_matched) + (TP_W * tp_matched)
+        return num / denom if denom > 0 else 0.0
+
+    max_eng = max((it.score or 0.0) for it in items) if items else 0.0
+    def recency_score(created_at: str | None) -> float:
+        if not created_at:
+            return 0.0
+        try:
+            dt = datetime.fromisoformat(created_at.replace("Z", "+00:00"))
+            age_hours = max(0.0, (datetime.now(timezone.utc) - dt).total_seconds() / 3600.0)
+            # Simple linear decay over 14 days
+            return max(0.0, 1.0 - age_hours / (24.0 * 14.0))
+        except Exception:
+            return 0.0
+
+    scored = []
+    for it in items:
+        cov = coverage_score(it.text)
+        eng = (it.score or 0.0) / max_eng if max_eng > 0 else 0.0
+        rec = recency_score(it.created_at)
+        # Emphasize keyword/topic relevance
+        final = 0.8 * cov + 0.15 * eng + 0.05 * rec
+        scored.append((final, it))
+    scored.sort(key=lambda x: x[0], reverse=True)
+    reranked = [it for _, it in scored[:max_results]]
+
     if not joiner:
         async with _cache_lock:
-            _tweets_cache[key] = (time.time(), items)
+            _tweets_cache[key] = (time.time(), reranked)
 
-    return SearchResponse(tweets=items, hints=hints)
+    return SearchResponse(tweets=reranked, hints=hints)
 
 
 @app.post("/api/topics/{topic_slug}/tweets/refresh", status_code=204)
