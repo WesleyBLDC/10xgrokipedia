@@ -98,7 +98,7 @@ Notes:
   - normalization = max(50, followers_count)^0.7
   - score = raw_engagement / normalization
 - Final list: candidates are sorted by `score` descending; the top `max_results` are returned to the client.
-- "Trending" flag: a tweet is marked as trending when it is among the top `TWEETS_TRENDING_TOP_K` ranked items and was created within `TWEETS_TRENDING_HOURS` hours (defaults: top 3 within 48h). The UI displays a small “Trending” badge for these tweets.
+- "Trending" flag: a tweet is marked as trending when it is among the top `TWEETS_TRENDING_TOP_K` ranked items and was created within `TWEETS_TRENDING_HOURS` hours (defaults: top 3 within 7 days / 168h). The UI displays a small “Trending” badge for these tweets.
   - Preview override (optional): to force-show trending badges for quick UI reviews, set either
     - `TWEETS_TRENDING_PREVIEW_TOP_K=5` (marks ranks 1–5 as trending), or
     - `TWEETS_TRENDING_PREVIEW_RANKS=1,5` (marks specific ranks, 1-based) regardless of recency.
@@ -120,5 +120,12 @@ Reliability and rate limits:
   - `GROK_API_BASE` (optional, default `https://api.x.ai/v1`)
   - `GROK_MODEL` (optional, default `grok-2-latest`)
   - `TWEETS_SUMMARY_TTL` (optional, seconds, default `600`)
-  - `TWEETS_TRENDING_HOURS` (optional, hours, default `48`)
+  - `TWEETS_TRENDING_HOURS` (optional, hours, default `168`)
   - `TWEETS_TRENDING_TOP_K` (optional, integer, default `3`)
+#### Trending flag details
+
+- Computation: trending = ranked_index < `TWEETS_TRENDING_TOP_K` AND created_at within `TWEETS_TRENDING_HOURS`.
+- Defaults: highlights a small number of highly-ranked, recent tweets (top 3 within 7 days) to keep the UI informative but not overwhelming.
+- Preview overrides (optional):
+  - `TWEETS_TRENDING_PREVIEW_TOP_K=5` (forces trending for ranks 1–5)
+  - `TWEETS_TRENDING_PREVIEW_RANKS=1,5` (forces specific ranks, 1-based)

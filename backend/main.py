@@ -48,7 +48,7 @@ CACHE_TTL_SECONDS = int(os.getenv("TWEETS_CACHE_TTL", "90"))  # default 90s
 SUMMARY_TTL_SECONDS = int(os.getenv("TWEETS_SUMMARY_TTL", "600"))  # default 10m
 RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("TWEETS_RATE_WINDOW", "60"))  # default 60s
 RATE_LIMIT_MAX_REQUESTS = int(os.getenv("TWEETS_RATE_MAX", "20"))  # default 20 reqs/min
-TRENDING_HOURS = int(os.getenv("TWEETS_TRENDING_HOURS", "48"))  # default 48h
+TRENDING_HOURS = int(os.getenv("TWEETS_TRENDING_HOURS", "168"))  # default 7d (168h)
 TRENDING_TOP_K = int(os.getenv("TWEETS_TRENDING_TOP_K", "3"))  # default top 3
 # Preview flags (optional): force trending for top-N or specific ranks (1-based)
 TRENDING_PREVIEW_TOP_K = int(os.getenv("TWEETS_TRENDING_PREVIEW_TOP_K", "0"))
