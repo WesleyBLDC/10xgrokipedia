@@ -3,7 +3,7 @@ import os
 import time
 import asyncio
 from collections import deque
-from typing import Optional
+from typing import Optional, List
 import os
 import re
 import uuid
@@ -44,11 +44,13 @@ DATA_FILE = CURRENT_DIR / "all_articles_short.json"
 
 # Community Feed config with env overrides
 CACHE_TTL_SECONDS = int(os.getenv("TWEETS_CACHE_TTL", "90"))  # default 90s
+SUMMARY_TTL_SECONDS = int(os.getenv("TWEETS_SUMMARY_TTL", "600"))  # default 10m
 RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("TWEETS_RATE_WINDOW", "60"))  # default 60s
 RATE_LIMIT_MAX_REQUESTS = int(os.getenv("TWEETS_RATE_MAX", "20"))  # default 20 reqs/min
 
 # In-memory cache and simple global rate limiter
 _tweets_cache: dict[str, tuple[float, list["TweetItem"]]] = {}
+_summary_cache: dict[str, tuple[float, List[str]]] = {}
 _cache_lock = asyncio.Lock()
 _rate_lock = asyncio.Lock()
 _rate_calls: deque[float] = deque()
@@ -574,9 +576,27 @@ class TweetItem(BaseModel):
     score: Optional[float] = None
 
 
+class TweetsSummary(BaseModel):
+    bullets: List[str]
+    model: Optional[str] = None
+    cached: bool = False
+
+
 def _get_x_bearer_token() -> Optional[str]:
     # Support either env var name
     return os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_BEARER_TOKEN")
+
+
+def _get_grok_api() -> Optional[str]:
+    return os.getenv("GROK_API")
+
+
+def _get_grok_base() -> str:
+    return os.getenv("GROK_API_BASE", "https://api.x.ai/v1")
+
+
+def _get_grok_model() -> str:
+    return os.getenv("GROK_MODEL", "grok-2-latest")
 
 
 def _compute_score(tweet: dict, user: dict) -> float:
@@ -693,6 +713,93 @@ async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size
         return out
 
 
+async def _generate_tweets_summary(topic_phrase: str, tweets: List[TweetItem]) -> List[str]:
+    token = _get_grok_api()
+    if not token:
+        raise HTTPException(status_code=501, detail="Grok API key not configured. Set GROK_API in root .env.")
+
+    base = _get_grok_base().rstrip("/")
+    model = _get_grok_model()
+    url = f"{base}/chat/completions"
+
+    # Use top-of-top tweets (first 5) for summary context
+    top_context = tweets[:5]
+    context_lines = []
+    for i, t in enumerate(top_context, start=1):
+        context_lines.append(
+            f"{i}. {t.text}\n   by @{t.author_username} | ❤ {t.like_count or 0} ↻ {t.retweet_count or 0} 💬 {t.reply_count or 0}"
+        )
+    context_block = "\n".join(context_lines) if context_lines else "(no tweets)"
+
+    system_prompt = (
+        "You are an expert social media curator. Summarize the most important takeaways from the topic's top tweets in 2-3 concise bullets."
+        " Be neutral, non-promotional, and avoid links or hashtags. Focus on key themes, insights, or consensus."
+    )
+
+    user_prompt = (
+        f"Topic: {topic_phrase}\n\nTop tweets (ordered by engagement):\n{context_block}\n\n"
+        "Return ONLY a compact JSON array of 2-3 short bullet strings. Do not include any extra keys or text."
+    )
+
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        # Encourage json-like behavior; different Grok deployments may ignore, that's fine
+        "temperature": 0.2,
+        "max_tokens": 256,
+    }
+
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+
+    async with httpx.AsyncClient(timeout=15.0) as client:
+        try:
+            resp = await client.post(url, json=payload, headers=headers)
+            resp.raise_for_status()
+        except httpx.HTTPStatusError as e:
+            raise HTTPException(status_code=e.response.status_code, detail=e.response.text)
+        except httpx.RequestError as e:
+            raise HTTPException(status_code=502, detail=f"Failed to reach Grok API: {e}")
+
+    data = resp.json()
+
+    # Try to parse content as a JSON array
+    content = None
+    try:
+        # OpenAI-style response structure compatibility
+        content = (
+            data.get("choices", [{}])[0]
+            .get("message", {})
+            .get("content", "")
+        )
+    except Exception:
+        content = None
+
+    bullets: List[str] = []
+    if isinstance(content, str):
+        # Extract JSON array from content
+        try:
+            # Find first [ and last ] to be robust to minor pre/post text
+            start = content.find("[")
+            end = content.rfind("]")
+            if start != -1 and end != -1 and end > start:
+                import json as _json
+                arr = _json.loads(content[start: end + 1])
+                if isinstance(arr, list):
+                    bullets = [str(x) for x in arr][:3]
+        except Exception:
+            bullets = []
+
+    # Ensure we return up to 3 compact bullets
+    bullets = [b.strip() for b in bullets if isinstance(b, str) and b.strip()][:3]
+    return bullets
+
+
 @app.get("/api/topics/{topic_slug}/tweets")
 async def get_topic_tweets(topic_slug: str, max_results: int = 10) -> list[TweetItem]:
     """Recent top tweets for a topic. Uses X API recent search with relevancy sort.
@@ -753,4 +860,45 @@ async def refresh_topic_tweets(topic_slug: str) -> Response:
         to_delete = [k for k in list(_tweets_cache.keys()) if k.startswith(key_prefix)]
         for k in to_delete:
             _tweets_cache.pop(k, None)
+        # also clear summary cache for this topic
+        to_delete_s = [k for k in list(_summary_cache.keys()) if k.startswith(key_prefix)]
+        for k in to_delete_s:
+            _summary_cache.pop(k, None)
     return Response(status_code=204)
+
+
+@app.get("/api/topics/{topic_slug}/tweets/summary")
+async def get_topic_tweets_summary(topic_slug: str, max_results: int = 10) -> TweetsSummary:
+    decoded_slug = unquote(topic_slug)
+    phrase = decoded_slug.replace("_", " ").replace("-", " ").strip()
+    if not phrase:
+        raise HTTPException(status_code=400, detail="Empty topic slug")
+    query = f'"{phrase}"'
+
+    key = f"q={query}|n={max_results}"
+    now = time.time()
+
+    # Try cache first
+    async with _cache_lock:
+        if key in _summary_cache:
+            ts, bullets = _summary_cache[key]
+            if now - ts < SUMMARY_TTL_SECONDS:
+                return TweetsSummary(bullets=bullets, model=_get_grok_model(), cached=True)
+            else:
+                _summary_cache.pop(key, None)
+
+    # We need tweets first (use existing cache if warm)
+    async with _cache_lock:
+        cached = _tweets_cache.get(key)
+    if cached:
+        tweets = cached[1]
+    else:
+        tweets = await _fetch_recent_top_tweets(query=query, return_count=max_results)
+
+    bullets = await _generate_tweets_summary(phrase, tweets)
+
+    # Store in cache
+    async with _cache_lock:
+        _summary_cache[key] = (time.time(), bullets)
+
+    return TweetsSummary(bullets=bullets, model=_get_grok_model(), cached=False)

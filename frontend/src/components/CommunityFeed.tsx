@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import type { TweetItem } from "../api";
-import { getTopicTweets, refreshTopicTweets } from "../api";
+import { getTopicTweets, getTopicTweetsSummary, refreshTopicTweets } from "../api";
 
 interface Props {
   topicSlug: string;
@@ -11,6 +11,9 @@ export default function CommunityFeed({ topicSlug }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [refreshing, setRefreshing] = useState<boolean>(false);
+  const [summary, setSummary] = useState<string[] | null>(null);
+  const [summaryError, setSummaryError] = useState<string | null>(null);
+  const [summaryLoading, setSummaryLoading] = useState<boolean>(false);
 
   const fetchTweets = useCallback(() => {
     setLoading(true);
@@ -20,6 +23,16 @@ export default function CommunityFeed({ topicSlug }: Props) {
       .then(setTweets)
       .catch((e) => setError(typeof e?.message === "string" ? e.message : "Failed to load"))
       .finally(() => setLoading(false));
+  }, [topicSlug]);
+
+  const fetchSummary = useCallback(() => {
+    setSummaryLoading(true);
+    setSummaryError(null);
+    setSummary(null);
+    getTopicTweetsSummary(topicSlug, 10)
+      .then((data) => setSummary(data?.bullets || []))
+      .catch((e) => setSummaryError(typeof e?.message === "string" ? e.message : ""))
+      .finally(() => setSummaryLoading(false));
   }, [topicSlug]);
 
   useEffect(() => {
@@ -37,6 +50,20 @@ export default function CommunityFeed({ topicSlug }: Props) {
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
+    // Summary can be fetched in parallel
+    setSummaryLoading(true);
+    setSummaryError(null);
+    setSummary(null);
+    getTopicTweetsSummary(topicSlug, 10)
+      .then((data) => {
+        if (!cancelled) setSummary(data?.bullets || []);
+      })
+      .catch((e) => {
+        if (!cancelled) setSummaryError(typeof e?.message === "string" ? e.message : "");
+      })
+      .finally(() => {
+        if (!cancelled) setSummaryLoading(false);
+      });
     return () => {
       cancelled = true;
     };
@@ -49,6 +76,7 @@ export default function CommunityFeed({ topicSlug }: Props) {
       setRefreshing(true);
       await refreshTopicTweets(topicSlug);
       fetchTweets();
+      fetchSummary();
     } catch (e: any) {
       setError(typeof e?.message === "string" ? e.message : "Failed to refresh");
     } finally {
@@ -71,6 +99,19 @@ export default function CommunityFeed({ topicSlug }: Props) {
             ↻
           </button>
         </div>
+      </div>
+      <div className="cf-summary">
+        {summaryLoading && <div className="cf-summary-loading">Summarizing…</div>}
+        {!summaryLoading && summaryError && (
+          <div className="cf-summary-error">Summary unavailable</div>
+        )}
+        {!summaryLoading && !summaryError && summary && summary.length > 0 && (
+          <ul className="cf-summary-list">
+            {summary.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+        )}
       </div>
       {loading && <div className="cf-loading">Loading tweets…</div>}
       {error && (

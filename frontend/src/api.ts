@@ -59,6 +59,12 @@ export interface TweetItem {
   url: string;
 }
 
+export interface TweetsSummary {
+  bullets: string[];
+  model?: string | null;
+  cached: boolean;
+}
+
 export async function searchTopics(query: string): Promise<TopicSummary[]> {
   const res = await fetch(`${API_BASE}/topics/search?q=${encodeURIComponent(query)}`);
   if (!res.ok) throw new Error("Failed to search topics");
@@ -79,6 +85,17 @@ export async function getTopicTweets(slug: string, maxResults = 10): Promise<Twe
     // Surface error text for better UX
     const msg = await res.text();
     throw new Error(msg || "Failed to load tweets");
+  }
+  return res.json();
+}
+
+export async function getTopicTweetsSummary(slug: string, maxResults = 10): Promise<TweetsSummary> {
+  const res = await fetch(
+    `${API_BASE}/topics/${encodeURIComponent(slug)}/tweets/summary?max_results=${maxResults}`
+  );
+  if (!res.ok) {
+    const msg = await res.text();
+    throw new Error(msg || "Failed to load summary");
   }
   return res.json();
 }

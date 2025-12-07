@@ -68,6 +68,7 @@ Frontend will be available at http://localhost:5173
 | `GET /api/topics/search?q=query` | Search topics |
 | `GET /api/topics/{slug}` | Get topic by slug |
 | `GET /api/topics/{slug}/tweets` | Top tweets for a topic |
+| `GET /api/topics/{slug}/tweets/summary` | Grok-generated 2–3 bullet summary of top tweets |
 | `POST /api/topics/{slug}/tweets/refresh` | Clear cache for topic tweets |
 
 ## X API integration (Community Feed / Top Tweets)
@@ -99,3 +100,15 @@ Notes:
 - Final list: candidates are sorted by `score` descending; the top `max_results` are returned to the client.
 - Caching and refresh: results are cached in-memory per topic phrase and `max_results` for `TWEETS_CACHE_TTL` seconds. Use `POST /api/topics/{slug}/tweets/refresh` (or the ↻ button in the UI) to clear the cache and refetch fresh results.
 - UI: the left rail shows a compact, sticky “Top Tweets” widget with ranked numbers; the top three items are visually highlighted. Items link directly to the tweet on X.
+
+### Grok Summary of Top Tweets
+
+- Endpoint: `GET /api/topics/{slug}/tweets/summary?max_results=10`
+- The backend generates 2–3 concise bullet points summarizing the highest-ranked tweets for the topic using the Grok API.
+- Inputs to Grok: the current topic phrase and the top 3–5 tweets (by engagement score) including basic metrics. The prompt emphasizes prioritizing the “top of the top” tweets, neutral tone, and no links/hashtags.
+- Caching: summaries are cached in-memory for `TWEETS_SUMMARY_TTL` seconds (default 600s). The `POST /tweets/refresh` endpoint also clears the summary cache for that topic.
+- Env vars:
+  - `GROK_API` (required) — Grok API key (root `.env` is supported)
+  - `GROK_API_BASE` (optional, default `https://api.x.ai/v1`)
+  - `GROK_MODEL` (optional, default `grok-2-latest`)
+  - `TWEETS_SUMMARY_TTL` (optional, seconds, default `600`)
