@@ -123,9 +123,14 @@ export async function getTopicTweets(slug: string, maxResults = 10): Promise<Twe
   return res.json();
 }
 
-export async function searchTweets(query: string, maxResults = 10): Promise<SearchResult> {
+export async function searchTweets(
+  query: string,
+  maxResults = 10,
+  opts?: { optimize?: boolean }
+): Promise<SearchResult> {
+  const optimize = opts?.optimize !== undefined ? (opts.optimize ? 1 : 0) : 1;
   const res = await fetch(
-    `${API_BASE}/tweets/search?q=${encodeURIComponent(query)}&max_results=${maxResults}&optimize=1`
+    `${API_BASE}/tweets/search?q=${encodeURIComponent(query)}&max_results=${maxResults}&optimize=${optimize}`
   );
   if (!res.ok) {
     const msg = await res.text();
