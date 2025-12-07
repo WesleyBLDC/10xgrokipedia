@@ -1457,6 +1457,9 @@
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .toggle-contradictions:hover:not(:disabled) {
@@ -1473,6 +1476,27 @@
 .toggle-contradictions:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.contradiction-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.14);
+  color: #fca5a5;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.contradiction-helper {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: 6px;
 }
 
 /* Contradiction highlight flash animation (when navigating to target) */
@@ -1499,229 +1523,4 @@
 
 .contradiction-highlight:hover {
   background: rgba(239, 68, 68, 0.12);
-}
-
-/* --- Citation Preview Tooltip --- */
-
-.citation-tooltip-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 150;
-}
-
-.citation-tooltip {
-  z-index: 151;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 0.5rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  min-width: 180px;
-}
-
-.citation-tooltip .citation-bias-tooltip-content {
-  margin-top: 0;
-}
-
-.citation-preview-btn {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.15s;
-  width: 100%;
-}
-
-.citation-preview-btn:hover {
-  background: var(--accent-hover);
-}
-
-/* --- Article Preview Modal --- */
-
-.article-preview-modal {
-  max-width: 48rem;
-  max-height: 85vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.article-preview-title {
-  flex: 1;
-  min-width: 0;
-}
-
-.article-preview-title h2 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.article-preview-title .article-domain {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
-  display: block;
-}
-
-.article-preview-title .loading-text {
-  color: var(--text-muted);
-  font-size: 1rem;
-}
-
-.article-preview-content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1rem 0;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-}
-
-.article-preview-content h1,
-.article-preview-content h2,
-.article-preview-content h3 {
-  color: var(--text-primary);
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.article-preview-content h1 {
-  font-size: 1.5rem;
-}
-
-.article-preview-content h2 {
-  font-size: 1.25rem;
-}
-
-.article-preview-content h3 {
-  font-size: 1.1rem;
-}
-
-.article-preview-content p {
-  margin-bottom: 1rem;
-}
-
-.article-preview-content a {
-  color: var(--accent);
-}
-
-.article-preview-content a:hover {
-  text-decoration: underline;
-}
-
-.article-error {
-  color: var(--text-muted);
-  text-align: center;
-  padding: 2rem;
-}
-
-.loading-spinner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
-  color: var(--text-muted);
-}
-
-.loading-spinner .spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid var(--border-color);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin-bottom: 1rem;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.modal-footer {
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color);
-  margin-top: 1rem;
-}
-
-.open-original-link {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.9rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.open-original-link:hover {
-  text-decoration: underline;
-}
-
-/* --- Grokipedia Summary --- */
-
-.grokipedia-summary {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.grokipedia-summary-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--accent);
-  margin-bottom: 0.75rem;
-}
-
-.grokipedia-summary-header svg {
-  opacity: 0.9;
-}
-
-.grokipedia-summary-content {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--text-primary);
-}
-
-.grokipedia-summary-content p {
-  margin: 0;
-}
-
-.grokipedia-summary-content .summary-unavailable {
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-.summary-loading {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.summary-spinner {
-  width: 14px;
-  height: 14px;
-  border: 2px solid var(--border-color);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
 }
