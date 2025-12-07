@@ -197,17 +197,27 @@ Requirements:
 
 ### Related Tweets: Query + Ranking Details
 
-- Retrieval query (backend):
-  - OR query using both keywords and topics (quoted for multi-word terms): `(term1 OR "multi word" OR term3) -is:retweet -is:reply lang:en`.
-  - Sanitizes invalid characters for X (e.g., `/`) and collapses whitespace.
-  - Fetches ~3× requested results to allow local re-ranking.
+- Grok query optimization:
+  - Highlighted text is sent to Grok to extract critical keywords (entities, names, technical terms) and supporting keywords (synonyms, abbreviations).
+  - Grok returns an OR-based query optimized for high recall, plus separate keyword/topic arrays.
+  - The page topic (e.g., "elon musk") is automatically added as the first keyword for context.
+  - Topics are display-only in the UI; only keywords are used for the actual API query.
+  - Fallback (if Grok unavailable): extracts top 6 most significant terms and builds an OR query.
 
-- Re-ranking logic (backend):
-  - Coverage: counts how many keywords and topics appear in the tweet text (case-insensitive; basic morphological variants). Topics are slightly heavier than keywords.
-  - Engagement: normalized version of the backend’s engagement score.
-  - Recency: small linear decay over ~14 days.
-  - Final score: `0.80 * coverage + 0.15 * engagement + 0.05 * recency`.
-  - Returns top N tweets by this score.
+- Retrieval query (backend):
+  - OR query using keywords only (quoted for multi-word terms): `(term1 OR "multi word" OR term3) -is:retweet -is:reply lang:en`.
+  - Sanitizes invalid characters for X (e.g., `/`) and collapses whitespace.
+  - Fetches ~3× requested results to allow Grok-based re-ranking.
+
+- Grok-based ranking (backend):
+  - After retrieval, Grok is used to rank tweets by semantic relevance to the highlighted text and keywords.
+  - Ranking criteria (in order of importance):
+    1. **Semantic match**: Does the tweet discuss the same topic/concept as the highlighted text?
+    2. **Keyword coverage**: Does the tweet mention search keywords or related terms?
+    3. **Information value**: Does the tweet provide useful insights, news, or discussion?
+    4. **Quality signals**: Verified authors and engagement metrics (as tiebreakers only).
+  - This approach prioritizes semantic relevance over keyword density, so a tweet discussing the same concept without exact keyword matches ranks higher than an off-topic tweet with keywords.
+  - Fallback (if Grok unavailable): returns tweets in X API's relevancy order.
 
 - Fresh-only Refresh:
   - Refresh bypasses cache (`nocache=1`) so a new upstream search is performed; no stale results are served.
