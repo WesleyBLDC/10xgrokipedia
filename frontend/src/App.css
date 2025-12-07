@@ -119,6 +119,109 @@
   margin-top: 1.5rem;
 }
 
+/* Markdown Styles */
+.topic-page .content h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 2rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.topic-page .content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 1.75rem 0 0.75rem;
+}
+
+.topic-page .content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.topic-page .content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.topic-page .content p {
+  margin: 1rem 0;
+}
+
+.topic-page .content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.topic-page .content a:hover {
+  text-decoration: underline;
+}
+
+.topic-page .content a.footnote {
+  font-size: 0.75em;
+  vertical-align: super;
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 1px;
+}
+
+.topic-page .content a.footnote:hover {
+  text-decoration: underline;
+}
+
+.topic-page .content ul,
+.topic-page .content ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.topic-page .content li {
+  margin: 0.5rem 0;
+}
+
+.topic-page .content blockquote {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 3px solid var(--border-color);
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+}
+
+.topic-page .content code {
+  background: var(--bg-secondary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.topic-page .content pre {
+  background: var(--bg-secondary);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.topic-page .content pre code {
+  background: none;
+  padding: 0;
+}
+
+.topic-page .content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.topic-page .content em {
+  font-style: italic;
+}
+
 .topic-page .loading {
   color: var(--text-muted);
 }
