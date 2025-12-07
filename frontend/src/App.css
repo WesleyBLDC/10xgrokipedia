@@ -1669,3 +1669,59 @@
 .open-original-link:hover {
   text-decoration: underline;
 }
+
+/* --- Grokipedia Summary --- */
+
+.grokipedia-summary {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.grokipedia-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.grokipedia-summary-header svg {
+  opacity: 0.9;
+}
+
+.grokipedia-summary-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.grokipedia-summary-content p {
+  margin: 0;
+}
+
+.grokipedia-summary-content .summary-unavailable {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.summary-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.summary-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border-color);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
