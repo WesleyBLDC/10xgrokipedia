@@ -782,6 +782,15 @@ async def search_tweets(q: str, max_results: int = 10, optimize: bool = True) ->
         or_block = " OR ".join(pieces) if pieces else phrase
         query = f"({or_block})"
 
+    # Sanitize query for X API: remove or space out disallowed characters like '/'
+    def _sanitize_x_query(s: str) -> str:
+        # Replace slashes with space, collapse repeated spaces
+        s = re.sub(r"/+", " ", s)
+        s = re.sub(r"\s+", " ", s).strip()
+        return s
+
+    query = _sanitize_x_query(query)
+
     key = f"q={query}|n={max_results}"
     now = time.time()
 

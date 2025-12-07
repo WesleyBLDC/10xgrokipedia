@@ -321,14 +321,6 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
                 ↻ Refresh
               </button>
               {refreshing && <span className="cf-spinner" aria-label="Refreshing" />}
-              {thinking && (
-                <span className="cf-dots" aria-live="polite" aria-label="Searching">
-                  <span>Searching</span>
-                  <span className="dot dot1"></span>
-                  <span className="dot dot2"></span>
-                  <span className="dot dot3"></span>
-                </span>
-              )}
             </div>
           </div>
           {!hintsCollapsed && (
@@ -364,6 +356,17 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
               </button>
             </div>
           </div>
+          )}
+          {!hintsCollapsed && thinking && (
+            <div className="cf-hints-row cf-dots-row">
+              <span className="cf-hints-label" />
+              <span className="cf-dots" aria-live="polite" aria-label="Searching">
+                <span>Searching</span>
+                <span className="dot dot1"></span>
+                <span className="dot dot2"></span>
+                <span className="dot dot3"></span>
+              </span>
+            </div>
           )}
           {!hintsCollapsed && addingKeyword && (
             <div className="cf-hints-row">
