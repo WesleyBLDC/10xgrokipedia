@@ -49,7 +49,11 @@ Frontend will be available at http://localhost:5173
 ├── backend/
 │   ├── main.py           # FastAPI application
 │   ├── temp_data.json    # Topic data
-│   └── requirements.txt  # Python dependencies
+│   ├── requirements.txt  # Python dependencies
+│   ├── cluster_articles.py        # Article clustering (TF-IDF + union-find)
+│   ├── run_llm_contradictions.py  # LLM-based contradiction detection
+│   ├── clusters.json              # Cluster output (generated)
+│   └── contradictions_llm.json    # Contradictions with offsets (generated)
 ├── frontend/
 │   ├── src/
 │   │   ├── api.ts        # API client
@@ -71,6 +75,28 @@ Frontend will be available at http://localhost:5173
 | `GET /api/topics/{slug}/tweets/summary` | Grok-generated 2–3 bullet summary of top tweets |
 | `POST /api/topics/{slug}/tweets/refresh` | Clear cache for topic tweets |
 | `GET /api/tweets/search?q=text` | Tweets related to highlighted text |
+
+## Contradiction Pipeline (summary)
+
+- **Clustering (`backend/cluster_articles.py`)**  
+  - Builds word- and char-level TF‑IDF vectors on trimmed article text.  
+  - Uses similarity gates (title/slug tokens, rare-term overlap) and union-find to form clusters; caps oversized clusters to prevent over-merge.  
+  - Output: `clusters.json`.
+
+- **LLM contradiction detection (`backend/run_llm_contradictions.py`)**  
+  - For each multi-article cluster, sends articles to X.ai (`grok-4-1-fast-reasoning`) with a prompt demanding exact quotes and JSON pairs.  
+  - Parses responses, verifies quotes by locating exact substrings, and attaches character/line offsets.  
+  - Output: `contradictions_llm.json`.
+
+- **Frontend consumption**  
+  - `frontend/public/contradictions_llm.json` is loaded once on the client.  
+  - `TopicPage.tsx` filters contradictions for the current article and injects red underlines; clicking a highlight deep-links to the conflicting line in the other article with auto-scroll and flash.  
+  - Toggle shows per-article contradiction count.
+
+### Why this approach
+- Clustering narrows pairwise checks so we avoid O(N²) LLM calls across large corpora.  
+- Character n-grams improve fuzzy title/entity grouping without hand-coded rules.  
+- Exact-quote offsets ensure UI highlights remain precise; pairs that don’t round-trip can be dropped/flagged.
 
 ## X API integration (Community Feed / Top Tweets)
 
