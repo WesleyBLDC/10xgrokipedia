@@ -69,6 +69,7 @@ export default function TopicPage() {
     position: { x: number; y: number };
   } | null>(null);
   const contradictionTooltipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [hasAppliedFocus, setHasAppliedFocus] = useState(false);
 
   // Footnote tracking
   const footnoteCounter = useRef(0);
@@ -204,6 +205,10 @@ export default function TopicPage() {
   // Content to display (version or current)
   const displayContent = versionContent ?? data?.content ?? "";
   const focusClaim = (location.state as { focusClaim?: string } | null)?.focusClaim ?? null;
+  useEffect(() => {
+    // Reset focus flag when navigation focus changes
+    setHasAppliedFocus(false);
+  }, [focusClaim, topic]);
 
   // Build a list of contradictions relevant to this article (by URL/slug match)
   const relevantContradictions = useMemo(() => {
@@ -323,7 +328,7 @@ export default function TopicPage() {
 
   // When arriving from another article with a target claim, auto-enable highlights and scroll to it
   useEffect(() => {
-    if (!focusClaim) return;
+    if (!focusClaim || hasAppliedFocus) return;
     if (!showContradictions) {
       setShowContradictions(true);
       return; // wait for highlights to render
@@ -337,8 +342,10 @@ export default function TopicPage() {
       match.scrollIntoView({ behavior: "smooth", block: "center" });
       match.classList.add("contradiction-highlight-flash");
       setTimeout(() => match.classList.remove("contradiction-highlight-flash"), 1200);
+      setHasAppliedFocus(true);
+      navigate(location.pathname, { replace: true, state: {} });
     }
-  }, [focusClaim, showContradictions, highlightedContent]);
+  }, [focusClaim, showContradictions, highlightedContent, hasAppliedFocus, navigate, location.pathname]);
 
   // Click handler for contradiction highlights: navigate to the other article
   const handleContentClick = useCallback((evt: React.MouseEvent<HTMLDivElement>) => {
