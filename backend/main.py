@@ -595,15 +595,14 @@ def _compute_score(tweet: dict, user: dict) -> float:
 
 
 async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size: int = 50) -> list[TweetItem]:
-    # Fetch and rank candidates from both recent and full-archive search, then return the top N by score.
+    # Archive-first approach: try Search All for broader coverage; on 401/403 fallback to Recent.
     token = _get_x_bearer_token()
     if not token:
         raise HTTPException(status_code=501, detail="X API bearer token not configured. Set X_BEARER_TOKEN or TWITTER_BEARER_TOKEN.")
 
-    recent_url = "https://api.x.com/2/tweets/search/recent"
     all_url = "https://api.x.com/2/tweets/search/all"
+    recent_url = "https://api.x.com/2/tweets/search/recent"
 
-    # Attempt to bias toward relevance server-side, we'll re-rank by engagement score
     params = {
         "query": f"{query} -is:retweet -is:reply lang:en",
         "max_results": str(max(10, min(pool_size, 100))),
@@ -612,70 +611,51 @@ async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size
         "expansions": "author_id",
         "user.fields": "username,name,profile_image_url,public_metrics",
     }
-
     headers = {"Authorization": f"Bearer {token}"}
 
     async with httpx.AsyncClient(timeout=10.0) as client:
-        # Fetch RECENT search
+        # First, attempt Full-Archive Search
+        use_recent_fallback = False
         try:
-            resp = await client.get(recent_url, params=params, headers=headers)
-            if resp.status_code == 404:
-                # Some proxies may not resolve api.x.com; try twitter domain
-                alt_url = "https://api.twitter.com/2/tweets/search/recent"
-                resp = await client.get(alt_url, params=params, headers=headers)
-            resp.raise_for_status()
-        except httpx.HTTPStatusError as e:
-            # Forward error details to client
-            raise HTTPException(status_code=e.response.status_code, detail=e.response.text)
-        except httpx.RequestError as e:
-            raise HTTPException(status_code=502, detail=f"Failed to reach X API: {e}")
-
-        data_recent = resp.json()
-        tweets_recent = data_recent.get("data", []) or []
-        includes_recent = data_recent.get("includes", {}) or {}
-        users_recent = {u.get("id"): u for u in includes_recent.get("users", [])}
-
-        # Fetch FULL-ARCHIVE search as well; ignore entitlement/network errors gracefully
-        try:
-            resp2 = await client.get(all_url, params=params, headers=headers)
-            if resp2.status_code == 404:
-                alt_url_all = "https://api.twitter.com/2/tweets/search/all"
-                resp2 = await client.get(alt_url_all, params=params, headers=headers)
-            # If forbidden/not entitled, do not hard-fail: return empty list gracefully
-            if resp2.status_code in (401, 403):
-                data_all = {"data": [], "includes": {"users": []}}
+            r = await client.get(all_url, params=params, headers=headers)
+            if r.status_code == 404:
+                # Fallback domain
+                r = await client.get("https://api.twitter.com/2/tweets/search/all", params=params, headers=headers)
+            if r.status_code in (401, 403):
+                use_recent_fallback = True
             else:
-                resp2.raise_for_status()
-                data_all = resp2.json()
+                r.raise_for_status()
         except httpx.HTTPStatusError as e:
-            # If the fallback API is not available to this token, degrade gracefully
             if e.response is not None and e.response.status_code in (401, 403, 404):
-                data_all = {"data": [], "includes": {"users": []}}
+                use_recent_fallback = True
             else:
                 raise HTTPException(status_code=e.response.status_code if e.response else 502, detail=(e.response.text if e.response else str(e)))
-        except httpx.RequestError:
-            # Network issues on fallback: degrade gracefully with empty list
-            data_all = {"data": [], "includes": {"users": []}}
+        except httpx.RequestError as e:
+            # Network problem on archive; try recent
+            use_recent_fallback = True
 
-        tweets_all = data_all.get("data", []) or []
-        includes_all = data_all.get("includes", {}) or {}
-        users_all = {u.get("id"): u for u in includes_all.get("users", [])}
+        data = None
+        if use_recent_fallback:
+            try:
+                r2 = await client.get(recent_url, params=params, headers=headers)
+                if r2.status_code == 404:
+                    r2 = await client.get("https://api.twitter.com/2/tweets/search/recent", params=params, headers=headers)
+                r2.raise_for_status()
+                data = r2.json()
+            except httpx.HTTPStatusError as e:
+                raise HTTPException(status_code=e.response.status_code, detail=e.response.text)
+            except httpx.RequestError as e:
+                raise HTTPException(status_code=502, detail=f"Failed to reach X API: {e}")
+        else:
+            data = r.json()
 
-        # Combine candidates and user maps; prefer 'recent' user entries then 'all'
-        combined_users = {**users_all, **users_recent}
-        combined_map = {}
-        for t in tweets_all:
-            tid = t.get("id")
-            if tid:
-                combined_map[tid] = (t, users_all.get(t.get("author_id")))
-        for t in tweets_recent:
-            tid = t.get("id")
-            if tid:
-                combined_map[tid] = (t, users_recent.get(t.get("author_id")))
+        tweets = data.get("data", []) or []
+        includes = data.get("includes", {}) or {}
+        users = {u.get("id"): u for u in includes.get("users", [])}
 
-        # Rank combined
         ranked: list[tuple[float, dict, dict]] = []
-        for tid, (t, u) in combined_map.items():
+        for t in tweets:
+            u = users.get(t.get("author_id")) if t.get("author_id") else None
             score = _compute_score(t, u or {})
             ranked.append((score, t, u or {}))
 
@@ -683,7 +663,7 @@ async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size
             return []
 
         ranked.sort(key=lambda x: x[0], reverse=True)
-        ranked = ranked[:max(1, return_count * 3)]  # keep more buffer when combining
+        ranked = ranked[:max(1, return_count * 2)]
         out: list[TweetItem] = []
         for score, t, u in ranked[:return_count]:
             tid = t.get("id")

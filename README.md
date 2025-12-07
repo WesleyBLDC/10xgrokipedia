@@ -91,7 +91,7 @@ Notes:
 ### How “Top Tweets” are determined
 
 - Query construction: the topic slug is converted to a quoted phrase, underscores/hyphens → spaces, and filtered with `-is:retweet -is:reply lang:en`.
-- Candidate pool: we fetch from BOTH X Recent Search (`/2/tweets/search/recent`) and Full-Archive Search (`/2/tweets/search/all`) when permitted by your token, each with `sort_order=relevancy`. Results are combined and deduplicated by tweet ID (recent entry preferred when overlapping). If Full-Archive is not permitted, only recent results are considered.
+- Candidate pool: the backend uses X Full-Archive Search (`/2/tweets/search/all`) with `sort_order=relevancy` to fetch a pool of candidates (default ~50). If your token is not entitled for Full-Archive (401/403), it falls back automatically to Recent Search (`/2/tweets/search/recent`) with the same parameters.
 - Engagement scoring: each candidate is scored and re-ranked server-side using public metrics and author size normalization:
   - raw_engagement = likes + 2×retweets + 1.5×quotes + 0.5×replies
   - normalization = max(50, followers_count)^0.7

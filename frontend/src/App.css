@@ -1016,24 +1016,25 @@
   color: var(--text-muted);
   border: 1px solid var(--border-color);
   background: var(--bg-tertiary);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.4);
 }
 
 .community-feed .cf-rank-badge.top1 {
   color: #facc15;
   border-color: #f59e0b;
-  background: rgba(245, 158, 11, 0.15);
+  background: rgba(245, 158, 11, 0.38);
 }
 
 .community-feed .cf-rank-badge.top2 {
   color: #e5e7eb;
   border-color: #9ca3af;
-  background: rgba(156, 163, 175, 0.15);
+  background: rgba(156, 163, 175, 0.32);
 }
 
 .community-feed .cf-rank-badge.top3 {
   color: #fbbf24;
   border-color: #cd7f32;
-  background: rgba(205, 127, 50, 0.18);
+  background: rgba(205, 127, 50, 0.34);
 }
 
 .community-feed .cf-avatar {
