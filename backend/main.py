@@ -691,18 +691,23 @@ async def _suggest_search_query(highlight_text: str) -> SearchHints | None:
 
     system_prompt = (
         "You are an expert at crafting HIGH-RECALL queries for X (Twitter) search. "
-        "Given a user-selected passage, extract the most informative keywords and topics. "
-        "CRITICAL: The query MUST use OR logic to maximize results. Use format: (term1 OR term2 OR term3). "
-        "Prioritize named entities, technical terms, and distinctive phrases. Avoid common words. "
-        "Include 4-8 key terms connected with OR. Keep query under 120 characters."
+        "Given a user-selected passage, extract keywords in two tiers:\n"
+        "1. CRITICAL: Core entities, names, technical terms (most distinctive)\n"
+        "2. SUPPORTING: Related concepts, synonyms, abbreviations for broader recall\n\n"
+        "CRITICAL RULES:\n"
+        "- Query MUST use OR logic: (term1 OR term2 OR term3)\n"
+        "- Include synonyms and abbreviations (e.g., 'AI' alongside 'artificial intelligence')\n"
+        "- Prioritize named entities, product names, and technical jargon\n"
+        "- Avoid generic words like 'new', 'latest', 'best', 'important'\n"
+        "- Include 5-10 key terms connected with OR. Keep query under 128 characters."
     )
 
     user_prompt = (
-        "Selected passage:\n" + highlight_text.strip() + "\n\n"
+        "Selected passage:\n" + highlight_text.strip()[:500] + "\n\n"
         "Return ONLY compact JSON with keys:\n"
-        "- query: string using OR logic like '(Grok OR API OR xAI)' - MUST use OR between terms\n"
-        "- keywords: array of 5-12 individual search terms (no OR, just the words)\n"
-        "- topics: array of 2-5 broader topic labels"
+        "- query: string using OR logic like '(Grok OR API OR xAI OR chatbot)' - MUST use OR between ALL terms\n"
+        "- keywords: array of 6-12 individual search terms ordered by importance (critical first, supporting last)\n"
+        "- topics: array of 2-4 broader topic labels (e.g., 'artificial intelligence', 'tech industry')"
     )
 
     payload = {
@@ -738,6 +743,118 @@ async def _suggest_search_query(highlight_text: str) -> SearchHints | None:
             return None
     except Exception:
         return None
+
+
+async def _grok_rank_tweets(
+    tweets: List[TweetItem],
+    highlighted_text: str,
+    keywords: List[str],
+    max_results: int = 10
+) -> List[TweetItem]:
+    """Use Grok to rank tweets by relevance to highlighted text and keywords."""
+    if not tweets:
+        return []
+
+    token = _get_grok_api()
+    if not token:
+        # Fallback: return tweets as-is (already sorted by X API relevancy)
+        return tweets[:max_results]
+
+    base = _get_grok_base().rstrip("/")
+    model = _get_grok_model()
+    url = f"{base}/chat/completions"
+
+    # Prepare tweet data for Grok (limit to avoid token overflow)
+    tweet_summaries = []
+    for i, t in enumerate(tweets[:20]):  # Max 20 candidates
+        # Include key metrics for context
+        metrics = f"❤{t.like_count or 0} ↻{t.retweet_count or 0}"
+        verified = " [verified]" if t.author_verified else ""
+        tweet_summaries.append(
+            f"{i+1}. @{t.author_username}{verified}: {t.text[:200]}... ({metrics})"
+        )
+
+    tweets_block = "\n".join(tweet_summaries)
+    keywords_str = ", ".join(keywords[:10]) if keywords else "N/A"
+
+    system_prompt = (
+        "You are an expert at ranking tweets by relevance. Given a user's highlighted text "
+        "and search keywords, rank the tweets from MOST to LEAST relevant.\n\n"
+        "Relevance criteria (in order of importance):\n"
+        "1. SEMANTIC MATCH: Does the tweet discuss the same topic/concept as the highlighted text?\n"
+        "2. KEYWORD COVERAGE: Does the tweet mention the search keywords or related terms?\n"
+        "3. INFORMATION VALUE: Does the tweet provide useful insights, news, or discussion?\n"
+        "4. QUALITY SIGNALS: Verified authors, engagement metrics (as tiebreakers only)\n\n"
+        "IMPORTANT: Prioritize semantic relevance over keyword density. A tweet discussing "
+        "the same concept without exact keyword matches is MORE relevant than a tweet "
+        "with keywords but off-topic content."
+    )
+
+    user_prompt = (
+        f"HIGHLIGHTED TEXT:\n{highlighted_text[:400]}\n\n"
+        f"SEARCH KEYWORDS: {keywords_str}\n\n"
+        f"TWEETS TO RANK:\n{tweets_block}\n\n"
+        f"Return ONLY a JSON array of tweet numbers in order of relevance (most relevant first).\n"
+        f"Example: [3, 1, 7, 2, 5, 4, 6, 8, 9, 10]\n"
+        f"Return the top {max_results} most relevant tweets."
+    )
+
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        "temperature": 0.1,  # Low temperature for consistent ranking
+        "max_tokens": 128,
+    }
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+
+    try:
+        async with httpx.AsyncClient(timeout=15.0) as client:
+            resp = await client.post(url, json=payload, headers=headers)
+            resp.raise_for_status()
+            data = resp.json()
+            content = (
+                data.get("choices", [{}])[0]
+                .get("message", {})
+                .get("content", "")
+            )
+
+            # Parse the ranking array from response
+            start = content.find("[")
+            end = content.rfind("]")
+            if start != -1 and end != -1 and end > start:
+                ranking = json.loads(content[start:end + 1])
+                if isinstance(ranking, list):
+                    # Convert 1-indexed to 0-indexed and filter valid indices
+                    reranked = []
+                    seen = set()
+                    for idx in ranking:
+                        if isinstance(idx, int) and 1 <= idx <= len(tweets) and idx not in seen:
+                            reranked.append(tweets[idx - 1])
+                            seen.add(idx)
+                            if len(reranked) >= max_results:
+                                break
+
+                    # If Grok returned fewer than requested, append remaining by original order
+                    if len(reranked) < max_results:
+                        for i, t in enumerate(tweets):
+                            if (i + 1) not in seen:
+                                reranked.append(t)
+                                if len(reranked) >= max_results:
+                                    break
+
+                    print(f"[grok_rank] Ranked {len(reranked)} tweets, order: {ranking[:max_results]}")
+                    return reranked
+
+            # Parsing failed, return original order
+            print("[grok_rank] Failed to parse ranking, using original order")
+            return tweets[:max_results]
+
+    except Exception as e:
+        print(f"[grok_rank] Error: {e}, using original order")
+        return tweets[:max_results]
 
 
 @app.get("/api/tweets/search")
@@ -855,85 +972,28 @@ async def search_tweets(q: str, max_results: int = 10, optimize: bool = True, no
             async with _cache_lock:
                 _inflight_tasks.pop(key, None)
 
-    # Re-rank by keyword coverage + engagement + slight recency
-    def _extract_rank_terms(qs: str) -> list[str]:
-        # Remove filters and split OR groups into terms
-        qs = re.sub(r"-is:retweet|-is:reply|lang:[a-zA-Z-]+", " ", qs)
-        qs = qs.replace("(", " ").replace(")", " ").replace("\"", " ")
-        qs = re.sub(r"\bOR\b", " ", qs, flags=re.IGNORECASE)
-        qs = re.sub(r"\s+", " ", qs).strip().lower()
-        return [t for t in qs.split(" ") if t]
-
-    # Separate keyword and topic terms for coverage weighting
-    kw_terms: list[str] = []
-    topic_terms: list[str] = []
+    # Use Grok to rank tweets by semantic relevance to highlighted text
+    # Gather keywords from hints or extract from query
+    ranking_keywords: list[str] = []
     if hints:
-        kw_terms = [t.lower() for t in (hints.keywords or []) if t]
-        # Split multi-word topics into tokens and include original phrases
-        for tp in (hints.topics or []):
-            if not tp:
-                continue
-            topic_terms.append(tp.lower())
-            for part in tp.lower().split():
-                topic_terms.append(part)
-    if not kw_terms and not topic_terms:
-        # Fallback: use all terms from the query string
-        kw_terms = _extract_rank_terms(query)
+        ranking_keywords = list(hints.keywords or []) + list(hints.topics or [])
+    if not ranking_keywords:
+        # Fallback: extract terms from query
+        def _extract_rank_terms(qs: str) -> list[str]:
+            qs = re.sub(r"-is:retweet|-is:reply|lang:[a-zA-Z-]+", " ", qs)
+            qs = qs.replace("(", " ").replace(")", " ").replace("\"", " ")
+            qs = re.sub(r"\bOR\b", " ", qs, flags=re.IGNORECASE)
+            qs = re.sub(r"\s+", " ", qs).strip().lower()
+            return [t for t in qs.split(" ") if t and len(t) > 2]
+        ranking_keywords = _extract_rank_terms(query)
 
-    kw_set, tp_set = set(kw_terms), set(topic_terms)
-
-    def _term_match(low_text: str, term: str) -> bool:
-        if len(term) <= 1:
-            return False
-        if re.search(rf"\b{re.escape(term)}\b", low_text):
-            return True
-        # naive morphological variants
-        bases = [term]
-        if term.endswith("s"):
-            bases.append(term[:-1])
-        if term.endswith("ing"):
-            bases.append(term[:-3])
-        if term.endswith("ed"):
-            bases.append(term[:-2])
-        for b in bases:
-            if b and b in low_text:
-                return True
-        return False
-
-    def coverage_score(text: str) -> float:
-        low = (text or "").lower()
-        kw_total = len(kw_set)
-        tp_total = len(tp_set)
-        kw_matched = sum(1 for t in kw_set if _term_match(low, t)) if kw_total else 0
-        tp_matched = sum(1 for t in tp_set if _term_match(low, t)) if tp_total else 0
-        # Weighted coverage: topics slightly heavier than keywords
-        KW_W, TP_W = 1.0, 1.35
-        denom = (KW_W * max(1, kw_total)) + (TP_W * max(1, tp_total))
-        num = (KW_W * kw_matched) + (TP_W * tp_matched)
-        return num / denom if denom > 0 else 0.0
-
-    max_eng = max((it.score or 0.0) for it in items) if items else 0.0
-    def recency_score(created_at: str | None) -> float:
-        if not created_at:
-            return 0.0
-        try:
-            dt = datetime.fromisoformat(created_at.replace("Z", "+00:00"))
-            age_hours = max(0.0, (datetime.now(timezone.utc) - dt).total_seconds() / 3600.0)
-            # Simple linear decay over 14 days
-            return max(0.0, 1.0 - age_hours / (24.0 * 14.0))
-        except Exception:
-            return 0.0
-
-    scored = []
-    for it in items:
-        cov = coverage_score(it.text)
-        eng = (it.score or 0.0) / max_eng if max_eng > 0 else 0.0
-        rec = recency_score(it.created_at)
-        # Emphasize keyword/topic relevance
-        final = 0.8 * cov + 0.15 * eng + 0.05 * rec
-        scored.append((final, it))
-    scored.sort(key=lambda x: x[0], reverse=True)
-    reranked = [it for _, it in scored[:max_results]]
+    # Use Grok for intelligent ranking based on semantic relevance
+    reranked = await _grok_rank_tweets(
+        tweets=items,
+        highlighted_text=phrase,
+        keywords=ranking_keywords,
+        max_results=max_results
+    )
 
     if not joiner:
         async with _cache_lock:

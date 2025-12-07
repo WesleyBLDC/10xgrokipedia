@@ -94,14 +94,20 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
     return () => clearTimeout(t1);
   }, [searchQuery, activeQuery]);
 
+  // Convert topic slug to readable phrase (e.g., "elon-musk" -> "elon musk")
+  const topicPhrase = useMemo(() => {
+    return topicSlug.replace(/[-_]/g, " ").trim();
+  }, [topicSlug]);
+
   const buildRawQuery = useCallback(() => {
+    // Only use keywords for the API query (not topics - they're display-only)
     const kws = (localKeywords ?? searchHints?.keywords ?? []).map(s => s.trim()).filter(Boolean);
-    const tps = (localTopics ?? searchHints?.topics ?? []).map(s => s.trim()).filter(Boolean);
-    const all = Array.from(new Set([...kws, ...tps]));
-    if (all.length === 0) return "";
-    const norm = all.map(t => (t.includes(" ") ? `"${t}"` : t));
+    // Always include the page topic as a keyword for context
+    const allKws = Array.from(new Set([topicPhrase, ...kws]));
+    if (allKws.length === 0) return "";
+    const norm = allKws.map(t => (t.includes(" ") ? `"${t}"` : t));
     return `(${norm.join(" OR ")})`;
-  }, [localKeywords, localTopics, searchHints]);
+  }, [localKeywords, searchHints, topicPhrase]);
 
   const fetchTweets = useCallback(async (opts?: { keepCurrent?: boolean }): Promise<TweetItem[] | null> => {
     const keepCurrent = !!opts?.keepCurrent;
@@ -127,8 +133,16 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
           const kws = localKeywords ?? searchHints?.keywords ?? [];
           const tps = localTopics ?? searchHints?.topics ?? [];
           setSearchHints({ query: activeQuery, keywords: kws, topics: tps });
+        } else if (res?.hints) {
+          // Inject page topic as first keyword if not already present
+          const hintsKws = res.hints.keywords || [];
+          const topicLower = topicPhrase.toLowerCase();
+          const hasPageTopic = hintsKws.some(k => k.toLowerCase() === topicLower);
+          const augmentedKws = hasPageTopic ? hintsKws : [topicPhrase, ...hintsKws];
+          setSearchHints({ ...res.hints, keywords: augmentedKws });
         } else {
-          setSearchHints(res?.hints || null);
+          // No hints from API, create minimal hints with page topic
+          setSearchHints({ query: activeQuery, keywords: [topicPhrase], topics: [] });
         }
       } else {
         data = await getTopicTweets(topicSlug, 10);
@@ -150,7 +164,7 @@ export default function CommunityFeed({ topicSlug, searchQuery, onClearSearch }:
       }
       if (!keepCurrent) setLoading(false);
     }
-  }, [topicSlug, activeQuery, rawMode, localKeywords, localTopics, searchHints]);
+  }, [topicSlug, topicPhrase, activeQuery, rawMode, localKeywords, localTopics, searchHints]);
 
   // Summary is now computed conditionally based on tweets count (see effects/onRefresh)
 
