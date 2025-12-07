@@ -1,14 +1,15 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { getTopic, getSuggestions, getCitationBias, getAggregateBias } from "../api";
-import type { Topic, Suggestion, CitationBias, AggregateBias } from "../api";
+import { getTopic, getSuggestions, getCitationBias } from "../api";
+import type { Topic, Suggestion, CitationBias } from "../api";
 import rehypeRaw from "rehype-raw";
 import SuggestEditModal from "../components/SuggestEditModal";
 import SuggestionsPanel from "../components/SuggestionsPanel";
 import VersionHistory from "../components/VersionHistory";
 import CommunityFeed from "../components/CommunityFeed";
-import ArticlePreviewModal from "../components/ArticlePreviewModal";
+import { getAggregateBias } from "../api";
+import type { AggregateBias } from "../api";
 
 type ContradictionEntry = {
   article_a_title: string;
@@ -51,15 +52,13 @@ export default function TopicPage() {
   const [showModal, setShowModal] = useState(false);
   const [relatedSearch, setRelatedSearch] = useState<string | null>(null);
 
-  // Citation hover/click state
+  // Citation hover state
   const [citationTooltip, setCitationTooltip] = useState<{
     url: string;
     data: CitationBias;
     position: { x: number; y: number };
-    mode: 'hover' | 'click';
   } | null>(null);
   const citationTooltipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   // Footnote tracking
   const footnoteCounter = useRef(0);
@@ -375,9 +374,20 @@ export default function TopicPage() {
             className={`toggle-contradictions ${showContradictions ? "active" : ""}`}
             onClick={() => setShowContradictions(!showContradictions)}
             disabled={versionContent !== null}
-            title={versionContent ? "Highlights disabled when viewing older version" : "Toggle contradiction highlights"}
+            title={
+              versionContent
+                ? "Highlights disabled when viewing older version"
+                : "Toggle contradiction highlights. Click any red underline to jump to the conflicting line in the other article."
+            }
           >
-            {showContradictions ? "Hide contradictions" : "Show contradictions"}
+            <span className="toggle-label">
+              {showContradictions ? "Hide contradictions" : "Show contradictions"}
+            </span>
+            {relevantContradictions.length > 0 && (
+              <span className="contradiction-badge" aria-label={`${relevantContradictions.length} contradictions`}>
+                {relevantContradictions.length}
+              </span>
+            )}
           </button>
           <VersionHistory
             topicSlug={topic!}
@@ -498,23 +508,23 @@ export default function TopicPage() {
                           x: rect.left + rect.width / 2,
                           y: rect.top - 8,
                         },
-                        mode: 'hover',
                       });
                     };
                     
                     const handleCitationMouseLeave = () => {
+                      // Delay hiding to allow moving to tooltip
                       citationTooltipTimeoutRef.current = setTimeout(() => {
                         setCitationTooltip(null);
                       }, 200);
                     };
-
+                    
                     return (
                       <a
                         href={href}
-                        className="footnote"
-                        title={href}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="footnote"
+                        title={href}
                         onMouseEnter={handleCitationMouseEnter}
                         onMouseLeave={handleCitationMouseLeave}
                       >
@@ -565,7 +575,6 @@ export default function TopicPage() {
                         x: rect.left + rect.width / 2,
                         y: rect.top - 8,
                       },
-                      mode: 'hover',
                     });
                   };
                   
@@ -623,10 +632,9 @@ export default function TopicPage() {
         </div>
       )}
 
-      {/* Citation Tooltip - Hover shows preview button + bias info */}
       {citationTooltip && (
         <div
-          className="citation-tooltip"
+          className="citation-bias-tooltip"
           style={{
             position: "fixed",
             left: citationTooltip.position.x,
@@ -644,15 +652,6 @@ export default function TopicPage() {
             }, 200);
           }}
         >
-          <button
-            className="citation-preview-btn"
-            onClick={() => {
-              setPreviewUrl(citationTooltip.url);
-              setCitationTooltip(null);
-            }}
-          >
-            Preview article
-          </button>
           <div className="citation-bias-tooltip-content">
             <div className="citation-bias-row">
               <span className="citation-bias-label">Factuality:</span>
@@ -676,13 +675,6 @@ export default function TopicPage() {
         selectedText={selectedText}
         topicSlug={topic!}
         onSuccess={handleSuggestionSuccess}
-      />
-
-      {/* Article Preview Modal */}
-      <ArticlePreviewModal
-        isOpen={previewUrl !== null}
-        url={previewUrl || ""}
-        onClose={() => setPreviewUrl(null)}
       />
     </div>
   );
