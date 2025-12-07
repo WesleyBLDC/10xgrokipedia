@@ -84,10 +84,12 @@ def build_messages(cluster: Dict, articles_by_url: Dict[str, Dict[str, str]]) ->
         f"{articles_block}\n\n"
         "Task: List contradictions as pairs. For each contradiction, include:\n"
         "- article_a_title, article_a_url\n"
-        "- claim_a: short quote as it appears in the article\n"
+        "- claim_a: EXACT quote copied directly from article content (do not paraphrase or summarize)\n"
         "- article_b_title, article_b_url\n"
-        "- claim_b: short quote as it appears in the article\n"
-        "- difference: short phrase of what differs\n"
+        "- claim_b: EXACT quote copied directly from article content (do not paraphrase or summarize)\n"
+        "- difference: short phrase of what differs\n\n"
+        "CRITICAL: claim_a and claim_b must be EXACT substring matches from the Content field above.\n"
+        "Copy the exact phrase character-for-character, including punctuation and spacing.\n"
         "Return a JSON list."
     )
 

@@ -1,0 +1,220 @@
+[
+  {
+    "cluster_id": 20,
+    "size": 2,
+    "members": [
+      {
+        "url": "https://grokipedia.com/page/&TV",
+        "title": "\\u0026TV",
+        "slug": "&TV"
+      },
+      {
+        "url": "https://grokipedia.com/page/&flix",
+        "title": "\\u0026TV",
+        "slug": "&flix"
+      }
+    ],
+    "llm_response": "[]",
+    "parsed": {
+      "contradictions": []
+    }
+  },
+  {
+    "cluster_id": 25,
+    "size": 2,
+    "members": [
+      {
+        "url": "https://grokipedia.com/page/'03_Bonnie_&_Clyde",
+        "title": "'03 Bonnie \\u0026 Clyde",
+        "slug": "'03_Bonnie_&_Clyde"
+      },
+      {
+        "url": "https://grokipedia.com/page/'97_Bonnie_&_Clyde",
+        "title": "'97 Bonnie \\u0026 Clyde",
+        "slug": "'97_Bonnie_&_Clyde"
+      }
+    ],
+    "llm_response": "[]",
+    "parsed": {
+      "contradictions": []
+    }
+  },
+  {
+    "cluster_id": 32,
+    "size": 2,
+    "members": [
+      {
+        "url": "https://grokipedia.com/page/'71_(film)",
+        "title": "_'71_ (film)",
+        "slug": "'71_(film)"
+      },
+      {
+        "url": "https://grokipedia.com/page/'76_(film)",
+        "title": "_'76_ (film)",
+        "slug": "'76_(film)"
+      }
+    ],
+    "llm_response": "[]",
+    "parsed": {
+      "contradictions": []
+    }
+  },
+  {
+    "cluster_id": 47,
+    "size": 3,
+    "members": [
+      {
+        "url": "https://grokipedia.com/page/'Allo_'Allo!",
+        "title": "_'Allo 'Allo!_",
+        "slug": "'Allo_'Allo!"
+      },
+      {
+        "url": "https://grokipedia.com/page/'Allo_'Allo!_(series_1)",
+        "title": "_'Allo 'Allo!_ series 1",
+        "slug": "'Allo_'Allo!_(series_1)"
+      },
+      {
+        "url": "https://grokipedia.com/page/'Allo_'Allo!_(series_9)",
+        "title": "_'Allo 'Allo!_ series 9",
+        "slug": "'Allo_'Allo!_(series_9)"
+      }
+    ],
+    "llm_response": "[]",
+    "parsed": {
+      "contradictions": []
+    }
+  },
+  {
+    "cluster_id": 66,
+    "size": 5,
+    "members": [
+      {
+        "url": "https://grokipedia.com/page/Richmond,_Virginia",
+        "title": "Richmond, Virginia",
+        "slug": "Richmond,_Virginia"
+      },
+      {
+        "url": "https://grokipedia.com/page/Richmond",
+        "title": "Richmond",
+        "slug": "Richmond"
+      },
+      {
+        "url": "https://grokipedia.com/page/University_of_Richmond",
+        "title": "University of Richmond",
+        "slug": "University_of_Richmond"
+      },
+      {
+        "url": "https://grokipedia.com/page/Richmond_Spiders",
+        "title": "Richmond Spiders",
+        "slug": "Richmond_Spiders"
+      },
+      {
+        "url": "https://grokipedia.com/page/Richmond_Spiders_football",
+        "title": "Richmond Spiders football",
+        "slug": "Richmond_Spiders_football"
+      }
+    ],
+    "llm_response": "[\n  {\n    \"article_a_title\": \"Richmond, Virginia\",\n    \"article_a_url\": \"https://grokipedia.com/page/Richmond,_Virginia\",\n    \"claim_a\": \"population of 228,670 residents as of July 1, 2024\",\n    \"article_b_title\": \"Richmond\",\n    \"article_b_url\": \"https://grokipedia.com/page/Richmond\",\n    \"claim_b\": \"population of 233,655 in the city proper\",\n    \"difference\": \"Population figures\"\n  },\n  {\n    \"article_a_title\": \"Richmond, Virginia\",\n    \"article_a_url\": \"https://grokipedia.com/page/Richmond,_Virginia\",\n    \"claim_a\": \"incorporated as a town in 1742\",\n    \"article_b_title\": \"Richmond\",\n    \"article_b_url\": \"https://grokipedia.com/page/Richmond\",\n    \"claim_b\": \"formally incorporated as a town in 1782\",\n    \"difference\": \"Incorporation year\"\n  },\n  {\n    \"article_a_title\": \"University of Richmond\",\n    \"article_a_url\": \"https://grokipedia.com/page/University_of_Richmond\",\n    \"claim_a\": \"enrolls 3,055 undergraduates\",\n    \"article_b_title\": \"Richmond Spiders\",\n    \"article_b_url\": \"https://grokipedia.com/page/Richmond_Spiders\",\n    \"claim_b\": \"undergraduate enrollment of approximately 3,164 students\",\n    \"difference\": \"Undergraduate enrollment numbers\"\n  }\n]",
+    "parsed": {
+      "contradictions": [
+        {
+          "article_a_title": "Richmond, Virginia",
+          "article_a_url": "https://grokipedia.com/page/Richmond,_Virginia",
+          "claim_a": "population of 228,670 residents as of July 1, 2024",
+          "claim_a_offset": {
+            "start": 426,
+            "end": 476,
+            "line": 3
+          },
+          "article_b_title": "Richmond",
+          "article_b_url": "https://grokipedia.com/page/Richmond",
+          "claim_b": "population of 233,655 in the city proper",
+          "claim_b_offset": {
+            "start": -1,
+            "end": -1,
+            "line": -1
+          },
+          "difference": "Population figures"
+        },
+        {
+          "article_a_title": "Richmond, Virginia",
+          "article_a_url": "https://grokipedia.com/page/Richmond,_Virginia",
+          "claim_a": "incorporated as a town in 1742",
+          "claim_a_offset": {
+            "start": -1,
+            "end": -1,
+            "line": -1
+          },
+          "article_b_title": "Richmond",
+          "article_b_url": "https://grokipedia.com/page/Richmond",
+          "claim_b": "formally incorporated as a town in 1782",
+          "claim_b_offset": {
+            "start": -1,
+            "end": -1,
+            "line": -1
+          },
+          "difference": "Incorporation year"
+        },
+        {
+          "article_a_title": "University of Richmond",
+          "article_a_url": "https://grokipedia.com/page/University_of_Richmond",
+          "claim_a": "enrolls 3,055 undergraduates",
+          "claim_a_offset": {
+            "start": 672,
+            "end": 700,
+            "line": 5
+          },
+          "article_b_title": "Richmond Spiders",
+          "article_b_url": "https://grokipedia.com/page/Richmond_Spiders",
+          "claim_b": "undergraduate enrollment of approximately 3,164 students",
+          "claim_b_offset": {
+            "start": 283,
+            "end": 339,
+            "line": 3
+          },
+          "difference": "Undergraduate enrollment numbers"
+        }
+      ]
+    }
+  },
+  {
+    "cluster_id": 67,
+    "size": 2,
+    "members": [
+      {
+        "url": "https://grokipedia.com/page/Monogamy_in_animals",
+        "title": "Monogamy in animals",
+        "slug": "Monogamy_in_animals"
+      },
+      {
+        "url": "https://grokipedia.com/page/Polygyny_in_animals",
+        "title": "Polygyny in animals",
+        "slug": "Polygyny_in_animals"
+      }
+    ],
+    "llm_response": "[\n  {\n    \"article_a_title\": \"Monogamy in animals\",\n    \"article_a_url\": \"https://grokipedia.com/page/Monogamy_in_animals\",\n    \"claim_a\": \"Social monogamy occurs in only about 3-9% of the approximately 6,500 mammalian species\",\n    \"article_b_title\": \"Polygyny in animals\",\n    \"article_b_url\": \"https://grokipedia.com/page/Polygyny_in_animals\",\n    \"claim_b\": \"fewer than 5% of species exhibit monogamy\",\n    \"difference\": \"Percentage of monogamous species in mammals (3-9% vs. fewer than 5%)\"\n  }\n]",
+    "parsed": {
+      "contradictions": [
+        {
+          "article_a_title": "Monogamy in animals",
+          "article_a_url": "https://grokipedia.com/page/Monogamy_in_animals",
+          "claim_a": "Social monogamy occurs in only about 3-9% of the approximately 6,500 mammalian species",
+          "claim_a_offset": {
+            "start": 1443,
+            "end": 1529,
+            "line": 7
+          },
+          "article_b_title": "Polygyny in animals",
+          "article_b_url": "https://grokipedia.com/page/Polygyny_in_animals",
+          "claim_b": "fewer than 5% of species exhibit monogamy",
+          "claim_b_offset": {
+            "start": -1,
+            "end": -1,
+            "line": -1
+          },
+          "difference": "Percentage of monogamous species in mammals (3-9% vs. fewer than 5%)"
+        }
+      ]
+    }
+  }
+]
