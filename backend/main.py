@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from urllib.parse import unquote
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -14,45 +15,72 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DATA_FILE = Path(__file__).parent / "temp_data.json"
+DATA_FILE = Path(__file__).parent / "all_articles_short.json"
 
 
-class Topic(BaseModel):
+class Article(BaseModel):
+    url: str
+    title: str
+    content: str
+
+
+class TopicSummary(BaseModel):
     topic: str
     title: str
-    description: str
 
 
-def load_data() -> list[Topic]:
+class TopicDetail(BaseModel):
+    topic: str
+    title: str
+    content: str
+
+
+def extract_slug(url: str) -> str:
+    """Extract topic slug from Grokipedia URL."""
+    # URL format: https://grokipedia.com/page/Topic_Name
+    return url.split("/page/")[-1] if "/page/" in url else url
+
+
+def load_data() -> list[Article]:
     with open(DATA_FILE) as f:
-        return [Topic(**item) for item in json.load(f)]
+        return [Article(**item) for item in json.load(f)]
 
 
 @app.get("/api/topics")
-def get_topics() -> list[dict]:
+def get_topics() -> list[TopicSummary]:
     """Get all topics (for search)."""
     data = load_data()
-    return [{"topic": t.topic, "title": t.title} for t in data]
+    return [
+        TopicSummary(topic=extract_slug(a.url), title=a.title)
+        for a in data
+    ]
 
 
 @app.get("/api/topics/search")
-def search_topics(q: str = "") -> list[dict]:
+def search_topics(q: str = "") -> list[TopicSummary]:
     """Search topics by query string."""
     data = load_data()
     query = q.lower()
     results = [
-        {"topic": t.topic, "title": t.title}
-        for t in data
-        if query in t.title.lower() or query in t.topic.lower()
+        TopicSummary(topic=extract_slug(a.url), title=a.title)
+        for a in data
+        if query in a.title.lower() or query in extract_slug(a.url).lower()
     ]
     return results
 
 
-@app.get("/api/topics/{topic_slug}")
-def get_topic(topic_slug: str) -> Topic:
+@app.get("/api/topics/{topic_slug:path}")
+def get_topic(topic_slug: str) -> TopicDetail:
     """Get a specific topic by slug."""
     data = load_data()
-    for t in data:
-        if t.topic == topic_slug:
-            return t
+    # Decode URL-encoded slugs (e.g., %20 -> space)
+    decoded_slug = unquote(topic_slug)
+
+    for a in data:
+        if extract_slug(a.url) == decoded_slug:
+            return TopicDetail(
+                topic=extract_slug(a.url),
+                title=a.title,
+                content=a.content
+            )
     raise HTTPException(status_code=404, detail="Topic not found")

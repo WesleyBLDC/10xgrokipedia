@@ -38,7 +38,7 @@ export default function TopicPage() {
     <div className="topic-page">
       <Link to="/" className="back-link">← Back to search</Link>
       <h1>{data.title}</h1>
-      <div className="content">{data.description}</div>
+      <div className="content">{data.content}</div>
     </div>
   );
 }

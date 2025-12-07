@@ -8,7 +8,7 @@ export interface TopicSummary {
 export interface Topic {
   topic: string;
   title: string;
-  description: string;
+  content: string;
 }
 
 export async function searchTopics(query: string): Promise<TopicSummary[]> {
