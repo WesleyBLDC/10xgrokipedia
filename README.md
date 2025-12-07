@@ -96,7 +96,8 @@ Notes:
 - Engagement scoring: each candidate is scored and re-ranked server-side using public metrics and author size normalization:
   - raw_engagement = likes + 2×retweets + 1.5×quotes + 0.5×replies
   - normalization = max(50, followers_count)^0.7
-  - score = raw_engagement / normalization
+  - verified boost: if the author is verified on X, a modest multiplicative boost is applied (default 1.1×)
+  - score = (raw_engagement / normalization) × verified_boost
 - Final list: candidates are sorted by `score` descending; the top `max_results` are returned to the client.
 - "Trending" flag: a tweet is marked as trending when it is among the top `TWEETS_TRENDING_TOP_K` ranked items and was created within `TWEETS_TRENDING_HOURS` hours (defaults: top 3 within 7 days / 168h). The UI displays a small “Trending” badge for these tweets.
   - Preview override (optional): to force-show trending badges for quick UI reviews, set either
@@ -104,6 +105,7 @@ Notes:
     - `TWEETS_TRENDING_PREVIEW_RANKS=1,5` (marks specific ranks, 1-based) regardless of recency.
 - Caching and refresh: results are cached in-memory per topic phrase and `max_results` for `TWEETS_CACHE_TTL` seconds. Use `POST /api/topics/{slug}/tweets/refresh` (or the ↻ button in the UI) to clear the cache and refetch fresh results.
 - UI: the left rail shows a compact, sticky “Top Tweets” widget with ranked numbers; the top three items are visually highlighted. Items link directly to the tweet on X.
+  - Verified authors display a small blue check next to their display name.
 
 Reliability and rate limits:
 - The service uses an in-memory single-flight mechanism to prevent duplicate upstream calls for the same topic while a fetch is in flight.
@@ -122,6 +124,7 @@ Reliability and rate limits:
   - `TWEETS_SUMMARY_TTL` (optional, seconds, default `600`)
   - `TWEETS_TRENDING_HOURS` (optional, hours, default `168`)
   - `TWEETS_TRENDING_TOP_K` (optional, integer, default `3`)
+  - `TWEETS_VERIFIED_BOOST` (optional, float multiplier, default `1.1`) — modest lift for verified authors in ranking
 #### Trending flag details
 
 - Computation: trending = ranked_index < `TWEETS_TRENDING_TOP_K` AND created_at within `TWEETS_TRENDING_HOURS`.

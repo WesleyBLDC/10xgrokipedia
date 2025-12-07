@@ -54,6 +54,7 @@ TRENDING_TOP_K = int(os.getenv("TWEETS_TRENDING_TOP_K", "3"))  # default top 3
 TRENDING_PREVIEW_TOP_K = int(os.getenv("TWEETS_TRENDING_PREVIEW_TOP_K", "0"))
 _TPR = os.getenv("TWEETS_TRENDING_PREVIEW_RANKS", "").strip()
 TRENDING_PREVIEW_RANKS = {int(x) for x in _TPR.split(',') if x.strip().isdigit()} if _TPR else set()
+VERIFIED_BOOST = float(os.getenv("TWEETS_VERIFIED_BOOST", "1.1"))  # 10% lift by default
 
 # In-memory cache and simple global rate limiter
 _tweets_cache: dict[str, tuple[float, list["TweetItem"]]] = {}
@@ -578,6 +579,8 @@ class TweetItem(BaseModel):
     author_username: str
     author_name: Optional[str] = None
     author_profile_image_url: Optional[str] = None
+    author_verified: Optional[bool] = None
+    author_verified_type: Optional[str] = None
     created_at: Optional[str] = None
     like_count: Optional[int] = None
     retweet_count: Optional[int] = None
@@ -623,7 +626,14 @@ def _compute_score(tweet: dict, user: dict) -> float:
     # Engagement score emphasizing RTs and quotes, then normalize by audience size
     raw = likes + 2.0 * rts + 1.5 * quotes + 0.5 * replies
     norm = (max(50.0, followers) ** 0.7)  # dampen large accounts
-    return raw / norm if norm > 0 else raw
+    score = raw / norm if norm > 0 else raw
+    # Apply a modest boost for verified accounts
+    try:
+        if user.get("verified"):
+            score *= max(1.0, VERIFIED_BOOST)
+    except Exception:
+        pass
+    return score
 
 
 async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size: int = 50) -> list[TweetItem]:
@@ -641,7 +651,7 @@ async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size
         "sort_order": "relevancy",
         "tweet.fields": "public_metrics,created_at,lang,author_id",
         "expansions": "author_id",
-        "user.fields": "username,name,profile_image_url,public_metrics",
+        "user.fields": "username,name,profile_image_url,public_metrics,verified,verified_type",
     }
     headers = {"Authorization": f"Bearer {token}"}
 
@@ -706,6 +716,8 @@ async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size
             username = (u or {}).get("username")
             name = (u or {}).get("name")
             pfp = (u or {}).get("profile_image_url")
+            verified = (u or {}).get("verified")
+            verified_type = (u or {}).get("verified_type")
             url = f"https://x.com/{username}/status/{tid}" if username and tid else f"https://x.com/i/web/status/{tid}"
             # trending flag: recent within TRENDING_HOURS and ranked within top-K
             is_recent = False
@@ -726,6 +738,8 @@ async def _fetch_recent_top_tweets(query: str, return_count: int = 10, pool_size
                     author_username=username or "",
                     author_name=name,
                     author_profile_image_url=pfp,
+                    author_verified=bool(verified) if verified is not None else None,
+                    author_verified_type=verified_type,
                     created_at=created_at,
                     like_count=metrics.get("like_count"),
                     retweet_count=metrics.get("retweet_count"),

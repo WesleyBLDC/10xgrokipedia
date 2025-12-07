@@ -51,6 +51,8 @@ export interface TweetItem {
   author_username: string;
   author_name?: string | null;
   author_profile_image_url?: string | null;
+  author_verified?: boolean | null;
+  author_verified_type?: string | null;
   created_at?: string | null;
   like_count?: number | null;
   retweet_count?: number | null;

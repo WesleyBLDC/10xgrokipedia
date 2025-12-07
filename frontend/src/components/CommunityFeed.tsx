@@ -150,6 +150,9 @@ export default function CommunityFeed({ topicSlug }: Props) {
                 <div className="cf-meta">
                   <div className="cf-author">
                     <span className="cf-name">{t.author_name || t.author_username}</span>
+                    {t.author_verified && (
+                      <span className="cf-verified" title="Verified on X">✓</span>
+                    )}
                     {t.author_name && (
                       <span className="cf-username">@{t.author_username}</span>
                     )}
