@@ -81,6 +81,18 @@ export interface SearchResult {
   hints?: SearchHints | null;
 }
 
+// Search hints from Grok query optimization
+export interface SearchHints {
+  query: string;
+  keywords: string[];
+  topics: string[];
+}
+
+export interface SearchResult {
+  tweets: TweetItem[];
+  hints?: SearchHints | null;
+}
+
 export interface AggregateBias {
   article_title: string;
   article_url: string;
