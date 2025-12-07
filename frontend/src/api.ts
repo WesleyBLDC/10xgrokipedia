@@ -45,6 +45,29 @@ export interface VersionDetail {
   content: string;
 }
 
+export interface TweetItem {
+  id: string;
+  text: string;
+  author_username: string;
+  author_name?: string | null;
+  author_profile_image_url?: string | null;
+  author_verified?: boolean | null;
+  author_verified_type?: string | null;
+  created_at?: string | null;
+  like_count?: number | null;
+  retweet_count?: number | null;
+  reply_count?: number | null;
+  quote_count?: number | null;
+  url: string;
+  trending?: boolean | null;
+}
+
+export interface TweetsSummary {
+  bullets: string[];
+  model?: string | null;
+  cached: boolean;
+}
+
 export async function searchTopics(query: string): Promise<TopicSummary[]> {
   const res = await fetch(`${API_BASE}/topics/search?q=${encodeURIComponent(query)}`);
   if (!res.ok) throw new Error("Failed to search topics");
@@ -55,6 +78,39 @@ export async function getTopic(slug: string): Promise<Topic> {
   const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(slug)}`);
   if (!res.ok) throw new Error("Topic not found");
   return res.json();
+}
+
+export async function getTopicTweets(slug: string, maxResults = 10): Promise<TweetItem[]> {
+  const res = await fetch(
+    `${API_BASE}/topics/${encodeURIComponent(slug)}/tweets?max_results=${maxResults}`
+  );
+  if (!res.ok) {
+    // Surface error text for better UX
+    const msg = await res.text();
+    throw new Error(msg || "Failed to load tweets");
+  }
+  return res.json();
+}
+
+export async function getTopicTweetsSummary(slug: string, maxResults = 10): Promise<TweetsSummary> {
+  const res = await fetch(
+    `${API_BASE}/topics/${encodeURIComponent(slug)}/tweets/summary?max_results=${maxResults}`
+  );
+  if (!res.ok) {
+    const msg = await res.text();
+    throw new Error(msg || "Failed to load summary");
+  }
+  return res.json();
+}
+
+export async function refreshTopicTweets(slug: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/topics/${encodeURIComponent(slug)}/tweets/refresh`, {
+    method: "POST",
+  });
+  if (!res.ok && res.status !== 204) {
+    const msg = await res.text();
+    throw new Error(msg || "Failed to refresh tweets cache");
+  }
 }
 
 export async function submitSuggestion(slug: string, suggestion: EditSuggestionInput): Promise<Suggestion> {
